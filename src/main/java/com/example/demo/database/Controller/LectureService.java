@@ -1,9 +1,10 @@
 package com.example.demo.database.Controller;
 
-import com.example.demo.database.DTO.LectureEntity;
+import com.example.demo.database.DTO.*;
 import com.example.demo.database.Repository.LectureMapper;
 import com.example.demo.database.Repository.LectureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,20 +24,28 @@ public class LectureService {
     @Autowired
     private LectureRepository lectureRepository;
 
-    @GetMapping("/lecture")
-    public HashMap<String,List> list() {
-        HashMap<String,List> result = new HashMap<>();
-        List<LectureEntity> list = lectureRepository.findAll();
-        System.out.println(list.get(0));
-        result.put("message", list);
-        return result;
-    }
+   @GetMapping("/lecture")
+   public HashMap<String,List> list() {
+       HashMap<String,List> result = new HashMap<>();
+       List<LectureDTO> list = lectureMapper.getLectureList();
+       result.put("message", list);
+       return result;
+   }
 
-    @GetMapping("/lecture/{id}")
+   /* @GetMapping("/lecture/{id}")
     public HashMap<String, Optional> detail(@PathVariable("id") Long id) {
         HashMap<String, Optional> result = new HashMap<>();
         Optional<LectureEntity> list = lectureRepository.findById(id);
         result.put("message", list);
+
+        return result;
+    }*/
+
+    @GetMapping("/lecture/{id}")
+    public HashMap<String, Object> detail(@PathVariable("id") Long id) {
+        HashMap<String, Object> result = new HashMap<>();
+        LectureDTO list = lectureMapper.getListDetail(id);
+        result.put("list", list);
 
         return result;
     }
@@ -60,11 +69,25 @@ public class LectureService {
         return result.toString();
     }
 
-  /*  @GetMapping("/branch")
-    public Map<String,List<>> getBranch(){
-        HashMap<String,List<>> result =new HashMap<>();
-        HashMap<String,Object> to= new HashMap<>();
-
+    @GetMapping("/branch")
+    public HashMap<String,List> selectBranch(){
+        HashMap<String,List> result = new HashMap<>();
+        List<BranchEntity> list = lectureMapper.getBranch();
+        result.put("list", list);
         return result;
-    }*/
+    }
+    @GetMapping("/teacher")
+    public HashMap<String,List> selectTeacher(@RequestParam("branch") int branch){
+        HashMap<String,List> result = new HashMap<>();
+        List<BoardEntity> list = lectureMapper.getTeacher(branch);
+        result.put("list", list);
+        return result;
+    }
+    @GetMapping("/room")
+    public HashMap<String,List> selectRoom(@RequestParam("branch") int branch){
+        HashMap<String,List> result = new HashMap<>();
+        List<RoomEntity> list = lectureMapper.getRoom(branch);
+        result.put("list", list);
+        return result;
+    }
 }
