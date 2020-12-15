@@ -1,8 +1,8 @@
-package com.example.demo.Repository;
+package com.example.demo.database.Repository;
 
 import javax.transaction.Transactional;
 
-import com.example.demo.DTO.StudentDTO;
+import com.example.demo.database.DTO.StudentDTO;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

@@ -1,9 +1,9 @@
-package com.example.demo.Controller;
+package com.example.demo.database.Controller;
 
 import java.util.*;
 
-import com.example.demo.DTO.StudentDTO;
-import com.example.demo.Repository.StudentRepository;
+import com.example.demo.database.DTO.StudentDTO;
+import com.example.demo.database.Repository.StudentRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

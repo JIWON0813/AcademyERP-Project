@@ -1,4 +1,4 @@
-package com.example.demo.DTO;
+package com.example.demo.database.DTO;
 
 import java.io.Serializable;
 
