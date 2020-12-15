@@ -38,8 +38,8 @@ public class BranchService {
     }
 
     @PostMapping("/branch")
-    public String write(@RequestBody BranchEntity lec) {
-        BranchEntity result =  branchRepository.save(lec);
+    public String write(@RequestBody BranchEntity branch) {
+        BranchEntity result =  branchRepository.save(branch);
         return result.toString();
     }
 
@@ -50,9 +50,9 @@ public class BranchService {
     }
 
     @PutMapping("branch/edit/{id}")
-    public String update(@RequestBody BranchEntity lec,@PathVariable("id") Long id) {
-        lec.setNo(id);
-        BranchEntity result =  branchRepository.save(lec);
+    public String update(@RequestBody BranchEntity branch,@PathVariable("id") Long id) {
+        branch.setNo(id);
+        BranchEntity result =  branchRepository.save(branch);
         return result.toString();
     }
 

@@ -20,9 +20,9 @@ import lombok.*;
         @Column
         private long no;
         private String name;
-        private int address;
-        private int hp;
-        private int owner;
+        private String address;
+        private String hp;
+        private String owner;
        
 
         
