@@ -34,7 +34,7 @@ class LectureAdd extends React.Component {
     this.addLecture = this.addLecture.bind(this)
     this.handleClickOpen = this.handleClickOpen.bind(this)
     this.handleClose = this.handleClose.bind(this);
-    this.branchSelect = this.branchSelect.bind(this);
+    //this.branchSelect = this.branchSelect.bind(this);
   }
 
 

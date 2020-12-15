@@ -38,7 +38,8 @@ const Students = React.lazy(() => import('./views/Student/Students'));
 const Student = React.lazy(() => import('./views/Student/Student'));
 const Ins_stu = React.lazy(() => import('./views/Student/Ins_stu'));
 const Edit_stu = React.lazy(() => import('./views/Student/Edit_stu'));
-
+const Users = React.lazy(() => import('./views/users/Users'));
+const User = React.lazy(() => import('./views/users/User'));
 const Lectures = React.lazy(() => import('./views/lecture/Lectures'));
 const Lecture = React.lazy(() => import('./views/lecture/Lecture'));
 const LectureAdd = React.lazy(() => import('./views/lecture/LectureAdd'));

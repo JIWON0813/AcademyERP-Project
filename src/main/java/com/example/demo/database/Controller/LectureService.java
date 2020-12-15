@@ -27,6 +27,7 @@ public class LectureService {
     public HashMap<String,List> list() {
         HashMap<String,List> result = new HashMap<>();
         List<LectureEntity> list = lectureRepository.findAll();
+        System.out.println(list.get(0));
         result.put("message", list);
         return result;
     }
