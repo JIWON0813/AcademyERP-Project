@@ -8,7 +8,6 @@ const Cards = React.lazy(() => import('./views/base/cards/Cards'));
 const Carousels = React.lazy(() => import('./views/base/carousels/Carousels'));
 const Collapses = React.lazy(() => import('./views/base/collapses/Collapses'));
 const BasicForms = React.lazy(() => import('./views/base/forms/BasicForms'));
-
 const Jumbotrons = React.lazy(() => import('./views/base/jumbotrons/Jumbotrons'));
 const ListGroups = React.lazy(() => import('./views/base/list-groups/ListGroups'));
 const Navbars = React.lazy(() => import('./views/base/navbars/Navbars'));
@@ -39,6 +38,14 @@ const Students = React.lazy(() => import('./views/Student/Students'));
 const Student = React.lazy(() => import('./views/Student/Student'));
 const Ins_stu = React.lazy(() => import('./views/Student/Ins_stu'));
 const Edit_stu = React.lazy(() => import('./views/Student/Edit_stu'));
+
+const Lectures = React.lazy(() => import('./views/lecture/Lectures'));
+const Lecture = React.lazy(() => import('./views/lecture/Lecture'));
+const LectureAdd = React.lazy(() => import('./views/lecture/LectureAdd'));
+const LectureDelete = React.lazy(() => import('./views/lecture/LectureDelete'));
+const LectureUpdate = React.lazy(() => import('./views/lecture/LectureUpdate'));
+
+
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -78,12 +85,21 @@ const routes = [
   { path: '/notifications/badges', name: 'Badges', component: Badges },
   { path: '/notifications/modals', name: 'Modals', component: Modals },
   { path: '/notifications/toaster', name: 'Toaster', component: Toaster },
+
   { path: '/widgets', name: 'Widgets', component: Widgets },
   { path: '/students', exact: true,  name: 'Students', component: Students },
   { path: '/student', exact: true,  name: 'Students', component: Student },
   { path: '/ins_stu', exact: true,  name: 'Ins_stu', component: Ins_stu },
   { path: '/edit_stu', exact: true,  name: 'Edit_stu', component: Edit_stu },
 
+  { path: '/users', exact: true,  name: 'Users', component: Users },
+  { path: '/users/:id', exact: true, name: 'User Details', component: User },
+
+  { path: '/lecture', exact: true,  name: 'Lectures', component: Lectures },
+  { path: '/lecture/:id', exact: true, name: 'Lecture Details', component: Lecture },
+  { path: '/lectureAdd', exact: true, name: 'Lecture Add', component: LectureAdd },
+  { path: '/lectureDelete/:id', exact: true, name: 'Lecture Delete', component: LectureDelete },
+  { path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate }
 ];
 
 export default routes;

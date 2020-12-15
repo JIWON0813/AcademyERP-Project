@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.database.Repository.LectureMapper">
+
+     <insert id="insertLecture" parameterType="java.util.HashMap">
+        INSERT INTO lecture VALUES (null,#{name},#{teacher},#{price},#{students},#{room},#{start_date},#{end_date},#{day},#{start_time},
+        #{end_time},#{part},#{branch})
+    </insert>
+
+    <select id="selectLecture" resultType="LectureEntity">
+    select * from lecture
+    </select>
+
+</mapper> 
