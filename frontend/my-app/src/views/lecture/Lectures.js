@@ -37,7 +37,6 @@ getApi = () => {
 
   render() {
     const { ItemList } = this.state;
-    console.log(ItemList);
     return (
       <div>
         <header>
@@ -59,7 +58,7 @@ getApi = () => {
                 <td>{itemdata.instructor}</td>
                 <td>{itemdata.price}</td>
                 <td>{itemdata.students}</td>
-                <td>{itemdata.classroom}</td>
+                <td>{itemdata.classRoom}</td>
                 <td>{itemdata.start_date}</td>
                 <td>{itemdata.end_date}</td>
                 <td>{itemdata.day}</td>

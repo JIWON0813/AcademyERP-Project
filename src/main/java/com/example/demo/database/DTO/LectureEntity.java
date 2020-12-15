@@ -32,9 +32,5 @@ import lombok.*;
         private int part;
         private int branch;
 
-        //read only
-        private String instructor;
-        private String classroom;
-        private String office;
     }
 

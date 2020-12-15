@@ -72,10 +72,11 @@ componentDidMount() {
 }
 
 getApi = () => {
+    console.log(this.props.id);
   axios.get("http://localhost:8080/api2/lecture/"+this.props.id)
     .then(res => {
       this.setState({
-        ItemList: res.data.message
+        ItemList: res.data.list
       })
     })
     .catch(res => console.log(res))
@@ -103,10 +104,10 @@ goBack = () => {
 
   render() {
     const { ItemList } = this.state;
-
     return (
       <div>
           <Button color="primary" onClick={this.handleClickOpen}>{ItemList.name}</Button>
+
         <Dialog onClose={this.handleClose} aria-labelledby="customized-dialog-title" open={this.state.open}
                 fullWidth={true}
                 maxWidth = {'xs'}>
@@ -117,17 +118,17 @@ goBack = () => {
               <tbody>
               <tr><td>{`no:`}</td><td><strong>{ItemList.no}</strong></td></tr>
               <tr><td>{`강의명:`}</td><td><strong>{ItemList.name}</strong></td></tr>
-              <tr><td>{`강사:`}</td><td><strong>{ItemList.teacher}</strong></td></tr>
+              <tr><td>{`강사:`}</td><td><strong>{ItemList.instructor}</strong></td></tr>
               <tr><td>{`수강료:`}</td><td><strong>{ItemList.price}</strong></td></tr>
               <tr><td>{`정원수:`}</td><td><strong>{ItemList.students}</strong></td></tr>
-              <tr><td>{`강의실:`}</td><td><strong>{ItemList.room}</strong></td></tr>
+              <tr><td>{`강의실:`}</td><td><strong>{ItemList.classRoom}</strong></td></tr>
               <tr><td>{`개강일:`}</td><td><strong>{ItemList.start_date}</strong></td></tr>
               <tr><td>{`종강일:`}</td><td><strong>{ItemList.end_date}</strong></td></tr>
               <tr><td>{`요일:`}</td><td><strong>{ItemList.day}</strong></td></tr>
               <tr><td>{`시작시간:`}</td><td><strong>{ItemList.start_time}</strong></td></tr>
               <tr><td>{`종료시간:`}</td><td><strong>{ItemList.end_time}</strong></td></tr>
               <tr><td>{`분야:`}</td><td><strong>{ItemList.part}</strong></td></tr>
-              <tr><td>{`지점:`}</td><td><strong>{ItemList.branch}</strong></td></tr>
+              <tr><td>{`지점:`}</td><td><strong>{ItemList.office}</strong></td></tr>
               </tbody>
             </table>
           </DialogContent>

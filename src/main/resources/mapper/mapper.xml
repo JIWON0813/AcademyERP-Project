@@ -15,8 +15,8 @@
         select * from room where branch=#{branch}
     </select>
 
-    <select id="getLectureList" resultType="LectureEntity">
-        SELECT a.`no`,a.name,b.name as 'instructor',a.price,a.students,c.name as 'classroom',a.start_date,a.end_date,a.day,a.start_time,a.end_time,
+    <select id="getLectureList" resultType="LectureDTO">
+        SELECT a.no,a.name,b.name as 'instructor',a.price,a.students,c.name as 'classroom',a.start_date,a.end_date,a.day,a.start_time,a.end_time,
                a.part,d.name as 'office'
         FROM lecture a
                  inner join employee b ON  a.teacher=b.no
@@ -25,7 +25,7 @@
         ORDER BY no ASC;
     </select>
 
-    <select id="getListDetail" parameterType="Long" resultType="LectureEntity">
+    <select id="getListDetail" parameterType="Long" resultType="LectureDTO">
         SELECT a.*,b.name as 'instructor',c.name as 'classroom',d.name as 'office'
         FROM lecture a
                  inner join employee b ON  a.teacher=b.no
