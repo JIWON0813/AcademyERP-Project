@@ -34,8 +34,8 @@ import lombok.*;
         private int profile_size;
         private int verify;
         private String regidate;
-        private String department;
-        private String branch;
+        private int department;
+        private int branch;
 
         
     }
