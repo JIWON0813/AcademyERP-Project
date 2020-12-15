@@ -10,16 +10,15 @@ class Users extends Component {
     this.state = {
         ItemList: ""
     }
-}
+  }
 
-componentDidMount() {
+  componentDidMount() {
     this.getApi();
-}
+  }
 
 getApi = () => {
   const { params } = this.props.match;
-  console.log(params.key1);
-    axios.get("http://localhost:8080/api/user?id="+params.id)
+    axios.get("http://localhost:8083/api/user?id="+params.id)
         .then(res => {
             console.log(res);
             this.setState({

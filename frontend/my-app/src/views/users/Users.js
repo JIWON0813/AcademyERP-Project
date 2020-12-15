@@ -1,35 +1,37 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
-import './table.css';
+import '../css/table.css';
+
 
 class Users extends Component {
-  constructor(props) {
+  constructor(props) {//prop==>상위 읽기만 가능 , state==>읽기 쓰기 가능,
     super(props)
     this.state = {
         ItemList: ""
     }
-}
+  }
 
-componentDidMount() {
-    this.getApi();
-}
+  componentDidMount() { //
+      this.getApi();
+  }
 
-getApi = () => {
-    axios.get("http://localhost:8080/api/users")
-        .then(res => {
-            console.log(res);
-            this.setState({
-              ItemList: res.data.message
-            })
-        })
-        .catch(res => console.log(res))
-}
+  getApi = () => {
+      axios.get("http://localhost:8083/api/users")
+          .then(res => {
+              console.log(res);
+              this.setState({
+                ItemList: res.data.message
+              })
+          })
+          .catch(res => console.log(res))
+  }
 
-  render() {
-    const { ItemList } = this.state;
-    console.log(ItemList);
-    return (
+
+    render() {
+      const { ItemList } = this.state;
+      console.log(ItemList);
+      return (
       <div>
         <table>
         <thead>
@@ -38,15 +40,11 @@ getApi = () => {
           <td>PROFILE</td><td>VERIFY</td><td>DATE</td></tr>
         </thead>
         <tbody>
-         {ItemList&&ItemList.map((itemdata, insertIndex) => {
-            return (
+         {ItemList&&ItemList.map((itemdata, insertIndex) => { //for문
+            return ( //Link to  ==> <a> 태그
             <tr key={insertIndex}>
                 <td>{itemdata.no}</td>
-                <td>
-              
-                  <Link to={`/users/${itemdata.no}?id=${itemdata.no}`}>{itemdata.name}</Link> 
-               
-                </td>
+                <td><Link to={`/users/${itemdata.no}`}>{itemdata.name}</Link></td>
                 <td>{itemdata.id}</td>
                 <td>{itemdata.password}</td>
                 <td>{itemdata.hp}</td>
@@ -61,6 +59,7 @@ getApi = () => {
                 <td>{itemdata.profile_name}</td>
                 <td>{itemdata.verify}</td>
                 <td>{itemdata.regidate}</td>
+                <td><Link to={`/logintest/${itemdata.no}/${itemdata.name}`}>로그인</Link></td>
               </tr>
             );
           })}

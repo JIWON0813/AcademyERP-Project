@@ -51,6 +51,7 @@ class LectureAdd extends React.Component {
 
   componentDidMount() {
     this.getApi();
+
   }
 
   getApi = () => {

@@ -24,7 +24,6 @@ public class LectureService {
     @Autowired
     private LectureRepository lectureRepository;
 
-
    @GetMapping("/lecture")
    public HashMap<String,List> list() {
        HashMap<String,List> result = new HashMap<>();
