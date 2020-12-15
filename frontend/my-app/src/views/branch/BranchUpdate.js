@@ -33,6 +33,7 @@ class BranchUpdate extends React.Component {
     e.preventDefault()
     this.updateBranch()
     this.setState({
+     // BranchList: '',
       name: '',
       address: '',
       hp: '',
