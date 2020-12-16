@@ -5,12 +5,11 @@ import java.io.Serializable;
 import javax.persistence.*;
 import lombok.*;
 
-
     @Entity
     @Table(name = "lecture")
     @Data
     @AllArgsConstructor
-    @NoArgsConstructor
+    @NoArgsConstructor    
     public class LectureEntity implements Serializable {
 	
         private static final long serialVersionUID = 1L;
@@ -32,6 +31,5 @@ import lombok.*;
         private int part;
         private int branch;
 
-        
     }
 

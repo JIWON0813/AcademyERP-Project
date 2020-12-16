@@ -37,7 +37,6 @@ getApi = () => {
 
   render() {
     const { ItemList } = this.state;
-
     return (
       <div>
         <header>
@@ -46,8 +45,8 @@ getApi = () => {
         </header>
         <table>
         <thead>
-          <tr><td>NO</td><td>NAME</td><td>Teacher</td><td>PRICE</td><td>Students</td><td>ROOM</td>
-          <td>START_DATE</td><td>END_DATE</td><td>DAY</td><td>START_TIME</td><td>END_TIME</td><td>PART</td><td>BRANCH</td>
+          <tr><td>NO</td><td>강의명</td><td>강사</td><td>수강료</td><td>정원수</td><td>강의실</td>
+          <td>개강일</td><td>종강일</td><td>요일</td><td>시작시간</td><td>종료시간</td><td>분야</td><td>지점</td>
           </tr>
         </thead>
         <tbody>
@@ -56,17 +55,17 @@ getApi = () => {
             <tr key={insertIndex}>
                 <td>{itemdata.no}</td>
                 <td> <Lecture stateRefresh={this.stateRefresh} id={itemdata.no}/></td>
-                <td>{itemdata.teacher}</td>
+                <td>{itemdata.instructor}</td>
                 <td>{itemdata.price}</td>
                 <td>{itemdata.students}</td>
-                <td>{itemdata.room}</td>
+                <td>{itemdata.classRoom}</td>
                 <td>{itemdata.start_date}</td>
                 <td>{itemdata.end_date}</td>
                 <td>{itemdata.day}</td>
                 <td>{itemdata.start_time}</td>
                 <td>{itemdata.end_time}</td>
                 <td>{itemdata.part}</td>
-                <td>{itemdata.branch}</td>
+                <td>{itemdata.office}</td>
               </tr>
             );
           })}
