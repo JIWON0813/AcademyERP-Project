@@ -25,6 +25,7 @@ if(Number(session_dep)===_HRD){
   HRD_login=true;
 }
 
+
 var cot=-1;
 class AttTable extends Component {
   constructor(props) {
@@ -243,7 +244,7 @@ class AttTable extends Component {
       }).catch(res => console.log(res))
   }
   getWeekly(day){
-    var getDay=this.dateDay(day)-1
+    var getDay=this.dateDay(day)
     var start=Moment(day).add(getDay*-1,'days').format("YYYY-MM-DD")
     var end=Moment(start).add(6,'days').format("YYYY-MM-DD")
     this.setState({
@@ -263,7 +264,6 @@ class AttTable extends Component {
       }).catch(res => console.log(res))
   }
   DayReset(){
-    alert("날짜 초기화")
     var day=document.getElementsByClassName("day")
     for(var i=0;i<day.length;i++){
       day[i].value="";
@@ -442,7 +442,7 @@ class AttTable extends Component {
                 <td class="default">이름</td><td class="default">직급</td><td class="default">출근시간</td>
                 <td class="default">퇴근시간</td><td class="default">출근구분</td><td class="default">퇴근구분</td>
                 <td class="default">연장근무시간</td><td class="default">총근무시간</td>
-                {HRD_login===true ? <td class="default">수정</td>:""}
+                <td class="default">수정</td>
               </tr>
             </thead>
             <tbody>
@@ -484,6 +484,12 @@ class AttTable extends Component {
             })}
             </tbody> 
           </table>
+            {ItemList.length===0&&
+                <div align="center">
+                  <h2>내용이 없습니다</h2>
+                  <hr></hr>
+                </div>
+            }
           </div>
         }       
         {this.props.mode===_weekly &&        
@@ -545,12 +551,16 @@ class AttTable extends Component {
                           }else return(<td class="a"></td>);
                       })}
                       </tr>
-                    );
-                  
-              })}
-              
+                    );                 
+              })}  
               </tbody>
             </table>
+            {temp.length===0&&
+                <div align="center">
+                  <h2>내용이 없습니다</h2>
+                  <hr></hr>
+                </div>
+            }
           </div>
         }
         {this.props.mode===_monthly &&
@@ -581,7 +591,7 @@ class AttTable extends Component {
               <thead>
                 
                 <tr>
-                  <th width="10%" >{this.state.day}</th>
+                  <th width="11%" >{this.state.day}</th>
                   {_numbers.map((member,) => {
                     return(
                       <th width="4%" class="default" colSpan="6">{member}</th>
@@ -633,6 +643,12 @@ class AttTable extends Component {
                 })}
               </tbody>
             </table>
+            {ItemList.length===0&&
+                <div align="center">
+                  <h2>내용이 없습니다</h2>
+                  <hr></hr>
+                </div>
+            }
           </div>
         }
         {this.props.mode===_Chart &&

@@ -290,9 +290,11 @@ class AttUpdate extends Component{
                 </CSelect>
               </CCol>
             </CFormGroup>
-            <CCardFooter>
-          <CButton  size="sm" color="primary" onClick={()=>{this.handleFormSubmit()}}><CIcon name="cil-scrubber" /> Submit</CButton> 
+            <CCardFooter align="right">
+          <CButton  size="sm" color="primary" onClick={()=>{this.handleFormSubmit()}}><CIcon name="cil-scrubber" /> Submit</CButton>
+          &nbsp;&nbsp;&nbsp; 
           <CButton size="sm" color="danger" onClick={()=>{this.reset()}}><CIcon name="cil-ban" /> Reset</CButton>
+          &nbsp;&nbsp;&nbsp;
           <CButton size="sm" color="danger" onClick={()=>{this.delete()}}><CIcon name="cil-ban" /> Delete</CButton>
         </CCardFooter>
         </CCardBody>

@@ -85,7 +85,8 @@ const routes = [
   { path: '/users', exact: true,  name: 'Users', component: Users },
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
 
-  { path: '/logintest/:no/:name/:dep', exact: true, name: 'sessionLog', component: sessionLog },
+  { path: '/logintest/:log/:no/:name/:dep', exact: true, name: 'sessionLog', component: sessionLog },
+  { path: '/logintest/:log/', exact: true, name: 'sessionLog', component: sessionLog },
 
   { path: '/Attendance', exact: true, name: 'Attendance', component: Attendance },
   { path: '/Attendance/:no', exact: true, name: 'Attendance Update', component: attUpdate },

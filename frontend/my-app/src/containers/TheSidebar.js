@@ -17,6 +17,32 @@ import CIcon from '@coreui/icons-react'
 // sidebar nav config
 import navigation from './_nav'
 
+
+
+const _HRD=1;
+let HRD_login=false;
+var session_dep=window.sessionStorage.getItem('dep');
+if(Number(session_dep)===_HRD){
+  HRD_login=true;
+}
+var sm=[
+  {
+    _tag: 'CSidebarNavTitle',
+    _children: ['박수민']
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Attendance',
+    to: '/Attendance',
+    icon: 'cil-chart-pie',
+  }
+];
+if(HRD_login){
+  for(var i=0;i<sm.length;i++){
+    navigation.splice(i+2,0,sm[i])
+  }
+}
+
 const TheSidebar = () => {
   const dispatch = useDispatch()
   const show = useSelector(state => state.sidebarShow)

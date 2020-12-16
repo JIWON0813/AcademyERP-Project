@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import '../css/table.css';
-import {
-  CButton,
-  CCol,
-  CRow
-} from '@coreui/react'
+import {CDropdownItem} from '@coreui/react'
+import CIcon from '@coreui/icons-react'
 var session_no=window.sessionStorage.getItem('no');
 const style={width: "50%"}
 class AttInOut extends Component {
@@ -21,8 +18,6 @@ class AttInOut extends Component {
     })
     .catch(res => console.log(res)) 
   }
-  
-
   out = () =>{
     axios.get(`http://localhost:8083/api2/out?no=${session_no}`)
     .then(res => {
@@ -35,7 +30,6 @@ class AttInOut extends Component {
     })
     .catch(res => console.log(res)) 
   }
-
   countSeconds = (str) => {
     const [hh = '0', mm = '0', ss = '0'] = (str || '0:0:0').split(':');
     const hour = parseInt(hh, 10) || 0;
@@ -43,7 +37,6 @@ class AttInOut extends Component {
     const second = parseInt(ss, 10) || 0;
     return (hour*3600) + (minute*60) + (second);
   }
-
   night = () =>{
     let today = new Date();
     let hours = today.getHours(); 
@@ -66,26 +59,41 @@ class AttInOut extends Component {
       alert("연장근무는 "+night+"이후에 가능합니다.")
     }
   }
-       
 
-
-  
-    render() {
-      return (
-      <div style={style}>
-        <CRow className="align-items-center">
-            <CCol col="6" sm="3" md="2" xl className="mb-3 mb-xl-0">
-              <CButton block variant="outline" color="primary"onClick={this.in}>출근하기</CButton>
-            </CCol>
-            <CCol col="6" sm="3" md="2" xl className="mb-3 mb-xl-0">
-              <CButton block variant="outline" color="primary" onClick={this.out}>퇴근하기</CButton>
-            </CCol>
-            <CCol col="6" sm="3" md="2" xl className="mb-3 mb-xl-0">
-              <CButton block variant="outline" color="primary" onClick={this.night}>연장근무</CButton>
-            </CCol>
-        </CRow>
-        <br></br>
+  render() {
+    return (
+    <div style={style}>
+      {/* <CRow className="align-items-center">
+          <CCol col="6" sm="3" md="2" xl className="mb-3 mb-xl-0">
+            <CButton block variant="outline" color="primary"onClick={this.in}>출근하기</CButton>
+          </CCol>
+          <CCol col="6" sm="3" md="2" xl className="mb-3 mb-xl-0">
+            <CButton block variant="outline" color="primary" onClick={this.out}>퇴근하기</CButton>
+          </CCol>
+          <CCol col="6" sm="3" md="2" xl className="mb-3 mb-xl-0">
+            <CButton block variant="outline" color="primary" onClick={this.night}>연장근무</CButton>
+          </CCol>
+      </CRow>
+      <br></br> */}
+      <CDropdownItem>
+        <div onClick={this.in}>
+          <CIcon name="cil-sun" className="mfe-2" /> 
+          출근
+        </div>
+      </CDropdownItem>
+      <CDropdownItem>
+      <div onClick={this.out}>
+        <CIcon name="cil-home" className="mfe-2" /> 
+        퇴근
       </div>
+      </CDropdownItem>
+      <CDropdownItem>
+      <div onClick={this.night}>
+        <CIcon name="cil-moon" className="mfe-2" /> 
+        연장
+      </div>
+      </CDropdownItem>
+    </div>
     );
   }
 }
