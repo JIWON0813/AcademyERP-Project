@@ -45,6 +45,11 @@ const Lecture = React.lazy(() => import('./views/lecture/Lecture'));
 const LectureAdd = React.lazy(() => import('./views/lecture/LectureAdd'));
 const LectureDelete = React.lazy(() => import('./views/lecture/LectureDelete'));
 const LectureUpdate = React.lazy(() => import('./views/lecture/LectureUpdate'));
+const Consults = React.lazy(() => import('./views/consult/Consults'));
+const Consult = React.lazy(() => import('./views/consult/Consult'));
+const ConsultInsert = React.lazy(() => import('./views/consult/ConsultInsert'));
+const ConsultDelete = React.lazy(() => import('./views/consult/ConsultDelete'));
+const ConsultUpdate = React.lazy(() => import('./views/consult/ConsultUpdate'));
 
 
 
@@ -100,7 +105,13 @@ const routes = [
   { path: '/lecture/:id', exact: true, name: 'Lecture Details', component: Lecture },
   { path: '/lectureAdd', exact: true, name: 'Lecture Add', component: LectureAdd },
   { path: '/lectureDelete/:id', exact: true, name: 'Lecture Delete', component: LectureDelete },
-  { path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate }
+  { path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate },
+
+  { path: '/consult', exact: true,  name: 'Consults', component: Consults },
+  { path: '/consult/:id', exact: true,  name: 'Consult Details', component: Consult },
+  { path: '/consultInsert', exact: true,  name: 'Consult Insert', component: ConsultInsert },
+  { path: '/consultDelete/:id', exact: true,  name: 'Consult Delete', component: ConsultDelete },
+  { path: '/consultUpdate', exact: true,  name: 'Consult Update', component: ConsultUpdate }
 ];
 
 export default routes;
