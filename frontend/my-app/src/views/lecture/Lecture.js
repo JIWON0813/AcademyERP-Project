@@ -103,7 +103,7 @@ goBack = () => {
 
   render() {
     const { ItemList } = this.state;
-
+    console.log(ItemList);
     return (
       <div>
           <Button color="primary" onClick={this.handleClickOpen}>{ItemList.name}</Button>

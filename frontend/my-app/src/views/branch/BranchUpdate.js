@@ -9,7 +9,6 @@ const styles = theme => ({
 });
 
 class BranchUpdate extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
