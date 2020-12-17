@@ -51,6 +51,12 @@ const ConsultInsert = React.lazy(() => import('./views/consult/ConsultInsert'));
 const ConsultDelete = React.lazy(() => import('./views/consult/ConsultDelete'));
 const ConsultUpdate = React.lazy(() => import('./views/consult/ConsultUpdate'));
 
+const Branches = React.lazy(() => import('./views/branch/Branches'));
+const Branch = React.lazy(() => import('./views/branch/Branch'));
+const BranchAdd = React.lazy(() => import('./views/branch/BranchAdd'));
+const BranchDelete = React.lazy(() => import('./views/branch/BranchDelete'));
+const BranchUpdate = React.lazy(() => import('./views/branch/BranchUpdate'));
+
 
 
 const routes = [
@@ -111,7 +117,13 @@ const routes = [
   { path: '/consult/:id', exact: true,  name: 'Consult Details', component: Consult },
   { path: '/consultInsert', exact: true,  name: 'Consult Insert', component: ConsultInsert },
   { path: '/consultDelete/:id', exact: true,  name: 'Consult Delete', component: ConsultDelete },
-  { path: '/consultUpdate', exact: true,  name: 'Consult Update', component: ConsultUpdate }
+  { path: '/consultUpdate', exact: true,  name: 'Consult Update', component: ConsultUpdate },
+  
+  { path: '/branch', exact: true,  name: 'Branches', component: Branches },
+  { path: '/branch/:id', exact: true, name: 'Branch Details', component: Branch },
+  { path: '/branchAdd', exact: true, name: 'Branch Add', component: BranchAdd },
+  { path: '/branchDelete/:id', exact: true, name: 'Branch Delete', component: BranchDelete },
+  { path: '/branchUpdate', exact: true, name: 'Branch Update', component: BranchUpdate }
 ];
 
 export default routes;
