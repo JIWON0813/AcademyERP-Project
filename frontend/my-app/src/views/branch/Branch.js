@@ -57,7 +57,7 @@ class Branches extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      BranchList: ""
+      branchList: ""
     }
 
     this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -75,7 +75,7 @@ getApi = () => {
   axios.get("http://localhost:8080/api2/branch/"+this.props.id)
     .then(res => {
       this.setState({
-        BranchList: res.data.message
+        branchList: res.data.message
       })
     })
     .catch(res => console.log(res))
@@ -102,28 +102,28 @@ goBack = () => {
 
 
   render() {
-    const { BranchList } = this.state;
+    const { branchList } = this.state;
 
     return (
       <div>
-          <Button color="primary" onClick={this.handleClickOpen}>{BranchList.name}</Button>
+          <Button color="primary" onClick={this.handleClickOpen}>{branchList.name}</Button>
         <Dialog onClose={this.handleClose} aria-labelledby="customized-dialog-title" open={this.state.open}>
           <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-          User name: {BranchList.name}</DialogTitle>
+          User name: {branchList.name}</DialogTitle>
           <DialogContent dividers>
             <table className="table table-striped table-hover">
               <tbody>
-              <tr><td>{`no:`}</td><td><strong>{BranchList.no}</strong></td></tr>
-              <tr><td>{`name:`}</td><td><strong>{BranchList.name}</strong></td></tr>
-              <tr><td>{`address:`}</td><td><strong>{BranchList.address}</strong></td></tr>
-              <tr><td>{`hp:`}</td><td><strong>{BranchList.hp}</strong></td></tr>
-              <tr><td>{`owner:`}</td><td><strong>{BranchList.owner}</strong></td></tr>
+              <tr><td>{`no:`}</td><td><strong>{branchList.no}</strong></td></tr>
+              <tr><td>{`name:`}</td><td><strong>{branchList.name}</strong></td></tr>
+              <tr><td>{`address:`}</td><td><strong>{branchList.address}</strong></td></tr>
+              <tr><td>{`hp:`}</td><td><strong>{branchList.hp}</strong></td></tr>
+              <tr><td>{`owner:`}</td><td><strong>{branchList.owner}</strong></td></tr>
               </tbody>
             </table>
           </DialogContent>
           <DialogActions>
-            <BranchUpdate stateRefresh={this.props.stateRefresh} BranchList={BranchList}/>
-            <BranchDelete stateRefresh={this.props.stateRefresh} id={BranchList.no}/>
+            <BranchUpdate stateRefresh={this.props.stateRefresh} branchList={branchList}/>
+            <BranchDelete stateRefresh={this.props.stateRefresh} id={branchList.no}/>
           </DialogActions>
 
         </Dialog>

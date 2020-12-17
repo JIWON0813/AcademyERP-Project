@@ -146,5 +146,3 @@ goBack = () => {
 
 }
 export default withStyles(styles)(Lectures)
-
-

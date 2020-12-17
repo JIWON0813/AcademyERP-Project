@@ -8,14 +8,14 @@ class Branches extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        BranchList: ""
+        branchList: ""
     }
     this.stateRefresh = this.stateRefresh.bind(this);
 }
 
   stateRefresh() {
     this.setState({
-      BranchList: "",
+      branchList: "",
     });
     this.getApi();
 
@@ -29,14 +29,14 @@ getApi = () => {
     axios.get("http://localhost:8080/api2/branch")
         .then(res => {
             this.setState({
-              BranchList: res.data.message
+              branchList: res.data.message
             })
         })
         .catch(res => console.log(res))
 }
 
   render() {
-    const { BranchList } = this.state;
+    const { branchList } = this.state;
 
     return (
       <div>
@@ -51,7 +51,7 @@ getApi = () => {
           </tr>
         </thead>
         <tbody>
-         {BranchList&&BranchList.map((branchdata, insertIndex) => {
+         {branchList&&branchList.map((branchdata, insertIndex) => {
             return (
             <tr key={insertIndex}>
                 <td>{branchdata.no}</td>

@@ -12,10 +12,10 @@ class BranchUpdate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: this.props.BranchList.name,
-      address: this.props.BranchList.address,
-      hp: this.props.BranchList.hp,
-      owner: this.props.BranchList.owner
+      name: this.props.branchList.name,
+      address: this.props.branchList.address,
+      hp: this.props.branchList.hp,
+      owner: this.props.branchList.owner
     }
 
 
@@ -32,7 +32,7 @@ class BranchUpdate extends React.Component {
     e.preventDefault()
     this.updateBranch()
     this.setState({
-     // BranchList: '',
+     // branchList: '',
       name: '',
       address: '',
       hp: '',
@@ -55,7 +55,7 @@ class BranchUpdate extends React.Component {
         console.log(this.state.hp);
           console.log(this.state.owner);
     axios({
-      url: 'http://localhost:8080/api2/branch/edit/' + this.props.BranchList.no,
+      url: 'http://localhost:8080/api2/branch/edit/' + this.props.branchList.no,
       method: "PUT",
       headers: {'content-type': 'application/json'},
       data: {
@@ -88,8 +88,8 @@ class BranchUpdate extends React.Component {
 
 
   render() {
-    let BranchList = this.props.BranchList;
-    console.log(BranchList);
+    let branchList = this.props.branchList;
+    console.log(branchList);
 
     return (
       <div>
@@ -99,10 +99,10 @@ class BranchUpdate extends React.Component {
         <Dialog open={this.state.open} onClose={this.handleClose}>
           <DialogTitle>클래스 수정</DialogTitle>
           <DialogContent>
-            <TextField label="지점명" type="text" name="name" defaultValue={BranchList.name} onChange={this.handleValueChange}/><br/>
-            <TextField label="주소" type="text" name="address" defaultValue={BranchList.address} onChange={this.handleValueChange}/><br/>
-            <TextField label="전화번호" type="text" name="hp" defaultValue={BranchList.hp} onChange={this.handleValueChange}/><br/>
-            <TextField label="소유주" type="text" name="owner" defaultValue={BranchList.owner}
+            <TextField label="지점명" type="text" name="name" defaultValue={branchList.name} onChange={this.handleValueChange}/><br/>
+            <TextField label="주소" type="text" name="address" defaultValue={branchList.address} onChange={this.handleValueChange}/><br/>
+            <TextField label="전화번호" type="text" name="hp" defaultValue={branchList.hp} onChange={this.handleValueChange}/><br/>
+            <TextField label="소유주" type="text" name="owner" defaultValue={branchList.owner}
                        onChange={this.handleValueChange}/><br/>
           </DialogContent>
 
