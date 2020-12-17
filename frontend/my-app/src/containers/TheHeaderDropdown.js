@@ -8,7 +8,8 @@ import {
   CImg
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-
+import AttInOut from '../views/Attendance/AttInOut'
+var session_no=window.sessionStorage.getItem('no');
 const TheHeaderDropdown = () => {
   return (
     <CDropdown
@@ -80,10 +81,21 @@ const TheHeaderDropdown = () => {
           <CBadge color="primary" className="mfs-auto">42</CBadge>
         </CDropdownItem>
         <CDropdownItem divider />
+        
+        <AttInOut></AttInOut>
+
         <CDropdownItem>
           <CIcon name="cil-lock-locked" className="mfe-2" /> 
           Lock Account
         </CDropdownItem>
+        {session_no!==null &&
+            <div onClick={()=>document.location.href="/#/logintest/1/"}>
+          <CDropdownItem>
+              <CIcon name="cil-lock-locked" className="mfe-2" /> 
+              LogOut
+          </CDropdownItem> 
+            </div>
+        }
       </CDropdownMenu>
     </CDropdown>
   )
