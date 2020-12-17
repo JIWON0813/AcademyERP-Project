@@ -114,7 +114,7 @@ goBack = () => {
             상담신청인 : {ConsultList.name}</DialogTitle>
           <DialogContent dividers>
             <table className="table table-striped table-hover">
-              <tbody>
+              <tbody>  
               <tr><td>{`no:`}</td><td><strong>{ConsultList.no}</strong></td></tr>
               <tr><td>{`성명:`}</td><td><strong>{ConsultList.name}</strong></td></tr>
               <tr><td>{`전화번호:`}</td><td><strong>{ConsultList.hp}</strong></td></tr>
