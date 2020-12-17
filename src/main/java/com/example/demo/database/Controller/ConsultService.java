@@ -54,7 +54,9 @@ public class ConsultService {
     public String update(@RequestBody ConsultEntity con,@PathVariable("id") Long id) {
         con.setNo(id);
         ConsultEntity result =  consultRepository.save(con);
-        return result.toString(); 
+
+        return result.toString();
+
     }
 
 }

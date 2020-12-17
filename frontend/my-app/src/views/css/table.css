@@ -2,14 +2,26 @@
   border:1px solid #444444;
 } */
 
+<<<<<<< HEAD
   table.default {
+=======
+  table.a {
+>>>>>>> f12f9191e61f18a407d84447628ed8a617cd72c6
     width: 100%;
     border-top: 1px solid #444444;
     border-collapse: collapse;
   }
+<<<<<<< HEAD
   th.default, td.default {
     border-bottom: 1px solid #444444;
   }
+=======
+  th.a, td.a {
+    border-bottom: 1px solid #444444;
+
+  }
+
+>>>>>>> f12f9191e61f18a407d84447628ed8a617cd72c6
   .b {
     border: 1px solid #444444;
     border-collapse: collapse;
@@ -25,9 +37,12 @@
   .e{
     border-right: 1px solid #444444;
   }
+<<<<<<< HEAD
   .sm{
     border:1px solid #444444;
   }
   .end{
     border-right: 1px solid #444444;
   }
+=======
+>>>>>>> f12f9191e61f18a407d84447628ed8a617cd72c6

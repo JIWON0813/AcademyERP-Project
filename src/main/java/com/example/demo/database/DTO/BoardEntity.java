@@ -23,7 +23,7 @@ import lombok.*;
         private String name;
         private String id;
         private String password;
-        private String hp; 
+        private String hp;
         private String email;
         private String birth;
         private String address;

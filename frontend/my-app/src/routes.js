@@ -56,11 +56,15 @@ const Branch = React.lazy(() => import('./views/branch/Branch'));
 const BranchAdd = React.lazy(() => import('./views/branch/BranchAdd'));
 const BranchDelete = React.lazy(() => import('./views/branch/BranchDelete'));
 const BranchUpdate = React.lazy(() => import('./views/branch/BranchUpdate'));
+<<<<<<< HEAD
 // ------------박수민
 const Attendance = React.lazy(() => import('./views/Attendance/index'));
 const attUpdate = React.lazy(() => import('./views/Attendance/AttUpdate'));
 const sessionLog = React.lazy(() => import('./views/users/sessionLog'));
 // -------------박수민
+=======
+
+>>>>>>> f12f9191e61f18a407d84447628ed8a617cd72c6
 
 
 const routes = [
@@ -127,6 +131,7 @@ const routes = [
   { path: '/branch/:id', exact: true, name: 'Branch Details', component: Branch },
   { path: '/branchAdd', exact: true, name: 'Branch Add', component: BranchAdd },
   { path: '/branchDelete/:id', exact: true, name: 'Branch Delete', component: BranchDelete },
+<<<<<<< HEAD
   { path: '/branchUpdate', exact: true, name: 'Branch Update', component: BranchUpdate },
 
   // -------------박수민
@@ -136,6 +141,9 @@ const routes = [
   { path: '/logintest/:log/:no/:name/:dep', exact: true, name: 'sessionLog', component: sessionLog },
   { path: '/logintest/:log/', exact: true, name: 'sessionLog', component: sessionLog },
   // -------------박수민
+=======
+  { path: '/branchUpdate', exact: true, name: 'Branch Update', component: BranchUpdate }
+>>>>>>> f12f9191e61f18a407d84447628ed8a617cd72c6
 ];
 
 export default routes;

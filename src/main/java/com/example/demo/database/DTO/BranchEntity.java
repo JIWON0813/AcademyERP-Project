@@ -23,7 +23,7 @@ import lombok.*;
         private String address;
         private String hp;
         private String owner;
-        
+       
 
         
     }

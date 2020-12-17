@@ -13,7 +13,7 @@ public class LectureDTO {
     private int price;
     private int students;
     private int room;
-    private String classRoom; 
+    private String classRoom;
     private String start_date;
     private String end_date;
     private String day;

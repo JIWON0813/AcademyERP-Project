@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
+=======
+import { Link } from 'react-router-dom';
+>>>>>>> f12f9191e61f18a407d84447628ed8a617cd72c6
 class login extends Component {
   constructor(props) {
     super(props)
@@ -7,6 +11,7 @@ class login extends Component {
     }
   }
 
+<<<<<<< HEAD
   componentDidMount() {
     const { params } = this.props.match;
     if(Number(params.log)===0){
@@ -38,6 +43,24 @@ class login extends Component {
     return(
       <div>
         
+=======
+componentDidMount() {
+  this.log();
+}
+
+log = () =>{
+  const { params } = this.props.match;
+  window.sessionStorage.setItem('id',params.name);
+  window.sessionStorage.setItem('no',params.no);
+  this.setState ({asd: params.no})
+  
+}
+
+render() {
+    return(
+      <div>
+        <Link to={`/users`} >로그인{this.asd}</Link>
+>>>>>>> f12f9191e61f18a407d84447628ed8a617cd72c6
       </div>
     );
   }

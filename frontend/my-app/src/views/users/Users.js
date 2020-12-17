@@ -5,7 +5,7 @@ import '../css/table.css';
 
 
 class Users extends Component {
-  constructor(props) {
+  constructor(props) {//prop==>상위 읽기만 가능 , state==>읽기 쓰기 가능,
     super(props)
     this.state = {
         userList: "",
@@ -13,6 +13,7 @@ class Users extends Component {
     }
   }
 
+<<<<<<< HEAD
   componentDidMount() {
       this.getApi();
   }
@@ -36,6 +37,27 @@ class Users extends Component {
     render() {
       const { userList } = this.state;
       const { depList } = this.state;
+=======
+  componentDidMount() { //
+      this.getApi();
+  }
+
+  getApi = () => {
+      axios.get("http://localhost:8083/api/users")
+          .then(res => {
+              console.log(res);
+              this.setState({
+                ItemList: res.data.message
+              })
+          })
+          .catch(res => console.log(res))
+  }
+
+
+    render() {
+      const { ItemList } = this.state;
+      console.log(ItemList);
+>>>>>>> f12f9191e61f18a407d84447628ed8a617cd72c6
       return (
       <div>
         <table  class="default">
@@ -45,6 +67,7 @@ class Users extends Component {
           <td class="default">PROFILE</td><td class="default">VERIFY</td><td class="default">DATE</td></tr>
         </thead>
         <tbody>
+<<<<<<< HEAD
          {userList&&userList.map((items) => {
             return (
             <tr class="default">
@@ -71,6 +94,28 @@ class Users extends Component {
                 <td class="default">{items.verify}</td>
                 <td class="default">{items.regidate}</td>
                 <td class="default"><Link to={`/logintest/0/${items.no}/${items.name}/${items.department}`}>로그인</Link></td>
+=======
+         {ItemList&&ItemList.map((itemdata, insertIndex) => { //for문
+            return ( //Link to  ==> <a> 태그
+            <tr key={insertIndex}>
+                <td>{itemdata.no}</td>
+                <td><Link to={`/users/${itemdata.no}`}>{itemdata.name}</Link></td>
+                <td>{itemdata.id}</td>
+                <td>{itemdata.password}</td>
+                <td>{itemdata.hp}</td>
+                <td>{itemdata.address}</td>
+                <td>{itemdata.email}</td>
+                <td>{itemdata.birth}</td>
+                <td>{itemdata.sex}</td>
+                <td>{itemdata.rank}</td>
+                <td>{itemdata.salary}</td>
+                <td>{itemdata.department}</td>
+                <td>{itemdata.branch}</td>
+                <td>{itemdata.profile_name}</td>
+                <td>{itemdata.verify}</td>
+                <td>{itemdata.regidate}</td>
+                <td><Link to={`/logintest/${itemdata.no}/${itemdata.name}`}>로그인</Link></td>
+>>>>>>> f12f9191e61f18a407d84447628ed8a617cd72c6
               </tr>
             );
           })}
