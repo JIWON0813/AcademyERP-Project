@@ -18,11 +18,7 @@ class Users extends Component {
 
 getApi = () => {
   const { params } = this.props.match;
-<<<<<<< HEAD
     axios.get("http://localhost:8080/api/user?id="+params.id)
-=======
-    axios.get("http://localhost:8083/api/user?id="+params.id)
->>>>>>> f12f9191e61f18a407d84447628ed8a617cd72c6
         .then(res => {
             console.log(res);
             this.setState({
