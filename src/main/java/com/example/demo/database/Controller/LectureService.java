@@ -69,7 +69,7 @@ public class LectureService {
         return result.toString();
     }
 
-    @GetMapping("/branch")
+    @GetMapping("/branches")
     public HashMap<String,List> selectBranch(){
         HashMap<String,List> result = new HashMap<>();
         List<BranchEntity> list = lectureMapper.getBranch();

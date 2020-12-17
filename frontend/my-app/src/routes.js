@@ -46,6 +46,12 @@ const LectureAdd = React.lazy(() => import('./views/lecture/LectureAdd'));
 const LectureDelete = React.lazy(() => import('./views/lecture/LectureDelete'));
 const LectureUpdate = React.lazy(() => import('./views/lecture/LectureUpdate'));
 
+const Branches = React.lazy(() => import('./views/branch/Branches'));
+const Branch = React.lazy(() => import('./views/branch/Branch'));
+const BranchAdd = React.lazy(() => import('./views/branch/BranchAdd'));
+const BranchDelete = React.lazy(() => import('./views/branch/BranchDelete'));
+const BranchUpdate = React.lazy(() => import('./views/branch/BranchUpdate'));
+
 
 
 const routes = [
@@ -100,7 +106,13 @@ const routes = [
   { path: '/lecture/:id', exact: true, name: 'Lecture Details', component: Lecture },
   { path: '/lectureAdd', exact: true, name: 'Lecture Add', component: LectureAdd },
   { path: '/lectureDelete/:id', exact: true, name: 'Lecture Delete', component: LectureDelete },
-  { path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate }
+  { path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate },
+
+  { path: '/branch', exact: true,  name: 'Branches', component: Branches },
+  { path: '/branch/:id', exact: true, name: 'Branch Details', component: Branch },
+  { path: '/branchAdd', exact: true, name: 'Branch Add', component: BranchAdd },
+  { path: '/branchDelete/:id', exact: true, name: 'Branch Delete', component: BranchDelete },
+  { path: '/branchUpdate', exact: true, name: 'Branch Update', component: BranchUpdate }
 ];
 
 export default routes;

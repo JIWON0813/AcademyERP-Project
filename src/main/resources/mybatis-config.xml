@@ -8,5 +8,6 @@
     </typeAliases>
     <mappers>
         <mapper resource="mapper/mapper.xml"/>
+        <mapper resource="mapper/branchmapper.xml"/>
     </mappers>
 </configuration> 
