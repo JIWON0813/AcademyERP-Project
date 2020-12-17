@@ -120,8 +120,8 @@ goBack = () => {
               <tr><td>{`전화번호:`}</td><td><strong>{ConsultList.hp}</strong></td></tr>
               <tr><td>{`상담일자:`}</td><td><strong>{ConsultList.schedule}</strong></td></tr>
               <tr><td>{`상담내용:`}</td><td><strong>{ConsultList.memo}</strong></td></tr>
-              <tr><td>{`접수날짜:`}</td><td><strong>{ConsultList.regdate}</strong></td></tr>
-              <tr><td>{`상담경로:`}</td><td><strong>{ConsultList.route}</strong></td></tr>
+              {/* <tr><td>{`접수날짜:`}</td><td><strong>{ConsultList.regdate}</strong></td></tr> */}
+              {/* <tr><td>{`상담경로:`}</td><td><strong>{ConsultList.route}</strong></td></tr> */}
               <tr><td>{`작성자:`}</td><td><strong>{ConsultList.writer}</strong></td></tr>
               </tbody>
             </table>

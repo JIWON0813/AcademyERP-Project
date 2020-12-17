@@ -51,8 +51,8 @@ getApi = () => {
             <td>hp</td>
             <td>schedule</td>
             <td>memo</td>
-            <td>regdate</td>
-            <td>route</td>
+            {/* <td>regdate</td> */}
+            {/* <td>route</td> */}
             <td>writer</td>
         </thead>
         <tbody>
@@ -64,8 +64,8 @@ getApi = () => {
                 <td>{consultdata.hp}</td>
                 <td>{consultdata.schedule}</td>
                 <td>{consultdata.memo}</td>
-                <td>{consultdata.regdate}</td>
-                <td>{consultdata.route}</td>
+                {/* <td>{consultdata.regdate}</td> */}
+                {/* <td>{consultdata.route}</td> */}
                 <td>{consultdata.writer}</td>
               </tr>
             );
