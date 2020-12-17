@@ -139,7 +139,7 @@ class AttTable extends Component {
     })
     axios({
       method:'get',
-      url:encodeURI('http://localhost:8083/api2/attfind?day='+this.state.day+'&name='+e.target.value+'&dep='+this.state.dep),
+      url:encodeURI('http://localhost:8080/api2/attfind?day='+this.state.day+'&name='+e.target.value+'&dep='+this.state.dep),
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
@@ -157,7 +157,7 @@ class AttTable extends Component {
     this.DayToSETime(e.target.value);
     axios({
       method:'get',
-      url:encodeURI('http://localhost:8083/api2/attfind?day='+e.target.value+'&name='+this.state.name+'&dep='+this.state.dep),
+      url:encodeURI('http://localhost:8080/api2/attfind?day='+e.target.value+'&name='+this.state.name+'&dep='+this.state.dep),
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
@@ -173,7 +173,7 @@ class AttTable extends Component {
     })
     axios({
       method:'get',
-      url:encodeURI('http://localhost:8083/api2/attfind?day='+this.state.day+'&name='+this.state.name+'&dep='+e.target.value),
+      url:encodeURI('http://localhost:8080/api2/attfind?day='+this.state.day+'&name='+this.state.name+'&dep='+e.target.value),
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
@@ -189,7 +189,7 @@ class AttTable extends Component {
     })
     axios({
       method:'get',
-      url:encodeURI('http://localhost:8083/api2/attfind3?start='+this.state.start+'&end='+this.state.end+'&name='+e.target.value+'&dep='+this.state.dep),
+      url:encodeURI('http://localhost:8080/api2/attfind3?start='+this.state.start+'&end='+this.state.end+'&name='+e.target.value+'&dep='+this.state.dep),
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
@@ -204,7 +204,7 @@ class AttTable extends Component {
 
     axios({
       method:'get',
-      url:encodeURI('http://localhost:8083/api2/attfind3?start='+Time.start+'&end='+Time.end+'&name='+this.state.name+'&dep='+this.state.dep),
+      url:encodeURI('http://localhost:8080/api2/attfind3?start='+Time.start+'&end='+Time.end+'&name='+this.state.name+'&dep='+this.state.dep),
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
@@ -220,7 +220,7 @@ class AttTable extends Component {
     })
     axios({
       method:'get',
-      url:encodeURI('http://localhost:8083/api2/attfind3?start='+this.state.start+'&end='+this.state.end+'&name='+this.state.name+'&dep='+e.target.value),
+      url:encodeURI('http://localhost:8080/api2/attfind3?start='+this.state.start+'&end='+this.state.end+'&name='+this.state.name+'&dep='+e.target.value),
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
@@ -233,7 +233,7 @@ class AttTable extends Component {
   CyearChange = (e) =>{
     axios({
       method:'get',
-      url:encodeURI('http://localhost:8083/api2/attCyear?year='+e.target.value),
+      url:encodeURI('http://localhost:8080/api2/attCyear?year='+e.target.value),
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
@@ -253,7 +253,7 @@ class AttTable extends Component {
     })
     axios({
       method:'get',
-      url:encodeURI('http://localhost:8083/api2/attfind3?start='+start+'&end='+end+'&name='+this.state.name+'&dep='+this.state.dep),
+      url:encodeURI('http://localhost:8080/api2/attfind3?start='+start+'&end='+end+'&name='+this.state.name+'&dep='+this.state.dep),
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
@@ -274,7 +274,7 @@ class AttTable extends Component {
     })
     axios({
       method:'get',
-      url:encodeURI('http://localhost:8083/api2/attfind?day=&name='+this.state.name+'&dep='+this.state.dep),
+      url:encodeURI('http://localhost:8080/api2/attfind?day=&name='+this.state.name+'&dep='+this.state.dep),
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
@@ -336,7 +336,7 @@ class AttTable extends Component {
     return result;
   }
   getApi = () => {
-    axios.get("http://localhost:8083/api2/att")
+    axios.get("http://localhost:8080/api2/att")
         .then(res => {
             console.log(res);
             this.setState({
@@ -344,7 +344,7 @@ class AttTable extends Component {
             })
         })
         .catch(res => console.log(res))
-    axios.get("http://localhost:8083/api/depart")
+    axios.get("http://localhost:8080/api/depart")
     .then(res => {
         console.log(res);
         this.setState({

@@ -4,10 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <package name="com.example.demo.database.mybatis.DTO"/> <!--DTO-->
+        <package name="com.example.demo.database.DTO"/>
     </typeAliases>
     <mappers>
-        <mapper resource="mapper/mapper2.xml"/>     <!--Mapper-->
         <mapper resource="mapper/mapper.xml"/>
+        <mapper resource="mapper/mapper2.xml"/>
+        <mapper resource="mapper/branchmapper.xml"/>
     </mappers>
 </configuration> 

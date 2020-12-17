@@ -92,7 +92,7 @@ const WidgetsBrand = ({withCharts})=>{
           height="52"
           className="my-4"
         />
-        <ChartLineSimple   //차트
+        <ChartLineSimple
           className="position-absolute w-100 h-100"
           backgroundColor="rgba(255,255,255,.1)"
           dataPoints={[35, 23, 56, 22, 97, 23, 64]}
@@ -104,8 +104,7 @@ const WidgetsBrand = ({withCharts})=>{
   </CRow> :
   
   <CRow>
-    {/* //페이스북 */}
-    <CCol sm="6" lg="3">  
+    <CCol sm="6" lg="3">
       <CWidgetBrand
         color="facebook"
         rightHeader="89k"

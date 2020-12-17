@@ -89,12 +89,12 @@ const TheHeaderDropdown = () => {
           Lock Account
         </CDropdownItem>
         {session_no!==null &&
-          <CDropdownItem>
             <div onClick={()=>document.location.href="/#/logintest/1/"}>
+          <CDropdownItem>
               <CIcon name="cil-lock-locked" className="mfe-2" /> 
               LogOut
-            </div>
           </CDropdownItem> 
+            </div>
         }
       </CDropdownMenu>
     </CDropdown>

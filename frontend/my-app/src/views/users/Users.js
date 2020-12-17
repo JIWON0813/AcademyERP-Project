@@ -18,13 +18,13 @@ class Users extends Component {
   }
 
   getApi = () => {
-      axios.get("http://localhost:8083/api/users").then(res => {
+      axios.get("http://localhost:8080/api/users").then(res => {
         console.log(res);
         this.setState({
           userList: res.data.list
         })
       }).catch(res => console.log(res))
-      axios.get("http://localhost:8083/api/depart").then(res => {
+      axios.get("http://localhost:8080/api/depart").then(res => {
         console.log(res);
         this.setState({
           depList: res.data.depart

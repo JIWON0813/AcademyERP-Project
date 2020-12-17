@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.database.mybatis.Repository.DBInterface">
+<mapper namespace="com.example.demo.database.Repository.DBInterface">
     <select id="att" resultType="DTO">
         SELECT a.`no`,a.employee_no,a.DAY,department,NAME,rank,a.start_time,a.end_time,a.night FROM attendance a inner join employee b ON  a.employee_no=b.`no` ORDER BY no ASC
     </select>

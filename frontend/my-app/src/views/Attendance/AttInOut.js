@@ -7,7 +7,7 @@ var session_no=window.sessionStorage.getItem('no');
 const style={width: "50%"}
 class AttInOut extends Component {
   in = () =>{
-    axios.post(`http://localhost:8083/api2/in`,{no: session_no})
+    axios.post(`http://localhost:8080/api2/in`,{no: session_no})
     .then(res => {
       if(res.data){
         alert("출근되었습니다.");
@@ -19,7 +19,7 @@ class AttInOut extends Component {
     .catch(res => console.log(res)) 
   }
   out = () =>{
-    axios.get(`http://localhost:8083/api2/out?no=${session_no}`)
+    axios.get(`http://localhost:8080/api2/out?no=${session_no}`)
     .then(res => {
       if(res.data){
         alert("퇴근되었습니다.");
@@ -75,24 +75,26 @@ class AttInOut extends Component {
           </CCol>
       </CRow>
       <br></br> */}
-      <CDropdownItem>
-        <div onClick={this.in}>
+      <div onClick={this.in}>
+        <CDropdownItem>
           <CIcon name="cil-sun" className="mfe-2" /> 
           출근
-        </div>
-      </CDropdownItem>
-      <CDropdownItem>
+        </CDropdownItem>
+      </div>
+      
       <div onClick={this.out}>
-        <CIcon name="cil-home" className="mfe-2" /> 
-        퇴근
+        <CDropdownItem>
+          <CIcon name="cil-home" className="mfe-2" /> 
+          퇴근
+        </CDropdownItem>
       </div>
-      </CDropdownItem>
-      <CDropdownItem>
+
       <div onClick={this.night}>
-        <CIcon name="cil-moon" className="mfe-2" /> 
-        연장
+        <CDropdownItem>
+          <CIcon name="cil-moon" className="mfe-2" /> 
+          연장
+        </CDropdownItem>
       </div>
-      </CDropdownItem>
     </div>
     );
   }

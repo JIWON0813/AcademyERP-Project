@@ -28,7 +28,7 @@ class AttUpdate extends Component{
   }
   componentDidMount(){
     const { params } = this.props.match;
-    axios.get("http://localhost:8083/Attget?no="+params.no).then(res => {
+    axios.get("http://localhost:8080/Attget?no="+params.no).then(res => {
       console.log(res);
       this.setState({
         attList: res.data.list
@@ -117,7 +117,7 @@ class AttUpdate extends Component{
     }
   }
   delete(){
-    axios.delete(`http://localhost:8083/Attupdate/`+this.state.no)
+    axios.delete(`http://localhost:8080/Attupdate/`+this.state.no)
       .then(
         alert("삭제"),
         document.location.href = "#/Attendance"
@@ -127,7 +127,7 @@ class AttUpdate extends Component{
       })
   }
   handleFormSubmit() {
-    axios.put(`http://localhost:8083/Attupdate/`+this.state.no,{
+    axios.put(`http://localhost:8080/Attupdate/`+this.state.no,{
       no: this.state.no,
       employee_no: Number(this.state.employee_no),
       day: this.state.year+"-"+this.state.month+"-"+this.state.day,

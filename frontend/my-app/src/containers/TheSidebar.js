@@ -38,8 +38,8 @@ var sm=[
   }
 ];
 if(HRD_login){
-  for(var i=0;i<sm.length;i++){
-    navigation.splice(i+2,0,sm[i])
+  for(var i=sm.length-1;i>-1;i--){
+    navigation.splice(1,0,sm[i])
   }
 }
 
