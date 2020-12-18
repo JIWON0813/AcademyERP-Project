@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles} from "@material-ui/core";
-import {CCol, CFormGroup, CInput, CInputCheckbox, CLabel, CRow, CSelect} from "@coreui/react";
+import {CCol, CFormGroup, CInput, CInputCheckbox, CLabel, CSelect} from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import {cilAlarm} from "@coreui/icons/js/free/cil-alarm";
 
@@ -53,6 +53,22 @@ class LectureUpdate extends React.Component {
       .then(res => {
         this.setState({
           branchList: res.data.list
+        })
+      })
+      .catch(res => console.log(res))
+
+    axios.get("http://localhost:8080/api2/room?branch=" + this.state.branch)
+      .then(res => {
+        this.setState({
+          roomList: res.data.list
+        })
+      })
+      .catch(res => console.log(res))
+
+    axios.get("http://localhost:8080/api2/teacher?branch=" + this.state.branch)
+      .then(res => {
+        this.setState({
+          teacherList: res.data.list
         })
       })
       .catch(res => console.log(res))

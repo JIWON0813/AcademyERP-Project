@@ -4,13 +4,11 @@ import com.example.demo.database.DTO.*;
 import com.example.demo.database.Repository.LectureMapper;
 import com.example.demo.database.Repository.LectureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
@@ -31,15 +29,6 @@ public class LectureService {
        result.put("message", list);
        return result;
    }
-
-   /* @GetMapping("/lecture/{id}")
-    public HashMap<String, Optional> detail(@PathVariable("id") Long id) {
-        HashMap<String, Optional> result = new HashMap<>();
-        Optional<LectureEntity> list = lectureRepository.findById(id);
-        result.put("message", list);
-
-        return result;
-    }*/
 
     @GetMapping("/lecture/{id}")
     public HashMap<String, Object> detail(@PathVariable("id") Long id) {
