@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.database.Repository.LectureMapper">
+
+    <select id="getBranch" resultType="BranchEntity">
+        select no,name from branch
+    </select>
+
+    <select id="getTeacher" resultType="BoardEntity" parameterType="int">
+        select no,name from employee where branch=#{branch} and department=3
+    </select>
+
+    <select id="getRoom" resultType="RoomEntity" parameterType="int">
+        select * from room where branch=#{branch}
+    </select>
+
+    <select id="getLectureList" resultType="LectureDTO">
+        SELECT a.no,a.name,b.name as 'instructor',a.price,a.students,c.name as 'classroom',a.start_date,a.end_date,a.day,a.start_time,a.end_time,
+               a.part,d.name as 'office'
+        FROM lecture a
+                 inner join employee b ON  a.teacher=b.no
+                 inner join room c ON  a.room=c.no
+                 inner join branch d ON  a.branch=d.no
+        ORDER BY no ASC;
+    </select>
+
+    <select id="getListDetail" parameterType="Long" resultType="LectureDTO">
+        SELECT a.*,b.name as 'instructor',c.name as 'classroom',d.name as 'office'
+        FROM lecture a
+                 inner join employee b ON  a.teacher=b.no
+                 inner join room c ON  a.room=c.no
+                 inner join branch d ON  a.branch=d.no
+        WHERE a.no = #{id}
+        ORDER BY no ASC;
+    </select>
+</mapper>
