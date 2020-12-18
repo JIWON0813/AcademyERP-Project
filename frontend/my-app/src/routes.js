@@ -118,8 +118,7 @@ const routes = [
   { path: '/lectureAdd', exact: true, name: 'Lecture Add', component: LectureAdd },
   { path: '/lectureDelete/:id', exact: true, name: 'Lecture Delete', component: LectureDelete },
   { path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate },
-  { path: '/lectureSearch', exact: true, name: 'Lecture Search', component: LectureSearch }
-  { path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate },
+  { path: '/lectureSearch', exact: true, name: 'Lecture Search', component: LectureSearch },
 
   { path: '/consult', exact: true,  name: 'Consults', component: Consults },
   { path: '/consult/:id', exact: true,  name: 'Consult Details', component: Consult },

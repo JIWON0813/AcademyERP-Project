@@ -49,7 +49,7 @@ class LectureUpdate extends React.Component {
   }
 
   getApi = () => {
-    axios.get("http://localhost:8080/api2/branch")
+    axios.get("http://localhost:8080/api2/branches")
       .then(res => {
         this.setState({
           branchList: res.data.list
