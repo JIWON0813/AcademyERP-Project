@@ -1,13 +1,13 @@
 import React from 'react'
 import axios from 'axios';
 import {Button, Dialog,IconButton, withStyles} from "@material-ui/core";
-import LectureDelete from "./LectureDelete";
+import BranchDelete from "./BranchDelete";
 import Typography from '@material-ui/core/Typography';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
-import LectureUpdate from "./LectureUpdate";
+import BranchUpdate from "./BranchUpdate";
 
 const styles = theme => ({
   hidden: {
@@ -52,12 +52,12 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-class Lectures extends React.Component {
+class Branches extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      ItemList: ""
+      branchList: ""
     }
 
     this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -72,11 +72,10 @@ componentDidMount() {
 }
 
 getApi = () => {
-    console.log(this.props.id);
-  axios.get("http://localhost:8080/api2/lecture/"+this.props.id)
+  axios.get("http://localhost:8080/api2/branch/"+this.props.id)
     .then(res => {
       this.setState({
-        ItemList: res.data.list
+        branchList: res.data.message
       })
     })
     .catch(res => console.log(res))
@@ -103,38 +102,28 @@ goBack = () => {
 
 
   render() {
-    const { ItemList } = this.state;
+    const { branchList } = this.state;
+
     return (
       <div>
-          <Button color="primary" onClick={this.handleClickOpen}>{ItemList.name}</Button>
-
-        <Dialog onClose={this.handleClose} aria-labelledby="customized-dialog-title" open={this.state.open}
-                fullWidth={true}
-                maxWidth = {'xs'}>
+          <Button color="primary" onClick={this.handleClickOpen}>{branchList.name}</Button>
+        <Dialog onClose={this.handleClose} aria-labelledby="customized-dialog-title" open={this.state.open}>
           <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-          User name: {ItemList.name}</DialogTitle>
+          User name: {branchList.name}</DialogTitle>
           <DialogContent dividers>
             <table className="table table-striped table-hover">
               <tbody>
-              <tr><td>{`no:`}</td><td><strong>{ItemList.no}</strong></td></tr>
-              <tr><td>{`강의명:`}</td><td><strong>{ItemList.name}</strong></td></tr>
-              <tr><td>{`강사:`}</td><td><strong>{ItemList.instructor}</strong></td></tr>
-              <tr><td>{`수강료:`}</td><td><strong>{ItemList.price}</strong></td></tr>
-              <tr><td>{`정원수:`}</td><td><strong>{ItemList.students}</strong></td></tr>
-              <tr><td>{`강의실:`}</td><td><strong>{ItemList.classRoom}</strong></td></tr>
-              <tr><td>{`개강일:`}</td><td><strong>{ItemList.start_date}</strong></td></tr>
-              <tr><td>{`종강일:`}</td><td><strong>{ItemList.end_date}</strong></td></tr>
-              <tr><td>{`요일:`}</td><td><strong>{ItemList.day}</strong></td></tr>
-              <tr><td>{`시작시간:`}</td><td><strong>{ItemList.start_time}</strong></td></tr>
-              <tr><td>{`종료시간:`}</td><td><strong>{ItemList.end_time}</strong></td></tr>
-              <tr><td>{`분야:`}</td><td><strong>{ItemList.part}</strong></td></tr>
-              <tr><td>{`지점:`}</td><td><strong>{ItemList.office}</strong></td></tr>
+              <tr><td>{`no:`}</td><td><strong>{branchList.no}</strong></td></tr>
+              <tr><td>{`name:`}</td><td><strong>{branchList.name}</strong></td></tr>
+              <tr><td>{`address:`}</td><td><strong>{branchList.address}</strong></td></tr>
+              <tr><td>{`hp:`}</td><td><strong>{branchList.hp}</strong></td></tr>
+              <tr><td>{`owner:`}</td><td><strong>{branchList.owner}</strong></td></tr>
               </tbody>
             </table>
           </DialogContent>
           <DialogActions>
-            <LectureUpdate stateRefresh={this.props.stateRefresh} ItemList={ItemList}/>
-            <LectureDelete stateRefresh={this.props.stateRefresh} id={ItemList.no}/>
+            <BranchUpdate stateRefresh={this.props.stateRefresh} branchList={branchList}/>
+            <BranchDelete stateRefresh={this.props.stateRefresh} id={branchList.no}/>
           </DialogActions>
 
         </Dialog>
@@ -145,4 +134,6 @@ goBack = () => {
   }
 
 }
-export default withStyles(styles)(Lectures)
+export default withStyles(styles)(Branches)
+
+

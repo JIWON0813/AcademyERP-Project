@@ -30,6 +30,10 @@ dependencies {
 	compile group: 'org.mybatis', name: 'mybatis', version: '3.4.1'
 	compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2")
 	compile("org.mybatis:mybatis:3.4.5")
+<<<<<<< HEAD
+=======
+	
+>>>>>>> f12f9191e61f18a407d84447628ed8a617cd72c6
 }
 
 test {

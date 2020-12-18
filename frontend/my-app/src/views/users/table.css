@@ -2,14 +2,16 @@
   border:1px solid #444444;
 } */
 
-  table.default {
+  table.a {
     width: 100%;
     border-top: 1px solid #444444;
     border-collapse: collapse;
   }
-  th.default, td.default {
+  th.a, td.a {
     border-bottom: 1px solid #444444;
+
   }
+
   .b {
     border: 1px solid #444444;
     border-collapse: collapse;
@@ -25,9 +27,4 @@
   .e{
     border-right: 1px solid #444444;
   }
-  .sm{
-    border:1px solid #444444;
-  }
-  .end{
-    border-right: 1px solid #444444;
-  }
+ 

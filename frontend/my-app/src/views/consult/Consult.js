@@ -1,13 +1,13 @@
 import React from 'react'
 import axios from 'axios';
 import {Button, Dialog,IconButton, withStyles} from "@material-ui/core";
-import LectureDelete from "./LectureDelete";
 import Typography from '@material-ui/core/Typography';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
-import LectureUpdate from "./LectureUpdate";
+import ConsultUpdate from "./ConsultUpdate";
+import ConsultDelete from "./ConsultDelete";
 
 const styles = theme => ({
   hidden: {
@@ -52,12 +52,12 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-class Lectures extends React.Component {
+class Consult extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      ItemList: ""
+      ConsultList: ""
     }
 
     this.handleClickOpen = this.handleClickOpen.bind(this)
@@ -72,11 +72,10 @@ componentDidMount() {
 }
 
 getApi = () => {
-    console.log(this.props.id);
-  axios.get("http://localhost:8080/api2/lecture/"+this.props.id)
+  axios.get("http://localhost:8080/api2/consult/"+this.props.id)
     .then(res => {
       this.setState({
-        ItemList: res.data.list
+        ConsultList: res.data.message
       })
     })
     .catch(res => console.log(res))
@@ -103,38 +102,33 @@ goBack = () => {
 
 
   render() {
-    const { ItemList } = this.state;
+    const { ConsultList } = this.state;
+
     return (
       <div>
-          <Button color="primary" onClick={this.handleClickOpen}>{ItemList.name}</Button>
-
+          <Button color="primary" onClick={this.handleClickOpen}>{ConsultList.name}</Button>
         <Dialog onClose={this.handleClose} aria-labelledby="customized-dialog-title" open={this.state.open}
                 fullWidth={true}
                 maxWidth = {'xs'}>
           <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-          User name: {ItemList.name}</DialogTitle>
+            상담신청인 : {ConsultList.name}</DialogTitle>
           <DialogContent dividers>
             <table className="table table-striped table-hover">
-              <tbody>
-              <tr><td>{`no:`}</td><td><strong>{ItemList.no}</strong></td></tr>
-              <tr><td>{`강의명:`}</td><td><strong>{ItemList.name}</strong></td></tr>
-              <tr><td>{`강사:`}</td><td><strong>{ItemList.instructor}</strong></td></tr>
-              <tr><td>{`수강료:`}</td><td><strong>{ItemList.price}</strong></td></tr>
-              <tr><td>{`정원수:`}</td><td><strong>{ItemList.students}</strong></td></tr>
-              <tr><td>{`강의실:`}</td><td><strong>{ItemList.classRoom}</strong></td></tr>
-              <tr><td>{`개강일:`}</td><td><strong>{ItemList.start_date}</strong></td></tr>
-              <tr><td>{`종강일:`}</td><td><strong>{ItemList.end_date}</strong></td></tr>
-              <tr><td>{`요일:`}</td><td><strong>{ItemList.day}</strong></td></tr>
-              <tr><td>{`시작시간:`}</td><td><strong>{ItemList.start_time}</strong></td></tr>
-              <tr><td>{`종료시간:`}</td><td><strong>{ItemList.end_time}</strong></td></tr>
-              <tr><td>{`분야:`}</td><td><strong>{ItemList.part}</strong></td></tr>
-              <tr><td>{`지점:`}</td><td><strong>{ItemList.office}</strong></td></tr>
+              <tbody>  
+              <tr><td>{`no:`}</td><td><strong>{ConsultList.no}</strong></td></tr>
+              <tr><td>{`성명:`}</td><td><strong>{ConsultList.name}</strong></td></tr>
+              <tr><td>{`전화번호:`}</td><td><strong>{ConsultList.hp}</strong></td></tr>
+              <tr><td>{`상담일자:`}</td><td><strong>{ConsultList.schedule}</strong></td></tr>
+              <tr><td>{`상담내용:`}</td><td><strong>{ConsultList.memo}</strong></td></tr>
+              {/* <tr><td>{`접수날짜:`}</td><td><strong>{ConsultList.regdate}</strong></td></tr> */}
+              {/* <tr><td>{`상담경로:`}</td><td><strong>{ConsultList.route}</strong></td></tr> */}
+              <tr><td>{`작성자:`}</td><td><strong>{ConsultList.writer}</strong></td></tr>
               </tbody>
             </table>
           </DialogContent>
           <DialogActions>
-            <LectureUpdate stateRefresh={this.props.stateRefresh} ItemList={ItemList}/>
-            <LectureDelete stateRefresh={this.props.stateRefresh} id={ItemList.no}/>
+            <ConsultUpdate stateRefresh={this.props.stateRefresh} ConsultList={ConsultList}/>
+            <ConsultDelete stateRefresh={this.props.stateRefresh} id={ConsultList.no}/>
           </DialogActions>
 
         </Dialog>
@@ -145,4 +139,6 @@ goBack = () => {
   }
 
 }
-export default withStyles(styles)(Lectures)
+export default withStyles(styles)(Consult)
+
+

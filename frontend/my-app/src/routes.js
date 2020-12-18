@@ -47,7 +47,22 @@ const LectureAdd = React.lazy(() => import('./views/lecture/LectureAdd'));
 const LectureDelete = React.lazy(() => import('./views/lecture/LectureDelete'));
 const LectureUpdate = React.lazy(() => import('./views/lecture/LectureUpdate'));
 const LectureSearch = React.lazy(() => import('./views/lecture/LectureSearch'));
+const Consults = React.lazy(() => import('./views/consult/Consults'));
+const Consult = React.lazy(() => import('./views/consult/Consult'));
+const ConsultInsert = React.lazy(() => import('./views/consult/ConsultInsert'));
+const ConsultDelete = React.lazy(() => import('./views/consult/ConsultDelete'));
+const ConsultUpdate = React.lazy(() => import('./views/consult/ConsultUpdate'));
 
+const Branches = React.lazy(() => import('./views/branch/Branches'));
+const Branch = React.lazy(() => import('./views/branch/Branch'));
+const BranchAdd = React.lazy(() => import('./views/branch/BranchAdd'));
+const BranchDelete = React.lazy(() => import('./views/branch/BranchDelete'));
+const BranchUpdate = React.lazy(() => import('./views/branch/BranchUpdate'));
+// ------------박수민
+const Attendance = React.lazy(() => import('./views/Attendance/index'));
+const attUpdate = React.lazy(() => import('./views/Attendance/AttUpdate'));
+const sessionLog = React.lazy(() => import('./views/users/sessionLog'));
+// -------------박수민
 
 
 const routes = [
@@ -104,6 +119,27 @@ const routes = [
   { path: '/lectureDelete/:id', exact: true, name: 'Lecture Delete', component: LectureDelete },
   { path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate },
   { path: '/lectureSearch', exact: true, name: 'Lecture Search', component: LectureSearch }
+  { path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate },
+
+  { path: '/consult', exact: true,  name: 'Consults', component: Consults },
+  { path: '/consult/:id', exact: true,  name: 'Consult Details', component: Consult },
+  { path: '/consultInsert', exact: true,  name: 'Consult Insert', component: ConsultInsert },
+  { path: '/consultDelete/:id', exact: true,  name: 'Consult Delete', component: ConsultDelete },
+  { path: '/consultUpdate', exact: true,  name: 'Consult Update', component: ConsultUpdate },
+
+  { path: '/branch', exact: true,  name: 'Branches', component: Branches },
+  { path: '/branch/:id', exact: true, name: 'Branch Details', component: Branch },
+  { path: '/branchAdd', exact: true, name: 'Branch Add', component: BranchAdd },
+  { path: '/branchDelete/:id', exact: true, name: 'Branch Delete', component: BranchDelete },
+  { path: '/branchUpdate', exact: true, name: 'Branch Update', component: BranchUpdate },
+
+  // -------------박수민
+  { path: '/Attendance', exact: true, name: 'Attendance', component: Attendance },
+  { path: '/Attendance/:no', exact: true, name: 'Attendance Update', component: attUpdate },
+
+  { path: '/logintest/:log/:no/:name/:dep', exact: true, name: 'sessionLog', component: sessionLog },
+  { path: '/logintest/:log/', exact: true, name: 'sessionLog', component: sessionLog },
+  // -------------박수민
 ];
 
 export default routes;
