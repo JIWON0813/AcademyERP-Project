@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles} from "@material-ui/core";
-// import {CCol, CFormGroup, CInputCheckbox, CLabel} from '@coreui/react';
+import {CCol, CFormGroup, CInputCheckbox, CLabel} from '@coreui/react';
 
 const styles = theme => ({
     hidden: {
@@ -14,12 +14,12 @@ class ConsultInsert extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // isChecked: true,
+      isChecked: true,
       name: '',
       hp: '',
       schedule: '',
       memo: '',
-      regdate:'',
+      // regdate:'',
       // route:[],
       writer: ''
 
@@ -41,6 +41,7 @@ class ConsultInsert extends Component {
       hp: '',
       schedule: '',
       memo:'',
+      // regdate:'',
       // route:[],
       writer: ''
     })
@@ -57,7 +58,7 @@ class ConsultInsert extends Component {
 
   insertConsult() {
     axios({
-      url: 'http://localhost:8080/api3/consult',
+      url: 'http://localhost:8080/api2/consult',
       method: "POST",
       headers: {'content-type': 'application/json'},
       data: {
@@ -90,11 +91,11 @@ class ConsultInsert extends Component {
       hp: '',
       schedule: '',
       memo: '',
-      // route: [],
+      route: [],
       writer: '',
       open: false
     })
-    // this.props.stateRefresh();
+    this.props.stateRefresh();
   }
 
   // checkboxChange = (e) => {

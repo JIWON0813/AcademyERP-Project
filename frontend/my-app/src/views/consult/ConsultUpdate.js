@@ -57,12 +57,6 @@ class ConsultUpdate extends React.Component {
   }
 
   updateConsult() {
-    console.log(this.state.name);
-    console.log(this.state.hp);
-    console.log(this.state.schedule);
-    console.log(this.state.memo);
-    // console.log(this.state.route);
-    console.log(this.state.writer);
     axios({
       url: 'http://localhost:8080/api2/consult/edit/' + this.props.ConsultList.no,
       method: "PUT",
@@ -112,7 +106,7 @@ class ConsultUpdate extends React.Component {
 
   render() {
     let ConsultList = this.props.ConsultList;
-    let route = this.state.route;
+    // let route = this.state.route;
     console.log(ConsultList);
 
     return (
