@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.database.Repository.DBInterface">
-    <select id="att" resultType="DTO">
+<mapper namespace="com.example.demo.database.Repository.AttendancdRepository2">
+    <select id="att" resultType="AttendanceEntity">
         SELECT a.`no`,a.employee_no,a.DAY,department,NAME,rank,a.start_time,a.end_time,a.night FROM attendance a inner join employee b ON  a.employee_no=b.`no` ORDER BY no ASC
     </select>
 
-    <select id="attfind" resultType="DTO">
+    <select id="attfind" resultType="AttendanceEntity">
         SELECT a.`no`,a.employee_no,a.DAY,department,NAME,rank,a.start_time,a.end_time,a.night FROM attendance a inner join employee b ON  a.employee_no=b.`no` where date(a.day) = date(#{day}) and name like CONCAT('%',#{name},'%') and department like CONCAT('%',#{dep},'%') ORDER BY no ASC
     </select>
 
-    <select id="attfind2" resultType="DTO">
+    <select id="attfind2" resultType="AttendanceEntity">
         SELECT a.`no`,a.employee_no,a.DAY,department,NAME,rank,a.start_time,a.end_time,a.night FROM attendance a inner join employee b ON  a.employee_no=b.`no` where name like CONCAT('%',#{name},'%') and department like CONCAT('%',#{dep},'%') ORDER BY no ASC
     </select> 
 
-    <select id="attfind3" resultType="DTO">
+    <select id="attfind3" resultType="AttendanceEntity">
         SELECT a.`no`,a.employee_no,a.DAY,department,NAME,rank,a.start_time,a.end_time,a.night FROM attendance a inner join employee b ON  a.employee_no=b.`no` where name like CONCAT('%',#{name},'%') and department like CONCAT('%',#{dep},'%') and a.day BETWEEN #{start} AND #{end} ORDER BY name ASC, day
     </select> 
 
     <insert id="intest" parameterType="int">
         insert into attendance values (null,#{no},curtime(),curtime(),null,0)
-    </insert>
+    </insert> 
 
-    <select id="datecheck" resultType="DTO" parameterType="java.util.HashMap"> 
+    <select id="datecheck" resultType="AttendanceEntity" parameterType="java.util.HashMap"> 
         select no from attendance where day=date(now()) and employee_no=#{no} 
     </select>
 
@@ -30,7 +30,7 @@
         update attendance set end_time=curtime() where employee_no=#{no} and date(day) = date(now())
     </update>
 
-    <select id="cyear" parameterType="int" resultType="DTO"> 
+    <select id="cyear" parameterType="int" resultType="AttendanceEntity"> 
        SELECT department, MONTH(day) AS name, COUNT(*) AS rank FROM attendance a JOIN employee b WHERE a.employee_no=b.`no` AND YEAR(day) = #{year} GROUP BY b.department,MONTH(day);
     </select>
 

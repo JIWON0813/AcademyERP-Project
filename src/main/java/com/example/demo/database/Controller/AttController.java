@@ -23,8 +23,8 @@ public class AttController {
 	@Autowired
 	private AttendanceRepository attRepo;
 
-	@GetMapping("/Attget")
-    public Map<String,Optional<AttendanceDTO>> attget(@RequestParam("no") Long no) {
+	@GetMapping("/Attupdate/{no}")
+    public Map<String,Optional<AttendanceDTO>> attget(@PathVariable("no") Long no) {
 		HashMap<String,Optional<AttendanceDTO>> result = new HashMap<>();
 		Optional<AttendanceDTO> list = attRepo.findById(no); 
         result.put("list", list); 

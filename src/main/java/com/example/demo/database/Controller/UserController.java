@@ -10,7 +10,7 @@ import com.example.demo.database.Repository.*;
 @RestController
 @RequestMapping(value = "/api")
 @Service
-public class BoardService {
+public class UserController {
 	
 	@Autowired
 	private BoardRepository boardRepository;

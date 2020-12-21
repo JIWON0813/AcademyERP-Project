@@ -1,6 +1,6 @@
 package com.example.demo.database.DTO;
 
-public class DTO {
+public class AttendanceEntity {
     private int no;
     private int employee_no;
     private String day;

@@ -14,56 +14,56 @@ import com.example.demo.database.Repository.*;
 
 @RestController
 @RequestMapping("/api2")
-public class DBController {
+public class AttController2 {
     final String _un = "undefined";
     @Autowired
-    private DBInterface db;
+    private AttendancdRepository2 attRepo;
 
     @GetMapping("/att") 
-    public Map<String,List<DTO>> demo() {
-        HashMap<String,List<DTO>> result = new HashMap<>();
-		List<DTO> list = db.att();
+    public Map<String,List<AttendanceEntity>> demo() {
+        HashMap<String,List<AttendanceEntity>> result = new HashMap<>();
+		List<AttendanceEntity> list = attRepo.att();
         result.put("list", list);
-
+ 
         return result;
     } 
 
 
 
     @GetMapping("/attfind")
-    public Map<String,List<DTO>> demo2(@RequestParam("day") String day, @RequestParam("name") String name,@RequestParam("dep") String dep){
+    public Map<String,List<AttendanceEntity>> demo2(@RequestParam("day") String day, @RequestParam("name") String name,@RequestParam("dep") String dep){
         if(name.equals(_un)) name="";
         if(dep.equals(_un)) dep="";
-        HashMap<String,List<DTO>> result =new HashMap<>();
+        HashMap<String,List<AttendanceEntity>> result =new HashMap<>();
         HashMap<String,Object> to= new HashMap<>();
         if(day.equals(_un) || day.equals("")) {
             to.put("day",day); 
             to.put("name",name);
             to.put("dep",dep);
-            List<DTO> list = db.attfind2(to);
+            List<AttendanceEntity> list = attRepo.attfind2(to);
             result.put("list", list);
         }else{
             to.put("day",day); 
             to.put("name",name);
             to.put("dep",dep);
-            List<DTO> list = db.attfind(to);
+            List<AttendanceEntity> list = attRepo.attfind(to);
             result.put("list", list); 
         }
 
         return result;  
     } 
     @GetMapping("/attfind3")
-    public Map<String,List<DTO>> demo3(@RequestParam("start") String start,@RequestParam("end") String end, @RequestParam("name") String name,@RequestParam("dep") String dep){
+    public Map<String,List<AttendanceEntity>> demo3(@RequestParam("start") String start,@RequestParam("end") String end, @RequestParam("name") String name,@RequestParam("dep") String dep){
         if(name.equals(_un)) name="";
         if(dep.equals(_un)) dep="";
-        HashMap<String,List<DTO>> result =new HashMap<>();
+        HashMap<String,List<AttendanceEntity>> result =new HashMap<>();
         HashMap<String,Object> to= new HashMap<>();
     
             to.put("start",start); 
             to.put("end",end); 
             to.put("name",name);
             to.put("dep",dep);
-            List<DTO> list = db.attfind3(to);
+            List<AttendanceEntity> list = attRepo.attfind3(to);
             result.put("list", list); 
 
 
@@ -71,13 +71,13 @@ public class DBController {
     } 
 
     @PostMapping("/in")
-    public int in(@RequestBody DTO dto) {
+    public int in(@RequestBody AttendanceEntity dto) {
         int result;
         HashMap<String,Object> to= new HashMap<>();
         to.put("no",dto.getNo()); 
-        List<DTO> temp=db.datecheck(to);
+        List<AttendanceEntity> temp=attRepo.datecheck(to);
         if(temp.isEmpty()){
-            result=db.intest(dto.getNo());
+            result=attRepo.intest(dto.getNo());
         }else{ 
             result=0;
         }
@@ -89,9 +89,9 @@ public class DBController {
         int result;
         HashMap<String,Object> to= new HashMap<>();
         to.put("no",no); 
-        List<DTO> temp=db.datecheck(to);
+        List<AttendanceEntity> temp=attRepo.datecheck(to);
         if(!temp.isEmpty()){
-            result=db.out(no);
+            result=attRepo.out(no);
         }else{
             result=0;
         }
@@ -103,9 +103,9 @@ public class DBController {
         int result;
         HashMap<String,Object> to= new HashMap<>();
         to.put("no",no); 
-        List<DTO> temp=db.datecheck(to);
+        List<AttendanceEntity> temp=attRepo.datecheck(to);
         if(!temp.isEmpty()){
-            result=db.night(no);
+            result=attRepo.night(no);
         }else{
             result=0;
         }
@@ -113,10 +113,10 @@ public class DBController {
     } 
 
     @GetMapping("/attCyear")
-    public Map<String,List<DTO>> cyear(@RequestParam("year") int year){
-        HashMap<String,List<DTO>> result =new HashMap<>();
+    public Map<String,List<AttendanceEntity>> cyear(@RequestParam("year") int year){
+        HashMap<String,List<AttendanceEntity>> result =new HashMap<>();
         
-        List<DTO> list = db.cyear(year);
+        List<AttendanceEntity> list = attRepo.cyear(year);
         result.put("list", list); 
 
 
