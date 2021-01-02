@@ -25,6 +25,12 @@ class ApiService {
         return axios.post(USER_API_BASE_URL + '/edit_stu/' + student.no, student);
     }
 
+    getEmployee(state){
+      return axios.get(USER_API_BASE_URL +
+        '/employee?size='+state.size +
+        '&page='+(state.currentPage-1));
+    }
+
 }
 
 export default new ApiService();

@@ -63,7 +63,7 @@ const Attendance = React.lazy(() => import('./views/Attendance/index'));
 const attUpdate = React.lazy(() => import('./views/Attendance/AttUpdate'));
 const sessionLog = React.lazy(() => import('./views/users/sessionLog'));
 // -------------박수민
-
+const  Employee = React.lazy(() => import('./views/employee/Employee'));
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -139,6 +139,8 @@ const routes = [
   { path: '/logintest/:log/:no/:name/:dep', exact: true, name: 'sessionLog', component: sessionLog },
   { path: '/logintest/:log/', exact: true, name: 'sessionLog', component: sessionLog },
   // -------------박수민
+
+  { path: '/employee', exact: true, name : 'Employee', component : Employee}
 ];
 
 export default routes;
