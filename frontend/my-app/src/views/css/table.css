@@ -2,16 +2,14 @@
   border:1px solid #444444;
 } */
 
-  table.a {
+  table.default {
     width: 100%;
     border-top: 1px solid #444444;
     border-collapse: collapse;
   }
-  th.a, td.a {
+  th.default, td.default {
     border-bottom: 1px solid #444444;
-
   }
-
   .b {
     border: 1px solid #444444;
     border-collapse: collapse;
@@ -25,5 +23,11 @@
     border-bottom-right-radius: 20px;
   }
   .e{
+    border-right: 1px solid #444444;
+  }
+  .sm{
+    border:1px solid #444444;
+  }
+  .end{
     border-right: 1px solid #444444;
   }

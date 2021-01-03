@@ -5,7 +5,7 @@
 
      <insert id="insertBranch" parameterType="java.util.HashMap">
         INSERT INTO branch VALUES (null,#{name},#{address},#{hp},#{owner})
-    </insert>
+    </insert> 
 
     <select id="selectBranch" resultType="BranchEntity">
     select * from branch

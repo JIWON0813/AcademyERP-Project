@@ -1,0 +1,30 @@
+/* table, th,td{
+  border:1px solid #444444;
+} */
+
+  table.a {
+    width: 100%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+  }
+  th.a, td.a {
+    border-bottom: 1px solid #444444;
+
+  }
+
+  .b {
+    border: 1px solid #444444;
+    border-collapse: collapse;
+  }
+  .c,#c{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+  .d,#d{
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  .e{
+    border-right: 1px solid #444444;
+  }
+ 
