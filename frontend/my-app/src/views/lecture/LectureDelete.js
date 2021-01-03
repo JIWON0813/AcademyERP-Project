@@ -36,7 +36,7 @@ class LectureDelete extends React.Component {
 
 
   deleteCustomer(id) {
-    const url = 'http://localhost:8080/api2/lecture/' + id;
+    const url = 'http://localhost:8080/lecture/' + id;
     fetch(url, {
       method: 'DELETE'
     });

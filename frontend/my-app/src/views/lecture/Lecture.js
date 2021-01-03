@@ -62,18 +62,24 @@ class Lectures extends React.Component {
 
     this.handleClickOpen = this.handleClickOpen.bind(this)
     this.handleClose = this.handleClose.bind(this);
+    this.stateRefresh = this.stateRefresh.bind(this);
+  }
+  componentDidUpdate(prevProps) {
+    if(this.props.id !== prevProps.id)
+    {
+      this.getApi();
+    }
+  }
 
+  componentDidMount() {
+    this.getApi();
   }
 
 
 
-componentDidMount() {
-  this.getApi();
-}
 
 getApi = () => {
-    console.log(this.props.id);
-  axios.get("http://localhost:8080/api2/lecture/"+this.props.id)
+  axios.get("http://localhost:8080/lecture/"+this.props.id)
     .then(res => {
       this.setState({
         ItemList: res.data.list
@@ -100,7 +106,12 @@ goBack = () => {
     })
   }
 
-
+  stateRefresh() {
+    this.setState({
+      ItemList: "",
+    });
+    this.getApi();
+  }
 
   render() {
     const { ItemList } = this.state;
@@ -127,7 +138,7 @@ goBack = () => {
               <tr><td>{`요일:`}</td><td><strong>{ItemList.day}</strong></td></tr>
               <tr><td>{`시작시간:`}</td><td><strong>{ItemList.start_time}</strong></td></tr>
               <tr><td>{`종료시간:`}</td><td><strong>{ItemList.end_time}</strong></td></tr>
-              <tr><td>{`분야:`}</td><td><strong>{ItemList.part}</strong></td></tr>
+              <tr><td>{`분야:`}</td><td><strong>{ItemList.field}</strong></td></tr>
               <tr><td>{`지점:`}</td><td><strong>{ItemList.office}</strong></td></tr>
               </tbody>
             </table>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
-import '../css/table.css';
+import '../Template/css/table.css';
 
 
 class Users extends Component {
@@ -74,7 +74,7 @@ class Users extends Component {
               </tr>
             );
           })}
-        </tbody> 
+        </tbody>
       </table>
       </div>
     );
