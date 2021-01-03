@@ -4,7 +4,7 @@
 <mapper namespace="com.example.demo.database.Repository.ConsultMapper">
 
      <insert id="insertConsult" parameterType="java.util.HashMap">
-        INSERT INTO consut VALUES (null,#{name},#{hp},#{schedule},#{memo},sysdate,#{route},#{writer})
+        INSERT INTO consut VALUES (null,#{name},#{hp},#{schedule},#{memo},#{route},#{writer})
     </insert>
 
     <select id="selectConsult" resultType="ConsultEntity">

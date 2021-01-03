@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles} from "@material-ui/core";
-import {CCol, CFormGroup, CInputCheckbox, CLabel} from '@coreui/react';
 
 const styles = theme => ({
     hidden: {
@@ -19,7 +18,6 @@ class ConsultInsert extends Component {
       hp: '',
       schedule: '',
       memo: '',
-      // regdate:'',
       // route:[],
       writer: ''
 
@@ -41,11 +39,10 @@ class ConsultInsert extends Component {
       hp: '',
       schedule: '',
       memo:'',
-      // regdate:'',
       // route:[],
       writer: ''
     })
-    console.log(this.state.route);
+    // console.log(this.state.route);
     alert("등록되었습니다.");
     this.props.stateRefresh();
   }
@@ -66,18 +63,16 @@ class ConsultInsert extends Component {
         hp: this.state.hp,
         schedule: this.state.schedule,
         memo: this.state.memo,
-        // route: this.state.route.toString(),
         writer: this.state.writer
       }
     })
-      .then(function (response){
-        console.log(response)
-      })
-      .catch(function (error){
-        console.log(error)
-      })
+    .then(function (response){
+      console.log(response)
+    })
+    .catch(function (error){
+      console.log(error)
+    })
   }
-  
   handleClickOpen() {
     this.setState({
       open: true
@@ -91,7 +86,7 @@ class ConsultInsert extends Component {
       hp: '',
       schedule: '',
       memo: '',
-      route: [],
+      // route: [],
       writer: '',
       open: false
     })
