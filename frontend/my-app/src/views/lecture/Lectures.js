@@ -3,7 +3,7 @@ import axios from "axios";
 import './table.css';
 import LectureAdd from "./LectureAdd";
 import Lecture from "./Lecture";
-import {CButton, CCardBody, CForm, CInput, CPagination, CSelect} from "@coreui/react";
+import {CButton, CForm, CInput, CSelect} from "@coreui/react";
 import {makeStyles} from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 
@@ -33,14 +33,19 @@ class Lectures extends Component {
     }
     this.stateRefresh = this.stateRefresh.bind(this);
     this.handleValueChange = this.handleValueChange.bind(this);
-    this.searchName = this.searchName.bind(this);
+  }
+
+  componentDidMount() {
+    this.getApi(this.state.searchKeyword,this.state.currentPageNo);
+    this.getBranch();
   }
 
   stateRefresh() {
     this.setState({
       ItemList: "",
     });
-    this.getApi(this.state.currentPageNo);
+    this.getApi(this.state.searchKeyword,this.state.currentPageNo);
+    this.getBranch();
   }
 
   handleValueChange(e) {
@@ -49,24 +54,9 @@ class Lectures extends Component {
     this.setState(nextState);
   }
 
-  searchName(searchKeyword) {
+  getApi(searchKeyword,currentPageNo) {
     console.log(searchKeyword)
-    axios.get("http://localhost:8080/lectureSearch?branch="+this.state.findBranch+"&condition="+this.state.condition+"&keyword=" + searchKeyword)
-      .then(res => {
-        this.setState({
-          ItemList: res.data.message,
-        })
-      })
-      .catch(res => console.log(res))
-
-  }
-
-  componentDidMount() {
-    this.getApi(this.state.currentPageNo);
-  }
-
-  getApi = (currentPageNo) => {
-    axios.get("http://localhost:8080/lecture?currentPageNo="+currentPageNo+"&recordsPerPage="+this.state.recordsPerPage)
+    axios.get("http://localhost:8080/lecture?branch="+this.state.findBranch+"&condition="+this.state.condition+"&keyword=" + searchKeyword+"&currentPageNo="+currentPageNo+"&recordsPerPage="+this.state.recordsPerPage)
       .then(res => {
         this.setState({
           ItemList: res.data.message,
@@ -74,7 +64,11 @@ class Lectures extends Component {
         })
       })
       .catch(res => console.log(res))
-    axios.get("http://localhost:8080/branches")
+
+  }
+
+  getBranch = () => {
+    axios.get("http://localhost:8080/lecture/branches")
       .then(res => {
         this.setState({
           branchList: res.data.list
@@ -84,7 +78,7 @@ class Lectures extends Component {
   }
   handleKeyPress = e => {
     if (e.key === 'Enter') {
-      this.searchName(this.state.searchKeyword);
+      this.getApi(this.state.searchKeyword,this.state.currentPageNo);
     }
   };
   handleSubmit = (e) => {
@@ -108,7 +102,8 @@ class Lectures extends Component {
     const {branchList} = this.state;
 
     const handleChange = (event, value) => {
-      this.getApi(value);
+      this.getApi(this.state.searchKeyword,value)
+       // this.getApi(value);
       this.setState({
         currentPageNo : value
       })
@@ -142,7 +137,7 @@ class Lectures extends Component {
               onKeyPress={this.handleKeyPress.bind(this)}
             />
             <CButton color="dark" variant="outline" className="my-2 my-sm-0" onClick={(e) => {
-              this.searchName(this.state.searchKeyword)
+              this.getApi(this.state.searchKeyword,this.state.currentPageNo)
             }}>검색</CButton>
           </CForm>
           <LectureAdd stateRefresh={this.stateRefresh}/>
@@ -190,14 +185,15 @@ class Lectures extends Component {
           })}
           </tbody>
         </table>
-        <div className={useStyles.root}>
-          <Pagination count={pagingList.lastPage} onChange={handleChange} />
-        </div>
-
         {ItemList.length === 0 &&
         <div align="center">
           <p>검색결과가 없습니다</p>
           <hr></hr>
+        </div>
+        }
+        {ItemList.length != 0 &&
+        <div className={useStyles.root}>
+          <Pagination count={pagingList.lastPage} onChange={handleChange} />
         </div>
         }
       </div>

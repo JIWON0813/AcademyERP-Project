@@ -1,5 +1,7 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Entity.ConsultEntity;
+import com.example.demo.Repository.ConsultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -7,9 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
-
-import com.example.demo.Entity.ConsultEntity;
-import com.example.demo.Repository.ConsultRepository;
 
 
 @RestController

@@ -4,7 +4,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PagingVO {
+public class LecturePagingVO {
 
     /** 현재 페이지 번호 */
     private int currentPageNo;
@@ -38,7 +38,7 @@ public class PagingVO {
     /** 다음 페이지 존재 여부 */
     private boolean hasNextPage;
 
-    public PagingVO() {
+    public LecturePagingVO() {
         if (this.getCurrentPageNo() < 1) {
             this.setCurrentPageNo(1);
         }

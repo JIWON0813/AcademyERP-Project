@@ -1,5 +1,5 @@
 
-package com.example.demo.database.DTO;
+package com.example.demo.Entity;
 
 import java.io.Serializable;
 

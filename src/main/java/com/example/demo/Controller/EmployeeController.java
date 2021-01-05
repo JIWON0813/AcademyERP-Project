@@ -1,17 +1,15 @@
-package com.example.demo.database.Controller;
+package com.example.demo.Controller;
 
 
+import com.example.demo.Service.EmployeeService;
 import com.example.demo.database.DTO.EmployeeEntity;
-import com.example.demo.database.Repository.EmployeeRepository;
-import com.example.demo.database.Service.EmployeeService;
-import lombok.extern.flogger.Flogger;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController

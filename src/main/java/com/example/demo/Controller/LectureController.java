@@ -1,6 +1,6 @@
 package com.example.demo.Controller;
 
-import com.example.demo.DTO.PagingVO;
+import com.example.demo.DTO.LecturePagingVO;
 import com.example.demo.Entity.LectureEntity;
 import com.example.demo.Service.LectureService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,19 +19,23 @@ public class LectureController {
     private LectureService lectureService;
 
     @GetMapping("/lecture")
-    public HashMap<String, Object> list(PagingVO vo
-		, @RequestParam(value="currentPageNo", required=false)int currentPageNo
-		, @RequestParam(value="recordsPerPage", required=false)int recordsPerPage) {
+
+    public HashMap<String, Object> list(
+            LecturePagingVO vo,
+            @RequestParam("branch") String branch,
+            @RequestParam("condition") String condition,
+            @RequestParam("keyword") String keyword,
+            @RequestParam("currentPageNo") int currentPageNo,
+            @RequestParam("recordsPerPage") int recordsPerPage) {
         vo.setCurrentPageNo(currentPageNo);
         vo.setRecordsPerPage(recordsPerPage);
-
-
-        return lectureService.list(vo);
+        return lectureService.list(branch, condition, keyword,vo);
     }
 
 
     @GetMapping("/lecture/{id}")
     public HashMap<String, Object> detail(@PathVariable("id") Long id) {
+
         return lectureService.detail(id);
     }
 
@@ -51,36 +55,15 @@ public class LectureController {
         return lectureService.update(lec, id);
     }
 
-    @GetMapping("/branches")
+    @GetMapping("/lecture/branches")
     public HashMap<String, List> selectBranch() {
         return lectureService.selectBranch();
     }
 
-    @GetMapping("/list")
-    public HashMap<String, List> selectList(@RequestParam("branch") int branch) {
+
+    @GetMapping("/lecture/select")
+    public HashMap<String, Object> selectTeacher(@RequestParam("branch") int branch) {
         return lectureService.selectList(branch);
     }
 
-    @GetMapping("/teacher")
-    public HashMap<String, List> selectTeacher(@RequestParam("branch") int branch) {
-        return lectureService.selectTeacher(branch);
-    }
-
-    @GetMapping("/room")
-    public HashMap<String, List> selectRoom(@RequestParam("branch") int branch) {
-        return lectureService.selectRoom(branch);
-    }
-
-    @GetMapping("/part")
-    public HashMap<String, List> selectPart(@RequestParam("branch") int branch) {
-        return lectureService.selectPart(branch);
-    }
-
-    @GetMapping("/lectureSearch")
-    public HashMap<String, List> searchList(
-            @RequestParam("branch") String branch,
-            @RequestParam("condition") String condition,
-            @RequestParam("keyword") String keyword) {
-        return lectureService.searchList(branch, condition, keyword);
-    }
 }

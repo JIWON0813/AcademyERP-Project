@@ -62,7 +62,7 @@ class LectureAdd extends React.Component {
   }
 
   getApi = () => {
-    axios.get("http://localhost:8080/branches")
+    axios.get("http://localhost:8080/lecture/branches")
       .then(res => {
         this.setState({
           branchList: res.data.list
@@ -160,28 +160,12 @@ class LectureAdd extends React.Component {
     })
 
     //teacher list
-    axios.get("http://localhost:8080/teacher?branch=" + e.target.value)
+    axios.get("http://localhost:8080//lecture/select?branch=" + e.target.value)
       .then(res => {
         this.setState({
-          teacherList: res.data.list
-        })
-      })
-      .catch(res => console.log(res))
-
-    //room list
-    axios.get("http://localhost:8080/room?branch=" + e.target.value)
-      .then(res => {
-        this.setState({
-          roomList: res.data.list
-        })
-      })
-      .catch(res => console.log(res))
-
-    //part list
-    axios.get("http://localhost:8080/part?branch=" + e.target.value)
-      .then(res => {
-        this.setState({
-          partList: res.data.list
+          teacherList: res.data.teacherList,
+          roomList: res.data.roomList,
+          partList: res.data.partList
         })
       })
       .catch(res => console.log(res))

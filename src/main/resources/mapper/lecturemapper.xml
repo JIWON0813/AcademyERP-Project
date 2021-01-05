@@ -5,72 +5,84 @@
     <select id="getBranch" statementType="CALLABLE" resultType="BranchEntity">
         {
             call lecBranch()
-        }
-    </select>
-
-    <resultMap id="boardEntity" type="BoardEntity"></resultMap>
-    <resultMap id="roomEntity" type="RoomEntity"></resultMap>
-    <resultMap id="partEntity" type="PartEntity"></resultMap>
-
-    <select id="getList"  statementType="CALLABLE" parameterType="int"
-            resultMap="roomEntity,boardEntity,partEntity">
-        {
-            call lecList(#{branch})
-        }
+            }
     </select>
 
     <select id="getTeacher" resultType="BoardEntity" parameterType="int">
-        select no,name from employee where branch=#{branch} and department=3
+        select no, name
+        from employee
+        where branch=#{branch} and department=3
     </select>
 
     <select id="getRoom" resultType="RoomEntity" parameterType="int">
-        select * from room where branch=#{branch}
+        select *
+        from room
+        where branch = #{branch}
     </select>
 
     <select id="getPart" resultType="RoomEntity" parameterType="int">
-        select * from part where branch=#{branch}
+        select *
+        from part
+        where branch = #{branch}
     </select>
 
-    <select id="totalCount" resultType="int">
-        SELECT COUNT(*) FROM lecture
-    </select>
-
-    <select id="getLectureList" parameterType="PagingVO" resultType="LectureDTO">
-        SELECT a.no,a.name,b.name as 'instructor',a.price,a.students,c.name as 'classroom',a.start_date,a.end_date,a.day,a.start_time,a.end_time,
-               d.name as'field',e.name as 'office'
-        FROM lecture a
-                 inner join employee b ON  a.teacher=b.no
-                 inner join room c ON  a.room=c.no
-                 inner join part d ON a.part=d.no
-                 inner join branch e ON  a.branch=e.no
-        ORDER BY no ASC
-            LIMIT #{firstRecordIndex}, #{recordsPerPage}
-    </select>
 
     <select id="getListDetail" parameterType="Long" resultType="LectureDTO">
-        SELECT a.*,b.name as 'instructor',c.name as 'classroom',d.name as 'field',e.name as 'office'
+        SELECT a.*, b.name as 'instructor',c.name as 'classroom',d.name as 'field',e.name as 'office'
         FROM lecture a
-                 inner join employee b ON  a.teacher=b.no
-                 inner join room c ON  a.room=c.no
-                 inner join part d ON a.part=d.no
-                 inner join branch e ON  a.branch=e.no
+                 inner join employee b ON a.teacher = b.no
+                 inner join room c ON a.room = c.no
+                 inner join part d ON a.part = d.no
+                 inner join branch e ON a.branch = e.no
         WHERE a.no = #{id}
         ORDER BY no ASC;
     </select>
 
-    <select id="getSearchList" resultType="LectureDTO" parameterType="java.util.HashMap">
-        SELECT a.no,a.name,b.name as 'instructor',a.price,a.students,c.name as 'classroom',a.start_date,a.end_date,a.day,a.start_time,a.end_time,
-               d.name as'field',e.name as 'office'
+    <select id="getLectureList" resultType="LectureDTO" parameterType="java.util.HashMap">
+        SELECT a.no,
+               a.name,
+               b.name as 'instructor',
+               a.price,
+               a.students,
+               c.name as 'classroom',
+               a.start_date,
+               a.end_date,
+               a.day,
+               a.start_time,
+               a.end_time,
+               d.name as'field',
+               e.name as 'office'
         FROM lecture a
-                 inner join employee b ON  a.teacher=b.no
-                 inner join room c ON  a.room=c.no
-                 inner join part d ON a.part=d.no
-                 inner join branch e ON  a.branch=e.no
-        where if(#{branch}='null',1=1,a.branch=#{branch}) and
-              if(#{condition} = 'name',a.name like CONCAT('%',#{keyword},'%'),
-                  if(#{condition} = 'instructor',b.name like CONCAT('%',#{keyword},'%'),
-                  d.name like CONCAT('%',#{keyword},'%')
-                  ))
-        ORDER BY no ASC;
+                 inner join employee b ON a.teacher = b.no
+                 inner join room c ON a.room = c.no
+                 inner join part d ON a.part = d.no
+                 inner join branch e ON a.branch = e.no
+        where if(#{branch} = 'null', 1 = 1, a.branch = #{branch})
+          and if(#{condition} = 'name', a.name like CONCAT('%', #{keyword}, '%'),
+                 if(#{condition} = 'instructor', b.name like CONCAT('%', #{keyword}, '%'),
+                    if(#{condition} = 'part', d.name like CONCAT('%', #{keyword}, '%'),
+                       a.name like CONCAT('%', #{keyword}, '%')
+                           OR b.name like CONCAT('%', #{keyword}, '%')
+                           OR d.name like CONCAT('%', #{keyword}, '%')
+                        )))
+        ORDER BY no ASC
+            LIMIT #{vo.firstRecordIndex}, #{vo.recordsPerPage}
+    </select>
+
+    <select id="totalCount" parameterType="java.util.HashMap" resultType="int">
+        SELECT COUNT(*)
+        FROM lecture a
+            inner join employee b ON a.teacher = b.no
+            inner join room c ON a.room = c.no
+            inner join part d ON a.part = d.no
+            inner join branch e ON a.branch = e.no
+        where if(#{branch} = 'null', 1 = 1, a.branch = #{branch})
+          and if(#{condition} = 'name', a.name like CONCAT('%', #{keyword}, '%'),
+            if(#{condition} = 'instructor', b.name like CONCAT('%', #{keyword}, '%'),
+            if(#{condition} = 'part', d.name like CONCAT('%', #{keyword}, '%'),
+            a.name like CONCAT('%', #{keyword}, '%')
+           OR b.name like CONCAT('%', #{keyword}, '%')
+           OR d.name like CONCAT('%', #{keyword}, '%')
+            )))
     </select>
 </mapper>
