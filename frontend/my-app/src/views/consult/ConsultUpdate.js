@@ -18,7 +18,7 @@ class ConsultUpdate extends React.Component {
       hp: this.props.ConsultList.hp,
       schedule: this.props.ConsultList.schedule,
       memo: this.props.ConsultList.memo,
-      // route: this.props.ConsultList.route,
+      route: this.props.ConsultList.route.split(''),
       writer: this.props.ConsultList.writer
     }
 
@@ -28,7 +28,7 @@ class ConsultUpdate extends React.Component {
     this.updateConsult = this.updateConsult.bind(this)
     this.handleClickOpen = this.handleClickOpen.bind(this)
     this.handleClose = this.handleClose.bind(this);
-    // this.checkboxChange = this.checkboxChange.bind(this);
+    this.checkboxChange = this.checkboxChange.bind(this);
 
   }
 
@@ -42,7 +42,7 @@ class ConsultUpdate extends React.Component {
       hp: '',
       schedule: '',
       memo: '',
-      // route: '',
+      route: '',
       writer: ''
 
     })
@@ -66,7 +66,7 @@ class ConsultUpdate extends React.Component {
         hp: this.state.hp,
         schedule: this.state.schedule,
         memo: this.state.memo,
-        // route: this.state.route.toString(),
+        route: this.state.route.toString(),
         writer: this.state.writer
       }
     })
@@ -89,24 +89,23 @@ class ConsultUpdate extends React.Component {
       open: false
     })
   }
-
-  // checkboxChange = (e) => {
-  //   const route=this.state.route
-  //   let index
-  //   if (e.target.checked) {
-  //     route.push(e.target.value)
-  //   } else {
-  //     index = route.indexOf(e.target.value)
-  //     route.splice(index, 1)
-  //   }
-  //   this.setState({route:route})
-  // }
+   checkboxChange = (e) => {
+     const route=this.state.route
+     let index
+     if (e.target.checked) {
+       route.push(e.target.value)
+     } else {
+       index = route.indexOf(e.target.value)
+       route.splice(index, 1)
+    }
+     this.setState({route:route})
+   }
 
 
 
   render() {
     let ConsultList = this.props.ConsultList;
-    // let route = this.state.route;
+    let route = this.state.route;
     console.log(ConsultList);
 
     return (
@@ -117,7 +116,7 @@ class ConsultUpdate extends React.Component {
         <Dialog open={this.state.open} onClose={this.handleClose}>
           <DialogTitle>상담 수정</DialogTitle>
           <DialogContent>
-          {/* <CFormGroup row>
+          <CFormGroup row>
               <CCol md="9">
                 <CFormGroup variant="custom-checkbox" inline>
                   <CInputCheckbox custom id="inline-checkbox1" name="route" value={"CALL"}
@@ -132,7 +131,7 @@ class ConsultUpdate extends React.Component {
                   <CLabel variant="custom-checkbox" htmlFor="inline-checkbox2">ONLINE</CLabel>
                 </CFormGroup>
               </CCol>
-            </CFormGroup> */}
+            </CFormGroup>
             <CFormGroup row>
               <CCol md="3">
                 <CLabel htmlFor="name">성명</CLabel>

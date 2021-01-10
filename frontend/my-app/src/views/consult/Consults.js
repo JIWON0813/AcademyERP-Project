@@ -3,6 +3,7 @@ import axios from "axios";
 import './table.css';
 import ConsultInsert from "./ConsultInsert";
 import Consult from "./Consult";
+import ConsultSearch from "./ConsultSearch";
 
 class Consults extends Component {
   constructor(props) {
@@ -10,15 +11,15 @@ class Consults extends Component {
     this.state = {
         ConsultList: ""
     }
-    this.stateRefresh = this.stateRefresh.bind(this);
+    this.stateRefresh = this.stateRefresh.bind(this)
+    
 }
 
 stateRefresh() {
   this.setState({
-    ConsultList: "",
+    ConsultList: ""
   });
   this.getApi();
-
 }
 
 componentDidMount() {
@@ -36,22 +37,24 @@ getApi = () => {
 }
 
   render() {
-    const { ConsultList } = this.state;
+    const { ConsultList} = this.state;
 
     return (
       <div>
         <header>
-         <ConsultInsert stateRefresh={this.stateRefresh}/>
-         <br></br>
+        <ConsultSearch/>
+        <ConsultInsert stateRefresh={this.stateRefresh}/>
         </header>
+        <br></br>
     <table>
         <thead>
             <td>NO</td>
             <td>name</td>
-            <td>hp</td>
+            <td>  hp  </td>
             <td>schedule</td>
             <td>memo</td>
-            {/* <td>route</td> */}
+            {/* <td>regdate</td> */}
+            <td>route</td>
             <td>writer</td>
         </thead>
         <tbody>
@@ -63,7 +66,8 @@ getApi = () => {
                 <td>{consultdata.hp}</td>
                 <td>{consultdata.schedule}</td>
                 <td>{consultdata.memo}</td>
-                {/* <td>{consultdata.route}</td> */}
+                {/* <td>{consultdata.regdate}</td> */}
+                <td>{consultdata.route}</td>
                 <td>{consultdata.writer}</td>
               </tr>
             );

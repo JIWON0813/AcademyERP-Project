@@ -23,7 +23,7 @@ import lombok.*;
         private String schedule;
         private String memo;
         // private Date regdate;
-        // private String route;
+        private String route;
         private String writer;
     }
 

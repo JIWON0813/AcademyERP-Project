@@ -47,11 +47,13 @@ const LectureAdd = React.lazy(() => import('./views/lecture/LectureAdd'));
 const LectureDelete = React.lazy(() => import('./views/lecture/LectureDelete'));
 const LectureUpdate = React.lazy(() => import('./views/lecture/LectureUpdate'));
 const LectureSearch = React.lazy(() => import('./views/lecture/LectureSearch'));
+
 const Consults = React.lazy(() => import('./views/consult/Consults'));
 const Consult = React.lazy(() => import('./views/consult/Consult'));
 const ConsultInsert = React.lazy(() => import('./views/consult/ConsultInsert'));
 const ConsultDelete = React.lazy(() => import('./views/consult/ConsultDelete'));
 const ConsultUpdate = React.lazy(() => import('./views/consult/ConsultUpdate'));
+const ConsultSearch = React.lazy(() => import('./views/consult/ConsultSearch'));
 
 const Branches = React.lazy(() => import('./views/branch/Branches'));
 const Branch = React.lazy(() => import('./views/branch/Branch'));
@@ -125,6 +127,7 @@ const routes = [
   { path: '/consultInsert', exact: true,  name: 'Consult Insert', component: ConsultInsert },
   { path: '/consultDelete/:id', exact: true,  name: 'Consult Delete', component: ConsultDelete },
   { path: '/consultUpdate', exact: true,  name: 'Consult Update', component: ConsultUpdate },
+  { path: '/consultSearch', exact: true, name: 'Consult Search', component: ConsultSearch },
 
   { path: '/branch', exact: true,  name: 'Branches', component: Branches },
   { path: '/branch/:id', exact: true, name: 'Branch Details', component: Branch },
