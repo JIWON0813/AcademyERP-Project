@@ -1,14 +1,18 @@
 import React, {Component} from 'react'
 import ApiService from "../../ApiService";
 import Button from "@material-ui/core/Button";
+import ReactPaginate from "react-paginate";
 
 class Employee extends Component {
+
   constructor(props) {
     super(props)
     this.state = {
+      totalElements : 0 ,
       employeeList: [],
       currentPage : 1,
-      size : 10
+      size : 10,
+      changePage : 0
     }
   }
 
@@ -62,9 +66,19 @@ class Employee extends Component {
            </tbody>
          </table>
 
-          <Button type="button" variant="outline-info" disabled={currentPage === 1 ? true : false}
-                  onClick={this.firstPage}>
-          </Button>
+        <ReactPaginate
+          pageCount={Math.ceil(this.totalElements / 10)}
+          pageRangeDisplayed={10}
+          marginPagesDisplayed={0}
+          breakLabel={""}
+          previousLabel={"이전"}
+          nextLabel={"다음"}
+          onPageChange={this.changePage}
+          containerClassName={"pagination-ul"}
+          activeClassName={"currentPage"}
+          previousClassName={"pageLabel-btn"}
+          nextClassName={"pageLabel-btn"}
+        />
 
 
       </div>

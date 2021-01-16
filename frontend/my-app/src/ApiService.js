@@ -31,6 +31,10 @@ class ApiService {
         '&page='+(state.currentPage-1));
     }
 
+  standByAuth() {
+    return axios.get(USER_API_BASE_URL +
+      '/standByAuth');
+  }
 }
 
 export default new ApiService();
