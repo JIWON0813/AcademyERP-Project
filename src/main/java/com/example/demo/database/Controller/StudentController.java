@@ -6,6 +6,8 @@ import com.example.demo.database.DTO.StudentDTO;
 import com.example.demo.database.Repository.StudentRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,13 +29,19 @@ public class StudentController {
     private StudentRepository studentRepository;
 
     @GetMapping("/students")
-    public HashMap<String, List<StudentDTO>> Studnets() {
-        HashMap<String,List<StudentDTO>> result = new HashMap<>();
-        List<StudentDTO> slist = studentRepository.findAll();
-        result.put("listdata", slist);
-
-        return result;
+    public Page<StudentDTO> Students(Pageable pageable) {
+        return studentRepository.findAll(pageable);
+        
     }
+
+    // @GetMapping("/students")
+    // public HashMap<String, List<StudentDTO>> Students() {
+    //     HashMap<String,List<StudentDTO>> result = new HashMap<>();
+    //     List<StudentDTO> slist = studentRepository.findAll();
+    //     result.put("listdata", slist);
+
+    //     return result;
+    // }
 
     @GetMapping("/student/{no}")
     public HashMap<String, Optional<StudentDTO>> Studnet(@PathVariable Long no) {

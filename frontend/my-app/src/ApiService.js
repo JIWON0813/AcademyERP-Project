@@ -4,8 +4,8 @@ const USER_API_BASE_URL = "http://localhost:8080/api";
 
 class ApiService {
 
-    Students() {
-        return axios.get(USER_API_BASE_URL + '/students');
+    Students(currentPage,Size) {
+        return axios.get(USER_API_BASE_URL + '/students' + "?page=" + currentPage + "&size=" + Size);
     }
 
     Student(no) {

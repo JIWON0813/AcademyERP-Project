@@ -25,7 +25,7 @@ public class StudentDTO implements Serializable {
     private String email;
     private String birth;
     private String address;
-    private String curri;
+    private int lecture;
     private String gender;
     private String regdate;
 
@@ -77,12 +77,12 @@ public class StudentDTO implements Serializable {
         this.address = address;
     }
 
-    public String getCurri() {
-        return this.curri;
+    public int getLecture() {
+        return this.lecture;
     }
 
-    public void setCurri(String curri) {
-        this.curri = curri;
+    public void setLecture(int lecture) {
+        this.lecture= lecture;
     }
 
     public String getGender() {

@@ -49,7 +49,7 @@ import {
             email : '',
             birth : '',
             address : '',
-            curri : '',
+            lecture : '',
             gender : '',
             regdate : ''
         }
@@ -70,7 +70,7 @@ import {
                     email : stu.email,
                     birth : stu.birth,
                     address : stu.address,
-                    curri : stu.curri,
+                    lecture : stu.lecture,
                     gender : stu.gender,
                     regdate : stu.regdate
                 })
@@ -95,7 +95,7 @@ import {
             email : this.state.email,
             birth : this.state.birth,
             address : this.state.address,
-            curri : this.state.curri,
+            lecture : this.state.lecture,
         }
 
         ApiService.editStudent(student)
@@ -127,7 +127,7 @@ import {
                         <CLabel htmlFor="text-input">이름</CLabel>
                       </CCol>
                       <CCol xs="12" md="9">
-                        <CInput name="name" readOnly ="true" defualtValue={this.state.name}/>
+                      <CLabel>{this.state.name}</CLabel>
                       </CCol>
                     </CFormGroup>
                     <CFormGroup row>
@@ -166,13 +166,13 @@ import {
                         <CLabel htmlFor="select">수강과목</CLabel>
                       </CCol>
                       <CCol xs="12" md="9">
-                        <CSelect custom name="curri" onChange={this.onChange}>
+                        <CSelect custom name="lecture" onChange={this.onChange}>
                         <option value="0">과목을 선택하세요</option>
-                          <option value="JAVA">JAVA</option>
-                          <option value="PYTHON">PYTHON</option>
-                          <option value="C++">C++</option>
-                          <option value="KOTLIN">KOTLIN</option>
-                          <option value="">수강과목 없음</option>
+                          <option value="1">JAVA</option>
+                          <option value="2">PYTHON</option>
+                          <option value="3">C++</option>
+                          <option value="4">KOTLIN</option>
+                          <option value="5">수강과목 없음</option>
                         </CSelect>
                       </CCol>
                     </CFormGroup>
