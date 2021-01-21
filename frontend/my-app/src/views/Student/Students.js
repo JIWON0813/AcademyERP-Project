@@ -49,7 +49,7 @@ class Students extends Component {
     }
     
     render() {
-        const { StudentList,totalPages,currentPage } =  this.state;
+        const { StudentList,totalPages,currentPage,setCurrentPage } =  this.state;
         // const { setCurrentPage } = useState;
         // const { currentPage } = this.state;
         // const { totalPages } = this.state;

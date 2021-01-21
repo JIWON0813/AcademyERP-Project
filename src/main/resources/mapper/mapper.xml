@@ -34,4 +34,13 @@
         WHERE a.no = #{id}
         ORDER BY no ASC;
     </select>
+
 </mapper>
+
+<!-- <mapper namespace="com.example.demo.database.Repository.StuAttMapper">
+
+    <select id="getAtt" resultType="Stu_AttDTO" parameterType="int">
+    select * from stu_att where no = #{no};
+    </select>
+
+</mapper> -->

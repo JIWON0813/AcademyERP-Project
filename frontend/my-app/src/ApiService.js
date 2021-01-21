@@ -25,6 +25,14 @@ class ApiService {
         return axios.post(USER_API_BASE_URL + '/edit_stu/' + student.no, student);
     }
 
+    StuAtt(name) {
+        return axios.get(USER_API_BASE_URL + '/stu_att/' + name);
+    }
+
+    Leclist() {
+        return axios.get(USER_API_BASE_URL + '/stu_att');
+    }
+
 }
 
 export default new ApiService();

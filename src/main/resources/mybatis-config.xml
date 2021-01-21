@@ -7,6 +7,6 @@
         <package name="com.example.demo.database.DTO"/>
     </typeAliases>
     <mappers>
-        <mapper resource="mapper/mapper.xml"/>
+        <mapper resource="mapper/mapper1.xml"/>
     </mappers>
 </configuration> 

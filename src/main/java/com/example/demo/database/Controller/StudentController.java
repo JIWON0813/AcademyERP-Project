@@ -2,7 +2,12 @@ package com.example.demo.database.Controller;
 
 import java.util.*;
 
+import com.example.demo.database.DTO.LectureDTO;
+import com.example.demo.database.DTO.Stu_AttDTO;
+
 import com.example.demo.database.DTO.StudentDTO;
+import com.example.demo.database.Repository.StuAttMapper;
+import com.example.demo.database.Repository.Stu_AttRepository;
 import com.example.demo.database.Repository.StudentRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +32,10 @@ public class StudentController {
     
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    // private Stu_AttRepository stu_attRepository;
+    private StuAttMapper stuattmapper;
 
     @GetMapping("/students")
     public Page<StudentDTO> Students(Pageable pageable) {
@@ -72,5 +81,24 @@ public class StudentController {
     public void editStudent(@RequestBody StudentDTO student,@PathVariable Long no) {
         System.out.println(student.getHp());
         studentRepository.update(student);
+    }
+
+    @GetMapping("/stu_att/{name}")
+    public HashMap<String, List> Stu_att(@PathVariable String name) {
+        System.out.println("QWEQWEQWEQWEQWE  " + name);
+        HashMap<String,List> result = new HashMap<>();
+        List<Stu_AttDTO> alist = stuattmapper.getAtt(name);
+        
+        result.put("attdata", alist);
+
+        return result;
+    }
+
+    @GetMapping("/stu_att")
+    public HashMap<String, List> Leclist() {
+        HashMap<String,List> result = new HashMap<>();
+        List<LectureDTO> alist = stuattmapper.getLec();
+        result.put("lecdata", alist);
+        return result;
     }
 }
