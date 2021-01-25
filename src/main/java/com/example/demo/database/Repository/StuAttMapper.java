@@ -11,4 +11,5 @@ import java.util.List;
 public interface StuAttMapper {
     List<Stu_AttDTO> getAtt(String name);
     List<LectureDTO> getLec();
+    List<StudentDTO> getLecStu(String lec);
 }

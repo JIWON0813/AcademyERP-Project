@@ -11,4 +11,8 @@
     select * from lecture;
     </select>
 
+    <select id="getLecStu" resultType="StudentDTO" parameterType="String">
+    select s.*, l.name as lecname from student s inner join lecture l ON l.no = s.lecture where l.name = #{lec};
+    </select>
+
 </mapper>

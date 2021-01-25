@@ -4,8 +4,9 @@ import java.util.*;
 
 import com.example.demo.database.DTO.LectureDTO;
 import com.example.demo.database.DTO.Stu_AttDTO;
-
+import com.example.demo.database.DTO.Stu_AttEntity;
 import com.example.demo.database.DTO.StudentDTO;
+import com.example.demo.database.DTO.StudentEntity;
 import com.example.demo.database.Repository.StuAttMapper;
 import com.example.demo.database.Repository.Stu_AttRepository;
 import com.example.demo.database.Repository.StudentRepository;
@@ -38,25 +39,25 @@ public class StudentController {
     private StuAttMapper stuattmapper;
 
     @GetMapping("/students")
-    public Page<StudentDTO> Students(Pageable pageable) {
+    public Page<StudentEntity> Students(Pageable pageable) {
         return studentRepository.findAll(pageable);
         
     }
 
     // @GetMapping("/students")
-    // public HashMap<String, List<StudentDTO>> Students() {
-    //     HashMap<String,List<StudentDTO>> result = new HashMap<>();
-    //     List<StudentDTO> slist = studentRepository.findAll();
+    // public HashMap<String, List<StudentEntity>> Students() {
+    //     HashMap<String,List<StudentEntity>> result = new HashMap<>();
+    //     List<StudentEntity> slist = studentRepository.findAll();
     //     result.put("listdata", slist);
 
     //     return result;
     // }
 
     @GetMapping("/student/{no}")
-    public HashMap<String, Optional<StudentDTO>> Studnet(@PathVariable Long no) {
+    public HashMap<String, Optional<StudentEntity>> Studnet(@PathVariable Long no) {
         System.out.println("QWEQWEQWEQWEQWE  " + no);
-        HashMap<String,Optional<StudentDTO>> result = new HashMap<>();
-        Optional<StudentDTO> slist = studentRepository.findById(no);
+        HashMap<String,Optional<StudentEntity>> result = new HashMap<>();
+        Optional<StudentEntity> slist = studentRepository.findById(no);
         
         result.put("listdata", slist);
 
@@ -64,10 +65,10 @@ public class StudentController {
     }
 
     @PostMapping("/ins_stu")
-    public String addStudnet(@RequestBody StudentDTO student) {
+    public String addStudnet(@RequestBody StudentEntity student) {
         
         System.out.println(student.getEmail());
-        StudentDTO result = studentRepository.save(student);
+        StudentEntity result = studentRepository.save(student);
 
         return result.toString();
     }
@@ -78,7 +79,7 @@ public class StudentController {
     }
 
     @PostMapping("/edit_stu/{no}")
-    public void editStudent(@RequestBody StudentDTO student,@PathVariable Long no) {
+    public void editStudent(@RequestBody StudentEntity student,@PathVariable Long no) {
         System.out.println(student.getHp());
         studentRepository.update(student);
     }
@@ -97,8 +98,17 @@ public class StudentController {
     @GetMapping("/stu_att")
     public HashMap<String, List> Leclist() {
         HashMap<String,List> result = new HashMap<>();
-        List<LectureDTO> alist = stuattmapper.getLec();
-        result.put("lecdata", alist);
+        List<LectureDTO> list = stuattmapper.getLec();
+        result.put("list", list);
+        return result;
+    }
+
+    @GetMapping("/ins_att/{lec}")
+    public HashMap<String, List> LecStulist(@PathVariable String lec) {
+        System.out.println("asdasdasd" + lec);
+        HashMap<String,List> result = new HashMap<>();
+        List<StudentDTO> list = stuattmapper.getLecStu(lec);
+        result.put("list", list);
         return result;
     }
 }

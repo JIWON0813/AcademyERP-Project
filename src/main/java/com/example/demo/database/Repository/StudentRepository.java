@@ -2,7 +2,7 @@ package com.example.demo.database.Repository;
 
 import javax.transaction.Transactional;
 
-import com.example.demo.database.DTO.StudentDTO;
+import com.example.demo.database.DTO.StudentEntity;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,13 +12,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface StudentRepository extends PagingAndSortingRepository<StudentDTO, Long> {
+public interface StudentRepository extends PagingAndSortingRepository<StudentEntity, Long> {
 
     @Transactional
     @Modifying
     @Query(value="update student set hp = :#{#student.hp},email = :#{#student.email},birth = :#{#student.birth},lecture = :#{#student.lecture} where no = :#{#student.no}", nativeQuery=true)
-    Integer update(@Param("student") StudentDTO student);
+    Integer update(@Param("student") StudentEntity student);
 
-    Page<StudentDTO> findAll(Pageable pageable);
+    Page<StudentEntity> findAll(Pageable pageable);
 
 }

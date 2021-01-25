@@ -33,6 +33,11 @@ class ApiService {
         return axios.get(USER_API_BASE_URL + '/stu_att');
     }
 
+    InsAtt(lec) {
+        console.log("?????" + lec);
+        return axios.get(USER_API_BASE_URL + '/ins_att/' + lec);
+    }
+
 }
 
 export default new ApiService();
