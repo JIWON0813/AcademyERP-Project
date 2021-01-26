@@ -5,9 +5,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import Typography from '@material-ui/core/Typography';
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
-class LectureDelete extends React.Component {
+class RoomDelete extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,11 +21,16 @@ class LectureDelete extends React.Component {
   }
 
   handleClickOpen() {
+    if(this.props.id !== ''){
     this.setState({
       open: true
     });
-
+    }
+    else{
+    alert("삭제항목을 선택하세요")
+    }
   }
+
 
   handleClose() {
     this.setState({
@@ -36,23 +41,19 @@ class LectureDelete extends React.Component {
 
 
   delete(id) {
-    const url = 'http://localhost:8080/lecture/' + id;
+    const url = 'http://localhost:8080/room/' + id;
     fetch(url, {
       method: 'DELETE'
     });
     alert("삭제 되었습니다.");
     this.props.stateRefresh();
-   /* this.props.history.push("/lecture");*/
   }
 
 
   render() {
     return (
       <div>
-        <Button variant="outlined" color="secondary" onClick={this.handleClickOpen}>
-          삭제
-        </Button>
-
+        <Button color="secondary" onClick={this.handleClickOpen}>삭제</Button>
         <Dialog onClose={this.handleClose} open={this.state.open}>
           <DialogTitle onClose={this.handleClose}>
             삭제 경고
@@ -60,7 +61,7 @@ class LectureDelete extends React.Component {
 
           <DialogContent>
             <Typography gutterBottom>
-              선택한 고객 정보가 삭제됩니다.
+              선택한 강의실 정보가 삭제됩니다.
             </Typography>
           </DialogContent>
 
@@ -70,7 +71,6 @@ class LectureDelete extends React.Component {
             }}>삭제</Button>
             <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
           </DialogActions>
-
         </Dialog>
 
       </div>
@@ -81,5 +81,5 @@ class LectureDelete extends React.Component {
 
 }
 
-export default withRouter(LectureDelete)
+export default withRouter(RoomDelete)
 

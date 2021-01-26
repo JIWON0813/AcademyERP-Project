@@ -2,28 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.demo.Mapper.LectureMapper">
-    <select id="getBranch" statementType="CALLABLE" resultType="BranchEntity">
-        {
-            call lecBranch()
-            }
-    </select>
-
-    <select id="getTeacher" resultType="BoardEntity" parameterType="int">
+    <select id="getTeacher" resultType="BoardEntity" parameterType="Long">
         select no, name
         from employee
         where branch=#{branch} and department=3
-    </select>
-
-    <select id="getRoom" resultType="RoomEntity" parameterType="int">
-        select *
-        from room
-        where branch = #{branch}
-    </select>
-
-    <select id="getPart" resultType="RoomEntity" parameterType="int">
-        select *
-        from part
-        where branch = #{branch}
     </select>
 
 

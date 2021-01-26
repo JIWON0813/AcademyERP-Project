@@ -47,6 +47,8 @@ const LectureAdd = React.lazy(() => import('./views/lecture/LectureAdd'));
 const LectureDelete = React.lazy(() => import('./views/lecture/LectureDelete'));
 const LectureUpdate = React.lazy(() => import('./views/lecture/LectureUpdate'));
 
+const Score = React.lazy(() => import('./views/score/Score'));
+
 const Consults = React.lazy(() => import('./views/consult/Consults'));
 const Consult = React.lazy(() => import('./views/consult/Consult'));
 const ConsultInsert = React.lazy(() => import('./views/consult/ConsultInsert'));
@@ -118,6 +120,8 @@ const routes = [
   { path: '/lectureAdd', exact: true, name: 'Lecture Add', component: LectureAdd },
   { path: '/lectureDelete/:id', exact: true, name: 'Lecture Delete', component: LectureDelete },
   { path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate },
+
+  { path: '/score', exact: true,  name: 'Score', component: Score },
 
   { path: '/consult', exact: true,  name: 'Consults', component: Consults },
   { path: '/consult/:id', exact: true,  name: 'Consult Details', component: Consult },

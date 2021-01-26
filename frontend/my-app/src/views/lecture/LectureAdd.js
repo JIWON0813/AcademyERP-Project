@@ -1,16 +1,7 @@
 import React from 'react'
 import axios from 'axios';
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Grid,
-  TextField,
-  withStyles,
-} from "@material-ui/core";
-import {CCol, CFormGroup, CInput, CInputCheckbox, CLabel, CLink, CRow, CSelect} from '@coreui/react'
+import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles,} from "@material-ui/core";
+import {CButton, CCol, CFormGroup, CInput, CInputCheckbox, CLabel, CRow, CSelect} from '@coreui/react'
 import CIcon from "@coreui/icons-react";
 import {cilAlarm} from "@coreui/icons/js/free/cil-alarm";
 
@@ -159,7 +150,6 @@ class LectureAdd extends React.Component {
       branch: e.target.value
     })
 
-    //teacher list
     axios.get("http://localhost:8080//lecture/select?branch=" + e.target.value)
       .then(res => {
         this.setState({
@@ -212,11 +202,12 @@ class LectureAdd extends React.Component {
     let day = this.state.day;
     return (
       <div>
-        <Grid container justify="flex-end">
-        <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
-          추가하기
-        </Button>
-        </Grid>
+        <CCol col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
+        <CButton variant="outline" color="primary" onClick={this.handleClickOpen}>
+          강의 추가하기
+        </CButton>
+        </CCol>
+
         <Dialog open={this.state.open} onClose={this.handleClose}>
           <DialogTitle>클래스 추가</DialogTitle>
           <DialogContent>
@@ -280,6 +271,7 @@ class LectureAdd extends React.Component {
                         onChange={this.handleValueChange}/>
               </CCol>
             </CFormGroup>
+
             <CRow>
               <CCol xs="12">
                 <CFormGroup>
