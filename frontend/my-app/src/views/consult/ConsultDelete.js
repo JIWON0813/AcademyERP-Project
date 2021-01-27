@@ -36,7 +36,7 @@ class ConsultDelete extends Component {
 
 
   deleteConsult(id) {
-    const url = 'http://localhost:8080/api2/consult/' + id;
+    const url = 'http://localhost:8080/consult/' + id;
     fetch(url, {
       method: 'DELETE'
     });

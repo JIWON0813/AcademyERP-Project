@@ -1,68 +1,24 @@
 import React from 'react'
 import axios from 'axios';
-import {Button, Dialog,IconButton, withStyles} from "@material-ui/core";
-import Typography from '@material-ui/core/Typography';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import CloseIcon from '@material-ui/icons/Close';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
+import './table.css';
+import { BrowserRouter, Route} from 'react-router-dom';
+import {CCard, CCardBody, CCardHeader, CCol, CForm, CFormGroup, CLabel, CRow} from '@coreui/react'
 import ConsultUpdate from "./ConsultUpdate";
 import ConsultDelete from "./ConsultDelete";
-
-const styles = theme => ({
-  hidden: {
-    display: 'none'
-  },
-  root: {
-    margin: 0,
-    padding: theme.spacing(2),
-  },
-  closeButton: {
-    position: 'absolute',
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: theme.palette.grey[500],
-  },
-});
-
-const DialogTitle = withStyles(styles)((props) => {
-  const { children, classes, onClose, ...other } = props;
-  return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle>
-  );
-});
-
-const DialogContent = withStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2),
-  },
-}))(MuiDialogContent);
-
-const DialogActions = withStyles((theme) => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(1),
-  },
-}))(MuiDialogActions);
-
 class Consult extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      ConsultList: ""
+        no : '',
+        name : '',
+        hp : '',
+        schedule : '',
+        memo : '',
+        route : '',
+        writer : ''
     }
-
-    this.handleClickOpen = this.handleClickOpen.bind(this)
-    this.handleClose = this.handleClose.bind(this);
-
+    this.stateRefresh = this.stateRefresh.bind(this)
   }
 
 componentDidMount() {
@@ -70,73 +26,103 @@ componentDidMount() {
 }
 
 getApi = () => {
-  axios.get("http://localhost:8080/api2/consult/"+this.props.id)
+  axios.get("http://localhost:8080/consult/"+this.props.id)
     .then(res => {
+      let con = res.data.consultdata;
       this.setState({
-        ConsultList: res.data.message
+        no : con.no,
+        name : con.name,
+        hp : con.hp,
+        schedule : con.schedule,
+        memo : con.memo,
+        route : con.route,
+        writer : con.wirter
       })
     })
     .catch(res => console.log(res))
 }
 
-goBack = () => {
-  this.props.history.goBack();
-}
-
-  handleClickOpen() {
+  stateRefresh() {
     this.setState({
-      open: true
+      ConsultList: "",
     });
-  }
-
-  handleClose() {
-
-    this.setState({
-
-      open: false
-    })
+    this.getApi();
   }
 
 
 
   render() {
-    const { ConsultList } = this.state;
-
     return (
-      <div>
-          <Button color="primary" onClick={this.handleClickOpen}>{ConsultList.name}</Button>
-        <Dialog onClose={this.handleClose} aria-labelledby="customized-dialog-title" open={this.state.open}
-                fullWidth={true}
-                maxWidth = {'xs'}>
-          <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-            상담신청인 : {ConsultList.name}</DialogTitle>
-          <DialogContent dividers>
-            <table className="table table-striped table-hover">
-              <tbody>  
-              <tr><td>{`no:`}</td><td><strong>{ConsultList.no}</strong></td></tr>
-              <tr><td>{`성명:`}</td><td><strong>{ConsultList.name}</strong></td></tr>
-              <tr><td>{`전화번호:`}</td><td><strong>{ConsultList.hp}</strong></td></tr>
-              <tr><td>{`상담일자:`}</td><td><strong>{ConsultList.schedule}</strong></td></tr>
-              <tr><td>{`상담내용:`}</td><td><strong>{ConsultList.memo}</strong></td></tr>
-              {/* <tr><td>{`접수날짜:`}</td><td><strong>{ConsultList.regdate}</strong></td></tr> */}
-              <tr><td>{`상담경로:`}</td><td><strong>{ConsultList.route}</strong></td></tr>
-              <tr><td>{`작성자:`}</td><td><strong>{ConsultList.writer}</strong></td></tr>
-              </tbody>
-            </table>
-          </DialogContent>
-          <DialogActions>
-            <ConsultUpdate stateRefresh={this.props.stateRefresh} ConsultList={ConsultList}/>
-            <ConsultDelete stateRefresh={this.props.stateRefresh} id={ConsultList.no}/>
-          </DialogActions>
-
-        </Dialog>
-
-      </div>
-    )
-
+      <CRow>
+        <CCol xs="12" md="6">
+          <CCard>
+            <CCardHeader>상담신청인 : {this.state.name}</CCardHeader>
+            <CCardBody>
+              <CForm>
+                <CFormGroup row>
+                  <CCol md="3">
+                    <CLabel htmlFor="text-input">등록번호</CLabel>
+                  </CCol>
+                  <CCol xs="12" md="9">
+                    <CLabel>{this.state.no}</CLabel>
+                  </CCol>
+                </CFormGroup>
+                <CFormGroup row>
+                  <CCol md="3">
+                    <CLabel htmlFor="text-input">전화번호</CLabel>
+                  </CCol>
+                  <CCol xs="12" md="9">
+                    <CLabel>{this.state.hp}</CLabel>
+                  </CCol>
+                </CFormGroup>
+                <CFormGroup row>
+                  <CCol md="3">
+                    <CLabel htmlFor="text-input">상담일자</CLabel>
+                  </CCol>
+                  <CCol xs="12" md="9">
+                    <CLabel>{this.state.schedule}</CLabel>
+                  </CCol>
+                </CFormGroup>
+                <CFormGroup row>
+                  <CCol md="3">
+                    <CLabel htmlFor="text-input">상담내용</CLabel>
+                  </CCol>
+                  <CCol xs="12" md="9">
+                    <CLabel>{this.state.memo}</CLabel>
+                  </CCol>
+                </CFormGroup>
+                <CFormGroup row>
+                  <CCol md="3">
+                    <CLabel htmlFor="text-input">상담경로</CLabel>
+                  </CCol>
+                  <CCol xs="12" md="9">
+                    <CLabel>{this.state.route}</CLabel>
+                  </CCol>
+                </CFormGroup>
+                <CFormGroup row>
+                  <CCol md="3">
+                    <CLabel htmlFor="text-input">작성자</CLabel>
+                  </CCol>
+                  <CCol xs="12" md="9">
+                    <CLabel>{this.state.writer}</CLabel>
+                  </CCol>
+                </CFormGroup>
+                <BrowserRouter>
+                  <Route exact path='/consultUpdate' component={ConsultUpdate}/>
+                  <Route exact paht='/consultDelete/:id' component={ConsultDelete}/>
+                </BrowserRouter>
+               {/* <CFormGroup row>
+                  <ConsultUpdate stateRefresh={this.props.stateRefresh} ConsultList={ConsultList}/>
+                  <ConsultDelete stateRefresh={this.props.stateRefresh} id={ConsultList.no}/>
+                </CFormGroup> */}
+                </CForm>
+              </CCardBody>
+            </CCard>
+          </CCol>
+      </CRow>
+    );
   }
-
 }
-export default withStyles(styles)(Consult)
+export default Consult;
 
 

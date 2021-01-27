@@ -1,39 +1,39 @@
 import React from 'react';
 
-const Toaster = React.lazy(() => import('./views/notifications/toaster/Toaster'));
-const Tables = React.lazy(() => import('./views/base/tables/Tables'));
+const Toaster = React.lazy(() => import('./views/Template/notifications/toaster/Toaster'));
+const Tables = React.lazy(() => import('./views/Template/base/tables/Tables'));
 
-const Breadcrumbs = React.lazy(() => import('./views/base/breadcrumbs/Breadcrumbs'));
-const Cards = React.lazy(() => import('./views/base/cards/Cards'));
-const Carousels = React.lazy(() => import('./views/base/carousels/Carousels'));
-const Collapses = React.lazy(() => import('./views/base/collapses/Collapses'));
-const BasicForms = React.lazy(() => import('./views/base/forms/BasicForms'));
-const Jumbotrons = React.lazy(() => import('./views/base/jumbotrons/Jumbotrons'));
-const ListGroups = React.lazy(() => import('./views/base/list-groups/ListGroups'));
-const Navbars = React.lazy(() => import('./views/base/navbars/Navbars'));
-const Navs = React.lazy(() => import('./views/base/navs/Navs'));
-const Paginations = React.lazy(() => import('./views/base/paginations/Pagnations'));
-const Popovers = React.lazy(() => import('./views/base/popovers/Popovers'));
-const ProgressBar = React.lazy(() => import('./views/base/progress-bar/ProgressBar'));
-const Switches = React.lazy(() => import('./views/base/switches/Switches'));
+const Breadcrumbs = React.lazy(() => import('./views/Template/base/breadcrumbs/Breadcrumbs'));
+const Cards = React.lazy(() => import('./views/Template/base/cards/Cards'));
+const Carousels = React.lazy(() => import('./views/Template/base/carousels/Carousels'));
+const Collapses = React.lazy(() => import('./views/Template/base/collapses/Collapses'));
+const BasicForms = React.lazy(() => import('./views/Template/base/forms/BasicForms'));
+const Jumbotrons = React.lazy(() => import('./views/Template/base/jumbotrons/Jumbotrons'));
+const ListGroups = React.lazy(() => import('./views/Template/base/list-groups/ListGroups'));
+const Navbars = React.lazy(() => import('./views/Template/base/navbars/Navbars'));
+const Navs = React.lazy(() => import('./views/Template/base/navs/Navs'));
+const Paginations = React.lazy(() => import('./views/Template/base/paginations/Pagnations'));
+const Popovers = React.lazy(() => import('./views/Template/base/popovers/Popovers'));
+const ProgressBar = React.lazy(() => import('./views/Template/base/progress-bar/ProgressBar'));
+const Switches = React.lazy(() => import('./views/Template/base/switches/Switches'));
 
-const Tabs = React.lazy(() => import('./views/base/tabs/Tabs'));
-const Tooltips = React.lazy(() => import('./views/base/tooltips/Tooltips'));
-const BrandButtons = React.lazy(() => import('./views/buttons/brand-buttons/BrandButtons'));
-const ButtonDropdowns = React.lazy(() => import('./views/buttons/button-dropdowns/ButtonDropdowns'));
-const ButtonGroups = React.lazy(() => import('./views/buttons/button-groups/ButtonGroups'));
-const Buttons = React.lazy(() => import('./views/buttons/buttons/Buttons'));
-const Charts = React.lazy(() => import('./views/charts/Charts'));
-const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'));
-const CoreUIIcons = React.lazy(() => import('./views/icons/coreui-icons/CoreUIIcons'));
-const Flags = React.lazy(() => import('./views/icons/flags/Flags'));
-const Brands = React.lazy(() => import('./views/icons/brands/Brands'));
-const Alerts = React.lazy(() => import('./views/notifications/alerts/Alerts'));
-const Badges = React.lazy(() => import('./views/notifications/badges/Badges'));
-const Modals = React.lazy(() => import('./views/notifications/modals/Modals'));
-const Colors = React.lazy(() => import('./views/theme/colors/Colors'));
-const Typography = React.lazy(() => import('./views/theme/typography/Typography'));
-const Widgets = React.lazy(() => import('./views/widgets/Widgets'));
+const Tabs = React.lazy(() => import('./views/Template/base/tabs/Tabs'));
+const Tooltips = React.lazy(() => import('./views/Template/base/tooltips/Tooltips'));
+const BrandButtons = React.lazy(() => import('./views/Template/buttons/brand-buttons/BrandButtons'));
+const ButtonDropdowns = React.lazy(() => import('./views/Template/buttons/button-dropdowns/ButtonDropdowns'));
+const ButtonGroups = React.lazy(() => import('./views/Template/buttons/button-groups/ButtonGroups'));
+const Buttons = React.lazy(() => import('./views/Template/buttons/buttons/Buttons'));
+const Charts = React.lazy(() => import('./views/Template/charts/Charts'));
+const Dashboard = React.lazy(() => import('./views/Template/dashboard/Dashboard'));
+const CoreUIIcons = React.lazy(() => import('./views/Template/icons/coreui-icons/CoreUIIcons'));
+const Flags = React.lazy(() => import('./views/Template/icons/flags/Flags'));
+const Brands = React.lazy(() => import('./views/Template/icons/brands/Brands'));
+const Alerts = React.lazy(() => import('./views/Template/notifications/alerts/Alerts'));
+const Badges = React.lazy(() => import('./views/Template/notifications/badges/Badges'));
+const Modals = React.lazy(() => import('./views/Template/notifications/modals/Modals'));
+const Colors = React.lazy(() => import('./views/Template/theme/colors/Colors'));
+const Typography = React.lazy(() => import('./views/Template/theme/typography/Typography'));
+const Widgets = React.lazy(() => import('./views/Template/widgets/Widgets'));
 const Students = React.lazy(() => import('./views/Student/Students'));
 const Student = React.lazy(() => import('./views/Student/Student'));
 const Ins_stu = React.lazy(() => import('./views/Student/Ins_stu'));
@@ -46,7 +46,6 @@ const Lecture = React.lazy(() => import('./views/lecture/Lecture'));
 const LectureAdd = React.lazy(() => import('./views/lecture/LectureAdd'));
 const LectureDelete = React.lazy(() => import('./views/lecture/LectureDelete'));
 const LectureUpdate = React.lazy(() => import('./views/lecture/LectureUpdate'));
-const LectureSearch = React.lazy(() => import('./views/lecture/LectureSearch'));
 
 const Consults = React.lazy(() => import('./views/consult/Consults'));
 const Consult = React.lazy(() => import('./views/consult/Consult'));
@@ -54,6 +53,12 @@ const ConsultInsert = React.lazy(() => import('./views/consult/ConsultInsert'));
 const ConsultDelete = React.lazy(() => import('./views/consult/ConsultDelete'));
 const ConsultUpdate = React.lazy(() => import('./views/consult/ConsultUpdate'));
 const ConsultSearch = React.lazy(() => import('./views/consult/ConsultSearch'));
+
+const Notice = React.lazy(() => import('./views/notice/Notice'));
+const NoticeList = React.lazy(() => import('./views/notice/NoticeList'));
+const NoticeWrite = React.lazy(() => import('./views/notice/NoticeWrite'));
+const NoticeDelete = React.lazy(() => import('./views/notice/NoticeDelete'));
+const NoticeUpdate = React.lazy(() => import('./views/notice/NoticeUpdate'));
 
 const Branches = React.lazy(() => import('./views/branch/Branches'));
 const Branch = React.lazy(() => import('./views/branch/Branch'));
@@ -120,7 +125,6 @@ const routes = [
   { path: '/lectureAdd', exact: true, name: 'Lecture Add', component: LectureAdd },
   { path: '/lectureDelete/:id', exact: true, name: 'Lecture Delete', component: LectureDelete },
   { path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate },
-  { path: '/lectureSearch', exact: true, name: 'Lecture Search', component: LectureSearch },
 
   { path: '/consult', exact: true,  name: 'Consults', component: Consults },
   { path: '/consult/:id', exact: true,  name: 'Consult Details', component: Consult },
@@ -128,6 +132,12 @@ const routes = [
   { path: '/consultDelete/:id', exact: true,  name: 'Consult Delete', component: ConsultDelete },
   { path: '/consultUpdate', exact: true,  name: 'Consult Update', component: ConsultUpdate },
   { path: '/consultSearch', exact: true, name: 'Consult Search', component: ConsultSearch },
+
+  { path: '/notice/:id', exact: true,  name: 'Notice Details', component: Notice },
+  { path: '/noticeList', exact: true, name: 'NoticeList', component: NoticeList },
+  { path: '/noticeWrite', exact: true, name: 'NoticeWrite', component: NoticeWrite },
+  { path: '/noticeDelete/:id', exact: true,  name: 'Notice Delete', component: NoticeDelete },
+  { path: '/noticeUpdate', exact: true,  name: 'Notice Update', component: NoticeUpdate },
 
   { path: '/branch', exact: true,  name: 'Branches', component: Branches },
   { path: '/branch/:id', exact: true, name: 'Branch Details', component: Branch },

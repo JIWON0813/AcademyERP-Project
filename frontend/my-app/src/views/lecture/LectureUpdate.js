@@ -19,6 +19,7 @@ class LectureUpdate extends React.Component {
       branchList: "",
       teacherList: "",
       roomList: "",
+      partList:"",
       name: this.props.ItemList.name,
       teacher: this.props.ItemList.teacher,
       price: this.props.ItemList.price,
@@ -49,7 +50,7 @@ class LectureUpdate extends React.Component {
   }
 
   getApi = () => {
-    axios.get("http://localhost:8080/api2/branches")
+    axios.get("http://localhost:8080/lecture/branches")
       .then(res => {
         this.setState({
           branchList: res.data.list
@@ -57,18 +58,12 @@ class LectureUpdate extends React.Component {
       })
       .catch(res => console.log(res))
 
-    axios.get("http://localhost:8080/api2/room?branch=" + this.state.branch)
+    axios.get("http://localhost:8080/lecture/select?branch=" + this.state.branch)
       .then(res => {
         this.setState({
-          roomList: res.data.list
-        })
-      })
-      .catch(res => console.log(res))
-
-    axios.get("http://localhost:8080/api2/teacher?branch=" + this.state.branch)
-      .then(res => {
-        this.setState({
-          teacherList: res.data.list
+          teacherList: res.data.teacherList,
+          roomList: res.data.roomList,
+          partList: res.data.partList
         })
       })
       .catch(res => console.log(res))
@@ -104,7 +99,7 @@ class LectureUpdate extends React.Component {
 
   updateLecture() {
     axios({
-      url: 'http://localhost:8080/api2/lecture/edit/' + this.props.ItemList.no,
+      url: 'http://localhost:8080/lecture/' + this.props.ItemList.no,
       method: "PUT",
       headers: {'content-type': 'application/json'},
       data: {
@@ -146,23 +141,17 @@ class LectureUpdate extends React.Component {
     this.setState({
       branch: e.target.value
     })
-    //teacher list
-    axios.get("http://localhost:8080/api2/teacher?branch=" + e.target.value)
+    axios.get("http://localhost:8080/lecture/select?branch=" + this.state.branch)
       .then(res => {
         this.setState({
-          teacherList: res.data.list
-        })
-      })
-      .catch(res => console.log(res))
-    //room list
-    axios.get("http://localhost:8080/api2/room?branch=" + e.target.value)
-      .then(res => {
-        this.setState({
-          roomList: res.data.list
+          teacherList: res.data.teacherList,
+          roomList: res.data.roomList,
+          partList: res.data.partList
         })
       })
       .catch(res => console.log(res))
   }
+
   teacherSelect = (e) => {
     this.setState({
       teacher: e.target.value
@@ -171,6 +160,11 @@ class LectureUpdate extends React.Component {
   roomSelect = (e) => {
     this.setState({
       room: e.target.value
+    })
+  }
+  partSelect = (e) => {
+    this.setState({
+      part: e.target.value
     })
   }
   checkboxChange = (e) => {
@@ -191,6 +185,7 @@ class LectureUpdate extends React.Component {
     const {branchList} = this.state;
     const {teacherList} = this.state;
     const {roomList} = this.state;
+    const {partList} = this.state;
 
     return (
       <div>
@@ -219,8 +214,13 @@ class LectureUpdate extends React.Component {
                 <CLabel htmlFor="part">분야</CLabel>
               </CCol>
               <CCol xs="12" md="9">
-                <CInput name="part" placeholder="분야" defaultValue={ItemList.part}
-                        onChange={this.handleValueChange}/>
+                <CSelect custom id="part" onChange={this.partSelect} defaultValue={ItemList.part}>
+                  <option value="">분야</option>
+                  {partList && partList.map((itemdata, insertIndex) => {
+                    return (<option
+                      value={itemdata.no}>{insertIndex + 1}.&nbsp;{itemdata.name}</option>);
+                  })}
+                </CSelect>
               </CCol>
             </CFormGroup>
 

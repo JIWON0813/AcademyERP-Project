@@ -30,6 +30,7 @@ class LectureAdd extends React.Component {
       branchList: "",
       teacherList: "",
       roomList: "",
+      partList:"",
       name: '',
       teacher: '',
       price: '',
@@ -61,7 +62,7 @@ class LectureAdd extends React.Component {
   }
 
   getApi = () => {
-    axios.get("http://localhost:8080/api2/branches")
+    axios.get("http://localhost:8080/lecture/branches")
       .then(res => {
         this.setState({
           branchList: res.data.list
@@ -101,7 +102,7 @@ class LectureAdd extends React.Component {
 
   addLecture() {
     axios({
-      url: 'http://localhost:8080/api2/lecture',
+      url: 'http://localhost:8080/lecture',
       method: "POST",
       headers: {'content-type': 'application/json'},
       data: {
@@ -157,23 +158,20 @@ class LectureAdd extends React.Component {
     this.setState({
       branch: e.target.value
     })
+
     //teacher list
-    axios.get("http://localhost:8080/api2/teacher?branch=" + e.target.value)
+    axios.get("http://localhost:8080//lecture/select?branch=" + e.target.value)
       .then(res => {
         this.setState({
-          teacherList: res.data.list
-        })
-      })
-      .catch(res => console.log(res))
-    //room list
-    axios.get("http://localhost:8080/api2/room?branch=" + e.target.value)
-      .then(res => {
-        this.setState({
-          roomList: res.data.list
+          teacherList: res.data.teacherList,
+          roomList: res.data.roomList,
+          partList: res.data.partList
         })
       })
       .catch(res => console.log(res))
   }
+
+
   teacherSelect = (e) => {
     this.setState({
       teacher: e.target.value
@@ -182,6 +180,11 @@ class LectureAdd extends React.Component {
   roomSelect = (e) => {
     this.setState({
       room: e.target.value
+    })
+  }
+  partSelect = (e) => {
+    this.setState({
+      part: e.target.value
     })
   }
 
@@ -204,6 +207,8 @@ class LectureAdd extends React.Component {
     const {branchList} = this.state;
     const {teacherList} = this.state;
     const {roomList} = this.state;
+    const {partList} = this.state;
+
     let day = this.state.day;
     return (
       <div>
@@ -228,12 +233,20 @@ class LectureAdd extends React.Component {
               </CCol>
             </CRow>
 
-            <CFormGroup row>
-              <CCol xs="12" md="9">
-                <CInput name="part" placeholder="분야" value={this.state.part}
-                        onChange={this.handleValueChange}/>
+            <CRow>
+              <CCol xs="12">
+                <CFormGroup>
+                  <CSelect custom id="part" onChange={this.partSelect} value={this.state.part}>
+                    <option value="">분야</option>
+                    {partList && partList.map((itemdata, insertIndex) => {
+                      return (<option
+                        value={itemdata.no}>{insertIndex + 1}.&nbsp;{itemdata.name}
+                      </option>);
+                    })}
+                  </CSelect><br/>
+                </CFormGroup>
               </CCol>
-            </CFormGroup>
+            </CRow>
 
             <CFormGroup row>
               <CCol xs="12" md="9">

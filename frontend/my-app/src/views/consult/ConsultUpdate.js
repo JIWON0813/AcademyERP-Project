@@ -18,7 +18,7 @@ class ConsultUpdate extends React.Component {
       hp: this.props.ConsultList.hp,
       schedule: this.props.ConsultList.schedule,
       memo: this.props.ConsultList.memo,
-      route: this.props.ConsultList.route.split(''),
+      route: this.props.ConsultList.route,
       writer: this.props.ConsultList.writer
     }
 
@@ -58,7 +58,7 @@ class ConsultUpdate extends React.Component {
 
   updateConsult() {
     axios({
-      url: 'http://localhost:8080/api2/consult/edit/' + this.props.ConsultList.no,
+      url: 'http://localhost:8080/consult/edit/' + this.props.ConsultList.no,
       method: "PUT",
       headers: {'content-type': 'application/json'},
       data: {
@@ -116,7 +116,7 @@ class ConsultUpdate extends React.Component {
         <Dialog open={this.state.open} onClose={this.handleClose}>
           <DialogTitle>상담 수정</DialogTitle>
           <DialogContent>
-          <CFormGroup row>
+          {/* <CFormGroup row>
               <CCol md="9">
                 <CFormGroup variant="custom-checkbox" inline>
                   <CInputCheckbox custom id="inline-checkbox1" name="route" value={"CALL"}
@@ -131,7 +131,7 @@ class ConsultUpdate extends React.Component {
                   <CLabel variant="custom-checkbox" htmlFor="inline-checkbox2">ONLINE</CLabel>
                 </CFormGroup>
               </CCol>
-            </CFormGroup>
+            </CFormGroup> */}
             <CFormGroup row>
               <CCol md="3">
                 <CLabel htmlFor="name">성명</CLabel>

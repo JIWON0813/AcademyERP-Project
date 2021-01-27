@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import {CChartLine} from '@coreui/react-chartjs';
 
-import '../css/table.css';
+import '../Template/css/table.css';
 import { Link } from 'react-router-dom';
 import Moment from "moment"
 
@@ -51,7 +51,7 @@ class AttTable extends Component {
     this.nameChange2 = this.nameChange2.bind(this);
     this.dayChange2 = this.dayChange2.bind(this);
     this.depChange2 = this.depChange2.bind(this);
-    this.dateDay = this.dateDay.bind(this); 
+    this.dateDay = this.dateDay.bind(this);
     this.getWeekly = this.getWeekly.bind(this);
   }
   componentDidMount() {
@@ -115,7 +115,7 @@ class AttTable extends Component {
     var hour = parseInt(seconds/3600);
     var min = parseInt((seconds%3600)/60);
     var sec = seconds%60;
-    
+
     return this.septo(hour)+':'+this.septo(min)+':'+this.septo(sec)
   }
   septo = (tt) =>{            //한자릿수를 두자리수로
@@ -143,13 +143,13 @@ class AttTable extends Component {
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
-        console.log(res); 
+        console.log(res);
         this.setState({
           ItemList: res.data.list
         })
       }).catch(res => console.log(res))
   }
-  dayChange = (e) => {        //day변경 
+  dayChange = (e) => {        //day변경
     this.setState({
       day: e.target.value,
       loopCheck: true
@@ -161,7 +161,7 @@ class AttTable extends Component {
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
-        console.log(res); 
+        console.log(res);
         this.setState({
         ItemList: res.data.list
         })
@@ -177,7 +177,7 @@ class AttTable extends Component {
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
-        console.log(res); 
+        console.log(res);
         this.setState({
         ItemList: res.data.list
         })
@@ -193,12 +193,12 @@ class AttTable extends Component {
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
-        console.log(res); 
+        console.log(res);
         this.setState({
           ItemList: res.data.list
         })
       }).catch(res => console.log(res))
-  } 
+  }
   dayChange2 = (e) => {       //주간 day변경
     var Time=this.DayToSETime(e.target.value);
 
@@ -208,7 +208,7 @@ class AttTable extends Component {
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
-        console.log(res); 
+        console.log(res);
         this.setState({
         ItemList: res.data.list
         })
@@ -224,7 +224,7 @@ class AttTable extends Component {
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
-        console.log(res); 
+        console.log(res);
         this.setState({
         ItemList: res.data.list
         })
@@ -237,7 +237,7 @@ class AttTable extends Component {
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
-        console.log(res); 
+        console.log(res);
         this.setState({
         cyear: res.data.list
         })
@@ -257,7 +257,7 @@ class AttTable extends Component {
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
-        console.log(res); 
+        console.log(res);
         this.setState({
         ItemList: res.data.list
         })
@@ -278,7 +278,7 @@ class AttTable extends Component {
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
-        console.log(res); 
+        console.log(res);
         this.setState({
         ItemList: res.data.list
         })
@@ -286,8 +286,8 @@ class AttTable extends Component {
   }
   makeYears(yyyy){
     var result=[];
-    for(var i=4;i>=0;i--) result.push(Number(yyyy)-i)   
-    for(var l=1;l<5;l++) result.push(Number(yyyy)+l)    
+    for(var i=4;i>=0;i--) result.push(Number(yyyy)-i)
+    for(var l=1;l<5;l++) result.push(Number(yyyy)+l)
     return result;
   }
   makedata(dep){
@@ -427,8 +427,8 @@ class AttTable extends Component {
                     {depList&&depList.map((itemdata, insertIndex) => {
                       return(<option value={itemdata.no} >{insertIndex+1}.{itemdata.name}</option>);
                     })}
-                </CSelect>   
-              </CCol>    
+                </CSelect>
+              </CCol>
               <CCol col="6" sm="3" md="2" xl className="mb-3 mb-xl-0">
                 <CButton block variant="outline" color="success" onClick={() =>{this.DayReset()}}>날짜 초기화</CButton>
               </CCol>
@@ -465,11 +465,11 @@ class AttTable extends Component {
               <tr class="default">
                   <td class="default">{att.no}</td>
                   <td class="default">{att.day}</td>
-                  {depList&&depList.map((dep) => { 
+                  {depList&&depList.map((dep) => {
                     if(dep.no===(Number(att.department))) return <td class="default">{dep.name}</td>;
-                    else return null;   
+                    else return null;
                   })}
-                  
+
                   <td class="default">{att.name}</td>
                   <td class="default">{att.rank}</td>
                   <td class="default">{att.start_time}</td>
@@ -482,7 +482,7 @@ class AttTable extends Component {
                 </tr>
               );
             })}
-            </tbody> 
+            </tbody>
           </table>
             {ItemList.length===0&&
                 <div align="center">
@@ -491,8 +491,8 @@ class AttTable extends Component {
                 </div>
             }
           </div>
-        }       
-        {this.props.mode===_weekly &&        
+        }
+        {this.props.mode===_weekly &&
           <div>
             <div style={style}>
             <CRow className="align-items-center">
@@ -508,15 +508,15 @@ class AttTable extends Component {
                     {depList&&depList.map((itemdata, insertIndex) => {
                       return(<option value={itemdata.no} >{insertIndex+1}.{itemdata.name}</option>);
                     })}
-                </CSelect>   
-              </CCol>    
+                </CSelect>
+              </CCol>
               <CCol col="6" sm="3" md="2" xl className="mb-3 mb-xl-0">
-                
+
               </CCol>
             </CRow>
             <br/>
             </div>
-            
+
             <table class="b" width="100%" >
             <caption>{this.state.start}~{this.state.end}</caption>
               <thead>
@@ -536,7 +536,7 @@ class AttTable extends Component {
                     cot=cot+1;
                     if(cot>=4) cot=0;
                     var day=itemdata.days.split("/");
-                    
+
                     return(
                       <tr><td class="sm">{itemdata.name}</td>
                       {_week.map((z) => {
@@ -551,8 +551,8 @@ class AttTable extends Component {
                           }else return(<td class="a"></td>);
                       })}
                       </tr>
-                    );                 
-              })}  
+                    );
+              })}
               </tbody>
             </table>
             {temp.length===0&&
@@ -579,8 +579,8 @@ class AttTable extends Component {
                     {depList&&depList.map((itemdata, insertIndex) => {
                       return(<option value={itemdata.no} >{insertIndex+1}.{itemdata.name}</option>);
                     })}
-                </CSelect>   
-              </CCol>    
+                </CSelect>
+              </CCol>
               <CCol col="6" sm="3" md="2" xl className="mb-3 mb-xl-0">
                 <CButton block variant="outline" color="success" onClick={() =>{this.DayReset()}}>날짜 초기화</CButton>
               </CCol>
@@ -589,7 +589,7 @@ class AttTable extends Component {
             </div>
               <table class="b" width="100%" >
               <thead>
-                
+
                 <tr>
                   <th width="11%" >{this.state.day}</th>
                   {_numbers.map((member,) => {
@@ -607,9 +607,9 @@ class AttTable extends Component {
                     return(
                       <tr key={insertIndex}>
                         <td  class="b">{itemdata.name}
-                          {depList&&depList.map((dep, insertIndex2) => { 
+                          {depList&&depList.map((dep, insertIndex2) => {
                             if(dep.no===(itemdata.department*=1)) return <font size="1">({dep.name})[{itemdata.day}]</font>;
-                            else return null;   
+                            else return null;
                           })}
                         </td>
                         {this.timemap(itemdata.start_time).map((d,insertIndex2) =>{
@@ -658,10 +658,10 @@ class AttTable extends Component {
                   <div style={{width: "30%"}}>
                   <CRow className="align-items-center">
                     <CCol col="6" sm="3" md="2" xl className="mb-3 mb-xl-0">
-                    부서별 차트  
+                    부서별 차트
                     </CCol>
-                    <CCol col="6" sm="3" md="2" xl className="mb-3 mb-xl-0">    
-                      <CSelect custom id="ccyear" name="Cyear" onChange={this.CyearChange} width="6px">                   
+                    <CCol col="6" sm="3" md="2" xl className="mb-3 mb-xl-0">
+                      <CSelect custom id="ccyear" name="Cyear" onChange={this.CyearChange} width="6px">
                         <option>연도 입력</option>
                         {years.map((year)=>{
                           return(
@@ -680,7 +680,7 @@ class AttTable extends Component {
                     labels="months"
                 />
                 </CCardBody>
-              </CCard> 
+              </CCard>
           </div>
         }
       </div>

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import './table.css';
+import { Link } from 'react-router-dom';
 import ConsultInsert from "./ConsultInsert";
-import Consult from "./Consult";
+// import Consult from "./Consult";
 import ConsultSearch from "./ConsultSearch";
 
 class Consults extends Component {
@@ -27,7 +28,7 @@ componentDidMount() {
 }
 
 getApi = () => {
-    axios.get("http://localhost:8080/api2/consult")
+    axios.get("http://localhost:8080/consult")
         .then(res => {
             this.setState({
               ConsultList: res.data.message
@@ -37,7 +38,7 @@ getApi = () => {
 }
 
   render() {
-    const { ConsultList} = this.state;
+    const { ConsultList } = this.state;
 
     return (
       <div>
@@ -56,19 +57,22 @@ getApi = () => {
             {/* <td>regdate</td> */}
             <td>route</td>
             <td>writer</td>
+            <td>detail</td>
         </thead>
         <tbody>
         {ConsultList&&ConsultList.map((consultdata, insertIndex) => {
             return (
             <tr key={insertIndex}>
                 <td>{consultdata.no}</td>
-                <td> <Consult stateRefresh={this.stateRefresh} id={consultdata.no}/></td>
+                <td>{consultdata.name}</td>
+                {/* <td><Consult stateRefresh={this.stateRefresh} id={consultdata.no}/></td> */}
                 <td>{consultdata.hp}</td>
                 <td>{consultdata.schedule}</td>
                 <td>{consultdata.memo}</td>
                 {/* <td>{consultdata.regdate}</td> */}
                 <td>{consultdata.route}</td>
                 <td>{consultdata.writer}</td>
+                <td><Link to={`/consult/${consultdata.no}`}>확인</Link></td>
               </tr>
             );
           })}
