@@ -7,6 +7,7 @@ import {Button, Grid, IconButton} from "@material-ui/core";
 import Exam from "../exam/Exam";
 import ScoreEdit from "./ScoreEdit";
 import RefreshIcon from '@material-ui/icons/Refresh';
+import ScoreTotal from "./ScoreTotal";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,6 +31,7 @@ class Score extends Component {
       scoreArray: [],
       disabled: true,
       title: "수정",
+      totalWeight: "",
     }
     this.stateRefresh = this.stateRefresh.bind(this);
     this.handleValueChange = this.handleValueChange.bind(this);
@@ -47,6 +49,7 @@ class Score extends Component {
       studentList: "",
       scoreArray: [],
       examList: "",
+      totalWeight: "",
       disabled: true,
     });
     this.getLecture();
@@ -92,6 +95,7 @@ class Score extends Component {
       studentList: "",
       scoreArray: [],
       examList: "",
+      totalWeight: "",
       disabled: true,
     })
     axios.get("http://localhost:8080/score/" + e.target.value)
@@ -105,30 +109,34 @@ class Score extends Component {
       .then(res => {
         this.setState({
           examList: res.data.list,
+          totalWeight: res.data.totalWeight,
         })
       })
       .catch(res => console.log(res))
   }
 
+
   handleFormSubmit(e) {
     e.preventDefault()
-      if (this.state.disabled) {
-        this.setState({
-          disabled: false,
-        })
-      } else {
-        if (this.state.scoreArray.length > 0) {
+    if (this.state.disabled) {
+      this.setState({
+        disabled: false,
+      })
+    } else {
+      if (this.state.scoreArray.length > 0) {
         this.editScore()
         this.setState({
           studentList: "",
           scoreArray: [],
           examList: "",
+          totalWeight: "",
           disabled: true,
         })
         alert("등록되었습니다.");
         this.stateRefresh();
-      }}
+      }
     }
+  }
 
 
   editScore() {
@@ -215,7 +223,6 @@ class Score extends Component {
     } else {
       name = "수정완료"
     }
-
     return (
       <div>
         <header>
@@ -232,44 +239,50 @@ class Score extends Component {
           </CForm>
 
           <Grid container justify="flex-end">
-            <IconButton aria-label="refresh" onClick={this.stateRefresh}><RefreshIcon /></IconButton>
+            <IconButton aria-label="refresh" onClick={this.stateRefresh}><RefreshIcon/></IconButton>
           </Grid>
         </header>
         <table>
           <thead>
           <tr>
             <td>NO</td>
-            <td>학생명</td>
+            <td width="10%">학생명</td>
             {examList && examList.map((itemdata) => {
-              return (<td>{itemdata.name}</td>);
+              return (<td>{itemdata.name}&nbsp;({itemdata.weight}%)</td>);
             })}
-
+            <td bgcolor="#eee8aa">총점&nbsp;({this.state.totalWeight}%)</td>
           </tr>
           <tr>
 
           </tr>
           </thead>
           <tbody>
+
           {studentList && studentList.map((itemdata, insertIndex) => {
             return (
-              <tr key={insertIndex}>
-                <td>{itemdata.no}</td>
+              <tr>
+                <td key={insertIndex}>{itemdata.no}</td>
                 <td>{itemdata.name}</td>
-                {examList && examList.map((examdata, insertIndex) => {
-                  return (
-                    <td key={examdata.no} >
-                      <ScoreEdit stateRefresh={this.stateRefresh}
-                                 id={itemdata.no}
-                                 lecture={this.state.lecture}
-                                 exam={examdata.no}
-                                 setData={this.setData}
-                                 disabled={this.state.disabled}/>
-                    </td>);
-                })}
-
+                {
+                  examList && examList.map((examdata) => {
+                    return (
+                      <td key={examdata.no}>
+                        <ScoreEdit
+                          id={itemdata.no}
+                          lecture={this.state.lecture}
+                          exam={examdata.no}
+                          setData={this.setData}
+                          disabled={this.state.disabled}/>
+                      </td>);
+                  })
+                }
+                <td bgcolor="#eee8aa"><ScoreTotal
+                  id={itemdata.no}
+                  lecture={this.state.lecture}/></td>
               </tr>
             );
           })}
+
           </tbody>
         </table>
         {studentList.length === 0 &&
@@ -285,7 +298,7 @@ class Score extends Component {
             <Button variant="contained" color="primary" onClick={this.handleFormSubmit}>{name}</Button>
           </CCol>
           }
-          {this.state.disabled ===false &&
+          {this.state.disabled === false &&
           <Button variant="contained" onClick={this.stateRefresh}>취소</Button>
           }
         </Grid>

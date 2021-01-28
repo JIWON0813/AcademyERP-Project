@@ -21,6 +21,8 @@ public class ExamService {
     public  HashMap<String, Object> list(Long lecture) {
         HashMap<String, Object> result = new HashMap<>();
         List<ExamEntity> list = examRepository.findAllByLecture(lecture);
+        int totalWeight = examRepository.totalWeight(lecture);
+        result.put("totalWeight",totalWeight);
         result.put("list", list);
         return result;
     }
@@ -29,7 +31,6 @@ public class ExamService {
         HashMap<String, Object> result = new HashMap<>();
         Optional<ExamEntity> list = examRepository.findById(id);
         result.put("list", list);
-
         return result;
     }
 

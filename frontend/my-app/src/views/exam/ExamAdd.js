@@ -17,7 +17,7 @@ const styles = theme => ({
   root: {
     margin: 0,
     padding: theme.spacing(2),
-    paddingRight:theme.spacing(10)
+    paddingRight: theme.spacing(10)
   },
   closeButton: {
     position: 'absolute',
@@ -28,13 +28,13 @@ const styles = theme => ({
 });
 
 const DialogTitle = withStyles(styles)((props) => {
-  const { children, classes, onClose, ...other } = props;
+  const {children, classes, onClose, ...other} = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
         <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-          <CloseIcon />
+          <CloseIcon/>
         </IconButton>
       ) : null}
     </MuiDialogTitle>
@@ -60,16 +60,16 @@ class ExamAdd extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      teacher:this.props.teacher,
+      teacher: this.props.teacher,
       lectureList: "",
-      lecture:"",
+      lecture: "",
       name: "",
-
+      weight: "",
     }
-    this.handleFormSubmit = this.handleFormSubmit.bind(this)
-    this.handleValueChange = this.handleValueChange.bind(this)
-    this.addexam = this.addexam.bind(this)
-    this.handleClickOpen = this.handleClickOpen.bind(this)
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleValueChange = this.handleValueChange.bind(this);
+    this.addexam = this.addexam.bind(this);
+    this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
 
   }
@@ -80,7 +80,7 @@ class ExamAdd extends React.Component {
   }
 
   getApi() {
-    axios.get("http://localhost:8080/score?teacher="+ this.props.teacher)
+    axios.get("http://localhost:8080/teacher/" + this.props.teacher)
       .then(res => {
         this.setState({
           lectureList: res.data.lectureList,
@@ -94,6 +94,7 @@ class ExamAdd extends React.Component {
     this.addexam()
     this.setState({
       name: '',
+      weight: "",
       open: false
     })
     alert("등록되었습니다.");
@@ -108,6 +109,11 @@ class ExamAdd extends React.Component {
     this.setState(nextState);
   }
 
+  handleNumChange(evt) {
+    const weight = (evt.target.validity.valid) ? evt.target.value : this.state.weight;
+    this.setState({ weight });
+  }
+
   addexam() {
     axios({
       url: 'http://localhost:8080/exam',
@@ -116,6 +122,7 @@ class ExamAdd extends React.Component {
       data: {
         name: this.state.name,
         lecture: this.state.lecture,
+        weight: this.state.weight,
       }
     })
       .then(function (response) {
@@ -128,7 +135,8 @@ class ExamAdd extends React.Component {
 
   handleClickOpen() {
     this.setState({
-      lecture:this.props.lecture,
+      teacher:this.props.teacher,
+      lecture: this.props.lecture,
       open: true
     });
   }
@@ -146,7 +154,7 @@ class ExamAdd extends React.Component {
     const {lectureList} = this.state;
     return (
       <div>
-          <Button color="primary" onClick={this.handleClickOpen}>추가</Button>
+        <Button color="primary" onClick={this.handleClickOpen}>추가</Button>
         <Dialog onClose={this.handleClose} aria-labelledby="customized-dialog-title" open={this.state.open}>
           <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
             시험항목 등록</DialogTitle>
@@ -156,7 +164,7 @@ class ExamAdd extends React.Component {
             <CRow>
               <CCol xs="12">
                 <CFormGroup>
-                  <CSelect custom id="lecture" defaultValue={this.props.lecture} disabled={true} >
+                  <CSelect custom id="lecture" defaultValue={this.props.lecture} disabled={true}>
                     <option value="">지점</option>
                     {lectureList && lectureList.map((itemdata, insertIndex) => {
                       return (<option value={itemdata.no}>{insertIndex + 1}.&nbsp;{itemdata.name}</option>);
@@ -166,7 +174,7 @@ class ExamAdd extends React.Component {
               </CCol>
             </CRow>
 
-              <CRow>
+            <CRow>
               <CCol xs="10">
                 <CFormGroup>
                   <CLabel htmlFor="name">시험항목명</CLabel>
@@ -174,8 +182,21 @@ class ExamAdd extends React.Component {
                           onChange={this.handleValueChange}/>
                 </CFormGroup>
               </CCol>
-              </CRow>
-
+            </CRow>
+            <CRow>
+              <CCol xs="10">
+                <CFormGroup>
+                  <CLabel htmlFor="name">가중치(%)</CLabel>
+                  <CInput  type="text" pattern="[0-9]*"
+                           onInput={this.handleNumChange.bind(this)}
+                           id="weight"
+                           name="weight"
+                           placeholder="숫자만 입력"
+                           value={this.state.weight}
+                  />
+                </CFormGroup>
+              </CCol>
+            </CRow>
           </DialogContent>
 
           <DialogActions>

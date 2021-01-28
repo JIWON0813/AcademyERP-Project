@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 
-import {CButton, CCol, CFormGroup, CRow, CSelect} from '@coreui/react'
+import {CButton, CCardHeader, CCol, CForm, CFormGroup, CLabel, CRow, CSelect} from '@coreui/react'
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
@@ -68,7 +68,8 @@ class Exam extends React.Component {
       examDetail: "",
       teacher: this.props.teacher,
       exam: "",
-      lecture: ""
+      lecture: "",
+      totalWeight:"",
     }
 
     this.handleValueChange = this.handleValueChange.bind(this)
@@ -104,10 +105,12 @@ class Exam extends React.Component {
       .then(res => {
         this.setState({
           examList: res.data.list,
+          totalWeight:res.data.totalWeight,
         })
       })
       .catch(res => console.log(res))
   }
+
   getDetail = () => {
     axios.get("http://localhost:8080/exam/"+this.state.exam)
       .then(res => {
@@ -140,6 +143,7 @@ class Exam extends React.Component {
       teacher: this.props.teacher,
       exam: "",
       lecture: "",
+      totalWeight:"",
       open: false
     })
     this.props.stateRefresh();
@@ -153,6 +157,7 @@ class Exam extends React.Component {
       .then(res => {
         this.setState({
           examList: res.data.list,
+          totalWeight:res.data.totalWeight,
         })
       })
       .catch(res => console.log(res))
@@ -165,6 +170,7 @@ class Exam extends React.Component {
       examList: "",
       examDetail: "",
       exam: "",
+      totalWeight:"",
     });
     this.getExam();
     this.getDetail();
@@ -228,9 +234,18 @@ class Exam extends React.Component {
                   >
                     {examList && examList.map((itemdata, insertIndex) => {
                       return (<option
-                        value={itemdata.no}>{insertIndex + 1}.&nbsp;{itemdata.name}</option>);
+                        value={itemdata.no}>{insertIndex + 1}.&nbsp;{itemdata.name}&nbsp;({itemdata.weight}%)</option>);
                     })}
                   </Select>
+                </CFormGroup>
+
+                <CFormGroup row>
+                  <CCol md="6">
+                    <CLabel>가중치 합계</CLabel>
+                  </CCol>
+                  <CCol xs="12" md="6">
+                    <p className="form-control-static">{this.state.totalWeight}%</p>
+                  </CCol>
                 </CFormGroup>
               </CCol>
             </CRow>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {CFormGroup, CInput, CSelect} from "@coreui/react";
+import {CFormGroup, CInput} from "@coreui/react";
 import axios from "axios";
 
 class ScoreEdit extends React.Component {
@@ -28,9 +28,9 @@ class ScoreEdit extends React.Component {
 
       .then(res => {
         this.setState({
-          scoreList: res.data.scoreList,
-          no:res.data.scoreList.no,
-          score:res.data.scoreList.score,
+          scoreList : res.data.scoreList,
+          no : res.data.scoreList.no,
+          score : res.data.scoreList.score,
         })
 
       })
@@ -41,6 +41,10 @@ class ScoreEdit extends React.Component {
     let nextState = {};
     nextState[e.target.name] = e.target.value;
     this.setState(nextState);
+  }
+  handleNumChange(evt) {
+    const score = (evt.target.validity.valid) ? evt.target.value : this.state.score;
+    this.setState({ score });
   }
 
   setScoreArray(){
@@ -56,22 +60,17 @@ class ScoreEdit extends React.Component {
   }
 
   render() {
-    console.log("렌더")
-    const {scoreList} = this.state;
-    let defaultValue;
-    if(scoreList === null){
-      defaultValue = 0;
-    }else{
-      defaultValue = scoreList.score;
-    }
     return (
       <div>
-        <CFormGroup>
             <CInput onBlur={(e) => {
               this.setScoreArray();
-            }} name="score" placeholder="점수"  defaultValue={defaultValue} disabled={this.props.disabled}
-                    onChange={this.handleValueChange}/>
-        </CFormGroup>
+            }} name="score"
+                    placeholder="점수"
+                    pattern="[0-9]*"
+                    value={this.state.score}
+                    disabled={this.props.disabled}
+                    onInput={this.handleNumChange.bind(this)}
+                    />
       </div>
     )
 

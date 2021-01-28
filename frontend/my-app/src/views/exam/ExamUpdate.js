@@ -64,7 +64,7 @@ class ExamUpdate extends React.Component {
       lectureList:"",
       lecture:"",
       name: "",
-
+      weight:"",
     }
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
@@ -80,7 +80,7 @@ class ExamUpdate extends React.Component {
   }
 
   getApi() {
-    axios.get("http://localhost:8080/score?teacher="+ this.props.teacher)
+    axios.get("http://localhost:8080/teacher/" + this.props.teacher)
       .then(res => {
         this.setState({
           lectureList: res.data.lectureList,
@@ -97,6 +97,7 @@ class ExamUpdate extends React.Component {
       lectureList:"",
       lecture:"",
       name: "",
+      weight:"",
     })
     alert("수정되었습니다.");
     this.props.stateRefresh();
@@ -110,6 +111,11 @@ class ExamUpdate extends React.Component {
     this.setState(nextState);
   }
 
+  handleNumChange(evt) {
+    const weight = (evt.target.validity.valid) ? evt.target.value : this.state.weight;
+    this.setState({ weight });
+  }
+
   updateExam() {
     axios({
       url: 'http://localhost:8080/exam/' + this.props.examDetail.no,
@@ -118,6 +124,7 @@ class ExamUpdate extends React.Component {
       data: {
         name: this.state.name,
         lecture: this.state.lecture,
+        weight:this.state.weight,
       }
     })
       .then(function (response) {
@@ -134,6 +141,7 @@ class ExamUpdate extends React.Component {
         teacher:this.props.teacher,
         name: this.props.examDetail.name,
         lecture:this.props.examDetail.lecture,
+        weight:this.props.examDetail.weight,
         open: true,
       });
     }else{
@@ -146,11 +154,11 @@ class ExamUpdate extends React.Component {
       lectureList:"",
       lecture:"",
       name: "",
+      weight:"",
       open: false
     })
     this.props.stateRefresh();
   }
-
 
   render() {
     const {lectureList} = this.state;
@@ -182,6 +190,22 @@ class ExamUpdate extends React.Component {
                   <CLabel htmlFor="name">시험항목명</CLabel>
                   <CInput type="text" id="name" name="name" placeholder="시험항목명" defaultValue={this.props.examDetail.name}
                           onChange={this.handleValueChange}/>
+                </CFormGroup>
+              </CCol>
+            </CRow>
+
+            <CRow>
+              <CCol xs="10">
+                <CFormGroup>
+                  <CLabel htmlFor="name">가중치</CLabel>
+                  <CInput  type="text" pattern="[0-9]*"
+                           onInput={this.handleNumChange.bind(this)}
+                           id="weight"
+                           name="weight"
+                           placeholder="숫자만 입력"
+                           value={this.state.weight}
+                         />
+
                 </CFormGroup>
               </CCol>
             </CRow>

@@ -24,13 +24,7 @@ public class ExamEntity implements Serializable {
     private long no;
     private String name;
     private long lecture;
-/*
-  @OneToMany(mappedBy = "examEntity",
-            orphanRemoval = true,
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-  private Collection<ScoreEntity> score;*/
-
+    private int weight;
 
 }
 

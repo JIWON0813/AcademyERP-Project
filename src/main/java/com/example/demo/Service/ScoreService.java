@@ -48,6 +48,13 @@ public class ScoreService {
         return result;
     }
 
+    public HashMap<String,Object> getTotalScore(Long student,Long lecture) {
+        HashMap<String,Object> result = new HashMap<>();
+        int totalScore = scoreRepository.totalScore(student,lecture);
+        result.put("totalScore",totalScore);
+        return result;
+    }
+
     public void write(List<ScoreEntity> score) {
 
         scoreRepository.saveAll(score);

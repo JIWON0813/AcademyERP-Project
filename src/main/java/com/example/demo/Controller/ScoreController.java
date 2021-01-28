@@ -34,10 +34,16 @@ public class ScoreController {
         return scoreService.getStudentList(lecture);
     }
     @GetMapping("/score")
-    public HashMap<String, Optional> scoreList(@RequestParam("student") Long student,
+    public HashMap<String,Optional> scoreList(@RequestParam("student") Long student,
                                                @RequestParam("lecture") Long lecture,
                                                @RequestParam("exam") Long exam) {
         return scoreService.getScoreList(student,lecture,exam);
+    }
+
+    @GetMapping("/score-total")
+    public HashMap<String, Object> totalScore(@RequestParam("student") Long student,
+                                              @RequestParam("lecture") Long lecture){
+        return scoreService.getTotalScore(student,lecture);
     }
 
     @PostMapping("/score")
