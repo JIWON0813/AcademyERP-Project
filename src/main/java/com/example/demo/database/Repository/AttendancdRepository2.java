@@ -8,13 +8,22 @@ import java.util.*;
 @Mapper
 @Repository
 public interface AttendancdRepository2 {
-    List<AttendanceEntity> att();
-    List<AttendanceEntity> attfind(HashMap<String,Object> map);
-    List<AttendanceEntity> attfind2(HashMap<String,Object> map);
-    List<AttendanceEntity> attfind3(HashMap<String,Object> map);
+    List<AttendanceDTO> att(PagingVO vo);
+    int count();
+    int countFind(HashMap<String,Object> to);
+    int countFind2(HashMap<String,Object> to);
+    int countget(HashMap<String,Object> to);
+    int countget2(HashMap<String,Object> to);
+    List<AttendanceDTO> attfind(HashMap<String,Object> map);
+    List<AttendanceDTO> attfind2(HashMap<String,Object> map);
+    List<AttendanceDTO> attfind3(HashMap<String,Object> map);
+    List<AttendanceDTO> attgetNo(HashMap<String,Object> map);
+    List<AttendanceDTO> attgetNoday(HashMap<String,Object> map);
     int intest(int no);
     int out(int no);
     int night(int no);
-    List<AttendanceEntity> datecheck(HashMap<String,Object> map);
-    List<AttendanceEntity> cyear(int year);
-} 
+    List<AttendanceDTO> datecheck(HashMap<String,Object> map);
+    List<AttendanceDTO> cyear(int year);
+    List<AttendanceDTO> gettoday(HashMap<String,Object> param);
+    
+}  

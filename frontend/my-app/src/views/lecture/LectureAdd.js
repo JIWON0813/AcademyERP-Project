@@ -1,9 +1,16 @@
 import React from 'react'
 import axios from 'axios';
-import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles,} from "@material-ui/core";
-import {CCol, CFormGroup, CInput, CInputCheckbox, CLabel, CRow, CSelect} from '@coreui/react'
-import {getIconsView} from "../icons/brands/Brands";
-import {freeSet} from "@coreui/icons";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  TextField,
+  withStyles,
+} from "@material-ui/core";
+import {CCol, CFormGroup, CInput, CInputCheckbox, CLabel, CLink, CRow, CSelect} from '@coreui/react'
 import CIcon from "@coreui/icons-react";
 import {cilAlarm} from "@coreui/icons/js/free/cil-alarm";
 
@@ -20,7 +27,6 @@ class LectureAdd extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isChecked: true,
       branchList: "",
       teacherList: "",
       roomList: "",
@@ -198,11 +204,14 @@ class LectureAdd extends React.Component {
     const {branchList} = this.state;
     const {teacherList} = this.state;
     const {roomList} = this.state;
+    let day = this.state.day;
     return (
       <div>
+        <Grid container justify="flex-end">
         <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
           추가하기
         </Button>
+        </Grid>
         <Dialog open={this.state.open} onClose={this.handleClose}>
           <DialogTitle>클래스 추가</DialogTitle>
           <DialogContent>
@@ -297,32 +306,38 @@ class LectureAdd extends React.Component {
               <CCol md="9">
                   <CFormGroup variant="custom-checkbox" inline>
                     <CInputCheckbox custom id="inline-checkbox1" name="day" value={"월"}
-                                    onChange={this.checkboxChange}/>
-                    <CLabel variant="custom-checkbox" htmlFor="inline-checkbox1" checked={this.state.isChecked}>월</CLabel>
+                                    onChange={this.checkboxChange}
+                                    checked={day.includes("월")}/>
+                    <CLabel variant="custom-checkbox" htmlFor="inline-checkbox1">월</CLabel>
                   </CFormGroup>
                   <CFormGroup variant="custom-checkbox" inline>
                     <CInputCheckbox custom id="inline-checkbox2" name="day" value={"화"}
-                                    onChange={this.checkboxChange}/>
-                    <CLabel variant="custom-checkbox" htmlFor="inline-checkbox2" checked={this.state.isChecked}>화</CLabel>
+                                    onChange={this.checkboxChange}
+                                    checked={day.includes("화")}/>
+                    <CLabel variant="custom-checkbox" htmlFor="inline-checkbox2">화</CLabel>
                   </CFormGroup>
                   <CFormGroup variant="custom-checkbox" inline>
                     <CInputCheckbox custom id="inline-checkbox3" name="day" value={"수"}
-                                    onChange={this.checkboxChange}/>
+                                    onChange={this.checkboxChange}
+                                    checked={day.includes("수")}/>
                     <CLabel variant="custom-checkbox" htmlFor="inline-checkbox3">수</CLabel>
                   </CFormGroup>
                   <CFormGroup variant="custom-checkbox" inline>
                     <CInputCheckbox custom id="inline-checkbox4" name="day" value={"목"}
-                                    onChange={this.checkboxChange}/>
+                                    onChange={this.checkboxChange}
+                                    checked={day.includes("목")}/>
                     <CLabel variant="custom-checkbox" htmlFor="inline-checkbox4">목</CLabel>
                   </CFormGroup>
                   <CFormGroup variant="custom-checkbox" inline>
                     <CInputCheckbox custom id="inline-checkbox5" name="day" value={"금"}
-                                    onChange={this.checkboxChange}/>
+                                    onChange={this.checkboxChange}
+                                    checked={day.includes("금")}/>
                     <CLabel variant="custom-checkbox" htmlFor="inline-checkbox5">금</CLabel>
                   </CFormGroup>
                   <CFormGroup variant="custom-checkbox" inline>
                     <CInputCheckbox custom id="inline-checkbox6" name="day" value={"토/일"}
-                                    onChange={this.checkboxChange}/>
+                                    onChange={this.checkboxChange}
+                                    checked={day.includes("토/일")}/>
                     <CLabel variant="custom-checkbox" htmlFor="inline-checkbox6">주말(토/일)</CLabel>
                   </CFormGroup>
               </CCol>

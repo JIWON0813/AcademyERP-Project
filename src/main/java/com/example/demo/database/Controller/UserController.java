@@ -13,7 +13,7 @@ import com.example.demo.database.Repository.*;
 public class UserController {
 	
 	@Autowired
-	private BoardRepository boardRepository;
+	private EmployeeRepository boardRepository;
 	
 	@Autowired
 	private departmentInter department;
@@ -21,7 +21,7 @@ public class UserController {
 	@GetMapping("/users")
     public HashMap<String,List> hello() {
 		HashMap<String,List> result = new HashMap<>();
-		List<BoardEntity> list = boardRepository.findAll();
+		List<EmployeeEntity> list = boardRepository.findAll();
         result.put("list", list);
 
         return result;
@@ -30,7 +30,7 @@ public class UserController {
 	@GetMapping("/user")
     public HashMap<String,Optional> user(@RequestParam("id") Long id) {
 		HashMap<String,Optional> result = new HashMap<>();
-		Optional<BoardEntity> list = boardRepository.findById(id);
+		Optional<EmployeeEntity> list = boardRepository.findById(id);
         result.put("list", list);
 
         return result;

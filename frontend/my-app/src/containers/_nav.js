@@ -14,6 +14,28 @@ export default [
   },
   {
     _tag: 'CSidebarNavTitle',
+    _children: ['박수민']
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: '회사 일정',
+    to: '/Calendar',
+    icon: 'cil-calendar'
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: '나의 출퇴근',
+    to: '/Attendance_user',
+    icon: 'cil-calendar'
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: '휴가',
+    to: '/vacation',
+    icon: 'cil-calendar'
+  },
+  {
+    _tag: 'CSidebarNavTitle',
     _children: ['Theme']
   },
   {

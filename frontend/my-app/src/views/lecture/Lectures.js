@@ -3,6 +3,7 @@ import axios from "axios";
 import './table.css';
 import LectureAdd from "./LectureAdd";
 import Lecture from "./Lecture";
+import LectureSearch from "./LectureSearch";
 
 class Lectures extends Component {
   constructor(props) {
@@ -18,7 +19,6 @@ class Lectures extends Component {
       ItemList: "",
     });
     this.getApi();
-
   }
 
 componentDidMount() {
@@ -40,7 +40,9 @@ getApi = () => {
     return (
       <div>
         <header>
+          <LectureSearch/>
           <LectureAdd stateRefresh={this.stateRefresh}/>
+
           <br></br>
         </header>
         <table>

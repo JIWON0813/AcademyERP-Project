@@ -28,7 +28,7 @@ class AttUpdate extends Component{
   }
   componentDidMount(){
     const { params } = this.props.match;
-    axios.get("http://localhost:8080/Attupdate/"+params.no).then(res => {
+    axios.get("http://localhost:8080/Attget?no="+params.no).then(res => {
       console.log(res);
       this.setState({
         attList: res.data.list

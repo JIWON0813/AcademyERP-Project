@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.database.Repository.AttendancdRepository2">
+    <select id="att" resultType="AttendanceDTO" parameterType="PagingVO">
+        SELECT ROW_NUMBER() OVER() as RN, A.* 
+			FROM (
+                SELECT a.`no`,a.employee_no,a.DAY,department,name,rank,a.start_time,a.end_time,a.night 
+                FROM attendance a inner join employee b ON  a.employee_no=b.`no` ORDER BY no ASC
+			) A ORDER BY no ASC LIMIT #{start}, #{cntPerPage} ;
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM attendance
+    </select>
+
+    <select id="countFind" resultType="int">
+        SELECT COUNT(*) FROM attendance a inner join employee b ON  a.employee_no=b.`no` where date(a.day) = date(#{day}) and name like CONCAT('%',#{name},'%') and department like CONCAT('%',#{dep},'%')
+    </select>
+
+    <select id="countFind2" resultType="int">
+        SELECT COUNT(*) FROM attendance a inner join employee b ON  a.employee_no=b.`no` where name like CONCAT('%',#{name},'%') and department like CONCAT('%',#{dep},'%')
+    </select>
+
+    <select id="countget" resultType="int" parameterType="java.util.HashMap">
+        SELECT COUNT(*) FROM attendance a inner join employee b ON  a.employee_no=b.`no` where date(a.day) = date(#{day}) and a.employee_no = #{no} 
+    </select>
+ 
+    <select id="countget2" resultType="int" parameterType="java.util.HashMap">
+        SELECT COUNT(*) FROM attendance a inner join employee b ON  a.employee_no=b.`no` where a.employee_no = #{no} 
+    </select>
+
+    <select id="attfind" resultType="AttendanceDTO">  
+        SELECT ROW_NUMBER() OVER() as RN, A.* 
+            FROM (
+                SELECT a.`no`,a.employee_no,a.DAY,department,NAME,rank,a.start_time,a.end_time,a.night FROM attendance a inner join employee b ON  a.employee_no=b.`no` where date(a.day) = date(#{day}) and name like CONCAT('%',#{name},'%') and department like CONCAT('%',#{dep},'%') ORDER BY no ASC
+            ) A ORDER BY no ASC LIMIT #{start}, #{cntPerPage}  
+    </select>
+
+    <select id="attgetNo" resultType="AttendanceDTO">
+        SELECT ROW_NUMBER() OVER() as RN, A.* 
+            FROM (
+                SELECT a.`no`,a.employee_no,a.DAY,department,NAME,rank,a.start_time,a.end_time,a.night FROM attendance a inner join employee b ON  a.employee_no=b.`no` where  a.employee_no = #{no} ORDER BY no ASC
+            ) A ORDER BY no ASC LIMIT #{start}, #{cntPerPage}  
+    </select>
+
+    <select id="attgetNoday" resultType="AttendanceDTO">
+        SELECT ROW_NUMBER() OVER() as RN, A.* 
+            FROM (
+                SELECT a.`no`,a.employee_no,a.DAY,department,NAME,rank,a.start_time,a.end_time,a.night FROM attendance a inner join employee b ON  a.employee_no=b.`no` where date(a.day) = date(#{day}) and a.employee_no = #{no} ORDER BY no ASC
+            ) A ORDER BY no ASC LIMIT #{start}, #{cntPerPage}  
+    </select>
+
+    <select id="attfind2" resultType="AttendanceDTO">
+        SELECT ROW_NUMBER() OVER() as RN, A.* 
+            FROM (
+                SELECT a.`no`,a.employee_no,a.DAY,department,NAME,rank,a.start_time,a.end_time,a.night FROM attendance a inner join employee b ON  a.employee_no=b.`no` where name like CONCAT('%',#{name},'%') and department like CONCAT('%',#{dep},'%') ORDER BY no ASC
+            ) A ORDER BY no ASC LIMIT #{start}, #{cntPerPage}
+    </select> 
+
+    <select id="attfind3" resultType="AttendanceDTO">
+        SELECT a.`no`,a.employee_no,a.DAY,department,NAME,rank,a.start_time,a.end_time,a.night FROM attendance a inner join employee b ON  a.employee_no=b.`no` where name like CONCAT('%',#{name},'%') and department like CONCAT('%',#{dep},'%') and a.day BETWEEN #{start} AND #{end} ORDER BY name ASC, day
+    </select> 
+
+    <insert id="intest" parameterType="int">
+        insert into attendance values (null,#{no},curtime(),curtime(),null,0)
+    </insert>
+
+    <select id="datecheck" resultType="AttendanceDTO" parameterType="java.util.HashMap"> 
+        select no from attendance where day=date(now()) and employee_no=#{no} 
+    </select>
+
+    <update id="out" parameterType="int">
+        update attendance set end_time=curtime() where employee_no=#{no} and date(day) = date(now())
+    </update>
+
+    <select id="cyear" parameterType="int" resultType="AttendanceDTO"> 
+       SELECT department, MONTH(day) AS name, COUNT(*) AS rank FROM attendance a JOIN employee b WHERE a.employee_no=b.`no` AND YEAR(day) = #{year} GROUP BY b.department,MONTH(day);
+    </select>
+    <update id="night" parameterType="int">
+        update attendance set night=1 where employee_no=#{no} and date(day) = date(now())
+    </update>
+
+    <select id="gettoday" parameterType="java.util.HashMap" resultType="AttendanceDTO">
+        select * from attendance where day=#{today} and employee_no=#{no}
+    </select>
+</mapper>  

@@ -57,7 +57,7 @@ class ConsultInsert extends Component {
 
   insertConsult() {
     axios({
-      url: 'http://localhost:8080/api2/consult',
+      url: 'http://localhost:8080/api3/consult',
       method: "POST",
       headers: {'content-type': 'application/json'},
       data: {

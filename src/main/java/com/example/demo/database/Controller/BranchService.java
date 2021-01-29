@@ -49,12 +49,14 @@ public class BranchService {
 
     }
 
-    @PutMapping("branch/edit/{id}")
+    @PutMapping("/branch/edit/{id}")
     public String update(@RequestBody BranchEntity branch,@PathVariable("id") Long id) {
         branch.setNo(id);
         BranchEntity result =  branchRepository.save(branch);
         return result.toString();
     }
+
+  
 
 
 }

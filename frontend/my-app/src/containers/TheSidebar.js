@@ -31,10 +31,22 @@ var sm=[
     _children: ['박수민']
   },
   {
-    _tag: 'CSidebarNavItem',
-    name: 'Attendance',
-    to: '/Attendance',
+    _tag: 'CSidebarNavDropdown',
+    name: '인사',
+    route: '/base',
     icon: 'cil-chart-pie',
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Attendance',
+        to: '/Attendance',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: '회사 휴일관리',
+        to: '/Calendar_admin',
+      }
+    ]
   }
 ];
 if(HRD_login){
