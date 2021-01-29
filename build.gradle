@@ -16,13 +16,13 @@ repositories {
 }
 
 dependencies {
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'junit:junit:4.12'
 	implementation group: 'org.javassist' , name: 'javassist' , version: '3.15.0-GA'
 	implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	testImplementation 'org.sprin:gframework.boot:spring-boot-starter-test'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client' 
 	compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

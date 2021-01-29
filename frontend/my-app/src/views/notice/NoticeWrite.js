@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextareaAutosize, TextField, withStyles, Grid} from "@material-ui/core";
+import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles, Grid} from "@material-ui/core";
 import {CCol, CFormGroup, CInput, CTextarea} from '@coreui/react'
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -138,8 +138,7 @@ class NoticeWrite extends React.Component {
               <br></br>
               <CFormGroup row>
                 <CCol xs="12" md="9">
-                  <CInput name="title" type="text" placeholder="제목" value={this.state.title} onChange={this.handleValueChange}/>
-                  <TextField label="성명" type="text" name="name" value={this.state.name} onChange={this.handleValueChange}/><br/>
+                  <TextField label="제목" type="text" name="title" value={this.state.title} onChange={this.handleValueChange}/><br/>
                 </CCol>
               </CFormGroup>
               <br></br>
@@ -155,7 +154,7 @@ class NoticeWrite extends React.Component {
                   </CCol>
                 </CFormGroup>
             <DialogActions>
-                <Button variant="contained" color="primary" onClick={this.handleFormSubmit}>추가</Button>
+                <Button variant="contained" color="primary" onClick={this.handleFormSubmit}>글등록</Button>
                 <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
             </DialogActions>
           </DialogContent>

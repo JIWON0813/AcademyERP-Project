@@ -1,3 +1,9 @@
+//-----------------------
+// 제목 : 상담 상세페이지
+// 파일명 : Consult.js
+// 작성자 : 최인아
+// 작성일 : 
+//-----------------------
 import React from 'react'
 import axios from 'axios';
 import './table.css';

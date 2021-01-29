@@ -1,3 +1,9 @@
+//-----------------------
+// 제목 : 공지사항 상세보기
+// 파일명 : Consult.js
+// 작성자 : 최인아
+// 작성일 : 
+//-----------------------
 import React from 'react'
 import axios from 'axios';
 import {Button, Dialog,IconButton, withStyles} from "@material-ui/core";

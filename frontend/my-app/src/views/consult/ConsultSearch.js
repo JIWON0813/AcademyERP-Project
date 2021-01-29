@@ -1,3 +1,9 @@
+//-------------------------
+// 제목 : 상담기록검색
+// 파일명 : ConsultSearch.js
+// 작성자 : 최인아
+// 작성일 : 
+//-------------------------
 import React from 'react'
 import {CButton, CForm, CInput, CNavbarNav} from '@coreui/react'
 

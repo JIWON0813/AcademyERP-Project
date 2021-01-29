@@ -1,3 +1,9 @@
+//---------------------------
+// 제목 : 상담 기록 작성페이지
+// 파일명 : ConsultInsert.js
+// 작성자 : 최인아
+// 작성일 : 
+//---------------------------
 import React, { Component } from 'react';
 import axios from 'axios';
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles, Grid} from "@material-ui/core";

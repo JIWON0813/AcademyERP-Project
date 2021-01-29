@@ -1,3 +1,9 @@
+//-----------------------
+// 제목 : 상담 삭제
+// 파일명 : ConsultDelete.js
+// 작성자 : 최인아
+// 작성일 : 
+//-----------------------
 import React, { Component } from "react";
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';

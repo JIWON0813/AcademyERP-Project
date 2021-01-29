@@ -39,11 +39,12 @@ getApi = () => {
     const { noticeList } = this.state;
 
     return (
-      <div>
+      <div>{
         <header>
         <NoticeWrite stateRefresh={this.stateRefresh}/>
           <br></br>
         </header>
+        }
         <br></br>
         <table>
         <thead>
