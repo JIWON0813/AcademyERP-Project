@@ -10,6 +10,7 @@ import {
     CCardHeader,
     CPagination
   } from '@coreui/react'
+import Pagination from "../base/paginations/Pagnations";
 
 class Students extends Component {
 
@@ -50,7 +51,7 @@ class Students extends Component {
     
     render() {
         const { StudentList,totalPages,currentPage,setCurrentPage } =  this.state;
-        // const { setCurrentPage } = useState;
+        // const [ currentPage, setCurrentPage ] = useState(1);
         // const { currentPage } = this.state;
         // const { totalPages } = this.state;
         
@@ -78,7 +79,7 @@ class Students extends Component {
                 <Link to={"/ins_stu"}>학생등록하기</Link>
                 </td></tr>
                 <tr><td>
-                    <CCard>
+                    {/* <CCard>
                     <CCardHeader>
                     Pagination
                     <DocsLink name="CPagination"/>
@@ -89,7 +90,8 @@ class Students extends Component {
                         pages= {totalPages}
                         onActivePageChange={setCurrentPage}/>
                     </CCardBody>
-             </CCard>
+             </CCard> */}
+             <Pagination />
             </td></tr>
             </table>
             </div>

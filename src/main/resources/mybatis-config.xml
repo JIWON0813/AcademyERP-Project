@@ -6,7 +6,10 @@
     <typeAliases>
         <package name="com.example.demo.database.DTO"/>
     </typeAliases>
-    <mappers>
+    <!-- <mappers>
         <mapper resource="mapper/mapper1.xml"/>
+    </mappers> -->
+    <mappers>
+        <mapper resource="mapper/mapper2.xml"/>
     </mappers>
 </configuration> 

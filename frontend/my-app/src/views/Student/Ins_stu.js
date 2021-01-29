@@ -176,8 +176,6 @@ class Ins_stu extends Component {
               </CForm>
             </CCardBody>
             <CCardFooter>
-              <CButton onClick={this.saveStudent} size="sm" color="primary"><CIcon name="cil-scrubber" /> Submit</CButton>
-              <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" /> Reset</CButton>
             </CCardFooter>
           </CCard>
           </CCol>

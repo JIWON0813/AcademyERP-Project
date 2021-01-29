@@ -38,6 +38,14 @@ class ApiService {
         return axios.get(USER_API_BASE_URL + '/ins_att/' + lec);
     }
 
+    Salary() {
+        return axios.get(USER_API_BASE_URL + '/salary');
+    }
+
+    SalaryEmp(no) {
+        return axios.get(USER_API_BASE_URL + '/salary_emp/' + no);
+    }
+
 }
 
 export default new ApiService();
