@@ -42,7 +42,6 @@ class NoticeDelete extends React.Component {
     });
     alert("삭제 되었습니다.");
     this.props.stateRefresh();
-   /* this.props.history.push("/branch");*/
   }
 
 
