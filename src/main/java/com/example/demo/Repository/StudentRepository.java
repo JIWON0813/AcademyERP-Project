@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface StudentRepository extends JpaRepository<StudentDTO, Long> {
     
     @Transactional
@@ -16,4 +18,6 @@ public interface StudentRepository extends JpaRepository<StudentDTO, Long> {
     @Query(value="update student set hp = :#{#student.hp},email = :#{#student.email},birth = :#{#student.birth},curri = :#{#student.curri} where no = :#{#student.no}", nativeQuery=true)
     Integer update(@Param("student") StudentDTO student);
 
+    //여진
+    List<StudentDTO> findAllByLecture(long lecture);
 }

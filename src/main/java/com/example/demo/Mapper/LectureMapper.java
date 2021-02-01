@@ -1,11 +1,8 @@
 package com.example.demo.Mapper;
 
 import com.example.demo.DTO.LectureDTO;
-import com.example.demo.DTO.LecturePagingVO;
 import com.example.demo.Entity.BoardEntity;
 import com.example.demo.Entity.BranchEntity;
-import com.example.demo.Entity.PartEntity;
-import com.example.demo.Entity.RoomEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.HashMap;
@@ -19,9 +16,6 @@ public interface LectureMapper {
 
 	LectureDTO getListDetail(long id);
 
-	List<BranchEntity> getBranch();
-	List<BoardEntity> getTeacher(int branch);
-	List<RoomEntity> getRoom(int branch);
-	List<PartEntity> getPart(int branch);
+	List<BoardEntity> getTeacher(long branch);
 
 }

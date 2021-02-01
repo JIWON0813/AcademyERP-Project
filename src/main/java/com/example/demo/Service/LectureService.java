@@ -4,6 +4,7 @@ import com.example.demo.DTO.LectureDTO;
 import com.example.demo.DTO.LecturePagingVO;
 import com.example.demo.Entity.*;
 import com.example.demo.Mapper.LectureMapper;
+import com.example.demo.Repository.BranchRepository;
 import com.example.demo.Repository.LectureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,14 @@ public class LectureService {
     @Autowired
     private LectureRepository lectureRepository;
 
+    @Autowired
+    private RoomService roomService;
+
+    @Autowired
+    private PartService partService;
+
+    @Autowired
+    private BranchRepository branchRepository;
 
     public HashMap<String,Object> list(String branch, String condition, String keyword,
                                              LecturePagingVO vo) {
@@ -72,17 +81,17 @@ public class LectureService {
 
     public HashMap<String,List> selectBranch(){
         HashMap<String,List> result = new HashMap<>();
-        List<BranchEntity> list = lectureMapper.getBranch();
+        List<BranchEntity> list = branchRepository.findAll();
         result.put("list", list);
         return result;
     }
 
 
-    public HashMap<String,Object> selectList(int branch){
+    public HashMap<String,Object> selectList(Long branch){
         HashMap<String,Object> result = new HashMap<>();
         List<BoardEntity> teacherList = lectureMapper.getTeacher(branch);
-        List<RoomEntity> roomList = lectureMapper.getRoom(branch);
-        List<PartEntity> partList = lectureMapper.getPart(branch);
+        List<RoomEntity> roomList = roomService.list(branch);
+        List<PartEntity> partList = partService.list(branch);
         result.put("teacherList", teacherList);
         result.put("roomList", roomList);
         result.put("partList", partList);

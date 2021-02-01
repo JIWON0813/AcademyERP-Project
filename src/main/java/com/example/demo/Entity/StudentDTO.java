@@ -7,13 +7,13 @@ import javax.persistence.*;
 
 import lombok.*;
 
-    @Entity
-    @Table(name = "student")
-    @Getter
-    @Setter
-    @Data
+@Entity
+@Table(name = "student")
+@Getter
+@Setter
+@Data
 public class StudentDTO implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -25,9 +25,10 @@ public class StudentDTO implements Serializable {
     private String email;
     private String birth;
     private String address;
-    private String curri;
+    private Long lecture;
     private String gender;
     private String regdate;
+    private String curri;
 
     public Long getNo() {
         return this.no;

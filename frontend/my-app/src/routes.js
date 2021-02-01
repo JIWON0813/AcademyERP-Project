@@ -47,6 +47,7 @@ const LectureAdd = React.lazy(() => import('./views/lecture/LectureAdd'));
 const LectureDelete = React.lazy(() => import('./views/lecture/LectureDelete'));
 const LectureUpdate = React.lazy(() => import('./views/lecture/LectureUpdate'));
 
+const Score = React.lazy(() => import('./views/score/Score'));
 // ------------@최인아
 // ------------상담
 const Consults = React.lazy(() => import('./views/consult/Consults'));
@@ -54,7 +55,6 @@ const Consult = React.lazy(() => import('./views/consult/Consult'));
 const ConsultInsert = React.lazy(() => import('./views/consult/ConsultInsert'));
 const ConsultDelete = React.lazy(() => import('./views/consult/ConsultDelete'));
 const ConsultUpdate = React.lazy(() => import('./views/consult/ConsultUpdate'));
-const ConsultSearch = React.lazy(() => import('./views/consult/ConsultSearch'));
 // ------------공지사항
 const Notice = React.lazy(() => import('./views/notice/Notice'));
 const NoticeList = React.lazy(() => import('./views/notice/NoticeList'));
@@ -130,6 +130,7 @@ const routes = [
   { path: '/lectureDelete/:id', exact: true, name: 'Lecture Delete', component: LectureDelete },
   { path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate },
 
+  { path: '/score', exact: true,  name: 'Score', component: Score },
   // ------------@최인아
   // ------------상담
   { path: '/consult', exact: true,  name: 'Consults', component: Consults },
@@ -137,7 +138,6 @@ const routes = [
   { path: '/consultInsert', exact: true,  name: 'Consult Insert', component: ConsultInsert },
   { path: '/consultDelete/:id', exact: true,  name: 'Consult Delete', component: ConsultDelete },
   { path: '/consultUpdate', exact: true,  name: 'Consult Update', component: ConsultUpdate },
-  { path: '/consultSearch', exact: true, name: 'Consult Search', component: ConsultSearch },
   // ------------공지사항
   { path: '/notice/:id', exact: true,  name: 'Notice Details', component: Notice },
   { path: '/noticeList', exact: true, name: 'NoticeList', component: NoticeList },

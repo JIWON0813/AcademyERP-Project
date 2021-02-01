@@ -18,8 +18,8 @@ public class ConsultController {
     private ConsultService consultService;
 
     @GetMapping("/consult")
-    public HashMap<String, List> list() {
-        return consultService.list();
+    public HashMap<String, Object> list(@RequestParam("keyword") String keyword) {
+        return consultService.list(keyword);
     }
 
     @GetMapping("/consult/{id}")

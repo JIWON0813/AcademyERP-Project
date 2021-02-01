@@ -8,6 +8,7 @@ import com.example.demo.Entity.ConsultEntity;
 import com.example.demo.Mapper.ConsultMapper;
 import com.example.demo.Repository.ConsultRepository;
 
+import org.hibernate.mapping.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +21,11 @@ public class ConsultService {
     @Autowired
     private ConsultMapper consultMapper;
 
-    public HashMap<String, List> list() {
-        HashMap<String, List> result = new HashMap<>();
-        List<ConsultDTO> list = consultMapper.getList();
+    public HashMap<String, Object> list(String keyword) {
+        HashMap<String, Object> result = new HashMap<>();
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("keyword", keyword);
+        List<ConsultDTO> list = consultMapper.getList(map);
         result.put("message",list); 
         
         return result;

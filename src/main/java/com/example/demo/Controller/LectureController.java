@@ -19,7 +19,6 @@ public class LectureController {
     private LectureService lectureService;
 
     @GetMapping("/lecture")
-
     public HashMap<String, Object> list(
             LecturePagingVO vo,
             @RequestParam("branch") String branch,
@@ -62,7 +61,7 @@ public class LectureController {
 
 
     @GetMapping("/lecture/select")
-    public HashMap<String, Object> selectTeacher(@RequestParam("branch") int branch) {
+    public HashMap<String, Object> selectTeacher(@RequestParam("branch") Long branch) {
         return lectureService.selectList(branch);
     }
 

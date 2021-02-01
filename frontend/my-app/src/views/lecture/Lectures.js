@@ -3,9 +3,13 @@ import axios from "axios";
 import './table.css';
 import LectureAdd from "./LectureAdd";
 import Lecture from "./Lecture";
-import {CButton, CForm, CInput, CSelect} from "@coreui/react";
+import {CButton, CCol, CForm, CInput, CRow, CSelect} from "@coreui/react";
 import {makeStyles} from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
+import LectureRoom from "../room/Room";
+import {Grid} from "@material-ui/core";
+import Room from "../room/Room";
+import Part from "../part/Part";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -140,9 +144,13 @@ class Lectures extends Component {
               this.getApi(this.state.searchKeyword,this.state.currentPageNo)
             }}>검색</CButton>
           </CForm>
+          <Grid container justify="flex-end">
           <LectureAdd stateRefresh={this.stateRefresh}/>
+          <Room stateRefresh={this.stateRefresh}/>
+          <Part stateRefresh={this.stateRefresh}/>
+          </Grid>
 
-          <br></br>
+        <br/><br/>
         </header>
         <table>
           <thead>
@@ -191,7 +199,7 @@ class Lectures extends Component {
           <hr></hr>
         </div>
         }
-        {ItemList.length != 0 &&
+        {ItemList.length !== 0 &&
         <div className={useStyles.root}>
           <Pagination count={pagingList.lastPage} onChange={handleChange} />
         </div>
