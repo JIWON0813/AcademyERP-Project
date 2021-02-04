@@ -1,4 +1,5 @@
 import React from 'react';
+import RegisterEmployee from "./views/employee/RegisterEmployee";
 
 const Toaster = React.lazy(() => import('./views/notifications/toaster/Toaster'));
 const Tables = React.lazy(() => import('./views/base/tables/Tables'));
@@ -66,6 +67,7 @@ const sessionLog = React.lazy(() => import('./views/users/sessionLog'));
 
 //start Employee
 const Employee = React.lazy(() => import('./views/employee/Employee'));
+const SaveEmployee = React.lazy(() => import('./views/employee/RegisterEmployee'));
 const StandByAuth = React.lazy(() => import('./views/employee/StandByAuth'));
 //end Employee
 
@@ -146,6 +148,7 @@ const routes = [
 
   //start Employee
   { path: '/employee', exact: true, name : 'Employee', component : Employee},
+  { path: '/saveEmployee', exact: true, name : 'SaveEmployee', component : SaveEmployee},
   { path: '/standByAuth', exact: true, name : 'StandByAuth', component : StandByAuth}
   //end Employee
 ];

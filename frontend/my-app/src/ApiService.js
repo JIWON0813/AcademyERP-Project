@@ -4,33 +4,37 @@ const USER_API_BASE_URL = "http://localhost:8080/api";
 
 class ApiService {
 
-    Students() {
-        return axios.get(USER_API_BASE_URL + '/students');
-    }
+  Students() {
+    return axios.get(USER_API_BASE_URL + '/students');
+  }
 
-    Student(no) {
-        console.log("!!!!!!!!!!!!!!!!!" + no);
-        return axios.get(USER_API_BASE_URL + '/student/' + no);
-    }
+  Student(no) {
+    console.log("!!!!!!!!!!!!!!!!!" + no);
+    return axios.get(USER_API_BASE_URL + '/student/' + no);
+  }
 
-    addStudent(student){
-        return axios.post(USER_API_BASE_URL + '/ins_stu', student);
-    }
+  addStudent(student) {
+    return axios.post(USER_API_BASE_URL + '/ins_stu', student);
+  }
 
-    deleteStudent(no) {
-        return axios.delete(USER_API_BASE_URL + '/' + no);
-    }
+  deleteStudent(no) {
+    return axios.delete(USER_API_BASE_URL + '/' + no);
+  }
 
-    editStudent(student) {
-        return axios.post(USER_API_BASE_URL + '/edit_stu/' + student.no, student);
-    }
+  editStudent(student) {
+    return axios.post(USER_API_BASE_URL + '/edit_stu/' + student.no, student);
+  }
 
-    getEmployee(state){
-      return axios.get(USER_API_BASE_URL +
-        '/employee?size='+state.size +
-        '&page='+(state.currentPage-1));
-    }
+  getEmployee(state) {
+    return axios.get(USER_API_BASE_URL +
+      '/employee?size=' + state.size +
+      '&page=' + (state.setCurrentPage - 1));
+  }
 
+  InsertEmployee(employee) {
+    return axios.post(USER_API_BASE_URL +
+      '/employee', employee);
+  }
   standByAuth() {
     return axios.get(USER_API_BASE_URL +
       '/standByAuth');

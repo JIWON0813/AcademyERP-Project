@@ -7,9 +7,5 @@
         <package name="com.example.demo.database.DTO"/>
     </typeAliases>
     <mappers>
-        <mapper resource="mapper/mapper.xml"/>
-        <mapper resource="mapper/mapper2.xml"/>
-        <mapper resource="mapper/branchmapper.xml"/>
-        <mapper resource="mapper/lecturemapper.xml"/>
     </mappers>
 </configuration> 
