@@ -15,9 +15,18 @@ public class VacationService {
     @Autowired
     private VacationRepository VacationRepo;
 
-    public List<VacationEntity> getVacation(){
-        List<VacationEntity>list = VacationRepo.getVacation();
+    public List<VacationEntity> getVacation(PagingVO vo){
+        List<VacationEntity>list = VacationRepo.getVacation(vo);
         return list;
+    }
+
+    public int insertVacation(VacationEntity param){
+        int result = VacationRepo.insertVacation(param);
+        return result;
+    }
+
+    public int count(){
+        return VacationRepo.count();
     }
 
 }

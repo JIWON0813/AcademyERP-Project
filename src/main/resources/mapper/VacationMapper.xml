@@ -3,6 +3,17 @@
 
 <mapper namespace="com.example.demo.database.Repository.VacationRepository">
     <select id="getVacation" resultType="VacationEntity" >
-        select * from vacation
+        SELECT ROW_NUMBER() OVER() as RN, A.* 
+                FROM (
+                    select * from vacation 
+                ) A ORDER BY no ASC LIMIT #{start}, #{cntPerPage} 
+    </select>
+
+    <insert id="insertVacation" parameterType="VacationEntity">
+        insert into vacation values (null, #{day}, #{employee_no}, #{name}) 
+    </insert> 
+
+    <select id="count" resultType="int">
+        select count(*) from vacation
     </select>
 </mapper>  

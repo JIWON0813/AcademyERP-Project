@@ -11,5 +11,6 @@
         <mapper resource="mapper/branchmapper.xml"/>
         <mapper resource="mapper/lecturemapper.xml"/>
         <mapper resource="mapper/VacationMapper.xml"/>
+        <mapper resource="mapper/PaymentMapper.xml"/>
     </mappers>
 </configuration> 

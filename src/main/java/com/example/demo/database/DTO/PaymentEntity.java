@@ -5,9 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class VacationEntity {
+public class PaymentEntity {
     private int no;
-    private int day;
     private int employee_no;
-    private String name;
+    private String player;
+    private String contents;
+    private String approved;
+    private String file;
 }

@@ -67,7 +67,7 @@ const Calendar2 = React.lazy(() => import('./views/Calendar/index_view'));
 const attUpdate = React.lazy(() => import('./views/Attendance/AttUpdate'));
 const sessionLog = React.lazy(() => import('./views/users/sessionLog'));
 const Attendance_user = React.lazy(() => import('./views/Attendance/index_view'));
-const vacation = React.lazy(() => import('./views/vacation/vacation'));
+const vacation = React.lazy(() => import('./views/vacation/index'));
 // -------------박수민
 
 

@@ -5,11 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.example.demo.database.Service.*;
@@ -20,11 +17,33 @@ public class VacationController {
     @Autowired
 	private VacationService VacationService;
 
-	@GetMapping("/getVacation")
-    public Map<String,List<VacationEntity>> getVacation() {
-		HashMap<String,List<VacationEntity>> result = new HashMap<>();
-        result.put("list", VacationService.getVacation()); 
+	@GetMapping("/getVacation/{nowPage}/{cntPerPage}")
+    public Map<String,Object> getVacation(PagingVO vo, @PathVariable(value="nowPage")String nowPage
+    , @PathVariable(value="cntPerPage")String cntPerPage) {
+        HashMap<String,Object> result = new HashMap<>();
+        HashMap<String,Object> to= new HashMap<>();
+        int total = VacationService.count();
 
+        if (nowPage == null && cntPerPage == null) {
+            nowPage = "1";
+            cntPerPage = "10";
+        } else if (nowPage == null) {
+            nowPage = "1";
+        } else if (cntPerPage == null) { 
+            cntPerPage = "10";
+        }
+        vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+        to.put("start",vo.getStart());
+        to.put("cntPerPage",vo.getCntPerPage());
+        result.put("list", VacationService.getVacation(vo)); 
+        result.put("page",vo);
         return result;
-	} 
+    }  
+    
+    @PostMapping("/Vacation")  //반환타입 없다 오류
+    public int VacationInsert (@RequestBody VacationEntity param){
+        return VacationService.insertVacation(param);
+    }
+
+    
 }

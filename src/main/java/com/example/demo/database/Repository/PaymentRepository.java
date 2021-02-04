@@ -7,8 +7,7 @@ import java.util.*;
 
 @Mapper
 @Repository
-public interface VacationRepository {
-    List<VacationEntity> getVacation(PagingVO vo);
-    int insertVacation(VacationEntity param);
-    int count();
+public interface PaymentRepository {
+    List<PaymentEntity> getpayment(PagingVO vo);
+    List<PaymentEntity> payment();
 }  
