@@ -15,8 +15,10 @@ public class EmployeeService {
     private EmployeeRepository employeeRepository;
 
     public Page<EmployeeEntity> getEmployeeList(Pageable pageable){
+
         return employeeRepository.findAll(pageable);
     }
+
 
 
 }

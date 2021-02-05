@@ -3,13 +3,13 @@ import axios from "axios";
 import './table.css';
 import LectureAdd from "./LectureAdd";
 import Lecture from "./Lecture";
-import {CButton, CCol, CForm, CInput, CRow, CSelect} from "@coreui/react";
+import {CButton, CForm, CInput, CSelect} from "@coreui/react";
 import {makeStyles} from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
-import LectureRoom from "../room/Room";
-import {Grid} from "@material-ui/core";
 import Room from "../room/Room";
+import {Grid, IconButton} from "@material-ui/core";
 import Part from "../part/Part";
+import RefreshIcon from "@material-ui/icons/Refresh";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,6 +47,8 @@ class Lectures extends Component {
   stateRefresh() {
     this.setState({
       ItemList: "",
+      branchList:"",
+      pagingList:"",
     });
     this.getApi(this.state.searchKeyword,this.state.currentPageNo);
     this.getBranch();
@@ -144,14 +146,16 @@ class Lectures extends Component {
               this.getApi(this.state.searchKeyword,this.state.currentPageNo)
             }}>검색</CButton>
           </CForm>
+
           <Grid container justify="flex-end">
           <LectureAdd stateRefresh={this.stateRefresh}/>
           <Room stateRefresh={this.stateRefresh}/>
           <Part stateRefresh={this.stateRefresh}/>
           </Grid>
 
-        <br/><br/>
+
         </header>
+        <IconButton aria-label="refresh" onClick={this.stateRefresh}><RefreshIcon/></IconButton>
         <table>
           <thead>
           <tr>

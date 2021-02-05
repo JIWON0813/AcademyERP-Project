@@ -65,4 +65,9 @@ public class LectureController {
         return lectureService.selectList(branch);
     }
 
+    @GetMapping("/lecture/teacher/{teacher}")
+    public HashMap<String, Object> selectLecture(@PathVariable("teacher") Long teacher) {
+        return lectureService.getTeacherLecture(teacher);
+    }
+
 }

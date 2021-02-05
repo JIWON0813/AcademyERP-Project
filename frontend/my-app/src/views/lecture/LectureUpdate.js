@@ -96,6 +96,11 @@ class LectureUpdate extends React.Component {
     nextState[e.target.name] = e.target.value;
     this.setState(nextState);
   }
+  handleNumChange(evt) {
+    var name = evt.target.name;
+    const num = (evt.target.validity.valid) ? evt.target.value : this.state[name];
+    this.setState({[evt.target.name]:num});
+  }
 
   updateLecture() {
     axios({
@@ -253,8 +258,8 @@ class LectureUpdate extends React.Component {
                 <CLabel htmlFor="price">수강료</CLabel>
               </CCol>
               <CCol xs="12" md="9">
-                <CInput name="price" placeholder="수강료" defaultValue={ItemList.price}
-                        onChange={this.handleValueChange}/>
+                <CInput name="price" placeholder="수강료" pattern="[0-9]*" value={this.state.price}
+                        onChange={this.handleNumChange.bind(this)}/>
               </CCol>
             </CFormGroup>
 
@@ -263,8 +268,8 @@ class LectureUpdate extends React.Component {
                 <CLabel htmlFor="students">정원수</CLabel>
               </CCol>
               <CCol xs="12" md="9">
-                <CInput name="students" placeholder="정원수" defaultValue={ItemList.students}
-                        onChange={this.handleValueChange}/>
+                <CInput name="students" placeholder="정원수"  pattern="[0-9]*" value={this.state.students}
+                        onChange={this.handleNumChange.bind(this)}/>
               </CCol>
             </CFormGroup>
 

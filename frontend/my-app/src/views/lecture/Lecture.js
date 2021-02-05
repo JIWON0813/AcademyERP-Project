@@ -75,9 +75,6 @@ class Lectures extends React.Component {
     this.getApi();
   }
 
-
-
-
 getApi = () => {
   axios.get("http://localhost:8080/lecture/"+this.props.id)
     .then(res => {

@@ -91,7 +91,7 @@ class Exam extends React.Component {
     }
   }
   getApi() {
-    axios.get("http://localhost:8080/teacher/" + this.state.teacher)
+    axios.get("http://localhost:8080/lecture/teacher/" + this.state.teacher)
       .then(res => {
         this.setState({
           lectureList: res.data.lectureList,
@@ -151,7 +151,9 @@ class Exam extends React.Component {
 
   lectureSelect = (e) => {
     this.setState({
-      lecture: e.target.value
+      lecture: e.target.value,
+      examList:"",
+      totalWeight:"",
     })
     axios.get("http://localhost:8080/exam?lecture=" + e.target.value)
       .then(res => {
@@ -251,7 +253,7 @@ class Exam extends React.Component {
             </CRow>
 
           </DialogContent>
-          {examList.length !== 0 &&
+          {this.state.lecture !== "" &&
           <DialogActions>
             <ExamAdd stateRefresh={this.stateRefresh} lecture={this.state.lecture} teacher={this.state.teacher}/>
             <ExamUpdate stateRefresh={this.stateRefresh} teacher={this.state.teacher} examDetail={examDetail}/>

@@ -90,7 +90,11 @@ class LectureAdd extends React.Component {
     nextState[e.target.name] = e.target.value;
     this.setState(nextState);
   }
-
+  handleNumChange(evt) {
+    var name = evt.target.name;
+    const num = (evt.target.validity.valid) ? evt.target.value : this.state[name];
+    this.setState({[evt.target.name]:num});
+  }
   addLecture() {
     axios({
       url: 'http://localhost:8080/lecture',
@@ -240,7 +244,7 @@ class LectureAdd extends React.Component {
             </CRow>
 
             <CFormGroup row>
-              <CCol xs="12" md="9">
+              <CCol xs="12" md="12">
                 <CInput name="name" placeholder="강의명" value={this.state.name}
                         onChange={this.handleValueChange}/>
               </CCol>
@@ -259,16 +263,22 @@ class LectureAdd extends React.Component {
               </CCol>
             </CRow>
             <CFormGroup row>
+              <CCol md="3">
+                <CLabel htmlFor="start_date">강의료</CLabel>
+              </CCol>
               <CCol xs="12" md="9">
-                <CInput name="price" placeholder="강의료" value={this.state.price}
-                        onChange={this.handleValueChange}/>
+                <CInput name="price"  pattern="[0-9]*" placeholder="숫자만 입력 가능" value={this.state.price}
+                        onChange={this.handleNumChange.bind(this)}/>
               </CCol>
             </CFormGroup>
 
             <CFormGroup row>
+              <CCol md="3">
+                <CLabel htmlFor="start_date">정원수</CLabel>
+              </CCol>
               <CCol xs="12" md="9">
-                <CInput name="students" placeholder="정원수" value={this.state.students}
-                        onChange={this.handleValueChange}/>
+                <CInput name="students" pattern="[0-9]*" placeholder="숫자만 입력 가능" value={this.state.students}
+                        onChange={this.handleNumChange.bind(this)}/>
               </CCol>
             </CFormGroup>
 

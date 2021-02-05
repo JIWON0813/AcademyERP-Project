@@ -20,11 +20,10 @@ import navigation from './_nav'
 
 
 const _HRD=1;
+const score=3;
 let HRD_login=false;
+let score_login=false;
 var session_dep=window.sessionStorage.getItem('dep');
-if(Number(session_dep)===_HRD){
-  HRD_login=true;
-}
 var sm=[
   {
     _tag: 'CSidebarNavTitle',
@@ -37,9 +36,46 @@ var sm=[
     icon: 'cil-chart-pie',
   }
 ];
+
+var sm_score=[
+  {
+    _tag: 'CSidebarNavTitle',
+    _children: ['이여진']
+  },
+  {
+    _tag: 'CSidebarNavDropdown',
+    name: '학생관리(강사)',
+    route: '/base',
+    icon: 'cil-drop',
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: '성적관리',
+        to: '/score',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: '상담관리',
+        to: '/counseling',
+      },
+    ]}
+];
+
+if(Number(session_dep)===_HRD){
+  HRD_login=true;
+}else if(Number(session_dep)===score){
+  score_login = true;
+}
+
 if(HRD_login){
+  score_login = false;
   for(var i=sm.length-1;i>-1;i--){
-    navigation.splice(1,0,sm[i])
+    navigation.splice(2,0,sm[i])
+  }
+}else if(score_login) {
+  HRD_login=false;
+  for (var i = sm_score.length - 1; i > -1; i--) {
+    navigation.splice(2, 0, sm_score[i])
   }
 }
 

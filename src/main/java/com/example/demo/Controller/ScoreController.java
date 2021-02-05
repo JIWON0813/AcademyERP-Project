@@ -23,16 +23,6 @@ public class ScoreController {
     @Autowired
     private ScoreService scoreService;
 
-    @GetMapping("/teacher/{teacher}")
-    public HashMap<String, Object> selectLecture(@PathVariable("teacher") Long teacher) {
-        return scoreService.getTeacherLecture(teacher);
-    }
-
-    @GetMapping("/score/{lecture}")
-    public HashMap<String, List> studentList(@PathVariable("lecture") Long lecture) {
-
-        return scoreService.getStudentList(lecture);
-    }
     @GetMapping("/score")
     public HashMap<String,Optional> scoreList(@RequestParam("student") Long student,
                                                @RequestParam("lecture") Long lecture,

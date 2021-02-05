@@ -98,4 +98,10 @@ public class LectureService {
         return result;
     }
 
+    public HashMap<String,Object> getTeacherLecture(Long teacher){
+        HashMap<String,Object> result = new HashMap<>();
+        List<LectureEntity> lectureList = lectureRepository.findAllByTeacher(teacher);
+        result.put("lectureList", lectureList);
+        return result;
+    }
 }

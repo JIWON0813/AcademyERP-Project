@@ -5,6 +5,7 @@ import java.util.*;
 import com.example.demo.Entity.StudentDTO;
 import com.example.demo.Repository.StudentRepository;
 
+import com.example.demo.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +26,9 @@ public class StudentController {
     
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private StudentService studentService;
 
     @GetMapping("/students")
     public HashMap<String, List<StudentDTO>> Studnets() {
@@ -64,5 +68,12 @@ public class StudentController {
     public void editStudent(@RequestBody StudentDTO student,@PathVariable Long no) {
         System.out.println(student.getHp());
         studentRepository.update(student);
+    }
+
+    //여진
+    @GetMapping("/students/{lecture}")
+    public HashMap<String, List> studentList(@PathVariable("lecture") Long lecture) {
+
+        return studentService.getStudentList(lecture);
     }
 }

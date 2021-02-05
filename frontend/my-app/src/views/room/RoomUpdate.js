@@ -112,7 +112,11 @@ class RoomUpdate extends React.Component {
     nextState[e.target.name] = e.target.value;
     this.setState(nextState);
   }
-
+  handleNumChange(evt) {
+    var name = evt.target.name;
+    const num = (evt.target.validity.valid) ? evt.target.value : this.state[name];
+    this.setState({[evt.target.name]:num});
+  }
   updateRoom() {
     axios({
       url: 'http://localhost:8080/room/' + this.props.roomDetail.no,
@@ -200,8 +204,9 @@ class RoomUpdate extends React.Component {
               <CRow>
               <CCol xs="10">
                 <CLabel htmlFor="name">최대인원수</CLabel>
-                <CInput type="text" id="max_person" name="max_person" placeholder="숫자만 입력하세요" defaultValue={this.props.roomDetail.max_person}
-                        onChange={this.handleValueChange}/>
+                <CInput type="text" id="max_person" name="max_person"
+                        pattern="[0-9]*" placeholder="숫자만 입력가능" value={this.state.max_person}
+                        onInput={this.handleNumChange.bind(this)}/>
               </CCol>
               </CRow>
             </CFormGroup>

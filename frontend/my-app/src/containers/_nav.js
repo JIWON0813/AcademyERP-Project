@@ -17,6 +17,9 @@ export default [
         to: '/lecture',
       },
     ]},
+
+
+/*
   {
     _tag: 'CSidebarNavDropdown',
     name: '직원(강사)',
@@ -29,6 +32,7 @@ export default [
         to: '/score',
       },
     ]},
+*/
 
 
 

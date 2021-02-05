@@ -22,10 +22,11 @@ class Score extends Component {
 
   constructor(props) {
     super(props)
+    let session_no=window.sessionStorage.getItem('no');
     this.state = {
       studentList: "",
       lectureList: "",
-      teacher: 1,
+      teacher: session_no,
       lecture: "",
       examList: "",
       scoreArray: [],
@@ -57,7 +58,7 @@ class Score extends Component {
 
 
   getApi() {
-    axios.get("http://localhost:8080/teacher/" + this.state.teacher)
+    axios.get("http://localhost:8080/lecture/teacher/" + this.state.teacher)
       .then(res => {
         this.setState({
           lectureList: res.data.lectureList,
@@ -67,7 +68,7 @@ class Score extends Component {
   }
 
   getLecture() {
-    axios.get("http://localhost:8080/score/" + this.state.lecture)
+    axios.get("http://localhost:8080/api/students/" + this.state.lecture)
       .then(res => {
         this.setState({
           studentList: res.data.studentList,
@@ -78,6 +79,7 @@ class Score extends Component {
       .then(res => {
         this.setState({
           examList: res.data.list,
+          totalWeight: res.data.totalWeight,
         })
       })
       .catch(res => console.log(res))
@@ -98,7 +100,7 @@ class Score extends Component {
       totalWeight: "",
       disabled: true,
     })
-    axios.get("http://localhost:8080/score/" + e.target.value)
+    axios.get("http://localhost:8080/api/students/" + e.target.value)
       .then(res => {
         this.setState({
           studentList: res.data.studentList,
@@ -164,13 +166,7 @@ class Score extends Component {
     let student
     let regdate = new Date();
     let array = this.state.scoreArray;
-    let index = scoreArray.findIndex(isScore);
 
-    function isScore(element) {
-      if (element.exam === exam && element.lecture === lecture && element.student === student) {
-        return true;
-      }
-    }
 
     scoreArray.map((scoreList) => {
       exam = scoreList.exam;
@@ -180,10 +176,17 @@ class Score extends Component {
       no = scoreList.no;
     })
 
+    let index = array.findIndex(isScore);
+    function isScore(element) {
+      if (element.exam === exam && element.lecture === lecture && element.student === student) {
+        return true;
+
+      }
+    }
+
     if (score === "") {
       score = 0;
     }
-
     if (index > -1) {
       array[index].score = score;
       array[index].regdate = regdate;
@@ -207,6 +210,7 @@ class Score extends Component {
         })
       }
     }
+
     this.setState({
       scoreArray: array,
     })
