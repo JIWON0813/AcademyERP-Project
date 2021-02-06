@@ -50,6 +50,7 @@ const LectureUpdate = React.lazy(() => import('./views/lecture/LectureUpdate'));
 const HR = React.lazy(() => import('./views/HR/HR'));
 const Sal_list = React.lazy(() => import('./views/HR/SalaryList'));
 const Sal_edit = React.lazy(() => import('./views/HR/SalaryEdit'));
+const Teacher = React.lazy(() => import('./views/Teacher/Calendar'));
 
 
 
@@ -112,7 +113,9 @@ const routes = [
 
   { path: '/HR', exact: true,  name: 'HR', component: HR},
   { path: '/sal_list', exact: true,  name: 'sal_list', component: Sal_list},
-  { path: '/sal_edit', exact: true,  name: 'sal_edit', component: Sal_edit}
+  { path: '/sal_edit', exact: true,  name: 'sal_edit', component: Sal_edit},
+
+  { path: '/teacher', exact: true,  name: 'teacher', component: Teacher}
 ];
 
 export default routes;

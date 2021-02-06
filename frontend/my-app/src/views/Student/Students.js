@@ -56,7 +56,7 @@ class Students extends Component {
         // const { totalPages } = this.state;
         
         return (
-            <div>
+            <div> 
             <table>
             <tr><td>no</td><td>name</td><td>hp</td><td>email</td><td>birth</td><td>address</td><td>lecture</td><td>gender</td><td>regdate</td><td></td></tr>
                 {StudentList&&StudentList.map((itemdata, insertIndex) => {

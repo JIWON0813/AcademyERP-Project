@@ -46,6 +46,10 @@ class ApiService {
         return axios.get(USER_API_BASE_URL + '/salary_emp/' + no);
     }
 
+    Teacher(no) {
+        return axios.get(USER_API_BASE_URL + '/lec_time/' + no);
+    }
+
 }
 
 export default new ApiService();

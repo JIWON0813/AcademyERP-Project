@@ -12,6 +12,7 @@ import java.util.Optional;
 public interface LectureMapper {
 	List<LectureDTO> getLectureList();
 	LectureDTO getListDetail(long id);
+	List<LectureDTO> getTime(int no);
 
 	List<BranchEntity> getBranch();
 	List<BoardEntity> getTeacher(int branch);
