@@ -5,6 +5,7 @@ import {
   CCard,
   CCardBody,
   CCardFooter,
+  CCardHeader,
   CCol,
   CForm,
   CRow,
@@ -14,7 +15,6 @@ import {
   CLabel
 } from '@coreui/react'
 import CIcon from "@coreui/icons-react";
-
 
 class RegisterEmployee extends Component {
   constructor(props) {
@@ -66,6 +66,9 @@ class RegisterEmployee extends Component {
       <CRow>
       <CCol>
         <CCard>
+          <CCardHeader align={'center'}>
+            <h2>회원가입</h2>
+          </CCardHeader>
           <CCardBody>
             <CForm>
             <CFormGroup row>
@@ -74,7 +77,6 @@ class RegisterEmployee extends Component {
               </CCol>
               <CCol xs="12" md="9">
                 <CInput id="text-input" name="name" value={this.state.name} onChange={this.onValueChange}/>
-                <CFormText>This is a help text</CFormText>
               </CCol>
             </CFormGroup>
             <CFormGroup row>
@@ -112,8 +114,8 @@ class RegisterEmployee extends Component {
           </CForm>
           </CCardBody>
           <CCardFooter>
-            <CButton type="submit" size="sm" color="primary" onClick={this.onSubmit}><CIcon name="cil-scrubber" /> Submit</CButton>
-            <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" /> Reset</CButton>
+            <CButton type="submit" size="sm" color="primary" onClick={this.onSubmit}><CIcon name="cil-scrubber" /> 제출</CButton>
+            <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" /> 초기화</CButton>
           </CCardFooter>
         </CCard>
       </CCol>
