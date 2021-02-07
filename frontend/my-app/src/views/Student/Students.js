@@ -18,26 +18,26 @@ class Students extends Component {
         super(props)
         this.state = {
             StudentList: "",
-            currentPage: 0,
+            currentPages:"",
+            currentPage:"",
             Size : 5,
-            totalPages : 4,
+            totalPages :""
         }
     }
 
     componentDidMount() {
-        this.getApi(this.state.cuurentPage);
+        this.getApi(this.state.cuurentPages);
     }
 
-    getApi = (currentPage) => {
-        // currentPage -= 1;
-        ApiService.Students(currentPage,this.state.Size)
+    getApi = (currentPages) => {
+        currentPages = currentPages -1
+        ApiService.Students(currentPages,this.state.Size)
             .then(res => {
                 console.log(res);
                 this.setState({
                     StudentList : res.data.content,
                     totalPages : res.data.totalPages,
-                    totalElements : res.data.totalElements,
-                    currentPage: res.data.number
+                    totalElements : res.data.totalElements
                 })
             })
             .catch(res => console.log(res))
@@ -49,9 +49,40 @@ class Students extends Component {
         this.props.history.push('/student');
     }
     
-    render() {
-        const { StudentList,totalPages,currentPage,setCurrentPage } =  this.state;
-        // const [ currentPage, setCurrentPage ] = useState(1);
+    Paginations = (e) => {
+        const [currentPage, setCurrentPage] = useState(1);
+        const {totalPages} = this.state;
+        console.log(currentPage)
+        console.log(this.state.currentPages)
+        console.log(this.state.currentPages != currentPage)
+            if(this.state.currentPages != currentPage){
+            this.state.currentPages = currentPage;
+            this.getApi(this.state.currentPages)
+            }else{
+                console.log(this.state.currentPages == currentPage)
+            }
+            
+        return(
+        <>
+            <CCard>
+                    <CCardHeader>
+                    Pagination
+                    <DocsLink name="CPagination"/>
+                    </CCardHeader>
+                        <CCardBody>
+                        <CPagination
+                        activePage={currentPage}
+                        pages= {totalPages}
+                        onActivePageChange={setCurrentPage}/>
+                    </CCardBody>
+             </CCard>
+        </>
+        )
+
+    }
+    render () {
+        const { StudentList } =  this.state;
+        
         // const { currentPage } = this.state;
         // const { totalPages } = this.state;
         
@@ -91,8 +122,8 @@ class Students extends Component {
                         onActivePageChange={setCurrentPage}/>
                     </CCardBody>
              </CCard> */}
-             <Pagination />
-            </td></tr>
+             <this.Paginations/>
+             </td></tr>
             </table>
             </div>
         )
