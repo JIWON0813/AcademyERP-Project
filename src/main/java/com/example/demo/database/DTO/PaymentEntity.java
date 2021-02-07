@@ -7,8 +7,9 @@ import lombok.Setter;
 @Setter
 public class PaymentEntity {
     private int no;
-    private int employee_no;
+    private String employee_no;
     private String player;
+    private String title;
     private String contents;
     private String approved;
     private String day;

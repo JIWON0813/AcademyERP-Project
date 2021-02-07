@@ -11,6 +11,7 @@ import java.util.*;
 
 import com.example.demo.database.Service.*;
 import com.example.demo.database.DTO.*;
+import com.example.demo.database.Repository.EmployeeRepository;
 
 @RestController
 public class PaymentController {
@@ -18,6 +19,8 @@ public class PaymentController {
     private PaymentService PaymentService;
     @Autowired
 	private VacationService VacationService;
+    @Autowired
+    private EmployeeRepository EmployeeService;
    
 
     @GetMapping("/payment/{nowPage}/{cntPerPage}/{id}")
@@ -62,7 +65,8 @@ public class PaymentController {
             }
         }
 
-
+		List<EmployeeEntity> list = EmployeeService.findAll();
+        result.put("user", list);
         result.put("list", resultList); 
         result.put("page",vo);
         return result;
@@ -74,6 +78,7 @@ public class PaymentController {
     public Map<String,Object> paymentget( @PathVariable(value="id")int id) {
         HashMap<String,Object> result = new HashMap<>();
         PaymentEntity list = PaymentService.getpayment(id);
+        List<EmployeeEntity> user = EmployeeService.findAll();
         int kinds = list.getKinds();
         String kinds_no = list.getKinds_no();
         List<Object> table = new ArrayList<Object>();
@@ -87,9 +92,10 @@ public class PaymentController {
             case 2 : 
                 
                 break;  
-            default :
-                
+            default :      
         }
+        
+        result.put("user",user);
         result.put("list", list); 
         result.put("table", table);
         return result;

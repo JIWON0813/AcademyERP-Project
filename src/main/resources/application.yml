@@ -1,12 +1,12 @@
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://computer-academy-erp.cxdjlccswbih.ap-northeast-2.rds.amazonaws.com:3306/test
-    username: nowerp
-    password: ${RDSPW}
-    # url: jdbc:mariadb://localhost:3307/mydb
-    # username: root
-    # password: root
+    # url: jdbc:mariadb://computer-academy-erp.cxdjlccswbih.ap-northeast-2.rds.amazonaws.com:3306/test
+    # username: nowerp
+    # password: ${RDSPW}
+    url: jdbc:mariadb://localhost:3307/mydb
+    username: root
+    password: root
   jpa:
     hibernate:
       ddl-auto: update

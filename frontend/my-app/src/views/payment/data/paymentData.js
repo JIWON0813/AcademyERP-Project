@@ -5,7 +5,7 @@ import {
 } from '@coreui/react'
 import {  Link } from 'react-router-dom';
 
-let fields = ['no','employee_no', 'contents', 'day'];
+let fields = ['no','employee_no', 'title', 'day'];
 let id=window.sessionStorage.no;
 
 
@@ -32,11 +32,20 @@ const PaymentData = () => {
     const getData = () =>{
       axios.get("http://localhost:8080/payment/1/10/"+id)
         .then(res => {
-          console.log(res)
-            setInputs({
-              data: res.data.list,
-              page: res.data.page
-            })
+          console.log(res);
+          let list = res.data.list;
+          let user = res.data.user;
+          for(let i=0;i<list.length;i++){
+            for(let l=0;l<user.length;l++){
+              if(list[i].employee_no===user[l].no){
+                list[i].employee_no=user[l].name;
+              }
+            }
+          }
+          setInputs({
+            data: list,
+            page: res.data.page
+          })
         })
         .catch(res => console.log(res))
     }
@@ -50,10 +59,10 @@ const PaymentData = () => {
               itemsPerPage={10}
               pagination
               scopedSlots = {{
-                'contents':
+                'title':
                   (item)=>(
                     <td>
-                      <Link to={`/payment/${item.no}`}> {item.contents}</Link>
+                      <Link to={`/payment/${item.no}`}> {item.title}</Link>
                     </td>
                   ),
                   

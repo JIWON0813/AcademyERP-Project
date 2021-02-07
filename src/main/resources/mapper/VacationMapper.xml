@@ -17,6 +17,17 @@
         select count(*) from vacation
     </select>
 
+    <select id="getVacation_user" resultType="VacationEntity" >
+        SELECT ROW_NUMBER() OVER() as RN, A.* 
+                FROM (
+                    select * from vacation where employee_no=#{no}
+                ) A ORDER BY no ASC LIMIT #{start}, #{cntPerPage} 
+    </select>
+
+    <select id="count_user" resultType="int">
+        select count(*) from vacation where employee_no=#{no}
+    </select>
+
     <select id="vacation" resultType="VacationEntity" >
         select * from vacation where no=#{no}
     </select>

@@ -36,6 +36,12 @@ export default [
   },
   {
     _tag: 'CSidebarNavItem',
+    name: '나의 휴가',
+    to: '/vacation_user',
+    icon: 'cil-calendar'
+  },
+  {
+    _tag: 'CSidebarNavItem',
     name: '결제',
     to: '/payment',
     icon: 'cil-calendar'

@@ -39,6 +39,30 @@ public class VacationController {
         result.put("page",vo);
         return result;
     }  
+
+    @GetMapping("/getVacation/{nowPage}/{cntPerPage}/{no}")
+    public Map<String,Object> getVacation_user(PagingVO vo, @PathVariable(value="nowPage")String nowPage
+    , @PathVariable(value="cntPerPage")String cntPerPage, @PathVariable(value = "no")int no) {
+        HashMap<String,Object> result = new HashMap<>();
+        HashMap<String,Object> to= new HashMap<>();
+        int total = VacationService.count_user(no);
+
+        if (nowPage == null && cntPerPage == null) {
+            nowPage = "1";
+            cntPerPage = "10";
+        } else if (nowPage == null) {
+            nowPage = "1";
+        } else if (cntPerPage == null) { 
+            cntPerPage = "10";
+        }
+        vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+        to.put("start",vo.getStart());
+        to.put("cntPerPage",vo.getCntPerPage());
+        to.put("no",no);
+        result.put("list", VacationService.getVacation_user(to)); 
+        result.put("page",vo);
+        return result;
+    }
     
     @PostMapping("/Vacation")  //반환타입 없다 오류
     public int VacationInsert (@RequestBody VacationEntity param){
