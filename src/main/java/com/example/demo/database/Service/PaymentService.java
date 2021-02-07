@@ -15,8 +15,8 @@ public class PaymentService {
     @Autowired
     private PaymentRepository PaymentRepo;
 
-    public List<PaymentEntity> getpayment(PagingVO vo){
-        return PaymentRepo.getpayment(vo);
+    public PaymentEntity getpayment(int no){
+        return PaymentRepo.getpayment(no);
     }
 
     public List<PaymentEntity> payment(){

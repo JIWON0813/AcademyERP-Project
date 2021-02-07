@@ -20,6 +20,11 @@ public class VacationService {
         return list;
     }
 
+    public VacationEntity vacation(int no){
+        VacationEntity result = VacationRepo.vacation(no);
+        return result;
+    }
+
     public int insertVacation(VacationEntity param){
         int result = VacationRepo.insertVacation(param);
         return result;

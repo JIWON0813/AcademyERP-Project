@@ -68,6 +68,9 @@ const attUpdate = React.lazy(() => import('./views/Attendance/AttUpdate'));
 const sessionLog = React.lazy(() => import('./views/users/sessionLog'));
 const Attendance_user = React.lazy(() => import('./views/Attendance/index_view'));
 const vacation = React.lazy(() => import('./views/vacation/index'));
+const payment = React.lazy(() => import('./views/payment/index'))
+const test = React.lazy(() => import('./suminCP/calendar'))
+const paymentget = React.lazy(() => import('./views/payment/getPayment/getPayment'))
 // -------------박수민
 
 
@@ -148,6 +151,9 @@ const routes = [
   { path: '/logintest/:log/', exact: true, name: 'sessionLog', component: sessionLog },
   { path: '/Attendance_user', exact: true, name: 'Attendance', component: Attendance_user },
   { path: '/vacation', exact: true, name: 'vacation', component: vacation },
+  { path: '/payment', exact: true, name: 'payment', component: payment },
+  { path: '/payment/:no', exact: true, name: 'payment', component: paymentget },
+  { path: '/test', exact: true, name: 'payment', component: test },
   // -------------박수민
 ];
 

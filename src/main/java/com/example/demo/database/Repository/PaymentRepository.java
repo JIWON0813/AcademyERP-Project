@@ -8,6 +8,6 @@ import java.util.*;
 @Mapper
 @Repository
 public interface PaymentRepository {
-    List<PaymentEntity> getpayment(PagingVO vo);
+    PaymentEntity getpayment(int no);
     List<PaymentEntity> payment();
 }  

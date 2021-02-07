@@ -11,5 +11,7 @@ public class PaymentEntity {
     private String player;
     private String contents;
     private String approved;
-    private String file;
+    private String day;
+    private int kinds;
+    private String kinds_no;
 }

@@ -15,11 +15,13 @@ import com.example.demo.database.DTO.*;
 @RestController
 public class PaymentController {
     @Autowired
-	private PaymentService PaymentService;
+    private PaymentService PaymentService;
+    @Autowired
+	private VacationService VacationService;
    
 
     @GetMapping("/payment/{nowPage}/{cntPerPage}/{id}")
-    public Map<String,Object> getVacation(PagingVO vo, @PathVariable(value="nowPage")String nowPage
+    public Map<String,Object> payment(PagingVO vo, @PathVariable(value="nowPage")String nowPage
     , @PathVariable(value="cntPerPage")String cntPerPage, @PathVariable(value="id")int id) {
         HashMap<String,Object> result = new HashMap<>();
         List<PaymentEntity> all = PaymentService.payment();
@@ -65,4 +67,32 @@ public class PaymentController {
         result.put("page",vo);
         return result;
     }  
+
+
+    //1: 휴가 //2: 출퇴
+    @GetMapping("/payment/{id}")
+    public Map<String,Object> paymentget( @PathVariable(value="id")int id) {
+        HashMap<String,Object> result = new HashMap<>();
+        PaymentEntity list = PaymentService.getpayment(id);
+        int kinds = list.getKinds();
+        String kinds_no = list.getKinds_no();
+        List<Object> table = new ArrayList<Object>();
+
+        switch(kinds){
+            case 1 : 
+                String no[] = kinds_no.split("/");
+                for(int i=0;i<no.length;i++)
+                    table.add( VacationService.vacation(Integer.parseInt(no[i])) );
+                break;
+            case 2 : 
+                
+                break;  
+            default :
+                
+        }
+        result.put("list", list); 
+        result.put("table", table);
+        return result;
+    }
+
 }

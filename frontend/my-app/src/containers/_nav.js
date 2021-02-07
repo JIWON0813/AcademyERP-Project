@@ -35,6 +35,12 @@ export default [
     icon: 'cil-calendar'
   },
   {
+    _tag: 'CSidebarNavItem',
+    name: '결제',
+    to: '/payment',
+    icon: 'cil-calendar'
+  },
+  {
     _tag: 'CSidebarNavTitle',
     _children: ['Theme']
   },

@@ -11,4 +11,5 @@ public interface VacationRepository {
     List<VacationEntity> getVacation(PagingVO vo);
     int insertVacation(VacationEntity param);
     int count();
+    VacationEntity vacation(int no);
 }  

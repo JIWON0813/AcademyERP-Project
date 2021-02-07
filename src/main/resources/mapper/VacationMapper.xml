@@ -16,4 +16,8 @@
     <select id="count" resultType="int">
         select count(*) from vacation
     </select>
+
+    <select id="vacation" resultType="VacationEntity" >
+        select * from vacation where no=#{no}
+    </select>
 </mapper>  

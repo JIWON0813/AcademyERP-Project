@@ -5,4 +5,8 @@
     <select id="payment" resultType="PaymentEntity">
         select * from payment 
     </select>
+    <select id="getpayment" resultType="PaymentEntity">
+        select * from payment where no=#{no}
+    </select>
 </mapper>  
+ 
