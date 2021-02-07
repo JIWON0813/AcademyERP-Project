@@ -3,7 +3,8 @@ spring:
     url: jdbc:mariadb://computer-academy-erp.cxdjlccswbih.ap-northeast-2.rds.amazonaws.com:3306/test
     driver-class-name: org.mariadb.jdbc.Driver
     username: nowerp
-    password: 
+    password: ${RDSPW}
+
   jpa:
     hibernate:
       ddl-auto: update
