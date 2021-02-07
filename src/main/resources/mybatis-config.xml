@@ -13,5 +13,6 @@
         <mapper resource="mapper/branchmapper.xml"/>
         <mapper resource="mapper/consultmapper.xml"/>
         <mapper resource="mapper/lecturemapper.xml"/>
+        <mapper resource="mapper/noticemapper.xml"/>
     </mappers>
 </configuration> 

@@ -16,6 +16,11 @@ export default [
         name: '수업관리',
         to: '/lecture',
       },
+      {
+        _tag: 'CSidebarNavItem',
+        name: '상담관리',
+        to: '/consult',
+      },
     ]},
   {
     _tag: 'CSidebarNavDropdown',
@@ -29,6 +34,30 @@ export default [
         to: '/score',
       },
     ]},
+    {
+      _tag: 'CSidebarNavDropdown',
+      name: '직원(재무)',
+      route: '/base',
+      icon: 'cil-drop',
+      _children: [
+        {
+          _tag: 'CSidebarNavItem',
+          name: '수납관리',
+          to: '/receive',
+        },
+      ]},
+      {
+        _tag: 'CSidebarNavDropdown',
+        name: '직원(인사)',
+        route: '/base',
+        icon: 'cil-drop',
+        _children: [
+          {
+            _tag: 'CSidebarNavItem',
+            name: '공지사항관리',
+            to: '/notice',
+          },
+        ]},
 
 
 

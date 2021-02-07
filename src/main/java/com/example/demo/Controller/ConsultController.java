@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/")
@@ -22,9 +22,15 @@ public class ConsultController {
         return consultService.list(keyword);
     }
 
-    @GetMapping("/consult/{id}")
-    public HashMap<String, Object> detail(@PathVariable("id") Long id) {
-        return consultService.detail(id);
+    // @GetMapping("/consult/{id}")
+    // public HashMap<String, Object> detail(@PathVariable("id") Long id) {
+    //     System.out.println("11111111111121");
+    //     return consultService.detail(id);
+    // }
+
+    @GetMapping("/consultdetail")
+    public HashMap<String, Optional> detail(@RequestParam("id") Long id) {
+        return consultService.detail(id);    
     }
 
     @PostMapping("/consult")

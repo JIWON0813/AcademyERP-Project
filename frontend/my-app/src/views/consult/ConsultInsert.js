@@ -25,7 +25,7 @@ class ConsultInsert extends Component {
       hp: '',
       schedule: '',
       memo: '',
-      // regdate:'',
+      //regdate:'',
       route:[],
       writer: ''
 
@@ -47,7 +47,7 @@ class ConsultInsert extends Component {
       hp: '',
       schedule: '',
       memo:'',
-      // regdate:'',
+      //regdate:'',
       route:[],
       writer: ''
     })
@@ -72,7 +72,7 @@ class ConsultInsert extends Component {
         hp: this.state.hp,
         schedule: this.state.schedule,
         memo: this.state.memo,
-        // regdate: this.state.regdate,
+        //regdate: this.state.regdate,
         route: this.state.route.toString(),
         writer: this.state.writer
       }
@@ -98,7 +98,7 @@ class ConsultInsert extends Component {
       hp: '',
       schedule: '',
       memo: '',
-      // regdate: '',
+      //regdate: '',
       route: [],
       writer: '',
       open: false

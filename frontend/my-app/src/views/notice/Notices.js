@@ -1,10 +1,23 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 import './table.css';
 import NoticeWrite from "./NoticeWrite";
-import Notice from "./Notice";
+import Pagination from '@material-ui/lab/Pagination';
+import { withStyles } from "@material-ui/core";
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 
-class NoticeList extends Component {
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      '& > *': {
+        marginTop: theme.spacing(2),
+      },
+    },
+  }),
+);
+
+class Notices extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -39,12 +52,11 @@ getApi = () => {
     const { noticeList } = this.state;
 
     return (
-      <div>{
+      <div>
         <header>
         <NoticeWrite stateRefresh={this.stateRefresh}/>
           <br></br>
         </header>
-        }
         <br></br>
         <table>
         <thead>
@@ -53,22 +65,26 @@ getApi = () => {
           </tr>
         </thead>
         <tbody>
-         {noticeList&&noticeList.map((noticedata, insertIndex) => {
+         {noticeList&&noticeList.map((noticedata) => {
             return (
-            <tr key={insertIndex}>
-                <td>{noticedata.no}</td>
-                <td> <Notice stateRefresh={this.stateRefresh} id={noticedata.no}/></td>
-                <td>{noticedata.address}</td>
-                <td>{noticedata.hp}</td>
-                <td>{noticedata.owner}</td>
+            <tr class="default">
+                <td class="default">{noticedata.no}</td>
+                <td class="default"> [{noticedata.section}]<Link to={`/notice/${noticedata.no}`}>{noticedata.title}</Link></td>
+                <td class="default">{noticedata.empno}</td>
+                <td class="default">{noticedata.regdate}</td>
+                <td class="default">{noticedata.hits}</td>
               </tr>
             );
           })}
         </tbody>
       </table>
+      <br></br>
+      <div>
+        <Pagination count={10} color="primary" />
+      </div>
       </div>
     );
   }
 }
 
-export default NoticeList;
+export default withStyles(useStyles)(Notices);

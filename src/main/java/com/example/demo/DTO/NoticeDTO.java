@@ -1,19 +1,21 @@
-// package com.example.demo.DTO;
+package com.example.demo.DTO;
 
-// import lombok.Data;
-// import lombok.Getter;
-// import lombok.Setter;
+import java.util.Date;
 
-// @Getter
-// @Setter
-// public class NoticeDTO {
+import lombok.Getter;
+import lombok.Setter;
 
-//     private long no;
-//     private String title;
-//     private String section;
-//     private String content;
-//     private int empno;
-//     private Data regdate;
-//     private int hits;
+@Getter
+@Setter
+public class NoticeDTO {
+
+    private long no;
+    private String title;
+    private String section;
+    private String content;
+    private int empno;
+    private Date regdate;
+    private long hits;
     
-// }
+    
+}

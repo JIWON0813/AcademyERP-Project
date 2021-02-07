@@ -1,7 +1,7 @@
 package com.example.demo.Entity;
 
 import java.io.Serializable;
-// import java.util.Date;
+import java.util.Date;
 
 import javax.persistence.*;
 import lombok.*;
@@ -22,8 +22,8 @@ import lombok.*;
         private String hp;
         private String schedule;
         private String memo;
-        // private Date regdate;
         private String route;
         private String writer;
+        private Date regdate;
     }
 

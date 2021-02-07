@@ -127,18 +127,18 @@ class NoticeWrite extends React.Component {
                     label="구분"
                     inputProps={{ name: 'section', id: 'outlined-age-native-simple',}}>
                       <option aria-label="None" value="section" />
-                      <option value={1}>공지</option>
-                      <option value={2}>결혼</option>
-                      <option value={3}>출산</option>
-                      <option value={4}>입양</option>
-                      <option value={5}>사망</option>
+                      <option value={"공지"}>공지</option>
+                      <option value={"결혼"}>결혼</option>
+                      <option value={"출산"}>출산</option>
+                      <option value={"입양"}>입양</option>
+                      <option value={"사망"}>사망</option>
                 </Select>
               </FormControl>
               </Grid>
               <br></br>
               <CFormGroup row>
                 <CCol xs="12" md="9">
-                  <TextField label="제목" type="text" name="title" value={this.state.title} onChange={this.handleValueChange}/><br/>
+                  <TextField label="제목" type="text" name="title" value={this.state.title} onChange={this.handleChange}/><br/>
                 </CCol>
               </CFormGroup>
               <br></br>
@@ -149,7 +149,7 @@ class NoticeWrite extends React.Component {
                       id="textarea-input" 
                       rows="9"
                       placeholder="..." 
-                      value={this.state.content} onChange={this.handleValueChange}
+                      value={this.state.content} onChange={this.handleChange}
                     />
                   </CCol>
                 </CFormGroup>

@@ -1,134 +1,88 @@
-//-----------------------
-// 제목 : 상담 상세페이지
-// 파일명 : Consult.js
-// 작성자 : 최인아
-// 작성일 : 
-//-----------------------
-import React from 'react'
-import axios from 'axios';
-import './table.css';
-import { BrowserRouter, Route} from 'react-router-dom';
-import {CCard, CCardBody, CCardHeader, CCol, CForm, CFormGroup, CLabel, CRow} from '@coreui/react'
-import ConsultUpdate from "./ConsultUpdate";
-import ConsultDelete from "./ConsultDelete";
-class Consult extends React.Component {
+import React, { Component } from "react";
+import axios from "axios";
+import CIcon from '@coreui/icons-react';
+import { CButton, CCard, CCardBody, CCardFooter, CCardHeader, CCol, CRow } from '@coreui/react'
 
+
+class Consults extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        no : '',
-        name : '',
-        hp : '',
-        schedule : '',
-        memo : '',
-        route : '',
-        writer : ''
+        ConsultList: ""
     }
-    this.stateRefresh = this.stateRefresh.bind(this)
   }
 
-componentDidMount() {
-  this.getApi();
-}
-
-getApi = () => {
-  axios.get("http://localhost:8080/consult/"+this.props.id)
-    .then(res => {
-      let con = res.data.consultdata;
-      this.setState({
-        no : con.no,
-        name : con.name,
-        hp : con.hp,
-        schedule : con.schedule,
-        memo : con.memo,
-        route : con.route,
-        writer : con.wirter
-      })
-    })
-    .catch(res => console.log(res))
-}
-
-  stateRefresh() {
-    this.setState({
-      ConsultList: "",
-    });
+  componentDidMount() {
     this.getApi();
   }
 
+getApi = () => {
+  const { params } = this.props.match;
+    axios.get("http://localhost:8080/consultdetail?id="+params.id)
+        .then(res => {
+            this.setState({
+              ConsultList: res.data.list
+            })
+        })
+        .catch(res => console.log(res))
+}
 
+delete(){
+  axios.delete(`http://localhost:8080/consult/`+this.state.ConsultList.no)
+    .then(
+      alert("삭제가 되었습니다."),
+      document.location.href = "#/consult"
+    )
+    .catch(function (error){
+      console.log(error)
+    })
+}
+
+goBack = () => {
+  this.props.history.goBack();
+}
 
   render() {
+    const tempStyle={float:"left"}
+    const tempStyle2={float:"right"}
+    
+    const { ConsultList } = this.state;
+
     return (
       <CRow>
-        <CCol xs="12" md="6">
-          <CCard>
-            <CCardHeader>상담신청인 : {this.state.name}</CCardHeader>
-            <CCardBody>
-              <CForm>
-                <CFormGroup row>
-                  <CCol md="3">
-                    <CLabel htmlFor="text-input">등록번호</CLabel>
-                  </CCol>
-                  <CCol xs="12" md="9">
-                    <CLabel>{this.state.no}</CLabel>
-                  </CCol>
-                </CFormGroup>
-                <CFormGroup row>
-                  <CCol md="3">
-                    <CLabel htmlFor="text-input">전화번호</CLabel>
-                  </CCol>
-                  <CCol xs="12" md="9">
-                    <CLabel>{this.state.hp}</CLabel>
-                  </CCol>
-                </CFormGroup>
-                <CFormGroup row>
-                  <CCol md="3">
-                    <CLabel htmlFor="text-input">상담일자</CLabel>
-                  </CCol>
-                  <CCol xs="12" md="9">
-                    <CLabel>{this.state.schedule}</CLabel>
-                  </CCol>
-                </CFormGroup>
-                <CFormGroup row>
-                  <CCol md="3">
-                    <CLabel htmlFor="text-input">상담내용</CLabel>
-                  </CCol>
-                  <CCol xs="12" md="9">
-                    <CLabel>{this.state.memo}</CLabel>
-                  </CCol>
-                </CFormGroup>
-                <CFormGroup row>
-                  <CCol md="3">
-                    <CLabel htmlFor="text-input">상담경로</CLabel>
-                  </CCol>
-                  <CCol xs="12" md="9">
-                    <CLabel>{this.state.route}</CLabel>
-                  </CCol>
-                </CFormGroup>
-                <CFormGroup row>
-                  <CCol md="3">
-                    <CLabel htmlFor="text-input">작성자</CLabel>
-                  </CCol>
-                  <CCol xs="12" md="9">
-                    <CLabel>{this.state.writer}</CLabel>
-                  </CCol>
-                </CFormGroup>
-                <BrowserRouter>
-                  <Route exact path='/consultUpdate' component={ConsultUpdate}/>
-                  <Route exact paht='/consultDelete/:id' component={ConsultDelete}/>
-                </BrowserRouter>
-               {/* <CFormGroup row>
-                  <ConsultUpdate stateRefresh={this.props.stateRefresh} ConsultList={ConsultList}/>
-                  <ConsultDelete stateRefresh={this.props.stateRefresh} id={ConsultList.no}/>
-                </CFormGroup> */}
-                </CForm>
-              </CCardBody>
-            </CCard>
-          </CCol>
-      </CRow>
+      <CCol lg={6}>
+        <CCard>
+          <CCardHeader>
+          <div style={tempStyle2}>
+            <button onClick={this.goBack}>뒤로가기</button>
+          </div> 
+          <div style={tempStyle}>
+            <h3>Name: {ConsultList.name}</h3>
+          </div>
+          </CCardHeader>
+          <CCardBody>
+              <table className="table table-striped table-hover">
+                <tbody>
+                  <tr><td>{`NO:`}</td><td><strong>{ConsultList.no}</strong></td></tr>
+                  <tr><td>{`name:`}</td><td><strong>{ConsultList.name}</strong></td></tr>
+                  <tr><td>{`hp:`}</td><td><strong>{ConsultList.hp}</strong></td></tr>
+                  <tr><td>{`schedule:`}</td><td><strong>{ConsultList.schedule}</strong></td></tr>
+                  <tr><td>{`memo:`}</td><td><strong>{ConsultList.memo}</strong></td></tr>
+                  <tr><td>{`route:`}</td><td><strong>{ConsultList.route}</strong></td></tr>
+                  <tr><td>{`writer:`}</td><td><strong>{ConsultList.writer}</strong></td></tr>
+                </tbody>
+              </table>
+              <CCardFooter align="right">
+                <CButton  size="sm" color="primary" onClick={()=>{this.handleFormSubmit()}}><CIcon name="cil-scrubber" /> Submit</CButton>
+                &nbsp;&nbsp;&nbsp; 
+                <CButton size="sm" color="danger" onClick={(e)=>{this.delete()}}><CIcon name="cil-ban" /> Delete</CButton>
+              </CCardFooter>
+          </CCardBody>
+        </CCard>
+      </CCol>
+    </CRow>
     );
   }
 }
-export default Consult;
 
-
+export default Consults;

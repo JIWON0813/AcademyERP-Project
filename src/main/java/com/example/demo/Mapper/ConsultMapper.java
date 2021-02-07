@@ -11,8 +11,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ConsultMapper {
     List<ConsultDTO> getList(HashMap<String,Object> map);
-    ConsultDTO insertConsult(long id);
-    
-    
+    ConsultDTO getListDetail(long id);    
 }
  

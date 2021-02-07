@@ -53,13 +53,11 @@ const Score = React.lazy(() => import('./views/score/Score'));
 const Consults = React.lazy(() => import('./views/consult/Consults'));
 const Consult = React.lazy(() => import('./views/consult/Consult'));
 const ConsultInsert = React.lazy(() => import('./views/consult/ConsultInsert'));
-const ConsultDelete = React.lazy(() => import('./views/consult/ConsultDelete'));
 const ConsultUpdate = React.lazy(() => import('./views/consult/ConsultUpdate'));
 // ------------공지사항
+const Notices = React.lazy(() => import('./views/notice/Notices'));
 const Notice = React.lazy(() => import('./views/notice/Notice'));
-const NoticeList = React.lazy(() => import('./views/notice/NoticeList'));
 const NoticeWrite = React.lazy(() => import('./views/notice/NoticeWrite'));
-const NoticeDelete = React.lazy(() => import('./views/notice/NoticeDelete'));
 const NoticeUpdate = React.lazy(() => import('./views/notice/NoticeUpdate'));
 // ------------수납관리
 const Receive = React.lazy(() => import('./views/receive/receive'));
@@ -136,13 +134,11 @@ const routes = [
   { path: '/consult', exact: true,  name: 'Consults', component: Consults },
   { path: '/consult/:id', exact: true,  name: 'Consult Details', component: Consult },
   { path: '/consultInsert', exact: true,  name: 'Consult Insert', component: ConsultInsert },
-  { path: '/consultDelete/:id', exact: true,  name: 'Consult Delete', component: ConsultDelete },
   { path: '/consultUpdate', exact: true,  name: 'Consult Update', component: ConsultUpdate },
   // ------------공지사항
   { path: '/notice/:id', exact: true,  name: 'Notice Details', component: Notice },
-  { path: '/noticeList', exact: true, name: 'NoticeList', component: NoticeList },
+  { path: '/notice', exact: true, name: 'Notices', component: Notices },
   { path: '/noticeWrite', exact: true, name: 'NoticeWrite', component: NoticeWrite },
-  { path: '/noticeDelete/:id', exact: true,  name: 'Notice Delete', component: NoticeDelete },
   { path: '/noticeUpdate', exact: true,  name: 'Notice Update', component: NoticeUpdate },
   // ------------수납관리
   { path: '/receive', exact: true, name: 'Receive', component: Receive},

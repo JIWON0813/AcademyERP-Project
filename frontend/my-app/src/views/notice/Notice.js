@@ -1,145 +1,97 @@
-//-----------------------
-// 제목 : 공지사항 상세보기
-// 파일명 : Consult.js
-// 작성자 : 최인아
-// 작성일 : 
-//-----------------------
-import React from 'react'
-import axios from 'axios';
-import {Button, Dialog,IconButton, withStyles} from "@material-ui/core";
-//import BranchDelete from "./BranchDelete";
-import Typography from '@material-ui/core/Typography';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import CloseIcon from '@material-ui/icons/Close';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
-//import BranchUpdate from "./BranchUpdate";
+import React, { Component } from "react";
+import axios from "axios";
+import { Link } from 'react-router-dom';
+import './table.css';
 
-const styles = theme => ({
-  hidden: {
-    display: 'none'
-  },
-  root: {
-    margin: 0,
-    padding: theme.spacing(2),
-  },
-  closeButton: {
-    position: 'absolute',
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: theme.palette.grey[500],
-  },
-});
-
-const DialogTitle = withStyles(styles)((props) => {
-  const { children, classes, onClose, ...other } = props;
-  return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle>
-  );
-});
-
-const DialogContent = withStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2),
-  },
-}))(MuiDialogContent);
-
-const DialogActions = withStyles((theme) => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(1),
-  },
-}))(MuiDialogActions);
-
-class Notice extends React.Component {
-
+class Notice extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      noticeList: ""
+        noticeList: ""
     }
-
-    this.handleClickOpen = this.handleClickOpen.bind(this)
-    this.handleClose = this.handleClose.bind(this);
-
+    this.update = this.update.bind(this)
   }
 
-
-
-componentDidMount() {
-  this.getApi();
-}
+  componentDidMount() {
+    this.getApi();
+  }
 
 getApi = () => {
-  axios.get("http://localhost:8080/notice/"+this.props.id)
-    .then(res => {
-      this.setState({
-        noticeList: res.data.message
-      })
+  const { params } = this.props.match;
+    axios.get("http://localhost:8080/noticedetail?id="+params.id)
+        .then(res => {
+            this.setState({
+              noticeList: res.data.list
+            })
+        })
+        .catch(res => console.log(res))
+}
+
+delete(){
+  const { noticeList } = this.state;
+  axios.delete(`http://localhost:8080/notice/`+noticeList.no)
+    .then(
+      alert("삭제가 되었습니다."),
+      document.location.href = "#/notice"
+    )
+    .catch(function (error){
+      console.log(error)
     })
-    .catch(res => console.log(res))
+}
+
+update() {
+  axios.put(`http://localhost:8080/notice/edit/`+this.state.id,{
+    no: this.state.no,
+    section: this.state.section,
+    title: this.state.title,
+    content: this.state.content
+  })
+    .then(
+      alert("수정"),
+      document.location.href = "#/notice"
+    )
+    .catch(function (error){
+      console.log(error)
+    })
 }
 
 goBack = () => {
   this.props.history.goBack();
 }
 
-  handleClickOpen() {
-    this.setState({
-      open: true
-    });
-  }
-
-  handleClose() {
-
-    this.setState({
-
-      open: false
-    })
-  }
-
-
-
   render() {
     const { noticeList } = this.state;
+    const tempStyle2={float:"right"}
 
     return (
       <div>
-          <Button color="primary" onClick={this.handleClickOpen}>{noticeList.title}</Button>
-        <Dialog onClose={this.handleClose} aria-labelledby="customized-dialog-title" open={this.state.open}>
-          <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-                {noticeList.title}</DialogTitle>
-          <DialogContent dividers>
-            <table className="table table-striped table-hover">
-              <tbody>
-              {/* <tr><td>{`no:`}</td><td><strong>{branchList.no}</strong></td></tr>
-              <tr><td>{`name:`}</td><td><strong>{branchList.name}</strong></td></tr>
-              <tr><td>{`address:`}</td><td><strong>{branchList.address}</strong></td></tr>
-              <tr><td>{`hp:`}</td><td><strong>{branchList.hp}</strong></td></tr>
-              <tr><td>{`owner:`}</td><td><strong>{branchList.owner}</strong></td></tr> */}
-              </tbody>
-            </table>
-          </DialogContent>
-          <DialogActions>
-            {/* <BranchUpdate stateRefresh={this.props.stateRefresh} branchList={branchList}/>
-            <BranchDelete stateRefresh={this.props.stateRefresh} id={branchList.no}/> */}
-          </DialogActions>
-
-        </Dialog>
-
+        <header>
+        <div style={tempStyle2}>
+            <button onClick={this.goBack}>뒤로가기</button>
+        </div>
+          <br></br>
+        </header>
+        <br></br>
+        <table>
+                 <tbody>
+                   <tr><td>{`NO :`}</td><td><strong>{noticeList.no}</strong></td></tr>
+                   <tr><td>{`section :`}</td><td><strong>{noticeList.section}</strong></td></tr>
+                   <tr><td>{`title :`}</td><td><strong>{noticeList.title}</strong></td></tr>
+                   <tr><td>{`content :`}</td><td><strong>{noticeList.content}</strong></td></tr>
+                   <tr><td>{`writer :`}</td><td><strong>{noticeList.empno}</strong></td></tr>
+                   <tr><td>{`date :`}</td><td><strong>{noticeList.regdate}</strong></td></tr>
+                   <tr><td>{`hits :`}</td><td><strong>{noticeList.hits}</strong></td></tr>
+                 </tbody>
+               </table>
+               <br></br>
+               <footer>
+                <Link to={`/noticeUpdate`}><button>수정</button></Link>
+                  &nbsp;&nbsp;&nbsp;
+                <button size="sm" color="danger" onClick={()=>{this.delete()}}>삭제</button>
+               </footer>
       </div>
-    )
-
+    );
   }
-
 }
-export default withStyles(styles)(Notice)
 
-
+export default Notice;

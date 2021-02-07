@@ -1,5 +1,8 @@
 package com.example.demo.DTO;
 
+
+import java.util.Date;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,8 +15,8 @@ public class ConsultDTO {
     private String hp;
     private String schedule;
     private String memo;
-    // private Date regdate;
     private String route;
     private String writer;
+    private Date regdate;
     
 }

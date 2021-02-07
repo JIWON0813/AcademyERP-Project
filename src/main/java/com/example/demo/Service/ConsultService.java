@@ -2,13 +2,13 @@ package com.example.demo.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import com.example.demo.DTO.ConsultDTO;
 import com.example.demo.Entity.ConsultEntity;
 import com.example.demo.Mapper.ConsultMapper;
 import com.example.demo.Repository.ConsultRepository;
 
-import org.hibernate.mapping.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,13 +31,21 @@ public class ConsultService {
         return result;
     }
 
-    public HashMap<String, Object> detail(Long id) {
-        HashMap<String, Object> result = new HashMap<>();
-        ConsultDTO list = consultMapper.insertConsult(id);
-        result.put("message", list);
+    public HashMap<String, Optional> detail(Long id) {
+        HashMap<String, Optional> result = new HashMap<>();
+        Optional<ConsultEntity> list = consultRepository.findById(id);
+        result.put("list", list);
 
         return result;
     }
+
+    // public HashMap<String, Object> detail(Long id) {
+    //     HashMap<String, Object> result = new HashMap<>();
+    //     List<ConsultDTO> list = consultMapper.getListDetail(id);
+    //     result.put("message", list);
+
+    //     return result;
+    // }
 
     public String write(ConsultEntity con) {
         ConsultEntity result =  consultRepository.save(con);
