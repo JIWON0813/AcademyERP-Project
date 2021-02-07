@@ -7,8 +7,6 @@ import java.util.*;
 
 @Mapper
 @Repository
-public interface PaymentRepository {
-    PaymentEntity getpayment(int no);
-    List<PaymentEntity> payment();
-    int approved(HashMap<String,Object> to);
+public interface VacationApplyRepository {
+    int insert(VacationApplyEntity dto);
 }  

@@ -57,13 +57,17 @@ const PaymentData = ({ match }) => {
     }
 
     const payment = () => {
-        axios.post(`http://localhost:8080/payment/approved`,{no: 1})
+        alert(data.no)
+        var params = new URLSearchParams();
+        params.append('id', window.sessionStorage.getItem('no'));
+        params.append('no', data.no);
+        axios.post(`http://localhost:8080/payment/approved`,params)
         .then(res => {
             if(res.data){
-            alert("출근되었습니다.");
+            alert("결제되었습니다");
             window.location.reload(false);
             }else{
-            alert("이미 출근되었습니다.");
+            alert("이미 결제했습니다.");
             }
         })
         .catch(res => console.log(res))       

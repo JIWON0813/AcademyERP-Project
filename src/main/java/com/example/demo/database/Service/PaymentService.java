@@ -23,5 +23,8 @@ public class PaymentService {
         return PaymentRepo.payment();
     }
    
+    public int approved(HashMap<String,Object> to){
+        return PaymentRepo.approved(to);
+    }
 
 }

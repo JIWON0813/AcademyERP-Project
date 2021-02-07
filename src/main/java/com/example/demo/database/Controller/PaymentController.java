@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
@@ -99,6 +101,33 @@ public class PaymentController {
         result.put("list", list); 
         result.put("table", table);
         return result;
+    }
+
+
+    @PostMapping("/payment/approved")/////////////////////////
+    public int approved( @RequestParam("no")int no, @RequestParam("id")int id) {
+        PaymentEntity get = PaymentService.getpayment(no);
+        String app=get.getApproved();
+        boolean check =true;
+        if(app!=null){
+            String appList[] = app.split("/");
+            for(int i=0;i<appList.length;i++){
+                if(Integer.parseInt(appList[i])==id){
+                    check=false;
+                }
+            }   
+        }else{
+            app="/";
+        }
+
+        if(check){
+            HashMap<String,Object> to= new HashMap<>();
+            app= app+id+"/";
+            to.put("approved",app);
+            to.put("no",no);
+            return PaymentService.approved(to); 
+        }
+        return 0;
     }
 
 }

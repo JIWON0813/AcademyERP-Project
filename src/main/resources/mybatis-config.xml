@@ -12,5 +12,6 @@
         <mapper resource="mapper/lecturemapper.xml"/>
         <mapper resource="mapper/VacationMapper.xml"/>
         <mapper resource="mapper/PaymentMapper.xml"/>
+        <mapper resource="mapper/VacationApplyMapper.xml"/>
     </mappers>
 </configuration> 
