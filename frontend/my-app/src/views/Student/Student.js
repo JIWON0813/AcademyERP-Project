@@ -49,7 +49,7 @@ class Student extends Component {
             email : '',
             birth : '',
             address : '',
-            curri : '',
+            lecture : '',
             gender : '',
             regdate : ''
         }
@@ -70,7 +70,7 @@ class Student extends Component {
                         email : stu.email,
                         birth : stu.birth,
                         address : stu.address,
-                        curri : stu.curri,
+                        lecture : stu.lecture,
                         gender : stu.gender,
                         regdate : stu.regdate
                     })
@@ -162,7 +162,7 @@ class Student extends Component {
                                         <CLabel htmlFor="text-input">교육과정</CLabel>
                                     </CCol>
                                     <CCol xs="12" md="9">
-                                    <CLabel>{this.state.curri}</CLabel>
+                                    <CLabel>{this.state.lecture}</CLabel>
                                     </CCol>
                                 </CFormGroup>
                                 <CFormGroup row>

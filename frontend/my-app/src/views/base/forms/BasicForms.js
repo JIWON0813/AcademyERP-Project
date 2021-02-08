@@ -336,7 +336,7 @@ const BasicForms = () => {
                   </CCol>
                   <CCol md="9">
                     <CFormGroup variant="checkbox">
-                      <CInputRadio className="form-check-input" id="radio1" name="radios" value="option1" />
+                      <CInputRadio className="form-check-input" id="radio1" name="radios" value="option1" defaultChecked/>
                       <CLabel variant="checkbox" htmlFor="radio1">Option 1</CLabel>
                     </CFormGroup>
                     <CFormGroup variant="checkbox">
@@ -355,7 +355,7 @@ const BasicForms = () => {
                   </CCol>
                   <CCol md="9">
                     <CFormGroup variant="custom-radio" inline>
-                      <CInputRadio custom id="inline-radio1" name="inline-radios" value="option1" />
+                      <CInputRadio custom id="inline-radio1" name="inline-radios" value="option1" defaultChecked/>
                       <CLabel variant="custom-checkbox" htmlFor="inline-radio1">One</CLabel>
                     </CFormGroup>
                     <CFormGroup variant="custom-radio" inline>

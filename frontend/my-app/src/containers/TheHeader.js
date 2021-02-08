@@ -64,7 +64,16 @@ const TheHeader = () => {
           <CHeaderNavLink to="/students">Student</CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem  className="px-3">
+          <CHeaderNavLink to="/stu_att">Stu_Att</CHeaderNavLink>
+        </CHeaderNavItem>
+        <CHeaderNavItem  className="px-3">
           <CHeaderNavLink to="/lecture">Lecture</CHeaderNavLink>
+        </CHeaderNavItem>
+        <CHeaderNavItem  className="px-3">
+          <CHeaderNavLink to="/HR">HR</CHeaderNavLink>
+        </CHeaderNavItem>
+        <CHeaderNavItem  className="px-3">
+          <CHeaderNavLink to="/teacher">Teacher</CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem  className="px-3">
           <CHeaderNavLink to="/consult">Consult</CHeaderNavLink>

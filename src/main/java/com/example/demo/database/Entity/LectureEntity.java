@@ -30,6 +30,5 @@ import lombok.*;
         private String end_time;
         private int part;
         private int branch;
-
     }
 

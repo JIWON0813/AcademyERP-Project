@@ -47,7 +47,7 @@ class Ins_stu extends Component {
       email: '',
       bitrh: '',
       address: '',
-      curri: '',
+      lecture: '',
       gender: '',
       regdate:''
     }
@@ -71,7 +71,7 @@ class Ins_stu extends Component {
       email : this.state.email,
       birth : this.state.birth,
       address : this.state.address,
-      curri : this.state.curri,
+      lecture : this.state.lecture,
       gender : this.state.gender,
       //regdate : this.state.regdate
     }
@@ -151,13 +151,13 @@ class Ins_stu extends Component {
                     <CLabel htmlFor="select">수강과목</CLabel>
                   </CCol>
                   <CCol xs="12" md="9">
-                    <CSelect custom name="curri" onChange={this.onChange}>
+                    <CSelect custom name="lecture" onChange={this.onChange}>
                     <option value="0">과목을 선택하세요</option>
-                      <option value="JAVA">JAVA</option>
-                      <option value="PYTHON">PYTHON</option>
-                      <option value="C++">C++</option>
-                      <option value="KOTLIN">KOTLIN</option>
-                      <option value="">수강과목 없음</option>
+                      <option value="1">JAVA</option>
+                      <option value="2">PYTHON</option>
+                      <option value="3">C++</option>
+                      <option value="4">KOTLIN</option>
+                      <option value="5">수강과목 없음</option>
                     </CSelect>
                   </CCol>
                 </CFormGroup>
@@ -176,8 +176,6 @@ class Ins_stu extends Component {
               </CForm>
             </CCardBody>
             <CCardFooter>
-              <CButton onClick={this.saveStudent} size="sm" color="primary"><CIcon name="cil-scrubber" /> Submit</CButton>
-              <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" /> Reset</CButton>
             </CCardFooter>
           </CCard>
           </CCol>

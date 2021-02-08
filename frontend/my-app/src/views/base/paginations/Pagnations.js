@@ -8,9 +8,9 @@ import {
 import { DocsLink } from 'src/reusable'
 
 
-const Paginations = () => {
+const Pagination = () => {
   const [currentPage, setCurrentPage] = useState(2)
-
+  console.log(currentPage)
   return (
     <>
       <CCard>
@@ -78,7 +78,7 @@ const Paginations = () => {
           <CPagination
             align="end"
             activePage={currentPage}
-            pages={10}
+            pages={7}
             onActivePageChange={setCurrentPage}
           />
           <br></br>
@@ -90,4 +90,4 @@ const Paginations = () => {
   )
 }
 
-export default Paginations
+export default Pagination

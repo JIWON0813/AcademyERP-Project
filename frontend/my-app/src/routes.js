@@ -39,14 +39,19 @@ const Students = React.lazy(() => import('./views/Student/Students'));
 const Student = React.lazy(() => import('./views/Student/Student'));
 const Ins_stu = React.lazy(() => import('./views/Student/Ins_stu'));
 const Edit_stu = React.lazy(() => import('./views/Student/Edit_stu'));
+const Stu_att = React.lazy(() => import('./views/Stu_Att/Stu_att'));
+const Ins_att = React.lazy(() => import('./views/Stu_Att/Ins_att'));
 const Users = React.lazy(() => import('./views/users/Users'));
 const User = React.lazy(() => import('./views/users/User'));
-
 const Lectures = React.lazy(() => import('./views/lecture/Lectures'));
 const Lecture = React.lazy(() => import('./views/lecture/Lecture'));
 const LectureAdd = React.lazy(() => import('./views/lecture/LectureAdd'));
 const LectureDelete = React.lazy(() => import('./views/lecture/LectureDelete'));
 const LectureUpdate = React.lazy(() => import('./views/lecture/LectureUpdate'));
+const HR = React.lazy(() => import('./views/HR/HR'));
+const Sal_list = React.lazy(() => import('./views/HR/SalaryList'));
+const Sal_edit = React.lazy(() => import('./views/HR/SalaryEdit'));
+const Teacher = React.lazy(() => import('./views/Teacher/Calendar'));
 const LectureSearch = React.lazy(() => import('./views/lecture/LectureSearch'));
 const Consults = React.lazy(() => import('./views/consult/Consults'));
 const Consult = React.lazy(() => import('./views/consult/Consult'));
@@ -116,6 +121,9 @@ const routes = [
   { path: '/ins_stu', exact: true,  name: 'Ins_stu', component: Ins_stu },
   { path: '/edit_stu', exact: true,  name: 'Edit_stu', component: Edit_stu },
 
+  { path: '/stu_att', exact: true,  name: 'stu_att', component: Stu_att},
+  { path: '/ins_att', exact: true,  name: 'ins_att', component: Ins_att},
+
   { path: '/users', exact: true,  name: 'Users', component: Users },
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
 
@@ -123,6 +131,13 @@ const routes = [
   { path: '/lecture/:id', exact: true, name: 'Lecture Details', component: Lecture },
   { path: '/lectureAdd', exact: true, name: 'Lecture Add', component: LectureAdd },
   { path: '/lectureDelete/:id', exact: true, name: 'Lecture Delete', component: LectureDelete },
+  { path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate },
+
+  { path: '/HR', exact: true,  name: 'HR', component: HR},
+  { path: '/sal_list', exact: true,  name: 'sal_list', component: Sal_list},
+  { path: '/sal_edit', exact: true,  name: 'sal_edit', component: Sal_edit},
+
+  { path: '/teacher', exact: true,  name: 'teacher', component: Teacher},
   { path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate },
   { path: '/lectureSearch', exact: true, name: 'Lecture Search', component: LectureSearch },
 

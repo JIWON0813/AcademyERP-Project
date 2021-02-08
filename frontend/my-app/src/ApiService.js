@@ -4,9 +4,9 @@ const USER_API_BASE_URL = "http://localhost:8080/api";
 
 class ApiService {
 
-  Students() {
-    return axios.get(USER_API_BASE_URL + '/students');
-  }
+    Students(currentPage,Size) {
+        return axios.get(USER_API_BASE_URL + '/students' + "?page=" + currentPage + "&size=" + Size);
+    }
 
   Student(no) {
     console.log("!!!!!!!!!!!!!!!!!" + no);
@@ -39,6 +39,31 @@ class ApiService {
     return axios.get(USER_API_BASE_URL +
       '/standByAuth');
   }
+    StuAtt(name) {
+        return axios.get(USER_API_BASE_URL + '/stu_att/' + name);
+    }
+
+    Leclist() {
+        return axios.get(USER_API_BASE_URL + '/stu_att');
+    }
+
+    InsAtt(lec) {
+        console.log("?????" + lec);
+        return axios.get(USER_API_BASE_URL + '/ins_att/' + lec);
+    }
+
+    Salary() {
+        return axios.get(USER_API_BASE_URL + '/salary');
+    }
+
+    SalaryEmp(no) {
+        return axios.get(USER_API_BASE_URL + '/salary_emp/' + no);
+    }
+
+    Teacher(no) {
+        return axios.get(USER_API_BASE_URL + '/lec_time/' + no);
+    }
+
 }
 
 export default new ApiService();
