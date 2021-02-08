@@ -2,7 +2,7 @@ package com.example.demo.Repository;
 
 import javax.transaction.Transactional;
 
-import com.example.demo.database.DTO.StudentEntity;
+import com.example.demo.database.Entity.StudentEntity;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

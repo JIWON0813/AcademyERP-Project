@@ -5,7 +5,7 @@ import java.util.*;
 import com.example.demo.database.DTO.LectureDTO;
 import com.example.demo.database.DTO.Stu_AttDTO;
 import com.example.demo.database.DTO.StudentDTO;
-import com.example.demo.database.DTO.StudentEntity;
+import com.example.demo.database.Entity.StudentEntity;
 import com.example.demo.database.Repository.StuAttMapper;
 import com.example.demo.Repository.StudentRepository;
 
