@@ -10,8 +10,8 @@
         <mapper resource="mapper/mapper1.xml"/>
     </mappers> -->
     <mappers>
-        <mapper resource="mapper/mapper.xml"/>
-        <mapper resource="mapper/mapper1.xml"/>
-        <mapper resource="mapper/mapper2.xml"/>
+        <mapper resource="mapper/Lecturemapper.xml"/>
+        <mapper resource="mapper/Hrmapper.xml"/>
+        <mapper resource="mapper/StudentAttmapper.xml"/>
     </mappers>
 </configuration> 
