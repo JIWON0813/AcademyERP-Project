@@ -1,21 +1,18 @@
 package com.example.demo.Controller;
 
 import java.util.*;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import com.example.demo.database.DTO.EmployeeDTO;
 import com.example.demo.database.DTO.LectureDTO;
-import com.example.demo.database.Repository.HrMapper;
-import com.example.demo.database.Repository.LectureMapper;
+import com.example.demo.database.Mapper.HrMapper;
+import com.example.demo.database.Mapper.LectureMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

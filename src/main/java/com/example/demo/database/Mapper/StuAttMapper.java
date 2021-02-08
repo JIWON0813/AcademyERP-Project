@@ -1,4 +1,4 @@
-package com.example.demo.database.Repository;
+package com.example.demo.database.Mapper;
 
 import com.example.demo.database.DTO.*;
 import org.apache.ibatis.annotations.Mapper;
