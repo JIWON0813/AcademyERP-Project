@@ -1,3 +1,9 @@
+//-----------------------
+// 제목 : 상담 수정
+// 파일명 : ConsultUpdate.js
+// 작성자 : 최인아
+// 작성일 : 
+//-----------------------
 import React from 'react'
 import axios from 'axios';
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, withStyles} from "@material-ui/core";
@@ -18,7 +24,7 @@ class ConsultUpdate extends React.Component {
       hp: this.props.ConsultList.hp,
       schedule: this.props.ConsultList.schedule,
       memo: this.props.ConsultList.memo,
-      // route: this.props.ConsultList.route,
+      route: this.props.ConsultList.route,
       writer: this.props.ConsultList.writer
     }
 
@@ -28,7 +34,7 @@ class ConsultUpdate extends React.Component {
     this.updateConsult = this.updateConsult.bind(this)
     this.handleClickOpen = this.handleClickOpen.bind(this)
     this.handleClose = this.handleClose.bind(this);
-    // this.checkboxChange = this.checkboxChange.bind(this);
+    this.checkboxChange = this.checkboxChange.bind(this);
 
   }
 
@@ -42,7 +48,7 @@ class ConsultUpdate extends React.Component {
       hp: '',
       schedule: '',
       memo: '',
-      // route: '',
+      route: '',
       writer: ''
 
     })
@@ -57,14 +63,8 @@ class ConsultUpdate extends React.Component {
   }
 
   updateConsult() {
-    console.log(this.state.name);
-    console.log(this.state.hp);
-    console.log(this.state.schedule);
-    console.log(this.state.memo);
-    // console.log(this.state.route);
-    console.log(this.state.writer);
     axios({
-      url: 'http://localhost:8080/api2/consult/edit/' + this.props.ConsultList.no,
+      url: 'http://localhost:8080/consult/edit/' + this.props.ConsultList.no,
       method: "PUT",
       headers: {'content-type': 'application/json'},
       data: {
@@ -72,7 +72,7 @@ class ConsultUpdate extends React.Component {
         hp: this.state.hp,
         schedule: this.state.schedule,
         memo: this.state.memo,
-        // route: this.state.route.toString(),
+        route: this.state.route.toString(),
         writer: this.state.writer
       }
     })
@@ -95,18 +95,17 @@ class ConsultUpdate extends React.Component {
       open: false
     })
   }
-
-  // checkboxChange = (e) => {
-  //   const route=this.state.route
-  //   let index
-  //   if (e.target.checked) {
-  //     route.push(e.target.value)
-  //   } else {
-  //     index = route.indexOf(e.target.value)
-  //     route.splice(index, 1)
-  //   }
-  //   this.setState({route:route})
-  // }
+   checkboxChange = (e) => {
+     const route=this.state.route
+     let index
+     if (e.target.checked) {
+       route.push(e.target.value)
+     } else {
+       index = route.indexOf(e.target.value)
+       route.splice(index, 1)
+    }
+     this.setState({route:route})
+   }
 
 
 

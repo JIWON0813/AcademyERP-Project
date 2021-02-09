@@ -1,7 +1,13 @@
+//---------------------------
+// 제목 : 상담 기록 작성페이지
+// 파일명 : ConsultInsert.js
+// 작성자 : 최인아
+// 작성일 : 
+//---------------------------
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles} from "@material-ui/core";
-// import {CCol, CFormGroup, CInputCheckbox, CLabel} from '@coreui/react';
+import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles, Grid} from "@material-ui/core";
+import {CCol, CFormGroup, CInputCheckbox, CLabel} from '@coreui/react';
 
 const styles = theme => ({
     hidden: {
@@ -14,13 +20,13 @@ class ConsultInsert extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // isChecked: true,
+      isChecked: true,
       name: '',
       hp: '',
       schedule: '',
       memo: '',
-      regdate:'',
-      // route:[],
+      //regdate:'',
+      route:[],
       writer: ''
 
     }
@@ -29,8 +35,8 @@ class ConsultInsert extends Component {
     this.handleValueChange = this.handleValueChange.bind(this)
     this.insertConsult = this.insertConsult.bind(this)
     this.handleClickOpen = this.handleClickOpen.bind(this)
-    this.handleClose = this.handleClose.bind(this);
-    // this.checkboxChange = this.checkboxChange.bind(this);
+    this.handleClose = this.handleClose.bind(this)
+    this.checkboxChange = this.checkboxChange.bind(this);
   }
 
   handleFormSubmit(e) {
@@ -41,7 +47,8 @@ class ConsultInsert extends Component {
       hp: '',
       schedule: '',
       memo:'',
-      // route:[],
+      //regdate:'',
+      route:[],
       writer: ''
     })
     console.log(this.state.route);
@@ -57,7 +64,7 @@ class ConsultInsert extends Component {
 
   insertConsult() {
     axios({
-      url: 'http://localhost:8080/api3/consult',
+      url: 'http://localhost:8080/consult',
       method: "POST",
       headers: {'content-type': 'application/json'},
       data: {
@@ -65,7 +72,8 @@ class ConsultInsert extends Component {
         hp: this.state.hp,
         schedule: this.state.schedule,
         memo: this.state.memo,
-        // route: this.state.route.toString(),
+        //regdate: this.state.regdate,
+        route: this.state.route.toString(),
         writer: this.state.writer
       }
     })
@@ -90,41 +98,41 @@ class ConsultInsert extends Component {
       hp: '',
       schedule: '',
       memo: '',
-      // route: [],
+      //regdate: '',
+      route: [],
       writer: '',
       open: false
     })
-    // this.props.stateRefresh();
+    this.props.stateRefresh();
   }
 
-  // checkboxChange = (e) => {
-  //   const route = this.state.route
-  //   let index
-  //   if (e.target.checked) {
-  //     route.push(e.target.value)
-  //   } else {
-  //     index = route.indexOf(e.target.value)
-  //     route.splice(index, 1)
-  //   }
-  //   this.setState({
-  //     route: route,
-  //     isChecked: !this.state.isChecked,
-  //   })
-  // }
+  checkboxChange = (e) => {
+    const route = this.state.route
+    let index
+    if (e.target.checked) {
+      route.push(e.target.value)
+    } else {
+      index = route.indexOf(e.target.value)
+      route.splice(index, 1)
+    }
+    this.setState({
+      route: route,
+      isChecked: !this.state.isChecked,
+    })
+  }
 
 
 
   render() {
     return (
       <div>
-        <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
-          입력
-        </Button>
-        <br/><br/>
+        <Grid container justify="flex-end">
+          <Button variant="contained" color="primary" onClick={this.handleClickOpen}>입력</Button>
+        </Grid>
         <Dialog open={this.state.open} onClose={this.handleClose}>
           <DialogTitle>입력창</DialogTitle>
           <DialogContent>
-          {/* <CFormGroup row>
+          <CFormGroup row>
               <CCol md="9">
                   <CFormGroup variant="custom-checkbox" inline>
                     <CInputCheckbox custom id="inline-checkbox1" name="route" value={"CALL"} 
@@ -137,7 +145,7 @@ class ConsultInsert extends Component {
                     <CLabel variant="custom-checkbox" htmlFor="inline-checkbox2" checked={this.state.isChecked}>ONLINE</CLabel>
                   </CFormGroup>
               </CCol>
-            </CFormGroup> */}
+            </CFormGroup>
             <TextField label="성명" type="text" name="name" value={this.state.name} onChange={this.handleValueChange}/><br/>
             <TextField label="전화번호" type="text" name="hp" value={this.state.hp} onChange={this.handleValueChange}/><br/>
             <TextField type="date" name="schedule" value={this.state.schedule} onChange={this.handleValueChange}/><br/>

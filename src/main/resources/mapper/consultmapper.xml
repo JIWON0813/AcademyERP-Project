@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.Mapper.ConsultMapper">
+
+    <select id="getListDetail" parameterType="Long" resultType="ConsultDTO">
+        SELECT * FROM consult
+    </select>
+
+    <select id="getList" resultType="ConsultDTO" parameterType="java.util.HashMap">
+        select * from consult where name like CONCAT('%', #{keyword}, '%')
+    </select>
+
+    
+
+</mapper> 

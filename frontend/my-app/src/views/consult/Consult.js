@@ -1,144 +1,88 @@
-import React from 'react'
-import axios from 'axios';
-import {Button, Dialog,IconButton, withStyles} from "@material-ui/core";
-import Typography from '@material-ui/core/Typography';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import CloseIcon from '@material-ui/icons/Close';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
-import ConsultUpdate from "./ConsultUpdate";
-import ConsultDelete from "./ConsultDelete";
+import React, { Component } from "react";
+import axios from "axios";
+import CIcon from '@coreui/icons-react';
+import { CButton, CCard, CCardBody, CCardFooter, CCardHeader, CCol, CRow } from '@coreui/react'
 
-const styles = theme => ({
-  hidden: {
-    display: 'none'
-  },
-  root: {
-    margin: 0,
-    padding: theme.spacing(2),
-  },
-  closeButton: {
-    position: 'absolute',
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: theme.palette.grey[500],
-  },
-});
 
-const DialogTitle = withStyles(styles)((props) => {
-  const { children, classes, onClose, ...other } = props;
-  return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle>
-  );
-});
-
-const DialogContent = withStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2),
-  },
-}))(MuiDialogContent);
-
-const DialogActions = withStyles((theme) => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(1),
-  },
-}))(MuiDialogActions);
-
-class Consult extends React.Component {
-
+class Consults extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      ConsultList: ""
+        ConsultList: ""
     }
-
-    this.handleClickOpen = this.handleClickOpen.bind(this)
-    this.handleClose = this.handleClose.bind(this);
-
   }
 
-
-
-componentDidMount() {
-  this.getApi();
-}
+  componentDidMount() {
+    this.getApi();
+  }
 
 getApi = () => {
-  axios.get("http://localhost:8080/api2/consult/"+this.props.id)
-    .then(res => {
-      this.setState({
-        ConsultList: res.data.message
-      })
+  const { params } = this.props.match;
+    axios.get("http://localhost:8080/consultdetail?id="+params.id)
+        .then(res => {
+            this.setState({
+              ConsultList: res.data.list
+            })
+        })
+        .catch(res => console.log(res))
+}
+
+delete(){
+  axios.delete(`http://localhost:8080/consult/`+this.state.ConsultList.no)
+    .then(
+      alert("삭제가 되었습니다."),
+      document.location.href = "#/consult"
+    )
+    .catch(function (error){
+      console.log(error)
     })
-    .catch(res => console.log(res))
 }
 
 goBack = () => {
   this.props.history.goBack();
 }
 
-  handleClickOpen() {
-    this.setState({
-      open: true
-    });
-  }
-
-  handleClose() {
-
-    this.setState({
-
-      open: false
-    })
-  }
-
-
-
   render() {
+    const tempStyle={float:"left"}
+    const tempStyle2={float:"right"}
+    
     const { ConsultList } = this.state;
 
     return (
-      <div>
-          <Button color="primary" onClick={this.handleClickOpen}>{ConsultList.name}</Button>
-        <Dialog onClose={this.handleClose} aria-labelledby="customized-dialog-title" open={this.state.open}
-                fullWidth={true}
-                maxWidth = {'xs'}>
-          <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-            상담신청인 : {ConsultList.name}</DialogTitle>
-          <DialogContent dividers>
-            <table className="table table-striped table-hover">
-              <tbody>  
-              <tr><td>{`no:`}</td><td><strong>{ConsultList.no}</strong></td></tr>
-              <tr><td>{`성명:`}</td><td><strong>{ConsultList.name}</strong></td></tr>
-              <tr><td>{`전화번호:`}</td><td><strong>{ConsultList.hp}</strong></td></tr>
-              <tr><td>{`상담일자:`}</td><td><strong>{ConsultList.schedule}</strong></td></tr>
-              <tr><td>{`상담내용:`}</td><td><strong>{ConsultList.memo}</strong></td></tr>
-              {/* <tr><td>{`접수날짜:`}</td><td><strong>{ConsultList.regdate}</strong></td></tr> */}
-              {/* <tr><td>{`상담경로:`}</td><td><strong>{ConsultList.route}</strong></td></tr> */}
-              <tr><td>{`작성자:`}</td><td><strong>{ConsultList.writer}</strong></td></tr>
-              </tbody>
-            </table>
-          </DialogContent>
-          <DialogActions>
-            <ConsultUpdate stateRefresh={this.props.stateRefresh} ConsultList={ConsultList}/>
-            <ConsultDelete stateRefresh={this.props.stateRefresh} id={ConsultList.no}/>
-          </DialogActions>
-
-        </Dialog>
-
-      </div>
-    )
-
+      <CRow>
+      <CCol lg={6}>
+        <CCard>
+          <CCardHeader>
+          <div style={tempStyle2}>
+            <button onClick={this.goBack}>뒤로가기</button>
+          </div> 
+          <div style={tempStyle}>
+            <h3>Name: {ConsultList.name}</h3>
+          </div>
+          </CCardHeader>
+          <CCardBody>
+              <table className="table table-striped table-hover">
+                <tbody>
+                  <tr><td>{`NO:`}</td><td><strong>{ConsultList.no}</strong></td></tr>
+                  <tr><td>{`name:`}</td><td><strong>{ConsultList.name}</strong></td></tr>
+                  <tr><td>{`hp:`}</td><td><strong>{ConsultList.hp}</strong></td></tr>
+                  <tr><td>{`schedule:`}</td><td><strong>{ConsultList.schedule}</strong></td></tr>
+                  <tr><td>{`memo:`}</td><td><strong>{ConsultList.memo}</strong></td></tr>
+                  <tr><td>{`route:`}</td><td><strong>{ConsultList.route}</strong></td></tr>
+                  <tr><td>{`writer:`}</td><td><strong>{ConsultList.writer}</strong></td></tr>
+                </tbody>
+              </table>
+              <CCardFooter align="right">
+                <CButton  size="sm" color="primary" onClick={()=>{this.handleFormSubmit()}}><CIcon name="cil-scrubber" /> Submit</CButton>
+                &nbsp;&nbsp;&nbsp; 
+                <CButton size="sm" color="danger" onClick={(e)=>{this.delete()}}><CIcon name="cil-ban" /> Delete</CButton>
+              </CCardFooter>
+          </CCardBody>
+        </CCard>
+      </CCol>
+    </CRow>
+    );
   }
-
 }
-export default withStyles(styles)(Consult)
 
-
+export default Consults;
