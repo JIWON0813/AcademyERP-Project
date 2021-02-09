@@ -2,45 +2,75 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.demo.database.Mapper.LectureMapper">
-
-    <select id="getBranch" resultType="BranchEntity">
-    select no,name from branch
+    <select id="getTeacher" resultType="BoardEntity" parameterType="Long">
+        select no, name
+        from employee
+        where branch=#{branch} and department=3
     </select>
 
-    <select id="getTeacher" resultType="BoardEntity" parameterType="int">
-        select no,name from employee where branch=#{branch} and department=3
-    </select>
-
-    <select id="getRoom" resultType="RoomEntity" parameterType="int">
-        select * from room where branch=#{branch}
-    </select>
-
-    <select id="getLectureList" resultType="LectureDTO">
-        SELECT a.no,a.name,b.name as 'instructor',a.price,a.students,c.name as 'classroom',a.start_date,a.end_date,a.day,a.start_time,a.end_time,
-               a.part,d.name as 'office'
-        FROM lecture a
-                 inner join employee b ON  a.teacher=b.no
-                 inner join room c ON  a.room=c.no
-                 inner join branch d ON  a.branch=d.no
-        ORDER BY no ASC;
-    </select>
 
     <select id="getListDetail" parameterType="Long" resultType="LectureDTO">
-        SELECT a.*,b.name as 'instructor',c.name as 'classroom',d.name as 'office'
+        SELECT a.*, b.name as 'instructor',c.name as 'classroom',d.name as 'field',e.name as 'office'
         FROM lecture a
-                 inner join employee b ON  a.teacher=b.no
-                 inner join room c ON  a.room=c.no
-                 inner join branch d ON  a.branch=d.no
+                 inner join employee b ON a.teacher = b.no
+                 inner join room c ON a.room = c.no
+                 inner join part d ON a.part = d.no
+                 inner join branch e ON a.branch = e.no
         WHERE a.no = #{id}
         ORDER BY no ASC;
+    </select>
+
+    <select id="getLectureList" resultType="LectureDTO" parameterType="java.util.HashMap">
+        SELECT a.no,
+               a.name,
+               b.name as 'instructor',
+               a.price,
+               a.students,
+               c.name as 'classroom',
+               a.start_date,
+               a.end_date,
+               a.day,
+               a.start_time,
+               a.end_time,
+               d.name as'field',
+               e.name as 'office',
+        (SELECT COUNT(*) FROM student f WHERE a.no= f.lecture) as 'currentStudents'
+        FROM lecture a
+                 inner join employee b ON a.teacher = b.no
+                 inner join room c ON a.room = c.no
+                 inner join part d ON a.part = d.no
+                 inner join branch e ON a.branch = e.no
+        where if(#{branch} = 'null', 1 = 1, a.branch = #{branch})
+          and if(#{condition} = 'name', a.name like CONCAT('%', #{keyword}, '%'),
+                 if(#{condition} = 'instructor', b.name like CONCAT('%', #{keyword}, '%'),
+                    if(#{condition} = 'part', d.name like CONCAT('%', #{keyword}, '%'),
+                       a.name like CONCAT('%', #{keyword}, '%')
+                           OR b.name like CONCAT('%', #{keyword}, '%')
+                           OR d.name like CONCAT('%', #{keyword}, '%')
+                        )))
+        ORDER BY no desc
+            LIMIT #{vo.firstRecordIndex}, #{vo.recordsPerPage}
+    </select>
+
+    <select id="totalCount" parameterType="java.util.HashMap" resultType="int">
+        SELECT COUNT(*)
+        FROM lecture a
+            inner join employee b ON a.teacher = b.no
+            inner join room c ON a.room = c.no
+            inner join part d ON a.part = d.no
+            inner join branch e ON a.branch = e.no
+        where if(#{branch} = 'null', 1 = 1, a.branch = #{branch})
+          and if(#{condition} = 'name', a.name like CONCAT('%', #{keyword}, '%'),
+            if(#{condition} = 'instructor', b.name like CONCAT('%', #{keyword}, '%'),
+            if(#{condition} = 'part', d.name like CONCAT('%', #{keyword}, '%'),
+            a.name like CONCAT('%', #{keyword}, '%')
+           OR b.name like CONCAT('%', #{keyword}, '%')
+           OR d.name like CONCAT('%', #{keyword}, '%')
+            )))
     </select>
 
     <select id="getTime" parameterType="int" resultType="LectureDTO">
         select start_date,end_date,day from test.lecture where no = 21;
     </select>
 
-
-
 </mapper>
-
-

@@ -11,8 +11,6 @@ import lombok.*;
 
 @Entity
 @Table(name = "employee")
-@Getter
-@Setter
 @Data
 public class EmployeeEntity implements Serializable {
 

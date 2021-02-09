@@ -21,6 +21,7 @@ class login extends Component {
     window.sessionStorage.setItem('id',params.name);
     window.sessionStorage.setItem('no',params.no);
     window.sessionStorage.setItem('dep',params.dep);
+    console.log( window.sessionStorage.getItem('dep',params.dep))
     this.setState ({asd: params.no});
     alert("로그인");
     document.location.href = "#";
@@ -37,7 +38,7 @@ class login extends Component {
   render() {
     return(
       <div>
-        
+
       </div>
     );
   }

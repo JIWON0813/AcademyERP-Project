@@ -1,7 +1,5 @@
 package com.example.demo.database.DTO;
 
-import java.util.Iterator;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,7 +21,9 @@ public class LectureDTO {
     private String end_time;
     private int part;
     private int branch;
+    private int currentStudents;
     private String office;
+    private String field;
 
     public String toString() {
         StringBuffer buffer = new StringBuffer();
@@ -32,7 +32,7 @@ public class LectureDTO {
         buffer.append(end_date);
         buffer.append("/");
         buffer.append(day);
-        
+
         return buffer.toString();
     }
 

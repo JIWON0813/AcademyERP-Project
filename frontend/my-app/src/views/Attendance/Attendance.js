@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AttTable from "./AttTable";
-import '../css/table.css';
+import '../Template/css/table.css';
 import Down from '../../suminCP/excel';
 import {
   CButton,
@@ -24,7 +24,7 @@ class Users extends Component {
         mode: input
       }));
     }
-  
+
 
   render() {
     const _default=0,_weekly=1,_monthly=2,_chart=3;
