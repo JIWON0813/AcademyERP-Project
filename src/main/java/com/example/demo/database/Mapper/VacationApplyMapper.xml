@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.database.Repository.VacationApplyRepository">
+
+    <insert id="insert" parameterType="VacationApplyEntity">
+        insert into vacation_apply values (null, #{employee_no}, #{start_day}, #{end_day}, #{use_vacation}, CURDATE()) 
+    </insert> 
+
+     <select id="count" resultType="int">
+        select count(*) from vacation_apply
+    </select>
+
+    <select id="get" resultType="VacationApplyEntity">
+        SELECT ROW_NUMBER() OVER() as RN, A.* 
+            FROM (
+                select * from vacation_apply
+            ) A ORDER BY no ASC LIMIT #{start}, #{cntPerPage} 
+    </select>
+
+    <select id="getApply" resultType="VacationApplyEntity">
+        select * from vacation_apply where no=#{no}
+    </select>
+
+</mapper>  
+ 

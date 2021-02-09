@@ -1,4 +1,4 @@
-package com.example.demo.database.Controller;
+package com.example.demo.Controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
 
 import com.example.demo.database.DTO.*;
-import com.example.demo.database.Service.*;
+import com.example.demo.Service.*;
 
 @RestController
 public class CalendarController {

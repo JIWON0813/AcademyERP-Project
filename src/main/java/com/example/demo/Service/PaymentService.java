@@ -1,4 +1,4 @@
-package com.example.demo.database.Service;
+package com.example.demo.Service;
 
 import java.util.*;
 
@@ -25,6 +25,18 @@ public class PaymentService {
    
     public int approved(HashMap<String,Object> to){
         return PaymentRepo.approved(to);
+    }
+
+    public int sign(HashMap<String,Object> to){
+        return PaymentRepo.sign(to);
+    }
+
+    public String selectSign(HashMap<String,Object> no){
+        return PaymentRepo.selectSign(no);
+    }
+
+    public int insert(PaymentEntity entity){
+        return PaymentRepo.insert(entity);
     }
 
 }

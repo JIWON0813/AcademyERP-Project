@@ -1,10 +1,11 @@
+
 import React, { Component } from "react";
-import PaymentData from "./user/paymentData.js"
+import VacationApply from "./admin/vacationApply.js"
 export default class vacation extends Component {
     render() {
         return(
             <>
-            <PaymentData></PaymentData>
+            <VacationApply></VacationApply>
             </>
         );
     }

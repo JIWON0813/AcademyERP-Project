@@ -4,10 +4,8 @@ import {
     CDataTable
 } from '@coreui/react'
 import {
-    CButton,
     CCard,
     CCardBody,
-    CCardFooter,
     CCardHeader,
     CFade,
 } from '@coreui/react';
@@ -20,6 +18,8 @@ const PaymentData = ({ match }) => {
         data: "",
         table: "",
         sign: "",
+        signList:[],
+        playerList:[]
         
     });
 
@@ -28,22 +28,11 @@ const PaymentData = ({ match }) => {
     }, []);
 
     
-    const fileChangedHandler = (e) => {
-        const file = new FormData();
-        file.append( "file",e.target.files[0]);
-        file.append( "no",window.sessionStorage.getItem("no"));
-        const config = {
-            headers: {
-            "content-type": "multipart/form-data"
-            }
-        };
-        axios.post(`http://localhost:8080/upload`, file, config);
-    };
 
-    const { data, table,sign } = inputs;
+    const { data, table,signList ,playerList} = inputs;
 
     const getData = () => {
-        axios.get("http://localhost:8080/payment/" + match.params.no+"/"+window.sessionStorage.getItem("no"))
+        axios.get("http://localhost:8080/payment/" + match.params.no)
             .then(res => {
                 console.log(res)
                 let temp = [];
@@ -63,51 +52,35 @@ const PaymentData = ({ match }) => {
                     }
                     fields = ['no', 'start_day','end_day', 'name', ];
                 }
+                let playList=res.data.list.player.split("/");
+                let userList=res.data.user;
+  
+                let playerLista=[];
+                for(let i=0;i<playList.length;i++){
+                    for(let l=0;l<userList.length;l++){
+                        if(Number(playList[i])===Number(userList[l].no)){
+    
+                            playerLista.push(userList[l].name);
+                        }
+                    }
+                }
                 setInputs({
                     data: res.data.list,
                     table: temp,
-                    sign: res.data.selectSign
+                    sign: res.data.selectSign,
+                    signList: res.data.signList,
+                    playerList:playerLista
                 })
             })
             .catch(res => console.log(res))
     }
 
-    const payment = () => {
-        var params = new URLSearchParams();
-        params.append('id', window.sessionStorage.getItem('no'));
-        params.append('no', data.no);
-        axios.post(`http://localhost:8080/payment/approved`,params)
-        .then(res => {
-            if(res.data){
-            alert("결제되었습니다");
-            window.location.reload(false);
-            }else{
-            alert("이미 결제했습니다.");
-            }
-        })
-        .catch(res => console.log(res))       
-    }
 
-    const onChange = (e) => {
-        const { value, name } = e.target;
-        setInputs({
-        ...inputs,
-        [name]: value
-        });
-    };
-
+ 
 
     return (
         <div>
-            {sign === false?
-                <div className="App">
-                    <input type="file"  onChange={fileChangedHandler} />
-                </div>:
-                <div>
-                
-                    <img src={process.env.PUBLIC_URL + '/sign/'+sign} alt="copy url" />
-                </div>
-            }
+            
             <CCard>
                 <CCardHeader>
                     <h2>{data.title}</h2>
@@ -128,9 +101,17 @@ const PaymentData = ({ match }) => {
                     </CFade>
                     
                 </CCardBody>
-                <CCardFooter style={{textAlign: "right"}}>
-                    <CButton color="primary" onClick={payment}>결제</CButton>
-                </CCardFooter>
+                결제해야하는 사람
+                <div>
+                    {playerList&&playerList.map((i)=>{
+                        return(<font>{i}</font>)
+                    })}
+                </div>
+                결제한 사인
+                <br></br>
+                {signList&&signList.map((i)=>{
+                    return(<img src={process.env.PUBLIC_URL + '/sign/'+i} alt="copy url"  width="40"height="40"/>);
+                })}
             </CCard>
             
         </div>

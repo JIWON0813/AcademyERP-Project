@@ -1,4 +1,4 @@
-package com.example.demo.database.Controller;
+package com.example.demo.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
-import com.example.demo.database.Service.*;
+import com.example.demo.Service.*;
 import com.example.demo.database.DTO.*;
 
 @RestController
@@ -64,7 +64,7 @@ public class VacationController {
         return result;
     }
     
-    @PostMapping("/Vacation")  //반환타입 없다 오류
+    @PostMapping("/Vacation")  
     public int VacationInsert (@RequestBody VacationEntity param){
         return VacationService.insertVacation(param);
     }

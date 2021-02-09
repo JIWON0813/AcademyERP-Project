@@ -1,4 +1,4 @@
-package com.example.demo.database.Controller;
+package com.example.demo.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import com.example.demo.database.Service.*;
+import com.example.demo.Service.*;
 import com.example.demo.database.DTO.*;
 
 @RestController

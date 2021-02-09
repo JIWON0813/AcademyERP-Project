@@ -1,26 +1,32 @@
-package com.example.demo.database.Controller;
+package com.example.demo.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
-import com.example.demo.database.Service.*;
+import javax.swing.filechooser.FileSystemView;
+
+import com.example.demo.Service.*;
 import com.example.demo.database.DTO.*;
 import com.example.demo.database.Repository.EmployeeRepository;
+
 
 @RestController
 public class PaymentController {
     @Autowired
     private PaymentService PaymentService;
     @Autowired
-	private VacationService VacationService;
+	private VacationApplyService VacationApplyService;
     @Autowired
     private EmployeeRepository EmployeeService;
    
@@ -73,11 +79,26 @@ public class PaymentController {
         result.put("page",vo);
         return result;
     }  
+    
+
+    @GetMapping("/adpayment")
+    public Map<String,Object> adpayment() {
+        HashMap<String,Object> result = new HashMap<>();
+        List<PaymentEntity> all = PaymentService.payment();
+       
+		List<EmployeeEntity> list = EmployeeService.findAll();
+        result.put("user", list);
+        result.put("list", all); 
+
+        return result;
+    }  
+
+
 
 
     //1: 휴가 //2: 출퇴
-    @GetMapping("/payment/{id}")
-    public Map<String,Object> paymentget( @PathVariable(value="id")int id) {
+    @GetMapping("/payment/{id}/{no}")
+    public Map<String,Object> paymentget( @PathVariable(value="id")int id,@PathVariable("no") int num) {
         HashMap<String,Object> result = new HashMap<>();
         PaymentEntity list = PaymentService.getpayment(id);
         List<EmployeeEntity> user = EmployeeService.findAll();
@@ -89,12 +110,18 @@ public class PaymentController {
             case 1 : 
                 String no[] = kinds_no.split("/");
                 for(int i=0;i<no.length;i++)
-                    table.add( VacationService.vacation(Integer.parseInt(no[i])) );
+                    table.add( VacationApplyService.getApply(Integer.parseInt(no[i])) );
                 break;
             case 2 : 
                 
                 break;  
             default :      
+        }
+        result.put("selectSign",false);
+        HashMap<String,Object> to= new HashMap<>();
+        to.put("no", num);
+        if((PaymentService.selectSign(to)!=null)){
+            result.put("selectSign",PaymentService.selectSign(to));
         }
         
         result.put("user",user);
@@ -104,7 +131,45 @@ public class PaymentController {
     }
 
 
-    @PostMapping("/payment/approved")/////////////////////////
+    @GetMapping("/payment/{no}")
+    public Map<String,Object> paymentget( @PathVariable("no") int num) {
+        HashMap<String,Object> result = new HashMap<>();
+        PaymentEntity list = PaymentService.getpayment(num);
+        List<EmployeeEntity> user = EmployeeService.findAll();
+        int kinds = list.getKinds();
+        String kinds_no = list.getKinds_no();
+        List<Object> table = new ArrayList<Object>();
+
+        switch(kinds){
+            case 1 : 
+                String no[] = kinds_no.split("/");
+                for(int i=0;i<no.length;i++)
+                    table.add( VacationApplyService.getApply(Integer.parseInt(no[i])) );
+                break;
+            case 2 :   
+                
+                break;  
+            default :      
+        }
+        result.put("selectSign",false);
+        List<String> signList =new ArrayList<String>();
+        String app=list.getApproved();
+        if(app!=null){
+            String apparr[]=app.split("/");
+            HashMap<String,Object> to = new HashMap<>();
+            for(int i=0;i<apparr.length;i++){
+                to.put("no", Integer.parseInt(apparr[i]));
+                signList.add(PaymentService.selectSign(to)); 
+            }
+        }
+        result.put("signList",signList);
+        result.put("user",user);
+        result.put("list", list); 
+        result.put("table", table);
+        return result;
+    }
+
+    @PostMapping("/payment/approved")
     public int approved( @RequestParam("no")int no, @RequestParam("id")int id) {
         PaymentEntity get = PaymentService.getpayment(no);
         String app=get.getApproved();
@@ -117,7 +182,7 @@ public class PaymentController {
                 }
             }   
         }else{
-            app="/";
+            app="";
         }
 
         if(check){
@@ -127,7 +192,30 @@ public class PaymentController {
             to.put("no",no);
             return PaymentService.approved(to); 
         }
-        return 0;
+        return 0; 
+    }
+
+    @PostMapping("/payment")
+    public int insert(@RequestBody PaymentEntity entity){
+        return PaymentService.insert(entity);
+    }
+
+    @PostMapping("/upload")
+    public String uploadSingle(@RequestParam("file") MultipartFile file,@RequestParam("no") int no) throws Exception {
+        HashMap<String,Object> to= new HashMap<>();
+        String filePath = System.getProperty("user.dir")+"/frontend/my-app/public/sign/";
+        File target = new File(filePath, file.getOriginalFilename());
+        try {
+            file.transferTo(target);
+            System.out.println("성공");
+            to.put("filename", file.getOriginalFilename());
+            to.put("employee_no",no);
+            PaymentService.sign(to);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+  
+        return "uploaded";
     }
 
 }

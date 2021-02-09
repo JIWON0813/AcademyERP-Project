@@ -1,4 +1,4 @@
-package com.example.demo.database.Controller;
+package com.example.demo.Controller;
 
 import com.example.demo.database.DTO.*;
 import com.example.demo.database.Repository.LectureMapper;

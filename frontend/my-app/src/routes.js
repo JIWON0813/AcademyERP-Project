@@ -69,9 +69,12 @@ const sessionLog = React.lazy(() => import('./views/users/sessionLog'));
 const Attendance_user = React.lazy(() => import('./views/Attendance/index_view'));
 const vacation = React.lazy(() => import('./views/vacation/index'));
 const vacation_user = React.lazy(() => import('./views/vacation/index_user'));
-const payment = React.lazy(() => import('./views/payment/index'))
-const test = React.lazy(() => import('./suminCP/calendar'))
-const paymentget = React.lazy(() => import('./views/payment/getPayment/getPayment'))
+const payment = React.lazy(() => import('./views/payment/index'));
+const adpayment = React.lazy(() => import('./views/payment/admin/paymentData'));
+const adpaymentget = React.lazy(() => import('./views/payment/admin/getPayment'));
+const test = React.lazy(() => import('./suminCP/calendar'));
+const paymentget = React.lazy(() => import('./views/payment/getPayment/getPayment'));
+const vacationApply = React.lazy(() => import('./views/vacation/index_apply'));
 // -------------박수민
 
 
@@ -156,6 +159,9 @@ const routes = [
   { path: '/payment', exact: true, name: 'payment', component: payment },
   { path: '/payment/:no', exact: true, name: 'payment', component: paymentget },
   { path: '/test', exact: true, name: 'payment', component: test },
+  { path: '/vacation_apply', exact: true, name: 'vacationApply', component: vacationApply },
+  { path: '/adpayment', exact: true, name: 'adpayment', component: adpayment },
+  { path: '/adpaymentget/:no', exact: true, name: 'adpayment', component: adpaymentget },
   // -------------박수민
 ];
 

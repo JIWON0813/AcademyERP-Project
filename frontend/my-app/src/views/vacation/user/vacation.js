@@ -138,10 +138,10 @@ const Info = () => {
       return
     }
     let selectDay = 0;
-    let select=[];
+    let selects="";
     for (var i=0; i<check_count; i++) {
       if (document.getElementsByName("check")[i].checked === true) {
-        select.push(document.getElementsByName("check")[i].value+"/")
+        selects+=document.getElementsByName("check")[i].value+"/";
         for(let l=0;l<data.length;l++){
           if(Number(document.getElementsByName("check")[i].value) === Number(data[l].no)){
             selectDay+=data[l].day
@@ -154,7 +154,7 @@ const Info = () => {
       page: page,
       data: data,
       days: selectDay,
-      selected: select
+      selected: selects
     })
   }
 

@@ -1,4 +1,4 @@
-package com.example.demo.database.Service;
+package com.example.demo.Service;
 
 import java.util.*;
 
@@ -19,5 +19,20 @@ public class VacationApplyService {
         int result = VacationApplyRepo.insert(dto);
         return result;
     }
+
+    public List<VacationApplyEntity> get(HashMap<String,Object> to){
+        List<VacationApplyEntity> result = VacationApplyRepo.get(to);
+        return result;
+    }
+
+    public int count(){
+        int result = VacationApplyRepo.count();
+        return result;
+    }
+
+    public VacationApplyEntity getApply(int no){
+        return VacationApplyRepo.getApply(no);
+    }
+
 
 }

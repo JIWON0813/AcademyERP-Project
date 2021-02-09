@@ -11,4 +11,5 @@ public class VacationApplyEntity {
     private String start_day;
     private String end_day;
     private String use_vacation;
+    private String day;
 }

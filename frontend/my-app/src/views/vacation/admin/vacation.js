@@ -9,15 +9,9 @@ import {
 import { CCol, CFormGroup, CInput, CLabel } from '@coreui/react';
 import axios from 'axios';
 import {
-  CBadge,
-  CCard,
-  CCardBody,
-  CCardHeader,
-  CDataTable,
-  CRow
+  CDataTable
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
-import { element } from 'prop-types';
+
 
 
 let fields = ['no', 'employee_no', 'day', 'name', '수정'];
@@ -40,7 +34,7 @@ const Info = () => {
     getData();
   }, []);
 
-  const { name, nickname, open, open2, day, page, data, employeeNo, selected , open3 } = inputs;
+  const { name,  open, open2, day, page, data, employeeNo, selected , open3 } = inputs;
   const onChange = (e) => {
     const { value, name } = e.target;
     setInputs({
@@ -48,12 +42,7 @@ const Info = () => {
       [name]: value
     });
   };
-  const onReset = () => {
-    setInputs({
-      name: '',
-      nickname: '',
-    })
-  };
+
 
 
   const getData = () => {
@@ -81,15 +70,6 @@ const Info = () => {
       .catch(res => console.log(res))
   }
 
-  const eventClick = (info) => {
-    let { events } = this.state;
-    let color;
-    for (let i = 0; i < events.length; i++) {
-      if (Number(events[i].id) === Number(info.event.id)) {
-        color = events[i].color
-      }
-    }
-  }
 
   const handleClickOpen = () => {
     setInputs({

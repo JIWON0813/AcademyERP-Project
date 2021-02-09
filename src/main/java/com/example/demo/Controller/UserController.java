@@ -1,4 +1,4 @@
-package com.example.demo.database.Controller;
+package com.example.demo.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
