@@ -6,10 +6,17 @@
     <typeAliases>
         <package name="com.example.demo.database.Entity"/>
         <package name="com.example.demo.database.DTO"/>
+        <package name="com.example.demo.database.Entity"/>
     </typeAliases>
     <mappers>
+        <mapper resource="com/example/demo/database/Mapper/AttendanceMapper.xml"/>
+        <mapper resource="com/example/demo/database/Mapper/branchmapper.xml"/>
+        <mapper resource="com/example/demo/database/Mapper/lecturemapper.xml"/>
+        <mapper resource="com/example/demo/database/Mapper/VacationMapper.xml"/>
+        <mapper resource="com/example/demo/database/Mapper/PaymentMapper.xml"/>
+        <mapper resource="com/example/demo/database/Mapper/VacationApplyMapper.xml"/>
         <mapper resource="mapper/Lecturemapper.xml"/>
         <mapper resource="mapper/Hrmapper.xml"/>
         <mapper resource="mapper/StudentAttmapper.xml"/>
     </mappers>
-</configuration>
+</configuration> 

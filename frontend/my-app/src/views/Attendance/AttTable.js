@@ -43,7 +43,8 @@ class AttTable extends Component {
         end: '',
         cyear: '',
         mode: this.props.mode,
-        loopCheck: true
+        loopCheck: true,
+        page: ''
     }
     this.nameChange = this.nameChange.bind(this);
     this.dayChange = this.dayChange.bind(this);
@@ -53,6 +54,7 @@ class AttTable extends Component {
     this.depChange2 = this.depChange2.bind(this);
     this.dateDay = this.dateDay.bind(this);
     this.getWeekly = this.getWeekly.bind(this);
+    this.DayReset = this.DayReset.bind(this);
   }
   componentDidMount() {
     this.getApi();
@@ -139,17 +141,19 @@ class AttTable extends Component {
     })
     axios({
       method:'get',
-      url:encodeURI('http://localhost:8080/api2/attfind?day='+this.state.day+'&name='+e.target.value+'&dep='+this.state.dep),
+      url:encodeURI('http://localhost:8080/api2/attfind/'+1+'/'+page.cntPerPage+'?day='+this.state.day+'&name='+e.target.value+'&dep='+this.state.dep),
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
         console.log(res);
         this.setState({
-          ItemList: res.data.list
+          ItemList: res.data.list,
+          page: res.data.page
         })
       }).catch(res => console.log(res))
   }
   dayChange = (e) => {        //day변경
+    const {page}=this.state;
     this.setState({
       day: e.target.value,
       loopCheck: true
@@ -157,29 +161,32 @@ class AttTable extends Component {
     this.DayToSETime(e.target.value);
     axios({
       method:'get',
-      url:encodeURI('http://localhost:8080/api2/attfind?day='+e.target.value+'&name='+this.state.name+'&dep='+this.state.dep),
+      url:encodeURI('http://localhost:8080/api2/attfind/'+1+'/'+page.cntPerPage+'?day='+e.target.value+'&name='+this.state.name+'&dep='+this.state.dep),
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
         console.log(res);
         this.setState({
-        ItemList: res.data.list
+          ItemList: res.data.list,
+          page: res.data.page
         })
       }).catch(res => console.log(res))
   }
   depChange = (e) => {        //dep변경
+    const {page}=this.state;
     this.setState({
       dep: e.target.value
     })
     axios({
       method:'get',
-      url:encodeURI('http://localhost:8080/api2/attfind?day='+this.state.day+'&name='+this.state.name+'&dep='+e.target.value),
+      url:encodeURI('http://localhost:8080/api2/attfind/1/'+page.cntPerPage+'?day='+this.state.day+'&name='+this.state.name+'&dep='+e.target.value),
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
         console.log(res);
         this.setState({
-        ItemList: res.data.list
+          ItemList: res.data.list,
+          page: res.data.page
         })
       }).catch(res => console.log(res))
   }
@@ -201,7 +208,9 @@ class AttTable extends Component {
   }
   dayChange2 = (e) => {       //주간 day변경
     var Time=this.DayToSETime(e.target.value);
-
+    this.setState({
+      day: e.target.value
+    })
     axios({
       method:'get',
       url:encodeURI('http://localhost:8080/api2/attfind3?start='+Time.start+'&end='+Time.end+'&name='+this.state.name+'&dep='+this.state.dep),
@@ -274,13 +283,14 @@ class AttTable extends Component {
     })
     axios({
       method:'get',
-      url:encodeURI('http://localhost:8080/api2/attfind?day=&name='+this.state.name+'&dep='+this.state.dep),
+      url:encodeURI('http://localhost:8080/api2/attfind/1/10?day=&name='+this.state.name+'&dep='+this.state.dep),
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {
         console.log(res);
         this.setState({
-        ItemList: res.data.list
+        ItemList: res.data.list,
+        page: res.data.page
         })
       }).catch(res => console.log(res))
   }
@@ -313,7 +323,7 @@ class AttTable extends Component {
      console.log(re);
     return re;
   }
-  cyearsMake(){
+  cyearsMake(){ //연도별 데이터 만들기
     const { depList } = this.state;
     var result=[];
     var Tlabel,Tbgc,Tdata=[];
@@ -336,11 +346,12 @@ class AttTable extends Component {
     return result;
   }
   getApi = () => {
-    axios.get("http://localhost:8080/api2/att")
+    axios.get("http://localhost:8080/api2/att/1/10")
         .then(res => {
             console.log(res);
             this.setState({
-              ItemList: res.data.list
+              ItemList: res.data.list,
+              page: res.data.page
             })
         })
         .catch(res => console.log(res))
@@ -353,10 +364,53 @@ class AttTable extends Component {
     })
     .catch(res => console.log(res))
   }
+  selChange() { //몇줄로 볼지
+    var sel = document.getElementById('cntPerPage').value;
+    this.movePage(1,sel)
+  }
+  pageChange(selPage){ //페이지 이동 클릭
+    const {page}=this.state;
+    this.movePage(selPage,page.cntPerPage)
+  }
+  nextpage(){ //다음 페이지
+    const {page}=this.state;
+    this.movePage(page.endPage+1,page.cntPerPage)
+  }
+  prevpage(){ //이전 페이지
+    const {page}=this.state;
+    this.movePage(page.startPage-1,page.cntPerPage)
+  }
+  movePage(nowpage,perpage){ //페이지 이동
+    var add
+    if(this.state.dep.length + this.state.name.length + this.state.day.length > 0){
+      add="http://localhost:8080/api2/attfind/"+nowpage+"/"+perpage+"?day="
+      +this.state.day+"&name="+this.state.name+"&dep="+this.state.dep
+    }else{
+      add="http://localhost:8080/api2/att/"+nowpage+"/"+perpage
+    }
+    axios.get(add)
+        .then(res => {
+            console.log(res);
+            this.setState({
+              ItemList: res.data.list,
+              page: res.data.page
+            })
+        })
+        .catch(res => console.log(res))
+  }
+  makeMap(start,end){ //배열 만드는 함수
+    var result=[];
+    for(var i=start;i<=end;i++){
+      result.push(i);
+    }
+    return result;
+  }
+
 
   render() {
     const { ItemList } = this.state;
     const { depList } = this.state;
+    const { page } = this.state;
     const { q } = this.state;
     const { cyear } = this.state;
     var years;
@@ -422,7 +476,7 @@ class AttTable extends Component {
                 <CInput type="email" id="email-input" onChange={this.nameChange} value={this.state.name} name="email-input" placeholder="name" autoComplete="name"/>
               </CCol>
               <CCol col="6" sm="3" md="2" xl className="mb-3 mb-xl-0">
-                <CSelect custom id="ccyear" onChange={this.depChange} value={this.state.dep}>
+                <CSelect custom id="ccyear" onChange={this.depChange} value={this.state.dep} name="dep-input">
                   <option value="">부서선택</option>
                     {depList&&depList.map((itemdata, insertIndex) => {
                       return(<option value={itemdata.no} >{insertIndex+1}.{itemdata.name}</option>);
@@ -435,6 +489,14 @@ class AttTable extends Component {
             </CRow>
             <br/>
             </div>
+            <div style={{float: "right"}}>
+              <select id="cntPerPage" name="sel" onChange={() => {this.selChange()}}>
+                <option value="5">5줄 보기</option>
+                <option value="10" selected="selected">10줄 보기</option>
+                <option value="15">15줄 보기</option>
+                <option value="20">20줄 보기</option>
+              </select>
+            </div>
             <table name="ATT" class="default">
             <thead>
               <tr class="default">
@@ -442,11 +504,11 @@ class AttTable extends Component {
                 <td class="default">이름</td><td class="default">직급</td><td class="default">출근시간</td>
                 <td class="default">퇴근시간</td><td class="default">출근구분</td><td class="default">퇴근구분</td>
                 <td class="default">연장근무시간</td><td class="default">총근무시간</td>
-                <td class="default">수정</td>
+                <td class="default" id="del">수정</td>
               </tr>
             </thead>
             <tbody>
-            {ItemList&&ItemList.map((att) => {
+            {ItemList&&ItemList.map((att, insertIndex) => {
               var bool = "정상"
               var bool2 = "정상"
               var time = "09:00:00"
@@ -478,7 +540,7 @@ class AttTable extends Component {
                   <td class="default">{bool2}</td>
                   <td class="default">{att.night === 1 && this.reseconds(this.subsec(this.countSeconds(att.end_time),this.countSeconds(time2)))}</td>
                   <td class="default">{this.reseconds(this.subsec(this.countSeconds(att.end_time),this.countSeconds(att.start_time)))}</td>
-                  {HRD_login===true ? <td class="default"><Link to={`/Attendance/${att.no}`}>수정</Link></td>:""}
+                  {HRD_login===true ? <td id={insertIndex} class="default"><Link to={`/Attendance/${att.no}`}>수정</Link></td>:""}
                 </tr>
               );
             })}
@@ -490,6 +552,21 @@ class AttTable extends Component {
                   <hr></hr>
                 </div>
             }
+            <br/>
+            <nav aria-label="pagination">
+              <ul class="pagination justify-content-center">
+                {page.startPage !== 1 ?
+                  <li onClick={() => this.prevpage()} class="page-item disabled"><a class="disabled page-link" aria-label="Go to previous page" aria-disabled="true">‹</a></li> : ""} {/*이전 */}
+                {this.makeMap(page.startPage,page.endPage).map((i) => {
+                  if(page.nowPage===i){
+                    return(<li class="active page-item"><a class="page-link" aria-label="Current page 1">{i}</a></li>);
+                  }else{
+                    return(<li onClick={() => this.pageChange(i)} class=" page-item"><a class="page-link" aria-label="Go to page 2">{i}</a></li>)
+                  }
+                })}
+                {page.endPage !== page.lastPage ? <li class="page-item" onClick={() => this.nextpage()}><a class="page-link" aria-label="Go to next page" aria-disabled="false">›</a></li> : ''} {/*다음 */}
+              </ul>
+            </nav>
           </div>
         }
         {this.props.mode===_weekly &&

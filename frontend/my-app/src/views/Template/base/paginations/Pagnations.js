@@ -19,7 +19,7 @@ const Pagination = () => {
           <DocsLink name="CPagination"/>
         </CCardHeader>
         <CCardBody>
-          <h6>Default</h6>
+          <h6>Default//{currentPage}//{setCurrentPage}</h6>
           <CPagination
             activePage={currentPage}
             pages={10}

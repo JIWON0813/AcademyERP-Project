@@ -70,10 +70,22 @@ const Branch = React.lazy(() => import('./views/branch/Branch'));
 const BranchAdd = React.lazy(() => import('./views/branch/BranchAdd'));
 const BranchDelete = React.lazy(() => import('./views/branch/BranchDelete'));
 const BranchUpdate = React.lazy(() => import('./views/branch/BranchUpdate'));
+
 // ------------박수민
 const Attendance = React.lazy(() => import('./views/Attendance/index'));
+const Calendar = React.lazy(() => import('./views/Calendar/index'));
+const Calendar2 = React.lazy(() => import('./views/Calendar/index_view'));
 const attUpdate = React.lazy(() => import('./views/Attendance/AttUpdate'));
 const sessionLog = React.lazy(() => import('./views/users/sessionLog'));
+const Attendance_user = React.lazy(() => import('./views/Attendance/index_view'));
+const vacation = React.lazy(() => import('./views/vacation/index'));
+const vacation_user = React.lazy(() => import('./views/vacation/index_user'));
+const payment = React.lazy(() => import('./views/payment/index'));
+const adpayment = React.lazy(() => import('./views/payment/admin/paymentData'));
+const adpaymentget = React.lazy(() => import('./views/payment/admin/getPayment'));
+const test = React.lazy(() => import('./suminCP/calendar'));
+const paymentget = React.lazy(() => import('./views/payment/getPayment/getPayment'));
+const vacationApply = React.lazy(() => import('./views/vacation/index_apply'));
 // -------------박수민
 
 //start Employee
@@ -138,6 +150,7 @@ const routes = [
   { path: '/lectureAdd', exact: true, name: 'Lecture Add', component: LectureAdd },
   { path: '/lectureDelete/:id', exact: true, name: 'Lecture Delete', component: LectureDelete },
   { path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate },
+  { path: '/lectureSearch', exact: true, name: 'Lecture Search', component: LectureSearch },
 
   { path: '/HR', exact: true,  name: 'HR', component: HR},
   { path: '/sal_list', exact: true,  name: 'sal_list', component: Sal_list},
@@ -165,8 +178,19 @@ const routes = [
   { path: '/Attendance', exact: true, name: 'Attendance', component: Attendance },
   { path: '/Attendance/:no', exact: true, name: 'Attendance Update', component: attUpdate },
 
+  { path: '/Calendar_admin', exact: true, name: 'Calendar', component: Calendar },
+  { path: '/Calendar', exact: true, name: 'Calendar', component: Calendar2 },
   { path: '/logintest/:log/:no/:name/:dep', exact: true, name: 'sessionLog', component: sessionLog },
   { path: '/logintest/:log/', exact: true, name: 'sessionLog', component: sessionLog },
+  { path: '/Attendance_user', exact: true, name: 'Attendance', component: Attendance_user },
+  { path: '/vacation', exact: true, name: 'vacation', component: vacation },
+  { path: '/vacation_user', exact: true, name: 'vacation', component: vacation_user },
+  { path: '/payment', exact: true, name: 'payment', component: payment },
+  { path: '/payment/:no', exact: true, name: 'payment', component: paymentget },
+  { path: '/test', exact: true, name: 'payment', component: test },
+  { path: '/vacation_apply', exact: true, name: 'vacationApply', component: vacationApply },
+  { path: '/adpayment', exact: true, name: 'adpayment', component: adpayment },
+  { path: '/adpaymentget/:no', exact: true, name: 'adpayment', component: adpaymentget },
   // -------------박수민
 
   //start Employee

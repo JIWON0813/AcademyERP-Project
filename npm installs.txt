@@ -1,1 +1,7 @@
 npm install @material-ui/core
+@fullcalendar/daygrid
+
+npm install @fullcalendar/react
+npm install @fullcalendar/daygrid
+npm install @fullcalendar/timegrid
+npm install @fullcalendar/list

@@ -1,6 +1,63 @@
 import React from 'react'
+import CIcon from '@coreui/icons-react'
 
 export default [
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Dashboard',
+    to: '/dashboard',
+    icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon"/>,
+    badge: {
+      color: 'info',
+      text: 'NEW',
+    }
+  },
+  {
+    _tag: 'CSidebarNavTitle',
+    _children: ['박수민']
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: '회사 일정',
+    to: '/Calendar',
+    icon: 'cil-calendar'
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: '나의 출퇴근',
+    to: '/Attendance_user',
+    icon: 'cil-calendar'
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: '휴가',
+    to: '/vacation',
+    icon: 'cil-calendar'
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: '휴가 신청 보기',
+    to: '/vacation_apply',
+    icon: 'cil-calendar'
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: '결제(관리자)',
+    to: '/adpayment',
+    icon: 'cil-calendar'
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: '나의 휴가',
+    to: '/vacation_user',
+    icon: 'cil-calendar'
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: '결제',
+    to: '/payment',
+    icon: 'cil-calendar'
+  },
   {
     _tag: 'CSidebarNavTitle',
     _children: ['직원']

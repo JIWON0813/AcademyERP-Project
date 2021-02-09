@@ -43,6 +43,7 @@
     "cors": "^2.8.5",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.3",
+    "fullcalendar": "^5.5.0",
     "mybatis-mapper": "^0.6.5",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",

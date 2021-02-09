@@ -33,7 +33,7 @@ class LectureAdd extends React.Component {
       start_time: '',
       end_time: '',
       part: '',
-      branch: '',
+      branch: ''
     }
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
