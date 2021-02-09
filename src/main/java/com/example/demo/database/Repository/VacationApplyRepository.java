@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-import com.example.demo.database.DTO.*;
 import com.example.demo.database.Entity.*;
 @Mapper
 @Repository

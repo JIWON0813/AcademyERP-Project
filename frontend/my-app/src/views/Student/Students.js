@@ -50,7 +50,7 @@ class Students extends Component {
     }
 
     Paginations = (e) => {
-        const [currentPage, setCurrentPage] = useState(1);
+        const [currentPage, setCurrentPage] = 1;
         const {totalPages} = this.state;
         console.log(currentPage)
         console.log(this.state.currentPages)

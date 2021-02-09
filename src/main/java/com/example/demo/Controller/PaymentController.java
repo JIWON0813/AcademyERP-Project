@@ -30,6 +30,8 @@ public class PaymentController {
     @Autowired
     private EmployeeRepository EmployeeService;
 
+    final String sr ="selectSign";
+
     @GetMapping("/payment/{nowPage}/{cntPerPage}/{id}")
     public Map<String,Object> payment(PagingVO vo, @PathVariable(value="nowPage")String nowPage
     , @PathVariable(value="cntPerPage")String cntPerPage, @PathVariable(value="id")int id) {
@@ -112,11 +114,11 @@ public class PaymentController {
                 break;  
             default :      
         }
-        result.put("selectSign",false);
+        result.put(sr,false);
         HashMap<String,Object> to= new HashMap<>();
         to.put("no", num);
         if((PaymentService.selectSign(to)!=null)){
-            result.put("selectSign",PaymentService.selectSign(to));
+            result.put(sr,PaymentService.selectSign(to));
         }
         
         result.put("user",user);
@@ -145,7 +147,7 @@ public class PaymentController {
                 break;  
             default :      
         }
-        result.put("selectSign",false);
+        result.put(sr,false);
         List<String> signList =new ArrayList<String>();
         String app=list.getApproved();
         if(app!=null){

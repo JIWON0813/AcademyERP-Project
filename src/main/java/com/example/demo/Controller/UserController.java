@@ -1,20 +1,20 @@
-package com.example.demo.Service;
+package com.example.demo.Controller;
 
-import com.example.demo.database.DTO.departmentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
+import com.example.demo.database.DTO.*;
 import com.example.demo.database.Entity.*;
 import com.example.demo.database.Repository.*;
 
 @RestController
 @RequestMapping(value = "/api")
 @Service
-public class BoardService {
+public class UserController {
 	
 	@Autowired
-	private BoardRepository boardRepository;
+	private EmployeeRepository boardRepository;
 	
 	@Autowired
 	private departmentInter department;
@@ -22,7 +22,7 @@ public class BoardService {
 	@GetMapping("/users")
     public HashMap<String,List> hello() {
 		HashMap<String,List> result = new HashMap<>();
-		List<BoardEntity> list = boardRepository.findAll();
+		List<EmployeeEntity> list = boardRepository.findAll();
         result.put("list", list);
 
         return result;
@@ -31,7 +31,7 @@ public class BoardService {
 	@GetMapping("/user")
     public HashMap<String,Optional> user(@RequestParam("id") Long id) {
 		HashMap<String,Optional> result = new HashMap<>();
-		Optional<BoardEntity> list = boardRepository.findById(id);
+		Optional<EmployeeEntity> list = boardRepository.findById(id);
         result.put("list", list);
 
         return result;

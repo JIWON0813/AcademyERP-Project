@@ -141,7 +141,7 @@ class AttTable extends Component {
     })
     axios({
       method:'get',
-      url:encodeURI('http://localhost:8080/api2/attfind/'+1+'/'+page.cntPerPage+'?day='+this.state.day+'&name='+e.target.value+'&dep='+this.state.dep),
+      url:encodeURI('http://localhost:8080/api2/attfind/'+1+'/'+this.state.page.cntPerPage+'?day='+this.state.day+'&name='+e.target.value+'&dep='+this.state.dep),
       responseType:'stream',
       responseEncoding: 'UTF-8',
     }).then(res => {

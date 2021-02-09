@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AttTable from "./Att_view";
-import '../css/table.css';
+import '../Template/css/table.css';
 import {
   CButton,
   CCol,

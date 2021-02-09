@@ -38,6 +38,7 @@ const PaymentData = ({ match }) => {
             }
         };
         axios.post(`http://localhost:8080/upload`, file, config);
+        getData();
     };
 
     const { data, table,sign } = inputs;
@@ -104,7 +105,6 @@ const PaymentData = ({ match }) => {
                     <input type="file"  onChange={fileChangedHandler} />
                 </div>:
                 <div>
-                
                     <img src={process.env.PUBLIC_URL + '/sign/'+sign} alt="copy url" />
                 </div>
             }

@@ -3,11 +3,9 @@ import axios from "axios";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import {CPagination} from '@coreui/react'
 import listPlugin from '@fullcalendar/list';
-import '../css/table.css';
+import '../Template/css/table.css';
 import Moment from "moment"
-import CIcon from '@coreui/icons-react'
 import {
   Button,
   Dialog,

@@ -49,6 +49,7 @@ const Lecture = React.lazy(() => import('./views/lecture/Lecture'));
 const LectureAdd = React.lazy(() => import('./views/lecture/LectureAdd'));
 const LectureDelete = React.lazy(() => import('./views/lecture/LectureDelete'));
 const LectureUpdate = React.lazy(() => import('./views/lecture/LectureUpdate'));
+const LectureSearch = React.lazy(() => import('./views/lecture/LectureSearch'));
 const HR = React.lazy(() => import('./views/HR/HR'));
 const Sal_list = React.lazy(() => import('./views/HR/SalaryList'));
 const Sal_edit = React.lazy(() => import('./views/HR/SalaryEdit'));

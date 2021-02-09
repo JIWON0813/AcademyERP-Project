@@ -8,21 +8,16 @@
         <package name="com.example.demo.database.DTO"/>
         <package name="com.example.demo.database.Entity"/>
     </typeAliases>
-    <mappers>
-        <mapper resource="mapper/mapper.xml"/>
-        <mapper resource="mapper/mapper2.xml"/>
-        <mapper resource="mapper/branchmapper.xml"/>
+    <mappers> 
         <mapper resource="mapper/consultmapper.xml"/>
-        <mapper resource="mapper/lecturemapper.xml"/>
         <mapper resource="mapper/noticemapper.xml"/>
-        <mapper resource="com/example/demo/database/Mapper/AttendanceMapper.xml"/>
-        <mapper resource="com/example/demo/database/Mapper/branchmapper.xml"/>
-        <mapper resource="com/example/demo/database/Mapper/lecturemapper.xml"/>
-        <mapper resource="com/example/demo/database/Mapper/VacationMapper.xml"/>
-        <mapper resource="com/example/demo/database/Mapper/PaymentMapper.xml"/>
-        <mapper resource="com/example/demo/database/Mapper/VacationApplyMapper.xml"/>
+        <mapper resource="mapper/AttendanceMapper.xml"/>
+        <!-- <mapper resource="mapper/branchmapper.xml"/> -->
+        <mapper resource="mapper/VacationMapper.xml"/>
+        <mapper resource="mapper/PaymentMapper.xml"/> 
+        <mapper resource="mapper/VacationApplyMapper.xml"/>
         <mapper resource="mapper/Lecturemapper.xml"/>
-        <mapper resource="mapper/Hrmapper.xml"/>
+        <mapper resource="mapper/Hrmapper.xml"/> 
         <mapper resource="mapper/StudentAttmapper.xml"/>
     </mappers>
-</configuration> 
+</configuration>  

@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import '../Template/css/table.css';
-import {CDropdownItem} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import '../css/table.css';
 import {
   CButton,
   CCol,CRow
