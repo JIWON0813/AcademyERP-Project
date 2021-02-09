@@ -18,20 +18,17 @@ public class PartController {
 
     @GetMapping("/part/{id}")
     public HashMap<String, Object> detail(@PathVariable("id") Long id) {
-
         return partService.detail(id);
     }
 
     @PostMapping("/part")
     public String write(@RequestBody PartEntity part) {
-
         return partService.write(part);
     }
 
     @DeleteMapping("/part/{id}")
     public void delete(@PathVariable("id") Long id) {
         partService.delete(id);
-
     }
 
     @PutMapping("/part/{id}")

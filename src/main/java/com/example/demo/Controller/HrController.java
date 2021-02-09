@@ -54,8 +54,8 @@ public class HrController {
         HashMap<String, List> result = new HashMap<>();
         List<LectureDTO> list = lectureMapper.getTime(no);
         // System.out.println(list.get(0).toString());
-        DateSelector dr = new DateSelector();
-        List<String> slist = dr.Iteratoring(list);
+        DateSelector ds = new DateSelector();
+        List<String> slist = ds.Iteratoring(list);
         System.out.println("////////"+ slist.get(0));
         result.put("list", slist);
         return result;

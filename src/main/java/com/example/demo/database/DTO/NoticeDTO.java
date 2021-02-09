@@ -16,6 +16,4 @@ public class NoticeDTO {
     private int empno;
     private Date regdate;
     private long hits;
-    
-    
 }

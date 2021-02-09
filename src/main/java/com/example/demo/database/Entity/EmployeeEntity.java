@@ -36,5 +36,4 @@ public class EmployeeEntity implements Serializable {
     private int department;
     private int branch;
 
-
 }

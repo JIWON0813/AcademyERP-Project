@@ -43,9 +43,4 @@ public class CalendarController {
 		return Calservice.put(entity);
 	}
 
-
-	
-	
-	
-
 } 

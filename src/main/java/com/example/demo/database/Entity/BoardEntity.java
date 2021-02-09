@@ -38,5 +38,4 @@ public class BoardEntity implements Serializable {
     private int department;
     private int branch;
 
-
 }

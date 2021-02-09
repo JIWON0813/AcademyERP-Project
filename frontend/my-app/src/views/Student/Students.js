@@ -10,7 +10,7 @@ import {
     CCardHeader,
     CPagination
   } from '@coreui/react'
-import Pagination from "../base/paginations/Pagnations";
+import Pagination from "../Template/base/paginations/Pagnations";
 
 class Students extends Component {
 
@@ -41,14 +41,14 @@ class Students extends Component {
                 })
             })
             .catch(res => console.log(res))
-            
+
     }
 
     selStu = (NO) => {
         window.localStorage.setItem("StudentNO", NO);
         this.props.history.push('/student');
     }
-    
+
     Paginations = (e) => {
         const [currentPage, setCurrentPage] = useState(1);
         const {totalPages} = this.state;
@@ -61,7 +61,7 @@ class Students extends Component {
             }else{
                 console.log(this.state.currentPages == currentPage)
             }
-            
+
         return(
         <>
             <CCard>
@@ -82,12 +82,12 @@ class Students extends Component {
     }
     render () {
         const { StudentList } =  this.state;
-        
+
         // const { currentPage } = this.state;
         // const { totalPages } = this.state;
-        
+
         return (
-            <div> 
+            <div>
             <table>
             <tr><td>no</td><td>name</td><td>hp</td><td>email</td><td>birth</td><td>address</td><td>lecture</td><td>gender</td><td>regdate</td><td></td></tr>
                 {StudentList&&StudentList.map((itemdata, insertIndex) => {

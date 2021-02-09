@@ -29,7 +29,6 @@ public class PaymentController {
 	private VacationApplyService VacationApplyService;
     @Autowired
     private EmployeeRepository EmployeeService;
-   
 
     @GetMapping("/payment/{nowPage}/{cntPerPage}/{id}")
     public Map<String,Object> payment(PagingVO vo, @PathVariable(value="nowPage")String nowPage
@@ -78,8 +77,7 @@ public class PaymentController {
         result.put("list", resultList); 
         result.put("page",vo);
         return result;
-    }  
-    
+    }
 
     @GetMapping("/adpayment")
     public Map<String,Object> adpayment() {
@@ -92,9 +90,6 @@ public class PaymentController {
 
         return result;
     }  
-
-
-
 
     //1: 휴가 //2: 출퇴
     @GetMapping("/payment/{id}/{no}")
@@ -129,7 +124,6 @@ public class PaymentController {
         result.put("table", table);
         return result;
     }
-
 
     @GetMapping("/payment/{no}")
     public Map<String,Object> paymentget( @PathVariable("no") int num) {

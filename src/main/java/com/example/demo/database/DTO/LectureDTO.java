@@ -3,6 +3,8 @@ package com.example.demo.database.DTO;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Iterator;
+
 @Getter
 @Setter
 public class LectureDTO {

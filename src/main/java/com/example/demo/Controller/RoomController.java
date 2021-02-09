@@ -18,20 +18,17 @@ public class RoomController {
 
     @GetMapping("/room/{id}")
     public HashMap<String, Object> detail(@PathVariable("id") Long id) {
-
         return roomService.detail(id);
     }
 
     @PostMapping("/room")
     public String write(@RequestBody RoomEntity room) {
-
         return roomService.write(room);
     }
 
     @DeleteMapping("/room/{id}")
     public void delete(@PathVariable("id") Long id) {
         roomService.delete(id);
-
     }
 
     @PutMapping("/room/{id}")

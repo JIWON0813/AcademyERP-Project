@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 
+import com.example.demo.database.DTO.AttendanceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,18 +25,18 @@ public class AttController {
 	private AttendanceRepository attRepo;
 
 	@GetMapping("/Attget")
-    public Map<String,Optional<AttendanceDTO>> attget(@RequestParam("no") Long no) {
-		HashMap<String,Optional<AttendanceDTO>> result = new HashMap<>();
-		Optional<AttendanceDTO> list = attRepo.findById(no); 
+    public Map<String,Optional<AttendanceEntity>> attget(@RequestParam("no") Long no) {
+		HashMap<String,Optional<AttendanceEntity>> result = new HashMap<>();
+		Optional<AttendanceEntity> list = attRepo.findById(no);
         result.put("list", list); 
 
         return result;
 	} 
 	
 	@PutMapping("/Attupdate/{no}")
-	public String attupdate(@RequestBody AttendanceDTO dto ,@PathVariable("no") Long no){ 
+	public String attupdate(@RequestBody AttendanceEntity dto ,@PathVariable("no") Long no){
 		dto.setNo(no);
-        AttendanceDTO result = attRepo.save(dto);          
+		AttendanceEntity result = attRepo.save(dto);
         return result.toString();
 	}
 

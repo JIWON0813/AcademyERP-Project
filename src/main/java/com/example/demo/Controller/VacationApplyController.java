@@ -29,8 +29,6 @@ public class VacationApplyController {
         return VacationApplyService.insert(param);
     }
 
-
-
     @GetMapping("/Vacation_apply/{nowPage}/{cntPerPage}")
     public Map<String,Object> get (PagingVO vo, @PathVariable(value="nowPage")String nowPage
     , @PathVariable(value="cntPerPage")String cntPerPage) {

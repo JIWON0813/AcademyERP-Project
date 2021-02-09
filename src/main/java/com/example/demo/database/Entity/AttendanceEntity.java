@@ -26,5 +26,4 @@ public class AttendanceEntity implements Serializable {
     private String end_time; 
     private int night;
 
-
 }
