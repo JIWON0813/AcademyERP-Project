@@ -1,6 +1,6 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Entity.ConsultEntity;
+import com.example.demo.database.Entity.ConsultEntity;
 import com.example.demo.Service.ConsultService;
 
 import org.springframework.beans.factory.annotation.Autowired;

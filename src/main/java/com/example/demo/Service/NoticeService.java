@@ -4,11 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.demo.DTO.NoticeDTO;
-//import com.example.demo.DTO.NoticeDTO;
-import com.example.demo.Entity.NoticeEntity;
+import com.example.demo.database.Entity.NoticeEntity;
 //import com.example.demo.Mapper.NoticeMapper;
-import com.example.demo.Repository.NoticeRepository;
+import com.example.demo.database.Repository.NoticeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

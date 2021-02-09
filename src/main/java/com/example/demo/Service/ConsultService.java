@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.demo.DTO.ConsultDTO;
-import com.example.demo.Entity.ConsultEntity;
-import com.example.demo.Mapper.ConsultMapper;
-import com.example.demo.Repository.ConsultRepository;
+import com.example.demo.database.DTO.ConsultDTO;
+import com.example.demo.database.Entity.ConsultEntity;
+import com.example.demo.database.Mapper.ConsultMapper;
+import com.example.demo.database.Repository.ConsultRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

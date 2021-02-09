@@ -1,8 +1,8 @@
 package com.example.demo.Service;
 
-import com.example.demo.DTO.LectureDTO;
-import com.example.demo.Entity.*;
-import com.example.demo.Repository.RoomRepository;
+import com.example.demo.database.DTO.LectureDTO;
+import com.example.demo.database.Entity.*;
+import com.example.demo.database.Repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

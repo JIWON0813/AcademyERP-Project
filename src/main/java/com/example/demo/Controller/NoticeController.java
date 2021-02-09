@@ -3,7 +3,7 @@ package com.example.demo.Controller;
 import java.util.HashMap;
 import java.util.Optional;
 
-import com.example.demo.Entity.NoticeEntity;
+import com.example.demo.database.Entity.NoticeEntity;
 import com.example.demo.Service.NoticeService;
 
 import org.springframework.beans.factory.annotation.Autowired;

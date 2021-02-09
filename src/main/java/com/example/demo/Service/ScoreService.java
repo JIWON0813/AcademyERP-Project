@@ -1,11 +1,11 @@
 package com.example.demo.Service;
 
-import com.example.demo.Entity.LectureEntity;
-import com.example.demo.Entity.ScoreEntity;
-import com.example.demo.Entity.StudentDTO;
-import com.example.demo.Repository.LectureRepository;
-import com.example.demo.Repository.ScoreRepository;
-import com.example.demo.Repository.StudentRepository;
+import com.example.demo.database.Entity.LectureEntity;
+import com.example.demo.database.Entity.ScoreEntity;
+import com.example.demo.database.Entity.StudentDTO;
+import com.example.demo.database.Repository.LectureRepository;
+import com.example.demo.database.Repository.ScoreRepository;
+import com.example.demo.database.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

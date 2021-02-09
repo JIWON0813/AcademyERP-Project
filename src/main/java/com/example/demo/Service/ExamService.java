@@ -1,7 +1,7 @@
 package com.example.demo.Service;
 
-import com.example.demo.Entity.ExamEntity;
-import com.example.demo.Repository.ExamRepository;
+import com.example.demo.database.Entity.ExamEntity;
+import com.example.demo.database.Repository.ExamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

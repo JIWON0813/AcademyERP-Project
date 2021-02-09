@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
-import com.example.demo.Entity.*;
-import com.example.demo.Repository.*;
+import com.example.demo.database.Entity.*;
+import com.example.demo.database.Repository.*;
 
 @RestController
 @RequestMapping(value = "/api")

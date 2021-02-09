@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
 
-import com.example.demo.Entity.*;
-import com.example.demo.Repository.*;
+import com.example.demo.database.Entity.*;
+import com.example.demo.database.Repository.*;
 
 @RestController
 @RequestMapping("/api2")

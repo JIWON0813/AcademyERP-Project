@@ -1,8 +1,8 @@
 package com.example.demo.Controller;
 
-import com.example.demo.DTO.LecturePagingVO;
-import com.example.demo.Entity.LectureEntity;
-import com.example.demo.Entity.RoomEntity;
+import com.example.demo.database.DTO.LecturePagingVO;
+import com.example.demo.database.Entity.LectureEntity;
+import com.example.demo.database.Entity.RoomEntity;
 import com.example.demo.Service.LectureService;
 import com.example.demo.Service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
