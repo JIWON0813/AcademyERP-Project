@@ -1,9 +1,9 @@
 package com.example.demo.database.Repository;
 
-import com.example.demo.database.DTO.EmployeeEntity;
-import com.example.demo.database.DTO.BranchEntity;
-import com.example.demo.database.DTO.LectureDTO;
-import com.example.demo.database.DTO.RoomEntity;
+import com.example.demo.database.DTO.*;
+
+import com.example.demo.database.Entity.*;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

@@ -13,7 +13,7 @@ import com.example.demo.Service.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import com.example.demo.database.Entity.*;
 import com.example.demo.database.DTO.*;
 import com.example.demo.database.Repository.EmployeeRepository;
 

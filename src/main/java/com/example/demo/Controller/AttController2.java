@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.example.demo.Service.*;
+import com.example.demo.database.Entity.*;
 import com.example.demo.database.DTO.*;
 
 @RestController

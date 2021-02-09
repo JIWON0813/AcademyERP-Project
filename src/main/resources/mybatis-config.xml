@@ -5,6 +5,7 @@
 <configuration>
     <typeAliases>
         <package name="com.example.demo.database.DTO"/>
+        <package name="com.example.demo.database.Entity"/>
     </typeAliases>
     <mappers>
         <mapper resource="com/example/demo/database/Mapper/AttendanceMapper.xml"/>

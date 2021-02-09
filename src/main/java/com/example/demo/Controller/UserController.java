@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 import com.example.demo.database.DTO.*;
 import com.example.demo.database.Repository.*;
-
+import com.example.demo.database.Entity.*;
 @RestController
 @RequestMapping(value = "/api")
 @Service

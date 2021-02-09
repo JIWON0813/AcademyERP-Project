@@ -3,7 +3,7 @@ package com.example.demo.database.Repository;
 import java.util.HashMap;
 import java.util.List;
 
-import com.example.demo.database.DTO.ConsultEntity;
+import com.example.demo.database.Entity.*;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;

@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
-import com.example.demo.database.DTO.*;
+import com.example.demo.database.Entity.*;
+
 import com.example.demo.Service.*;
 
 @RestController

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,10 +14,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-import javax.swing.filechooser.FileSystemView;
+
 
 import com.example.demo.Service.*;
-import com.example.demo.database.DTO.*;
+import com.example.demo.database.Entity.*;
 import com.example.demo.database.Repository.EmployeeRepository;
 
 
@@ -207,7 +207,6 @@ public class PaymentController {
         File target = new File(filePath, file.getOriginalFilename());
         try {
             file.transferTo(target);
-            System.out.println("성공");
             to.put("filename", file.getOriginalFilename());
             to.put("employee_no",no);
             PaymentService.sign(to);
