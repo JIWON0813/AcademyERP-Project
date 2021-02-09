@@ -1,13 +1,9 @@
 package com.example.demo.Service;
 
-import com.example.demo.Entity.*;
-import com.example.demo.Repository.CounselingRepository;
-import com.example.demo.Repository.LectureRepository;
-import com.example.demo.Repository.ScoreRepository;
-import com.example.demo.Repository.StudentRepository;
+import com.example.demo.database.Entity.*;
+import com.example.demo.database.Repository.CounselingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 import java.util.List;

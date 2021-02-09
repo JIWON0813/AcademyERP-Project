@@ -112,7 +112,7 @@ class Counseling extends Component {
         <header>
           <CForm inline>
             <CSelect custom id="lecture" onChange={this.lectureSelect} value={this.state.lecture}>
-              <option value="">강의</option>
+              <option value="0">강의</option>
               {lectureList && lectureList.map((itemdata, insertIndex) => {
                 return (<option value={itemdata.no}>{insertIndex + 1}.&nbsp;{itemdata.name}</option>);
               })}
@@ -158,7 +158,7 @@ class Counseling extends Component {
         </table>
         {studentList.length === 0 &&
         <div align="center">
-          <p>검색결과가 없습니다</p>
+          <p>검색결과가 없습니다.</p>
           <hr></hr>
         </div>
         }

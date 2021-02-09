@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <package name="com.example.demo.Entity"/>
-        <package name="com.example.demo.DTO"/>
+        <package name="com.example.demo.database.Entity"/>
+        <package name="com.example.demo.database.DTO"/>
     </typeAliases>
     <mappers>
         <mapper resource="mapper/mapper.xml"/>

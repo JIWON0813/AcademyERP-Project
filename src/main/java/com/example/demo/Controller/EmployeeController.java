@@ -2,7 +2,7 @@ package com.example.demo.Controller;
 
 
 import com.example.demo.Service.EmployeeService;
-import com.example.demo.database.DTO.EmployeeEntity;
+import com.example.demo.database.Entity.EmployeeEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

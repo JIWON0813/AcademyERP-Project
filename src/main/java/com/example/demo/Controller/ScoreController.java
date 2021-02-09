@@ -1,6 +1,6 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Entity.ScoreEntity;
+import com.example.demo.database.Entity.ScoreEntity;
 import com.example.demo.Service.ScoreService;
 
 import com.google.gson.Gson;

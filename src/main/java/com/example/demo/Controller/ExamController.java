@@ -1,9 +1,7 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Entity.ExamEntity;
-import com.example.demo.Entity.PartEntity;
+import com.example.demo.database.Entity.ExamEntity;
 import com.example.demo.Service.ExamService;
-import com.example.demo.Service.PartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

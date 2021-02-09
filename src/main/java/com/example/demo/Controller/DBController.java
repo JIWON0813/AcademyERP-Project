@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.database.DTO.DTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
 
-import com.example.demo.Entity.*;
-import com.example.demo.Repository.*;
+import com.example.demo.database.Repository.*;
 
 @RestController
 @RequestMapping("/api2")

@@ -109,7 +109,7 @@ class Lectures extends Component {
 
     const handleChange = (event, value) => {
       this.getApi(this.state.searchKeyword,value)
-       // this.getApi(value);
+      // this.getApi(value);
       this.setState({
         currentPageNo : value
       })
@@ -148,9 +148,9 @@ class Lectures extends Component {
           </CForm>
 
           <Grid container justify="flex-end">
-          <LectureAdd stateRefresh={this.stateRefresh}/>
-          <Room stateRefresh={this.stateRefresh}/>
-          <Part stateRefresh={this.stateRefresh}/>
+            <LectureAdd stateRefresh={this.stateRefresh}/>
+            <Room stateRefresh={this.stateRefresh}/>
+            <Part stateRefresh={this.stateRefresh}/>
           </Grid>
 
 
@@ -163,7 +163,7 @@ class Lectures extends Component {
             <td>강의명</td>
             <td>강사</td>
             <td>수강료</td>
-            <td>정원수</td>
+            <td>현재인원/정원수</td>
             <td>강의실</td>
             <td>개강일</td>
             <td>종강일</td>
@@ -182,8 +182,8 @@ class Lectures extends Component {
                 <td>{itemdata.no}</td>
                 <td><Lecture stateRefresh={this.stateRefresh} id={itemdata.no}/></td>
                 <td>{itemdata.instructor}</td>
-                <td>{itemdata.price}</td>
-                <td>{itemdata.students}</td>
+                <td>{itemdata.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
+                <td style={{ textAlign: 'center' }}>{itemdata.currentStudents} / {itemdata.students}</td>
                 <td>{itemdata.classRoom}</td>
                 <td>{itemdata.start_date}</td>
                 <td>{itemdata.end_date}</td>

@@ -2,8 +2,8 @@ package com.example.demo.Controller;
 
 import java.util.*;
 
-import com.example.demo.Entity.StudentDTO;
-import com.example.demo.Repository.StudentRepository;
+import com.example.demo.database.DTO.StudentDTO;
+import com.example.demo.database.Repository.StudentRepository;
 
 import com.example.demo.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;

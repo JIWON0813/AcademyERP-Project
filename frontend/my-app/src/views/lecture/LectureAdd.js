@@ -33,8 +33,7 @@ class LectureAdd extends React.Component {
       start_time: '',
       end_time: '',
       part: '',
-      branch: ''
-
+      branch: '',
     }
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
@@ -175,6 +174,7 @@ class LectureAdd extends React.Component {
     this.setState({
       room: e.target.value
     })
+    console.log(e.target)
   }
   partSelect = (e) => {
     this.setState({
@@ -272,16 +272,6 @@ class LectureAdd extends React.Component {
               </CCol>
             </CFormGroup>
 
-            <CFormGroup row>
-              <CCol md="3">
-                <CLabel htmlFor="start_date">정원수</CLabel>
-              </CCol>
-              <CCol xs="12" md="9">
-                <CInput name="students" pattern="[0-9]*" placeholder="숫자만 입력 가능" value={this.state.students}
-                        onChange={this.handleNumChange.bind(this)}/>
-              </CCol>
-            </CFormGroup>
-
             <CRow>
               <CCol xs="12">
                 <CFormGroup>
@@ -295,6 +285,19 @@ class LectureAdd extends React.Component {
                 </CFormGroup>
               </CCol>
             </CRow>
+
+            <CFormGroup row>
+              <CCol md="3">
+                <CLabel htmlFor="start_date">정원수</CLabel>
+              </CCol>
+              <CCol xs="12" md="9">
+                <CInput name="students"
+                        pattern="[0-9]*"
+                        placeholder="숫자만 입력 가능"
+                        value={this.state.students}
+                        onChange={this.handleNumChange.bind(this)}/>
+              </CCol>
+            </CFormGroup>
 
             <CFormGroup row>
               <CCol md="3">

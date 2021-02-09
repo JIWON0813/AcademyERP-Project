@@ -1,7 +1,7 @@
 package com.example.demo.Service;
 
-import com.example.demo.Repository.EmployeeRepository;
-import com.example.demo.database.DTO.EmployeeEntity;
+import com.example.demo.database.Entity.EmployeeEntity;
+import com.example.demo.database.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

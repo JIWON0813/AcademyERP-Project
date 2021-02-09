@@ -1,7 +1,7 @@
 package com.example.demo.Service;
 
-import com.example.demo.Entity.StudentDTO;
-import com.example.demo.Repository.StudentRepository;
+import com.example.demo.database.DTO.StudentDTO;
+import com.example.demo.database.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

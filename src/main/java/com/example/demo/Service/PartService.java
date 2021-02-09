@@ -1,7 +1,7 @@
 package com.example.demo.Service;
 
-import com.example.demo.Entity.PartEntity;
-import com.example.demo.Repository.PartRepository;
+import com.example.demo.database.Entity.PartEntity;
+import com.example.demo.database.Repository.PartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -11,7 +11,6 @@ class ScoreTotal extends React.Component {
       lecture :this.props.lecture,
       totalScore:"",
     }
-
   }
 
   componentDidMount() {
@@ -30,10 +29,10 @@ class ScoreTotal extends React.Component {
 
 
   render() {
-    console.log("test")
     return (
       <div>
-        <CInput type="text"
+        <CInput
+                type="text"
                 id="totalScore"
                 name="totalScore"
                 defaultValue={this.state.totalScore}

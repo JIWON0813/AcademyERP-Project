@@ -1,11 +1,11 @@
 package com.example.demo.Service;
 
-import com.example.demo.DTO.LectureDTO;
-import com.example.demo.DTO.LecturePagingVO;
-import com.example.demo.Entity.*;
-import com.example.demo.Mapper.LectureMapper;
-import com.example.demo.Repository.BranchRepository;
-import com.example.demo.Repository.LectureRepository;
+import com.example.demo.database.DTO.LectureDTO;
+import com.example.demo.database.DTO.LecturePagingVO;
+import com.example.demo.database.Entity.*;
+import com.example.demo.database.Mapper.LectureMapper;
+import com.example.demo.database.Repository.BranchRepository;
+import com.example.demo.database.Repository.LectureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,7 +50,6 @@ public class LectureService {
             result.put("message", list);
             result.put("paging",vo);
         }
-
         return result;
     }
 

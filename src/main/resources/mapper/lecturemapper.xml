@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.Mapper.LectureMapper">
+<mapper namespace="com.example.demo.database.Mapper.LectureMapper">
     <select id="getTeacher" resultType="BoardEntity" parameterType="Long">
         select no, name
         from employee
@@ -33,7 +33,8 @@
                a.start_time,
                a.end_time,
                d.name as'field',
-               e.name as 'office'
+               e.name as 'office',
+        (SELECT COUNT(*) FROM student f WHERE a.no= f.lecture) as 'currentStudents'
         FROM lecture a
                  inner join employee b ON a.teacher = b.no
                  inner join room c ON a.room = c.no
@@ -47,7 +48,7 @@
                            OR b.name like CONCAT('%', #{keyword}, '%')
                            OR d.name like CONCAT('%', #{keyword}, '%')
                         )))
-        ORDER BY no ASC
+        ORDER BY no desc
             LIMIT #{vo.firstRecordIndex}, #{vo.recordsPerPage}
     </select>
 

@@ -99,6 +99,7 @@ class Score extends Component {
       examList: "",
       totalWeight: "",
       disabled: true,
+      average:"",
     })
     axios.get("http://localhost:8080/api/students/" + e.target.value)
       .then(res => {
@@ -232,7 +233,7 @@ class Score extends Component {
         <header>
           <CForm inline>
             <CSelect custom id="lecture" onChange={this.lectureSelect} value={this.state.lecture}>
-              <option value="">강의</option>
+              <option value="0">강의</option>
               {lectureList && lectureList.map((itemdata, insertIndex) => {
                 return (<option value={itemdata.no}>{insertIndex + 1}.&nbsp;{itemdata.name}</option>);
               })}
@@ -241,10 +242,11 @@ class Score extends Component {
               <Exam stateRefresh={this.stateRefresh} teacher={this.state.teacher}/>
             </Grid>
           </CForm>
-
+          <br/>
           <Grid container justify="flex-end">
             <IconButton aria-label="refresh" onClick={this.stateRefresh}><RefreshIcon/></IconButton>
           </Grid>
+
         </header>
         <table>
           <thead>
@@ -282,7 +284,8 @@ class Score extends Component {
                 }
                 <td bgcolor="#eee8aa"><ScoreTotal
                   id={itemdata.no}
-                  lecture={this.state.lecture}/></td>
+                  lecture={this.state.lecture}
+                  /></td>
               </tr>
             );
           })}
@@ -291,7 +294,7 @@ class Score extends Component {
         </table>
         {studentList.length === 0 &&
         <div align="center">
-          <p>검색결과가 없습니다</p>
+          <p>검색결과가 없습니다.</p>
           <hr></hr>
         </div>
         }
