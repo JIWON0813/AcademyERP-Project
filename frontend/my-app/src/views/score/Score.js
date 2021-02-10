@@ -2,21 +2,11 @@ import React, {Component} from "react";
 import axios from "axios";
 import './table.css';
 import {CCol, CForm, CSelect} from "@coreui/react";
-import {makeStyles} from '@material-ui/core/styles';
 import {Button, Grid, IconButton} from "@material-ui/core";
 import Exam from "../exam/Exam";
 import ScoreEdit from "./ScoreEdit";
 import RefreshIcon from '@material-ui/icons/Refresh';
 import ScoreTotal from "./ScoreTotal";
-
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
 
 class Score extends Component {
 

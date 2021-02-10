@@ -82,12 +82,12 @@ if(Number(session_dep)===_HRD){
 if(HRD_login){
   score_login = false;
   for(var i=sm.length-1;i>-1;i--){
-    navigation.splice(2,0,sm[i])
+    navigation.splice(0,0,sm[i])
   }
 }else if(score_login) {
   HRD_login=false;
-  for (var i = sm_score.length - 1; i > -1; i--) {
-    navigation.splice(2, 0, sm_score[i])
+  for (i = sm_score.length - 1; i > -1; i--) {
+    navigation.splice(0, 0, sm_score[i])
   }
 }
 

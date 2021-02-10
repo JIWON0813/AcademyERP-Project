@@ -9,8 +9,6 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import {Dialog, IconButton, withStyles} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import SaveIcon from '@material-ui/icons/Save';
-import Icon from '@material-ui/core/Icon';
 
 const styles = theme => ({
   hidden: {

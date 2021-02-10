@@ -1,11 +1,11 @@
+/*
 package com.example.demo.Controller;
 
 import java.util.*;
 
+import com.example.demo.Service.StudentService;
 import com.example.demo.database.DTO.StudentDTO;
 import com.example.demo.database.Repository.StudentRepository;
-
-import com.example.demo.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,9 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 @Service
 @CrossOrigin("*")
-
 public class StudentController {
-    
+
     @Autowired
     private StudentRepository studentRepository;
 
@@ -44,7 +43,7 @@ public class StudentController {
         System.out.println("QWEQWEQWEQWEQWE  " + no);
         HashMap<String,Optional<StudentDTO>> result = new HashMap<>();
         Optional<StudentDTO> slist = studentRepository.findById(no);
-        
+
         result.put("listdata", slist);
 
         return result;
@@ -52,7 +51,7 @@ public class StudentController {
 
     @PostMapping("/ins_stu")
     public String addStudnet(@RequestBody StudentDTO student) {
-        
+
         System.out.println(student.getEmail());
         StudentDTO result = studentRepository.save(student);
 
@@ -64,11 +63,12 @@ public class StudentController {
         studentRepository.deleteById(no);
     }
 
-    @PostMapping("/edit_stu/{no}")
+ @PostMapping("/edit_stu/{no}")
     public void editStudent(@RequestBody StudentDTO student,@PathVariable Long no) {
         System.out.println(student.getHp());
         studentRepository.update(student);
     }
+
 
     //여진
     @GetMapping("/students/{lecture}")
@@ -76,3 +76,4 @@ public class StudentController {
         return studentService.getStudentList(lecture);
     }
 }
+*/

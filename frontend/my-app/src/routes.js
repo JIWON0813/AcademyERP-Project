@@ -43,20 +43,21 @@ const Stu_att = React.lazy(() => import('./views/Stu_Att/Stu_att'));
 const Ins_att = React.lazy(() => import('./views/Stu_Att/Ins_att'));
 const Users = React.lazy(() => import('./views/users/Users'));
 const User = React.lazy(() => import('./views/users/User'));
-//여진
+/*-여진--------------------------*/
 const Lectures = React.lazy(() => import('./views/lecture/Lectures'));
 const Lecture = React.lazy(() => import('./views/lecture/Lecture'));
 const LectureAdd = React.lazy(() => import('./views/lecture/LectureAdd'));
 const LectureDelete = React.lazy(() => import('./views/lecture/LectureDelete'));
 const LectureUpdate = React.lazy(() => import('./views/lecture/LectureUpdate'));
-const LectureSearch = React.lazy(() => import('./views/lecture/LectureSearch'));
+
+const Score = React.lazy(() => import('./views/score/Score'));
+const Counseling = React.lazy(() => import('./views/counseling/Counseling'));
+/*-------------------------------*/
+
 const HR = React.lazy(() => import('./views/HR/HR'));
 const Sal_list = React.lazy(() => import('./views/HR/SalaryList'));
 const Sal_edit = React.lazy(() => import('./views/HR/SalaryEdit'));
 const Teacher = React.lazy(() => import('./views/Teacher/Calendar'));
-
-const Score = React.lazy(() => import('./views/score/Score'));
-const Counseling = React.lazy(() => import('./views/counseling/Counseling'));
 
 
 // ------------@최인아
@@ -102,116 +103,118 @@ const StandByAuth = React.lazy(() => import('./views/employee/StandByAuth'));
 //end Employee
 
 const routes = [
-  { path: '/', exact: true, name: 'Home' },
-  { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/theme', name: 'Theme', component: Colors, exact: true },
-  { path: '/theme/colors', name: 'Colors', component: Colors },
-  { path: '/theme/typography', name: 'Typography', component: Typography },
-  { path: '/base', name: 'Base', component: Cards, exact: true },
-  { path: '/base/breadcrumbs', name: 'Breadcrumbs', component: Breadcrumbs },
-  { path: '/base/cards', name: 'Cards', component: Cards },
-  { path: '/base/carousels', name: 'Carousel', component: Carousels },
-  { path: '/base/collapses', name: 'Collapse', component: Collapses },
-  { path: '/base/forms', name: 'Forms', component: BasicForms },
-  { path: '/base/jumbotrons', name: 'Jumbotrons', component: Jumbotrons },
-  { path: '/base/list-groups', name: 'List Groups', component: ListGroups },
-  { path: '/base/navbars', name: 'Navbars', component: Navbars },
-  { path: '/base/navs', name: 'Navs', component: Navs },
-  { path: '/base/paginations', name: 'Paginations', component: Paginations },
-  { path: '/base/popovers', name: 'Popovers', component: Popovers },
-  { path: '/base/progress-bar', name: 'Progress Bar', component: ProgressBar },
-  { path: '/base/switches', name: 'Switches', component: Switches },
-  { path: '/base/tables', name: 'Tables', component: Tables },
-  { path: '/base/tabs', name: 'Tabs', component: Tabs },
-  { path: '/base/tooltips', name: 'Tooltips', component: Tooltips },
-  { path: '/buttons', name: 'Buttons', component: Buttons, exact: true },
-  { path: '/buttons/buttons', name: 'Buttons', component: Buttons },
-  { path: '/buttons/button-dropdowns', name: 'Dropdowns', component: ButtonDropdowns },
-  { path: '/buttons/button-groups', name: 'Button Groups', component: ButtonGroups },
-  { path: '/buttons/brand-buttons', name: 'Brand Buttons', component: BrandButtons },
-  { path: '/charts', name: 'Charts', component: Charts },
-  { path: '/icons', exact: true, name: 'Icons', component: CoreUIIcons },
-  { path: '/icons/coreui-icons', name: 'CoreUI Icons', component: CoreUIIcons },
-  { path: '/icons/flags', name: 'Flags', component: Flags },
-  { path: '/icons/brands', name: 'Brands', component: Brands },
-  { path: '/notifications', name: 'Notifications', component: Alerts, exact: true },
-  { path: '/notifications/alerts', name: 'Alerts', component: Alerts },
-  { path: '/notifications/badges', name: 'Badges', component: Badges },
-  { path: '/notifications/modals', name: 'Modals', component: Modals },
-  { path: '/notifications/toaster', name: 'Toaster', component: Toaster },
+  {path: '/', exact: true, name: 'Home'},
+  {path: '/dashboard', name: 'Dashboard', component: Dashboard},
+  {path: '/theme', name: 'Theme', component: Colors, exact: true},
+  {path: '/theme/colors', name: 'Colors', component: Colors},
+  {path: '/theme/typography', name: 'Typography', component: Typography},
+  {path: '/base', name: 'Base', component: Cards, exact: true},
+  {path: '/base/breadcrumbs', name: 'Breadcrumbs', component: Breadcrumbs},
+  {path: '/base/cards', name: 'Cards', component: Cards},
+  {path: '/base/carousels', name: 'Carousel', component: Carousels},
+  {path: '/base/collapses', name: 'Collapse', component: Collapses},
+  {path: '/base/forms', name: 'Forms', component: BasicForms},
+  {path: '/base/jumbotrons', name: 'Jumbotrons', component: Jumbotrons},
+  {path: '/base/list-groups', name: 'List Groups', component: ListGroups},
+  {path: '/base/navbars', name: 'Navbars', component: Navbars},
+  {path: '/base/navs', name: 'Navs', component: Navs},
+  {path: '/base/paginations', name: 'Paginations', component: Paginations},
+  {path: '/base/popovers', name: 'Popovers', component: Popovers},
+  {path: '/base/progress-bar', name: 'Progress Bar', component: ProgressBar},
+  {path: '/base/switches', name: 'Switches', component: Switches},
+  {path: '/base/tables', name: 'Tables', component: Tables},
+  {path: '/base/tabs', name: 'Tabs', component: Tabs},
+  {path: '/base/tooltips', name: 'Tooltips', component: Tooltips},
+  {path: '/buttons', name: 'Buttons', component: Buttons, exact: true},
+  {path: '/buttons/buttons', name: 'Buttons', component: Buttons},
+  {path: '/buttons/button-dropdowns', name: 'Dropdowns', component: ButtonDropdowns},
+  {path: '/buttons/button-groups', name: 'Button Groups', component: ButtonGroups},
+  {path: '/buttons/brand-buttons', name: 'Brand Buttons', component: BrandButtons},
+  {path: '/charts', name: 'Charts', component: Charts},
+  {path: '/icons', exact: true, name: 'Icons', component: CoreUIIcons},
+  {path: '/icons/coreui-icons', name: 'CoreUI Icons', component: CoreUIIcons},
+  {path: '/icons/flags', name: 'Flags', component: Flags},
+  {path: '/icons/brands', name: 'Brands', component: Brands},
+  {path: '/notifications', name: 'Notifications', component: Alerts, exact: true},
+  {path: '/notifications/alerts', name: 'Alerts', component: Alerts},
+  {path: '/notifications/badges', name: 'Badges', component: Badges},
+  {path: '/notifications/modals', name: 'Modals', component: Modals},
+  {path: '/notifications/toaster', name: 'Toaster', component: Toaster},
 
-  { path: '/widgets', name: 'Widgets', component: Widgets },
-  { path: '/students', exact: true,  name: 'Students', component: Students },
-  { path: '/student', exact: true,  name: 'Students', component: Student },
-  { path: '/ins_stu', exact: true,  name: 'Ins_stu', component: Ins_stu },
-  { path: '/edit_stu', exact: true,  name: 'Edit_stu', component: Edit_stu },
+  {path: '/widgets', name: 'Widgets', component: Widgets},
+  {path: '/students', exact: true, name: 'Students', component: Students},
+  {path: '/student', exact: true, name: 'Students', component: Student},
+  {path: '/ins_stu', exact: true, name: 'Ins_stu', component: Ins_stu},
+  {path: '/edit_stu', exact: true, name: 'Edit_stu', component: Edit_stu},
 
-  { path: '/stu_att', exact: true,  name: 'stu_att', component: Stu_att},
-  { path: '/ins_att', exact: true,  name: 'ins_att', component: Ins_att},
+  {path: '/stu_att', exact: true, name: 'stu_att', component: Stu_att},
+  {path: '/ins_att', exact: true, name: 'ins_att', component: Ins_att},
 
-  { path: '/users', exact: true,  name: 'Users', component: Users },
-  { path: '/users/:id', exact: true, name: 'User Details', component: User },
+  {path: '/users', exact: true, name: 'Users', component: Users},
+  {path: '/users/:id', exact: true, name: 'User Details', component: User},
+  /*--여진---------------------------------------*/
+  {path: '/lecture', exact: true, name: 'Lectures', component: Lectures},
+  {path: '/lecture/:id', exact: true, name: 'Lecture Details', component: Lecture},
+  {path: '/lectureAdd', exact: true, name: 'Lecture Add', component: LectureAdd},
+  {path: '/lectureDelete/:id', exact: true, name: 'Lecture Delete', component: LectureDelete},
+  {path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate},
 
-  { path: '/lecture', exact: true,  name: 'Lectures', component: Lectures },
-  { path: '/lecture/:id', exact: true, name: 'Lecture Details', component: Lecture },
-  { path: '/lectureAdd', exact: true, name: 'Lecture Add', component: LectureAdd },
-  { path: '/lectureDelete/:id', exact: true, name: 'Lecture Delete', component: LectureDelete },
-  { path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate },
-  { path: '/lectureSearch', exact: true, name: 'Lecture Search', component: LectureSearch },
+  {path: '/score', exact: true, name: 'Score', component: Score},
+  {path: '/counseling', exact: true, name: 'Counseling', component: Counseling},
+  /*--여진---------------------------------------*/
 
-  { path: '/HR', exact: true,  name: 'HR', component: HR},
-  { path: '/sal_list', exact: true,  name: 'sal_list', component: Sal_list},
-  { path: '/sal_edit', exact: true,  name: 'sal_edit', component: Sal_edit},
+  {path: '/HR', exact: true, name: 'HR', component: HR},
+  {path: '/sal_list', exact: true, name: 'sal_list', component: Sal_list},
+  {path: '/sal_edit', exact: true, name: 'sal_edit', component: Sal_edit},
 
-  { path: '/teacher', exact: true,  name: 'teacher', component: Teacher},
-  { path: '/lectureUpdate', exact: true, name: 'Lecture Update', component: LectureUpdate },
+  {path: '/teacher', exact: true, name: 'teacher', component: Teacher},
 
-  { path: '/score', exact: true,  name: 'Score', component: Score },
+
   // ------------@최인아
   // ------------상담
-  { path: '/counseling', exact: true,  name: 'Counseling', component: Counseling },
 
-  { path: '/consult', exact: true,  name: 'Consults', component: Consults },
-  { path: '/consult/:id', exact: true,  name: 'Consult Details', component: Consult },
-  { path: '/consultInsert', exact: true,  name: 'Consult Insert', component: ConsultInsert },
-  { path: '/consultUpdate', exact: true,  name: 'Consult Update', component: ConsultUpdate },
+
+  {path: '/consult', exact: true, name: 'Consults', component: Consults},
+  {path: '/consult/:id', exact: true, name: 'Consult Details', component: Consult},
+  {path: '/consultInsert', exact: true, name: 'Consult Insert', component: ConsultInsert},
+  {path: '/consultUpdate', exact: true, name: 'Consult Update', component: ConsultUpdate},
   // ------------공지사항
-  { path: '/notice/:id', exact: true,  name: 'Notice Details', component: Notice },
-  { path: '/notice', exact: true, name: 'Notices', component: Notices },
-  { path: '/noticeWrite', exact: true, name: 'NoticeWrite', component: NoticeWrite },
-  { path: '/noticeUpdate', exact: true,  name: 'Notice Update', component: NoticeUpdate },
+  {path: '/notice/:id', exact: true, name: 'Notice Details', component: Notice},
+  {path: '/notice', exact: true, name: 'Notices', component: Notices},
+  {path: '/noticeWrite', exact: true, name: 'NoticeWrite', component: NoticeWrite},
+  {path: '/noticeUpdate', exact: true, name: 'Notice Update', component: NoticeUpdate},
   // ------------수납관리
-  { path: '/receive', exact: true, name: 'Receive', component: Receive},
+  {path: '/receive', exact: true, name: 'Receive', component: Receive},
   // ------------@최인아
-  { path: '/branch', exact: true,  name: 'Branches', component: Branches },
-  { path: '/branch/:id', exact: true, name: 'Branch Details', component: Branch },
-  { path: '/branchAdd', exact: true, name: 'Branch Add', component: BranchAdd },
-  { path: '/branchDelete/:id', exact: true, name: 'Branch Delete', component: BranchDelete },
-  { path: '/branchUpdate', exact: true, name: 'Branch Update', component: BranchUpdate },
+  {path: '/branch', exact: true, name: 'Branches', component: Branches},
+  {path: '/branch/:id', exact: true, name: 'Branch Details', component: Branch},
+  {path: '/branchAdd', exact: true, name: 'Branch Add', component: BranchAdd},
+  {path: '/branchDelete/:id', exact: true, name: 'Branch Delete', component: BranchDelete},
+  {path: '/branchUpdate', exact: true, name: 'Branch Update', component: BranchUpdate},
 
   // -------------박수민
-  { path: '/Attendance', exact: true, name: 'Attendance', component: Attendance },
-  { path: '/Attendance/:no', exact: true, name: 'Attendance Update', component: attUpdate },
+  {path: '/Attendance', exact: true, name: 'Attendance', component: Attendance},
+  {path: '/Attendance/:no', exact: true, name: 'Attendance Update', component: attUpdate},
 
-  { path: '/Calendar_admin', exact: true, name: 'Calendar', component: Calendar },
-  { path: '/Calendar', exact: true, name: 'Calendar', component: Calendar2 },
-  { path: '/logintest/:log/:no/:name/:dep', exact: true, name: 'sessionLog', component: sessionLog },
-  { path: '/logintest/:log/', exact: true, name: 'sessionLog', component: sessionLog },
-  { path: '/Attendance_user', exact: true, name: 'Attendance', component: Attendance_user },
-  { path: '/vacation', exact: true, name: 'vacation', component: vacation },
-  { path: '/vacation_user', exact: true, name: 'vacation', component: vacation_user },
-  { path: '/payment', exact: true, name: 'payment', component: payment },
-  { path: '/payment/:no', exact: true, name: 'payment', component: paymentget },
-  { path: '/test', exact: true, name: 'payment', component: test },
-  { path: '/vacation_apply', exact: true, name: 'vacationApply', component: vacationApply },
-  { path: '/adpayment', exact: true, name: 'adpayment', component: adpayment },
-  { path: '/adpaymentget/:no', exact: true, name: 'adpayment', component: adpaymentget },
+  {path: '/Calendar_admin', exact: true, name: 'Calendar', component: Calendar},
+  {path: '/Calendar', exact: true, name: 'Calendar', component: Calendar2},
+  {path: '/logintest/:log/:no/:name/:dep', exact: true, name: 'sessionLog', component: sessionLog},
+  {path: '/logintest/:log/', exact: true, name: 'sessionLog', component: sessionLog},
+  {path: '/Attendance_user', exact: true, name: 'Attendance', component: Attendance_user},
+  {path: '/vacation', exact: true, name: 'vacation', component: vacation},
+  {path: '/vacation_user', exact: true, name: 'vacation', component: vacation_user},
+  {path: '/payment', exact: true, name: 'payment', component: payment},
+  {path: '/payment/:no', exact: true, name: 'payment', component: paymentget},
+  {path: '/test', exact: true, name: 'payment', component: test},
+  {path: '/vacation_apply', exact: true, name: 'vacationApply', component: vacationApply},
+  {path: '/adpayment', exact: true, name: 'adpayment', component: adpayment},
+  {path: '/adpaymentget/:no', exact: true, name: 'adpayment', component: adpaymentget},
   // -------------박수민
 
   //start Employee
-  { path: '/employee', exact: true, name : 'Employee', component : Employee},
-  { path: '/saveEmployee', exact: true, name : 'SaveEmployee', component : SaveEmployee},
-  { path: '/standByAuth', exact: true, name : 'StandByAuth', component : StandByAuth}
+  {path: '/employee', exact: true, name: 'Employee', component: Employee},
+  {path: '/saveEmployee', exact: true, name: 'SaveEmployee', component: SaveEmployee},
+  {path: '/standByAuth', exact: true, name: 'StandByAuth', component: StandByAuth}
   //end Employee
 ];
 

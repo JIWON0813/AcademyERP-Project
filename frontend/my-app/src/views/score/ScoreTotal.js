@@ -1,5 +1,5 @@
 import React from 'react'
-import {CFormGroup, CInput} from "@coreui/react";
+import {CInput} from "@coreui/react";
 import axios from "axios";
 
 class ScoreTotal extends React.Component {

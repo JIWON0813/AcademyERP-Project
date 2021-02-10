@@ -3,16 +3,6 @@ import CIcon from '@coreui/icons-react'
 
 export default [
   {
-    _tag: 'CSidebarNavItem',
-    name: 'Dashboard',
-    to: '/dashboard',
-    icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon"/>,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    }
-  },
-  {
     _tag: 'CSidebarNavTitle',
     _children: ['박수민']
   },
@@ -70,7 +60,7 @@ export default [
     _children: [
       {
         _tag: 'CSidebarNavItem',
-        name: '수업관리',
+        name: '수업관리 - 여진',
         to: '/lecture',
       },
       {
@@ -114,7 +104,18 @@ export default [
     name: '템플릿',
     route: '/base',
     icon: 'cil-puzzle',
-    _children: [ {
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Dashboard',
+        to: '/dashboard',
+        icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon"/>,
+        badge: {
+          color: 'info',
+          text: 'NEW',
+        }
+      },
+      {
       _tag: 'CSidebarNavDropdown',
       name: 'Base',
       route: '/base',

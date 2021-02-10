@@ -1,3 +1,4 @@
+/*
 package com.example.demo.Service;
 
 import com.example.demo.database.DTO.StudentDTO;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Service
 public class StudentService {
+
     @Autowired
     private StudentRepository studentRepository;
 
@@ -22,3 +24,4 @@ public class StudentService {
         return result;
     }
 }
+*/

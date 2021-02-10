@@ -61,13 +61,20 @@ class Lectures extends Component {
   }
 
   getApi(searchKeyword,currentPageNo) {
-    console.log(searchKeyword)
     axios.get("http://localhost:8080/lecture?branch="+this.state.findBranch+"&condition="+this.state.condition+"&keyword=" + searchKeyword+"&currentPageNo="+currentPageNo+"&recordsPerPage="+this.state.recordsPerPage)
       .then(res => {
+        console.log(res.data)
+        if(res.data.message !== 0){
         this.setState({
           ItemList: res.data.message,
           pagingList : res.data.paging,
         })
+        }else{
+          this.setState({
+            ItemList: "",
+            pagingList : "",
+          })
+        }
       })
       .catch(res => console.log(res))
 

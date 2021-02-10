@@ -49,6 +49,8 @@ public class LectureService {
             List<LectureDTO> list = lectureMapper.getLectureList(map);
             result.put("message", list);
             result.put("paging",vo);
+        }else{
+            result.put("message", 0);
         }
         return result;
     }
