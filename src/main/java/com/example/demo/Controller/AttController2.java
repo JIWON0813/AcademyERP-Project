@@ -33,8 +33,8 @@ public class AttController2 {
 
         int total = attservice.count();
 
-        nowPage = nowPage.isEmpty() ? "1" : nowPage;
-        cntPerPage = cntPerPage.isEmpty() ? "10" : cntPerPage;
+        nowPage = nowPage.isBlank() ? "1" : nowPage;
+        cntPerPage = cntPerPage.isBlank() ? "10" : cntPerPage;
 
         vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
         HashMap<String, Object> result = new HashMap<>();
@@ -67,8 +67,8 @@ public class AttController2 {
             total = attservice.countFind(to);
         }
 
-        nowPage = nowPage.isEmpty() ? "1" : nowPage;
-        cntPerPage = cntPerPage.isEmpty() ? "10" : cntPerPage;
+        nowPage = nowPage.isBlank() ? "1" : nowPage;
+        cntPerPage = cntPerPage.isBlank() ? "10" : cntPerPage;
 
         vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
         to.put(start, vo.getStart());

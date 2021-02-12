@@ -16,7 +16,7 @@ import {
 } from '@coreui/react'
 import CIcon from "@coreui/icons-react";
 
-class RegisterEmployee extends Component {
+class EmployeeInfo extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -49,7 +49,7 @@ class RegisterEmployee extends Component {
       address : this.state.address,
     }
 
-    ApiService.InsertEmployee(employee).then(res =>{
+    ApiService.PermitEmployee(employee).then(res =>{
       alert('회원가입 신청이 완료되었습니다. 관리자의 승인을 기다려주세요');
       this.props.history.push('/');
     })
@@ -114,8 +114,9 @@ class RegisterEmployee extends Component {
                 </CForm>
               </CCardBody>
               <CCardFooter>
-                <CButton type="submit" size="sm" color="primary" onClick={this.onSubmit}><CIcon name="cil-scrubber" /> 제출</CButton>
-                <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" /> 초기화</CButton>
+                <CButton type="submit" size="sm" color="primary" onClick={this.onSubmit}><CIcon name="cil-scrubber" />등록</CButton>
+                <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" />초기화</CButton>
+                <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" />취소</CButton>
               </CCardFooter>
             </CCard>
           </CCol>
@@ -125,4 +126,4 @@ class RegisterEmployee extends Component {
   }
 }
 
-export default RegisterEmployee
+export default EmployeeInfo

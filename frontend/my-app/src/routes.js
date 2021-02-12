@@ -213,7 +213,7 @@ const routes = [
 
   //start Employee
   {path: '/employee', exact: true, name: 'Employee', component: Employee},
-  {path: '/saveEmployee', exact: true, name: 'SaveEmployee', component: SaveEmployee},
+  {path: '/save-employee', exact: true, name: 'SaveEmployee', component: SaveEmployee},
   {path: '/standByAuth', exact: true, name: 'StandByAuth', component: StandByAuth}
   //end Employee
 ];

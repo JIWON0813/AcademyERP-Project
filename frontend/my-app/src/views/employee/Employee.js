@@ -11,7 +11,8 @@ class Employee extends Component {
       employeeList: [],
       currentPage : 1,
       size : 10,
-      setCurrentPage : 0
+      setCurrentPage : 0,
+      verify : 1
     }
   }
 
@@ -40,9 +41,7 @@ class Employee extends Component {
              <th>전화번호</th>
              <th>주소</th>
              <th>생년월일</th>
-             <th>성별</th>
              <th>직급</th>
-             <th>연봉</th>
            </tr>
            </thead>
            <tbody>
@@ -55,9 +54,7 @@ class Employee extends Component {
                <td>{data.hp}</td>
                <td>{data.address}</td>
                <td>{data.birth}</td>
-               <td>{data.sex}</td>
                <td>{data.rank}</td>
-               <td>{data.salary}</td>
              </tr>
              )
            }

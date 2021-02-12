@@ -20,14 +20,28 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/employee")
-    public Page<EmployeeEntity> getEmployeeList(Pageable pageable){
-        return employeeService.getEmployeeList(pageable);
+    public Page<EmployeeEntity> getEmployeeList(Pageable pageable , int verify){
+        return employeeService.getEmployeeList(pageable, verify);
+    }
+
+    @GetMapping("/employee/{id}")
+    public EmployeeEntity getEmployee(@PathVariable Long id){
+        return employeeService.getEmployee(id);
     }
 
     @PostMapping("/employee")
     public int insertEmployee(@RequestBody EmployeeEntity employee){
         return employeeService.insertEmployee(employee);
+    }
 
+    @DeleteMapping("/employee")
+    public void deleteEmployee(@RequestParam Long no){
+        employeeService.deleteEmployee(no);
+    }
+
+    @PutMapping("/permitEmployee")
+    public int permitEmployee(@RequestBody EmployeeEntity employee){
+        return employeeService.permitEmployee(employee);
     }
 
 }

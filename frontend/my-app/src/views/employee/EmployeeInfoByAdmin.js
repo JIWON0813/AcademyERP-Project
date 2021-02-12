@@ -16,15 +16,21 @@ import {
 } from '@coreui/react'
 import CIcon from "@coreui/icons-react";
 
-class RegisterEmployee extends Component {
+class EmployeeInfoByAdmin extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name : '',
-      hp : '',
-      address : '',
-      email : '',
-      birth : ''
+      name: '',
+      hp: '',
+      address: '',
+      email: '',
+      birth: '',
+      rank: '',
+      salary: '',
+      department: '',
+      branch: '',
+      regidate: '',
+      verify: ''
     }
     this.onValueChange = this.onValueChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -32,30 +38,36 @@ class RegisterEmployee extends Component {
 
   onValueChange = (value) => {
     this.setState({
-      [value.target.name] : value.target.value
+      [value.target.name]: value.target.value
     })
   }
 
-  onSubmit = (x) =>{
+  onSubmit = (x) => {
     x.preventDefault();
 
     console.log('test ::' + this.state.hp)
 
     let employee = {
-      name : this.state.name,
-      hp : this.state.hp,
-      email : this.state.email,
-      birth : this.state.birth,
-      address : this.state.address,
+      name: this.state.name,
+      hp: this.state.hp,
+      email: this.state.email,
+      birth: this.state.birth,
+      address: this.state.address,
+      rank: this.state.rank,
+      salary: this.state.salary,
+      department: this.state.department,
+      branch: this.state.branch,
+      regidate: this.state.regidate,
+      verify: 1
     }
 
-    ApiService.InsertEmployee(employee).then(res =>{
-      alert('회원가입 신청이 완료되었습니다. 관리자의 승인을 기다려주세요');
-      this.props.history.push('/');
+    ApiService.PermitEmployee(employee).then(res => {
+      ApiService.getEmployee(state).then(r => {
+      }); // 생각
     })
-      .catch( err => {
-        console.log('회원가입 신청에 실패했습니다 관리가제에 문의해주세요', err);
-        this.props.history.push('/');
+      .catch(err => {
+        console.log('등록 실패', err);
+        this.props.history.back();
       });
 
   }
@@ -92,7 +104,7 @@ class RegisterEmployee extends Component {
                       <CLabel htmlFor="text-input">주소</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" name="address"value={this.state.address} onChange={this.onValueChange}/>
+                      <CInput id="text-input" name="address" value={this.state.address} onChange={this.onValueChange}/>
                     </CCol>
                   </CFormGroup>
                   <CFormGroup row>
@@ -100,7 +112,7 @@ class RegisterEmployee extends Component {
                       <CLabel htmlFor="text-input">이메일</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" name="email"value={this.state.email} onChange={this.onValueChange}/>
+                      <CInput id="text-input" name="email" value={this.state.email} onChange={this.onValueChange}/>
                     </CCol>
                   </CFormGroup>
                   <CFormGroup row>
@@ -108,14 +120,15 @@ class RegisterEmployee extends Component {
                       <CLabel htmlFor="text-input">생일</CLabel>
                     </CCol>
                     <CCol xs="12" md="9">
-                      <CInput id="text-input" name="birth"value={this.state.birth} onChange={this.onValueChange}/>
+                      <CInput id="text-input" name="birth" value={this.state.birth} onChange={this.onValueChange}/>
                     </CCol>
                   </CFormGroup>
                 </CForm>
               </CCardBody>
               <CCardFooter>
-                <CButton type="submit" size="sm" color="primary" onClick={this.onSubmit}><CIcon name="cil-scrubber" /> 제출</CButton>
-                <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" /> 초기화</CButton>
+                <CButton type="submit" size="sm" color="primary" onClick={this.onSubmit}><CIcon name="cil-scrubber"/>등록</CButton>
+                <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban"/>초기화</CButton>
+                <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban"/>취소</CButton>
               </CCardFooter>
             </CCard>
           </CCol>
@@ -125,4 +138,4 @@ class RegisterEmployee extends Component {
   }
 }
 
-export default RegisterEmployee
+export default EmployeeInfoByAdmin
