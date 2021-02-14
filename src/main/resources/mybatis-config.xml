@@ -6,7 +6,6 @@
     <typeAliases>
         <package name="com.example.demo.database.Entity"/>
         <package name="com.example.demo.database.DTO"/>
-        <package name="com.example.demo.database.Entity"/>
     </typeAliases>
     <mappers> 
         <mapper resource="mapper/consultmapper.xml"/>

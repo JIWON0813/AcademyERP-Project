@@ -47,26 +47,23 @@ const PaymentData = ({ match }) => {
         axios.get("http://localhost:8080/payment/" + match.params.no+"/"+window.sessionStorage.getItem("no"))
             .then(res => {
                 console.log(res)
-                let temp = [];
-                if (Number(res.data.list.kinds) === 1) {
-                    for (let i = 0; i < res.data.table.length; i++) {
-                        for(let l = 0; l<res.data.user.length; l++){
-                            if(res.data.table[i].employee_no === res.data.user[l].no){
-                                res.data.table[i].employee_no=res.data.user[l].name
-                            }
+
+                for (let i = 0; i < res.data.table.length; i++) {
+                    for(let l = 0; l<res.data.user.length; l++){
+                        if(res.data.table[i].employee_no === res.data.user[l].no){
+                            res.data.table[i].employee_no=res.data.user[l].name
                         }
-                        temp.push({
-                            no: res.data.table[i].no,
-                            start_day: res.data.table[i].start_day,
-                            end_day: res.data.table[i].end_day,
-                            name: res.data.table[i].employee_no,
-                        })
                     }
-                    fields = ['no', 'start_day','end_day', 'name', ];
                 }
+                
+                for(let i=0;i<res.data.column.length;i++){
+                    fields.push(res.data.column[i])
+                }
+                
+                
                 setInputs({
                     data: res.data.list,
-                    table: temp,
+                    table: res.data.table,
                     sign: res.data.selectSign
                 })
             })
@@ -105,7 +102,8 @@ const PaymentData = ({ match }) => {
                     <input type="file"  onChange={fileChangedHandler} />
                 </div>:
                 <div>
-                    <img src={process.env.PUBLIC_URL + '/sign/'+sign} alt="copy url" />
+                    <img src={process.env.PUBLIC_URL + '/sign/'+sign.filename} alt={process.env.PUBLIC_URL+"123"} />
+                    이미지 바꾸기<input type="file"  onChange={fileChangedHandler}/>
                 </div>
             }
             <CCard>
@@ -115,7 +113,7 @@ const PaymentData = ({ match }) => {
                 <CCardBody>
                     <CFade timeout={300}  tag="h5" className="mt-3">
 
-                        <div style={{width: "50%",textAlign: "center"}}>
+                        <div style={{textAlign: "center"}}>
                             <CDataTable
                                 items={table}
                                 fields={fields}

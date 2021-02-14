@@ -19,15 +19,8 @@ const PaymentData = () => {
       getData();
     }, []); 
 
-    const { data, page } = inputs;
-    const onChange = (e) => {
-        const { value, name } = e.target;
-        setInputs({
-        ...inputs,
-        [name]: value
-        });
-    };
-
+    const { data } = inputs;
+ 
     
     const getData = () =>{
       axios.get("http://localhost:8080/payment/1/10/"+id)

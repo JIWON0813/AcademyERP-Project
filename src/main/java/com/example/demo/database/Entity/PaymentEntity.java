@@ -13,6 +13,6 @@ public class PaymentEntity {
     private String contents;
     private String approved;
     private String day;
-    private int kinds;
+    private String kinds;
     private String kinds_no;
 }

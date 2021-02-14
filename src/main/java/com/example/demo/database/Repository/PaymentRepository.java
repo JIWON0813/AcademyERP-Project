@@ -10,7 +10,8 @@ public interface PaymentRepository {
     PaymentEntity getpayment(int no);
     List<PaymentEntity> payment();
     int approved(HashMap<String,Object> to);
-    int sign(HashMap<String,Object> to);
+    int sign(HashMap<String,Object> to); 
     int insert(PaymentEntity entity);
-    String selectSign(HashMap<String,Object> to);
+    HashMap<String, String> selectSign(HashMap<String,Object> to);
+    HashMap<String, String> tableSelect(HashMap<String,Object> to);
 }  
