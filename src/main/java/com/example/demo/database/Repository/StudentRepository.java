@@ -1,4 +1,3 @@
-/*
 package com.example.demo.database.Repository;
 
 import com.example.demo.database.DTO.StudentDTO;
@@ -20,4 +19,3 @@ public interface StudentRepository extends JpaRepository<StudentDTO, Long> {
     //여진
     List<StudentDTO> findAllByLecture(long lecture);
 }
-*/

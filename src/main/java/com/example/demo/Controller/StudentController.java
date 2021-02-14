@@ -1,4 +1,3 @@
-/*
 package com.example.demo.Controller;
 
 import java.util.*;
@@ -76,4 +75,3 @@ public class StudentController {
         return studentService.getStudentList(lecture);
     }
 }
-*/
