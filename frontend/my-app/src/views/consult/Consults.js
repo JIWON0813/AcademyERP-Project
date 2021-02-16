@@ -162,7 +162,7 @@ componentDidMount() {
 }
 
 getApi = (keyword) => {
-    axios.get("http://localhost:8080/consult?"+"&keyword=" + keyword)
+    axios.get("http://localhost:8080/consult?"+"&keyword="+keyword)
         .then(res => {
             this.setState({
               ConsultList: res.data.message
