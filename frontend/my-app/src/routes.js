@@ -143,7 +143,7 @@ const routes = [
 
   {path: '/widgets', name: 'Widgets', component: Widgets},
   {path: '/students', exact: true, name: 'Students', component: Students},
-  {path: '/student', exact: true, name: 'Students', component: Student},
+  {path: '/student/:no', exact: true, name: 'Students', component: Student},
   {path: '/ins_stu', exact: true, name: 'Ins_stu', component: Ins_stu},
   {path: '/edit_stu', exact: true, name: 'Edit_stu', component: Edit_stu},
 

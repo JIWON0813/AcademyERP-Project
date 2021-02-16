@@ -74,10 +74,6 @@ const PaymentData = ({ match }) => {
             })
             .catch(res => console.log(res))
     }
-
-
- 
-
     return (
         <div>
             

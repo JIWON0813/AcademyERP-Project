@@ -1,6 +1,7 @@
 
 package com.example.demo.database.Repository;
 
+import com.example.demo.database.DTO.StudentDTO;
 import com.example.demo.database.Entity.StudentEntity;
 
 import org.springframework.data.domain.Page;
@@ -21,7 +22,7 @@ public interface StudentRepository extends PagingAndSortingRepository<StudentEnt
     Integer update(@Param("student") StudentEntity student);
         Page<StudentEntity> findAll(Pageable pageable);
 
-    // //여진
-    // List<StudentDTO> findAllByLecture(long lecture);
+    //여진
+    List<StudentDTO> findAllByLecture(long lecture);
 }
 

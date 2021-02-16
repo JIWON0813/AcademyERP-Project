@@ -3,7 +3,11 @@ package com.example.demo.Controller;
 import java.util.*;
 
 import com.example.demo.Service.StudentService;
+import com.example.demo.database.DTO.LectureDTO;
+import com.example.demo.database.DTO.Stu_AttDTO;
+import com.example.demo.database.DTO.StudentDTO;
 import com.example.demo.database.Entity.StudentEntity;
+import com.example.demo.database.Mapper.StuAttMapper;
 //import com.example.demo.database.DTO.StudentDTO;
 import com.example.demo.database.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +35,8 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    @Autowired
+    private StuAttMapper stuattmapper;
     // @GetMapping("/students")
     // public HashMap<String, List<StudentEntity>> Studnets() {
     //     HashMap<String,List<StudentEntity>> result = new HashMap<>();
@@ -80,11 +86,39 @@ public class StudentController {
         studentRepository.update(student);
     }
 
+    @GetMapping("/stu_att/{name}")
+    public HashMap<String, List> Stu_att(@PathVariable String name) {
+        System.out.println("QWEQWEQWEQWEQWE  " + name);
+        HashMap<String,List> result = new HashMap<>();
+        List<Stu_AttDTO> alist = stuattmapper.getAtt(name);
+        
+        result.put("attdata", alist);
 
-    // //여진
-    // @GetMapping("/students/{lecture}")
-    // public HashMap<String, List> studentList(@PathVariable("lecture") Long lecture) {
-    //     return studentService.getStudentList(lecture);
-    // }
+        return result;
+    }
+
+    @GetMapping("/stu_att")
+    public HashMap<String, List> Leclist() {
+        HashMap<String,List> result = new HashMap<>();
+        List<LectureDTO> list = stuattmapper.getLec();
+        result.put("list", list);
+        return result;
+    }
+
+    @GetMapping("/ins_att/{lec}")
+    public HashMap<String, List> LecStulist(@PathVariable String lec) {
+        System.out.println("asdasdasd" + lec);
+        HashMap<String,List> result = new HashMap<>();
+        List<StudentDTO> list = stuattmapper.getLecStu(lec);
+        result.put("list", list);
+        return result;
+    }
+
+
+    //여진
+    @GetMapping("/students/{lecture}")
+    public HashMap<String, List> studentList(@PathVariable("lecture") Long lecture) {
+        return studentService.getStudentList(lecture);
+    }
 }
 

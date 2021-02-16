@@ -14,13 +14,13 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-    // //여진
-    // public HashMap<String, List> getStudentList(Long lecture) {
-    //     HashMap<String,List> result = new HashMap<>();
-    //     List<StudentDTO> studentList = studentRepository.findAllByLecture(lecture);
-    //     result.put("studentList",studentList);
+    //여진
+    public HashMap<String, List> getStudentList(Long lecture) {
+        HashMap<String,List> result = new HashMap<>();
+        List<StudentDTO> studentList = studentRepository.findAllByLecture(lecture);
+        result.put("studentList",studentList);
 
-    //     return result;
-    // }
+        return result;
+    }
 }
 

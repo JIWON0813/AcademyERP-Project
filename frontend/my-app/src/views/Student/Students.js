@@ -1,4 +1,4 @@
-import React,{ Component,useState } from "react";
+import React,{ useEffect,useState } from "react";
 import './table.css';
 import { Link } from 'react-router-dom';
 import ApiService from "../../ApiService";
@@ -10,62 +10,52 @@ import {
     CCardHeader,
     CPagination
   } from '@coreui/react'
-import Pagination from "../Template/base/paginations/Pagnations";
 
-class Students extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            StudentList: "",
-            currentPages:"",
-            currentPage:"",
-            Size : 5,
-            totalPages :""
-        }
-    }
+let currentPages =1;
+const StudentData = () => {
+    const [inputs, setInputs] = useState({
+        StudentList:[],
+        totalPages :""
+    });
 
-    componentDidMount() {
-        this.getApi(this.state.cuurentPages);
-    }
+    useEffect(() => {
+        getApi(1);
+    },[]);
+    
+    const {StudentList,totalPages} = inputs;
+    
 
-    getApi = (currentPages) => {
+    const getApi =(currentPages) => {
         currentPages = currentPages -1
-        ApiService.Students(currentPages,this.state.Size)
+        let size = 5;
+        ApiService.Students(currentPages,size)
             .then(res => {
                 console.log(res);
-                this.setState({
+                setInputs({
                     StudentList : res.data.content,
-                    totalPages : res.data.totalPages,
-                    totalElements : res.data.totalElements
+                    totalPages : res.data.totalPages
                 })
             })
             .catch(res => console.log(res))
-
     }
 
-    selStu = (NO) => {
-        window.localStorage.setItem("StudentNO", NO);
-        this.props.history.push('/student');
-    }
-
-    Pagination = (e) => {
-        const [currentPage, setCurrentPage] = 1;
-        const {totalPages} = this.state;
+    const Paginations = (e) => {
+        const [currentPage, setCurrentPage] = useState(currentPages);
         console.log(currentPage)
-        console.log(this.state.currentPages)
-        console.log(this.state.currentPages != currentPage)
-            if(this.state.currentPages != currentPage){
-            this.state.currentPages = currentPage;
-            this.getApi(this.state.currentPages)
+        console.log(currentPages)
+        console.log(currentPages != currentPage)
+            if(currentPages != currentPage){
+            currentPages = currentPage;
+            getApi(currentPages)
             }else{
-                console.log(this.state.currentPages == currentPage)
+                console.log(currentPages == currentPage)
             }
-
+            
         return(
         <>
             <CCard>
-                <CCardHeader>
+                    <CCardHeader>
                     Pagination
                     <DocsLink name="CPagination"/>
                     </CCardHeader>
@@ -78,63 +68,71 @@ class Students extends Component {
              </CCard>
         </>
         )
-
-    }
-    render () {
-        const { StudentList } =  this.state;
-
-        // const { currentPage } = this.state;
-        // const { totalPages } = this.state;
-
-        return (
-            <div>
-            <table>
-            <tr><td>no</td><td>name</td><td>hp</td><td>email</td><td>birth</td><td>address</td><td>lecture</td><td>gender</td><td>regdate</td><td></td></tr>
-                {StudentList&&StudentList.map((itemdata, insertIndex) => {
-                    return (
-                    <tr>
-                    <td>{itemdata.no}</td>
-                    <td>{itemdata.name}</td>
-                    <td>{itemdata.hp}</td>
-                    <td>{itemdata.email}</td>
-                    <td>{itemdata.birth}</td>
-                    <td>{itemdata.address}</td>
-                    <td>{itemdata.lecture}</td>
-                    <td>{itemdata.gender}</td>
-                    <td>{itemdata.regdate}</td>
-                    <td width ="80"><CButton block color="secondary" onClick={() => this.selStu(itemdata.no)}>상세</CButton></td>
-                    </tr>
-                    );
-                })}
-            <tr><td>
-                <Link to={"/ins_stu"}>학생등록하기</Link>
-                </td></tr>
-                <tr><td>
-                    {this.Pagination}
-             </td></tr>
-            </table>
-            </div>
-        )
     }
 
-    // Paginations = () => {
-    //     const [currentPage, setCurrentPage] = useState(2)
-    //     return (
-    //   <>
-    //     <CCard>
-    //       <CCardBody>
-    //         <h6>Default</h6>
-    //         <CPagination
-    //           activePage={0}
-    //           pages={5}
-    //           onActivePageChange={setCurrentPage}
-    //         />
-    //         <br></br>
-    //         </CCardBody>
-    //         </CCard>
-    //     </>
-    //     )
-    // }
+    return (
+        <div> 
+        <table>
+        <tr><td>no</td><td>name</td><td>hp</td><td>email</td><td>birth</td><td>address</td><td>lecture</td><td>gender</td><td>regdate</td><td></td></tr>
+            {StudentList&&StudentList.map((itemdata, insertIndex) => {
+                return (
+                <tr>
+                <td>{itemdata.no}</td>
+                <td>{itemdata.name}</td>
+                <td>{itemdata.hp}</td>
+                <td>{itemdata.email}</td>
+                <td>{itemdata.birth}</td>
+                <td>{itemdata.address}</td>
+                <td>{itemdata.lecture}</td>
+                <td>{itemdata.gender}</td>
+                <td>{itemdata.regdate}</td>
+                <td width ="80"><Link to={`/student/${itemdata.no}`}> 상세정보 </Link></td>
+                </tr>
+                );
+            })}
+        <tr><td>
+            <Link to={"/ins_stu"}>학생등록하기</Link>
+            </td></tr>
+            <tr><td><>
+                <Paginations/>
+                </>
+         </td></tr>
+        </table>
+            
+        </div>
+    )
+
 }
+    
+//     Paginations = () => {
+//         const [currentPage, setCurrentPage] = useState(1);
+//         const {totalPages} = this.state;
+//         console.log(currentPage)
+//         console.log(this.state.currentPages)
+//         console.log(this.state.currentPages != currentPage)
+//             if(this.state.currentPages != currentPage){
+//             this.state.currentPages = currentPage;
+//             this.getApi(this.state.currentPages)
+//             }else{
+//                 console.log(this.state.currentPages == currentPage)
+//             }
+          
+//         return(
+//         <>
+//             <CCard>
+//                     <CCardHeader>
+//                     Pagination
+//                     <DocsLink name="CPagination"/>
+//                     </CCardHeader>
+//                         <CCardBody>
+//                         <CPagination
+//                         activePage={currentPage}
+//                         pages= {totalPages}
+//                         onActivePageChange={setCurrentPage}/>
+//                     </CCardBody>
+//              </CCard>
+//         </>
+//         )
+//  }
 
-export default Students;
+export default StudentData;
