@@ -23,6 +23,8 @@ const PaymentData = ({ match }) => {
         
     });
 
+    const { data, table,sign } = inputs;
+
     useEffect(() => {
         getData();
     }, []);
@@ -53,7 +55,6 @@ const PaymentData = ({ match }) => {
         getData();
     };
 
-    const { data, table,sign } = inputs;
 
     const getData = () => {
         axios.get("http://localhost:8080/payment/" + match.params.no+"/"+window.sessionStorage.getItem("no"))
@@ -107,7 +108,9 @@ const PaymentData = ({ match }) => {
                     <input type="file"  onChange={fileChangedHandler} />
                 </div>:
                 <div>
+                    사인:
                     <img src={process.env.PUBLIC_URL + '/sign/'+sign.filename} alt={process.env.PUBLIC_URL+"123"} />
+                    <br/>
                     이미지 바꾸기<input type="file"  onChange={fileChangedHandler}/>
                 </div>
             }

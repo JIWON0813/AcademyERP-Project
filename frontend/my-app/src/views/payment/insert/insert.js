@@ -11,7 +11,7 @@ import { CCol, CFormGroup, CInput, CLabel, CSelect, CTextarea } from '@coreui/re
 import {
   CDataTable
 } from '@coreui/react'
-
+//               c:/GitHub/ERP2/AcademyERP-Project/frontend/my-app/src/containers/MasageInsert
 import * as MasageInsert from '../../../containers/MasageInsert'
 
 
@@ -153,6 +153,11 @@ export default class insert extends Component {
         for (var l=0;l<this.state.selected.length;l++){
             kindsTemp += this.state.selected[l].no+"/"
         }
+
+        //여러명 한테 보내는건 "1/2/3/" 문자열방식으로
+        //메세지 받는사람   ,제목 ,내용    ,메세지 클릭시 이동할 페이지 주소
+        //post(employee_no),title,contents,link
+        MasageInsert.masage(playerTemp,this.state.title,this.state.contents,"payment")
 
         axios({
         url: 'http://localhost:8080/payment',

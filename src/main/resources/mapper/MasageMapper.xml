@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.database.Mapper.MasageMapper">
+    <insert id="MasageInsert">
+        insert into masage values(null,#{to},#{post},#{title},#{contents},#{link},"2020-11-11")
+    </insert>
+    <select id="MasageGet" parameterType="int" resultType="masageEntity"> 
+        select * from masage 
+    </select>
+</mapper>
