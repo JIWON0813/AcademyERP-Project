@@ -14,12 +14,14 @@ repositories {
 	mavenCentral()
 	maven { url 'https://repo.spring.io/milestone' }
 	maven { url 'https://repo.spring.io/snapshot' }
+	maven { url "https://jitpack.io" }
 }
 
 dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.github.iamport:iamport-rest-client-java:0.2.14'
 	implementation 'junit:junit:4.12'
 	implementation group: 'org.javassist' , name: 'javassist' , version: '3.15.0-GA'
 	implementation 'org.junit.jupiter:junit-jupiter:5.4.2'

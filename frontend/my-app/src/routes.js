@@ -43,6 +43,7 @@ const Stu_att = React.lazy(() => import('./views/Stu_Att/Stu_att'));
 const Ins_att = React.lazy(() => import('./views/Stu_Att/Ins_att'));
 const Users = React.lazy(() => import('./views/users/Users'));
 const User = React.lazy(() => import('./views/users/User'));
+
 /*-여진--------------------------*/
 const Lectures = React.lazy(() => import('./views/lecture/Lectures'));
 const Lecture = React.lazy(() => import('./views/lecture/Lecture'));
@@ -52,6 +53,11 @@ const LectureUpdate = React.lazy(() => import('./views/lecture/LectureUpdate'));
 
 const Score = React.lazy(() => import('./views/score/Score'));
 const Counseling = React.lazy(() => import('./views/counseling/Counseling'));
+
+const PayList = React.lazy(() => import('./views/Pay/PayList'));
+const SearchStudent = React.lazy(() => import('./views/Pay/SearchStudent'));
+
+
 /*-------------------------------*/
 
 const HR = React.lazy(() => import('./views/HR/HR'));
@@ -152,6 +158,7 @@ const routes = [
 
   {path: '/users', exact: true, name: 'Users', component: Users},
   {path: '/users/:id', exact: true, name: 'User Details', component: User},
+
   /*--여진---------------------------------------*/
   {path: '/lecture', exact: true, name: 'Lectures', component: Lectures},
   {path: '/lecture/:id', exact: true, name: 'Lecture Details', component: Lecture},
@@ -161,6 +168,11 @@ const routes = [
 
   {path: '/score', exact: true, name: 'Score', component: Score},
   {path: '/counseling', exact: true, name: 'Counseling', component: Counseling},
+
+  {path: '/payList', exact: true, name: 'PayList', component: PayList},
+  {path: '/searchStudent', exact: true, name: 'SearchStudent', component: SearchStudent},
+
+
   /*--여진---------------------------------------*/
 
   {path: '/HR', exact: true, name: 'HR', component: HR},

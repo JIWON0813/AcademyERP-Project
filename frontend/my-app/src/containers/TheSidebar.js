@@ -86,7 +86,7 @@ if(HRD_login){
   }
 }else if(score_login) {
   HRD_login=false;
-  for (i = sm_score.length - 1; i > -1; i--) {
+  for (var i = sm_score.length - 1; i > -1; i--) {
     navigation.splice(0, 0, sm_score[i])
   }
 }

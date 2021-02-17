@@ -68,6 +68,11 @@ export default [
         name: '상담관리',
         to: '/consult',
       },
+      {
+        _tag: 'CSidebarNavItem',
+        name: '수강료결제',
+        to: '/searchStudent',
+      },
     ]},
     {
       _tag: 'CSidebarNavDropdown',

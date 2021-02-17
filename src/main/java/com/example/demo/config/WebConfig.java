@@ -13,6 +13,5 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**").allowedOrigins("http://localhost:3000","http://localhost:8080")
         .allowedMethods("*");
 
-
     }
 }
