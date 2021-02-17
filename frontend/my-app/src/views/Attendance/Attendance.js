@@ -53,7 +53,6 @@ class Users extends Component {
         <div>
           <AttTable mode={this.state.mode}/>
         </div>
-        <Button variant="contained" color="primary" onClick={this.insert}>결제추가</Button>
         <Down name="Attendance"></Down>
       </div>
     );

@@ -184,7 +184,7 @@ export default class Apply extends Component {
             <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
               추가하기
             </Button>
-            <PaymentInsert kind="vacation_apply" data={this.state.data}/>           
+            <PaymentInsert kind={"vacation_apply"} data={this.state.data}/>           
           </div>
   
           <div style={{ float: "right" }}>

@@ -100,7 +100,6 @@ const PaymentData = ({ match }) => {
                 <div>
                     <table width="100%" style= {{
                                 border:"1px solid black",
-                                color: "blue",
                                 padding: 10,
                                 textAlign: "center",
                                 }}>
@@ -117,11 +116,11 @@ const PaymentData = ({ match }) => {
                                             <img src={process.env.PUBLIC_URL+'/sign/'+signList[i].filename} alt="copy url"  width="40"height="40"/>
                                             </td>);
                                     }else{
-                                        return(<td style={{border:"1px solid black"}}>결제안함</td>)
+                                        return(<td style={{border:"1px solid black"}}>결재안함</td>)
                                     }
                                 }
                                 if(signList.length===0){
-                                    return(<td style={{border:"1px solid black"}}>결제안함</td>)
+                                    return(<td style={{border:"1px solid black"}}>결재안함</td>)
                                 }
                             })}
                         </tr>

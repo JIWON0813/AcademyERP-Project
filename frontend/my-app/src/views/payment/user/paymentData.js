@@ -5,14 +5,14 @@ import {
 } from '@coreui/react'
 import {  Link } from 'react-router-dom';
 
-let fields = ['no','employee_no', 'title', 'day'];
+let fields = ['no','employee_no', 'title', 'day', '결재여부'];
 let id=window.sessionStorage.no;
 
 
 const PaymentData = () => {
     const [inputs, setInputs] = useState({
         data: "",
-        page: ""
+        page: "",
     });
 
     useEffect(() => {
@@ -34,16 +34,29 @@ const PaymentData = () => {
                 list[i].employee_no=user[l].name;
               }
             }
+            let result = paymentCheck(list[i].approved);
+            list[i].content=result
           }
+
           setInputs({
             data: list,
-            page: res.data.page
+            page: res.data.page,
           })
         })
         .catch(res => console.log(res))
     }
 
-    
+    const paymentCheck = (approved) =>{
+      let player = window.sessionStorage.getItem("no");
+      approved=String(approved).split("/")
+      for(let i=0;i<approved.length;i++){
+          if(Number(player)===Number(approved[i])){
+              return "완"
+          }      
+      }
+      return "미"
+    }
+
     return(
         <div>
           <CDataTable
@@ -53,12 +66,17 @@ const PaymentData = () => {
               pagination
               scopedSlots = {{
                 'title':
-                  (item)=>(
-                    <td>
-                      <Link to={`/payment/${item.no}`}> {item.title}</Link>
-                    </td>
-                  ),
-                  
+                (item)=>(
+                  <td>
+                    <Link to={`/payment/${item.no}`}> {item.title}</Link>
+                  </td>
+                ),
+                '결재여부':
+                (item)=>(
+                  <td>
+                      {item.content}
+                  </td>
+                ),
               }}
             />
         </div>

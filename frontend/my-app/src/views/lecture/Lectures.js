@@ -10,6 +10,7 @@ import Room from "../room/Room";
 import {Grid, IconButton} from "@material-ui/core";
 import Part from "../part/Part";
 import RefreshIcon from "@material-ui/icons/Refresh";
+// import PaymentInsert from "../payment/insert/insert"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -158,6 +159,7 @@ class Lectures extends Component {
             <LectureAdd stateRefresh={this.stateRefresh}/>
             <Room stateRefresh={this.stateRefresh}/>
             <Part stateRefresh={this.stateRefresh}/>
+            {/* <PaymentInsert kind={"DB 테이블 명"} data={리액트에서 받아온 테이블 배열? 데이터?}/> */}
           </Grid>
 
 

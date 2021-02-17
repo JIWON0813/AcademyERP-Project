@@ -6,6 +6,8 @@ import '../Template/css/table.css';
 import { Link } from 'react-router-dom';
 import Moment from "moment"
 
+import PaymentInsert from "../payment/insert/insert"
+
 import {
   CButton,
   CCard,
@@ -494,6 +496,7 @@ class AttTable extends Component {
             <br/>
             </div>
             <div style={{float: "right"}}>
+              <PaymentInsert kind={"attendance"} data={ItemList}/>
               몇줄<input type="number" id="cntPerPage" name="sel" onChange={() => {this.selChange()}} >
                 {this.state.cntPerPage}
               </input>

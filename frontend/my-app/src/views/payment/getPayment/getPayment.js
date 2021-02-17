@@ -27,7 +27,19 @@ const PaymentData = ({ match }) => {
         getData();
     }, []);
 
-    
+    const paymentCheck = () =>{
+        let approved = data.approved;
+        let player = window.sessionStorage.getItem("no");
+        approved=String(approved).split("/")
+        for(let i=0;i<approved.length;i++){
+            if(Number(player)===Number(approved[i])){
+                return "결재 완"
+            }      
+        }
+        return "미 결재"
+    }
+
+
     const fileChangedHandler = (e) => {
         const file = new FormData();
         file.append( "file",e.target.files[0]);
@@ -77,24 +89,17 @@ const PaymentData = ({ match }) => {
         axios.post(`http://localhost:8080/payment/approved`,params)
         .then(res => {
             if(res.data){
-            alert("결제되었습니다");
+            alert("결재 되었습니다");
             window.location.reload(false);
             }else{
-            alert("이미 결제했습니다.");
+            alert("이미 결재했습니다.");
             }
         })
         .catch(res => console.log(res))       
     }
 
-    const onChange = (e) => {
-        const { value, name } = e.target;
-        setInputs({
-        ...inputs,
-        [name]: value
-        });
-    };
 
-
+    var check = paymentCheck();
     return (
         <div>
             {sign === false?
@@ -127,7 +132,8 @@ const PaymentData = ({ match }) => {
                     
                 </CCardBody>
                 <CCardFooter style={{textAlign: "right"}}>
-                    <CButton color="primary" onClick={payment}>결제</CButton>
+                    <div>{check}</div>
+                    <CButton color="primary" onClick={payment}>결재</CButton>
                 </CCardFooter>
             </CCard>
             

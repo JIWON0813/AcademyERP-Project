@@ -12,6 +12,8 @@ import {
   CDataTable
 } from '@coreui/react'
 
+import * as MasageInsert from '../../../containers/MasageInsert'
+
 
 let payselect = 1;
 let fields;
@@ -106,7 +108,7 @@ export default class insert extends Component {
           }
         }
         if(temp.length<1){
-            alert("선택을 누르고 결제할 내용을 체크해주세요");return false;
+            alert("선택을 누르고 결재할 내용을 체크해주세요");return false;
         }
         this.setState({
             paymentOpen: true,
@@ -120,14 +122,15 @@ export default class insert extends Component {
     }
     handleClose = () => {
         this.setState({
-            paymentOpen: false
+            paymentOpen: false,
+            player: []         
         })
     };
 
     insertNullCheck = () =>{
         for (var i = 0; i < document.getElementsByName("player").length; i++) {
             if(document.getElementsByName("player")[i].value===null||document.getElementsByName("player")[i].value===""){
-                alert("결제할1");return false;
+                alert("결재할 사람을 골라주세요.");return false;
             }
         }
         if(this.state.title.length<1){
@@ -190,10 +193,10 @@ export default class insert extends Component {
         return(
             <div>
                 <Button variant="contained" color="primary" onClick={this.select}>선택</Button>
-                <Button variant="contained" color="primary" onClick={this.payment}>결제</Button>    
+                <Button variant="contained" color="primary" onClick={this.payment}>결재</Button>    
 
                 <Dialog open={this.state.paymentOpen} onClose={this.handleClose}>
-                    <DialogTitle>결제 하기</DialogTitle>
+                    <DialogTitle>결재 하기</DialogTitle>
                     <DialogContent>
                     <CFormGroup row>
                         <CCol md="3">
@@ -213,7 +216,7 @@ export default class insert extends Component {
                         <div>
                             {this.state.paymentPlayerArr&&this.state.paymentPlayerArr.map((i)=>{
                             return(
-                                <CSelect type="select"name="player" placeholder="결제할 사람" onChange={this.selectCheck} >
+                                <CSelect type="select"name="player" placeholder="결재할 사람" onChange={this.selectCheck} >
                                     <option value="">선택</option>
                                     {this.state.user&&this.state.user.map((index)=>{
                                         if(this.state.player.indexOf(index.no)<0){
@@ -261,7 +264,7 @@ export default class insert extends Component {
                     </CFormGroup>
                     </DialogContent>
                     <DialogActions>
-                    <Button variant="contained" color="primary" onClick={this.insert}>결제추가</Button>
+                    <Button variant="contained" color="primary" onClick={this.insert}>결재추가</Button>
                     <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
                     </DialogActions>
                 </Dialog>
