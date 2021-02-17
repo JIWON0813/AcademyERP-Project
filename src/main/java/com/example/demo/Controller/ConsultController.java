@@ -19,6 +19,7 @@ public class ConsultController {
 
     @GetMapping("/consult")
     public HashMap<String, Object> list(@RequestParam("keyword") String keyword) {
+        System.out.println("1111111111111111111");
         return consultService.list(keyword);
     }
 
