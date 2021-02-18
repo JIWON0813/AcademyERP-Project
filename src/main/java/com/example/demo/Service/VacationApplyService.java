@@ -2,7 +2,6 @@ package com.example.demo.Service;
 
 import java.util.*;
 
-import com.example.demo.database.DTO.*;
 import com.example.demo.database.Repository.*;
 import com.example.demo.database.Entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,14 @@ public class VacationApplyService {
     public List<VacationApplyEntity> get(HashMap<String,Object> to){
         List<VacationApplyEntity> result = VacationApplyRepo.get(to);
         return result;
+    }
+
+    public int put (VacationApplyEntity dto){
+        return VacationApplyRepo.put(dto);
+    }
+
+    public int delete (int no){
+        return VacationApplyRepo.delete(no);
     }
 
     public int count(){

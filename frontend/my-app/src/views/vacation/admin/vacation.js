@@ -265,20 +265,6 @@ const Info = () => {
                     </strong>
                   </td>
                 ),
-              'no':
-                (item) => (
-                  <td>
-                    {payselect === 1 ?
-                      <div>
-                        {item.no}
-                      </div>
-                      :
-                      <div>
-                        <input type="checkbox" name="check" value={item.no} />
-                      </div>
-                    }
-                  </td>
-                ),
             }}
           />
         </div>

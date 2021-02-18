@@ -13,4 +13,6 @@ public interface VacationApplyRepository {
     List<VacationApplyEntity> get(HashMap<String,Object> to);
     int count();
     VacationApplyEntity getApply(int no);
+    int put(VacationApplyEntity dto);
+    int delete(int no);
 }  

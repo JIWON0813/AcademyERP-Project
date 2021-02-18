@@ -23,6 +23,11 @@ export default class Apply extends Component {
       data: "",
       page: "",
       open: "",
+      no: "",
+      startDay: "",
+      endDay: "",
+      days: "",
+      seleted:""
     }
 
   }
@@ -54,7 +59,7 @@ export default class Apply extends Component {
             end_day: list[i].end_day,
             use_vacation: list[i].use_vacation,
             day: list[i].day,
-            수정: 1
+            수정: list[i].no
           }
           list[i] = temp
         }
@@ -69,11 +74,17 @@ export default class Apply extends Component {
   }
 
 
-  handleClickOpen = () => {
+  handleClickOpen = (item) => {
     this.setState({
-      open: true
+      open: true,
+      no: item.no,
+      startDay: item.start_day,
+      endDay: item.end_day,
+      day: item.day,
+      seleted:item.use_vacation
     })
   };
+
 
   handleClose = () => {
     this.setState({
@@ -83,18 +94,12 @@ export default class Apply extends Component {
     })
   };
 
-  insert = () => { 
-    
-  };
 
   del = () => {
     axios({
-      url: 'http://localhost:8080/Calendar/' + this.state.no,
+      url: 'http://localhost:8080/Vacation_apply/' + this.state.no,
       method: "DELETE",
       headers: { 'content-type': 'application/json' },
-      data: {
-
-      }
     })
       .then(function (response) {
         console.log(response)
@@ -108,11 +113,15 @@ export default class Apply extends Component {
 
   update = () => {
     axios({
-      url: 'http://localhost:8080/Calendars',
+      url: 'http://localhost:8080/Vacation_apply',
       method: "PUT",
       headers: { 'content-type': 'application/json' },
       data: {
- 
+        no: this.state.no,
+        start_day: this.state.startDay,
+        end_day: this.state.endDay,
+        day: this.state.day,
+        use_vacation: this.state.seleted
       }
     })
       .then(function (response) {
@@ -181,9 +190,6 @@ export default class Apply extends Component {
       <div>
         <div>
           <div align="right">
-            <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
-              추가하기
-            </Button>
             <PaymentInsert kind={"vacation_apply"} data={this.state.data}/>           
           </div>
   
@@ -204,13 +210,13 @@ export default class Apply extends Component {
               pagination
               scopedSlots={{
                 '수정':
-                  (item) => (
-                    <td>
-                      <a href="naver.com">
-                        {item.수정}
-                      </a>
-                    </td>
-                  ),
+                (item) => (
+                  <td>
+                    <strong onClick={()=>this.handleClickOpen(item)}>
+                      수정
+                    </strong>
+                  </td>
+                ),
               }}
             />
           </div>
@@ -231,71 +237,49 @@ export default class Apply extends Component {
             </ul>
           </nav>
           
-  
           <Dialog open={this.state.open} onClose={this.handleClose}>
-            <DialogTitle>휴가 추가하기</DialogTitle>
-            <DialogContent>
-              <CFormGroup row>
-                <CCol md="3">
-                  <CLabel htmlFor="start_date">User</CLabel>
-                </CCol>
-             
-              </CFormGroup>
-              <CFormGroup row>
-                <CCol md="3">
-                  <CLabel htmlFor="start_date">일수</CLabel>
-                </CCol>
-                <CCol xs="12" md="9">
-                  <CInput name="day" placeholder="일수" value={this.state.day}
-                    onChange={this.onChange} />
-                </CCol>
-                <CCol md="3">
-                  <CLabel htmlFor="start_date">내용</CLabel>
-                </CCol>
-                <CCol xs="12" md="9">
-                  <CInput name="name" placeholder="내용" value={this.state.name}
-                    onChange={this.onChange} />
-                </CCol>
-              </CFormGroup>
-            </DialogContent>
-            <DialogActions>
-              <Button variant="contained" color="primary" onClick={this.insert}>추가</Button>
-              <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
-            </DialogActions>
-          </Dialog>
-  
-          <Dialog open={this.state.open3} onClose={this.handleClose}>
-            <DialogTitle>휴가 추가하기</DialogTitle>
-            <DialogContent>
-              <CFormGroup row>
-                <CCol md="3">
-                  <CLabel htmlFor="start_date">User</CLabel>
-                </CCol>
+          <DialogTitle>휴가 신청</DialogTitle>
+          <DialogContent>
+            <CFormGroup row>
+              <CCol md="3">
+                <CLabel htmlFor="start_date">start</CLabel>
+              </CCol>
+              <CCol xs="12" md="9">
+                <CInput type="date" name="startDay" placeholder="start_day" value={this.state.startDay}
+                  onChange={this.onChange} />
+              </CCol>
               
-  
-              </CFormGroup>
-              <CFormGroup row>
-                <CCol md="3">
-                  <CLabel htmlFor="start_date">일수</CLabel>
-                </CCol>
-                <CCol xs="12" md="9">
-                  <CInput name="day" placeholder="일수" value={this.state.day}
-                    onChange={this.onChange} />
-                </CCol>
-                <CCol md="3">
-                  <CLabel htmlFor="start_date">내용</CLabel>
-                </CCol>
-                <CCol xs="12" md="9">
-                  <CInput name="name" placeholder="내용" value={this.state.name}
-                    onChange={this.onChange} />
-                </CCol>
-              </CFormGroup>
-            </DialogContent>
-            <DialogActions>
-              <Button variant="contained" color="primary" onClick={this.insert}>추가</Button>
-              <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
-            </DialogActions>
-          </Dialog>
+              <CCol md="3">
+                <CLabel htmlFor="start_date">end</CLabel>
+              </CCol>
+              <CCol xs="12" md="9">
+              <CInput type="date" name="endDay" placeholder="end_day" value={this.state.endDay}
+                  onChange={this.onChange} />{this.state.endDay}
+              </CCol>
+            </CFormGroup>
+            <CFormGroup row>
+              <CCol md="3">
+                <CLabel htmlFor="start_date">등록날짜</CLabel>
+              </CCol>
+              <CCol xs="12" md="9">
+                <CInput readOnly name="day" value={this.state.day}onChange={this.onChange} />
+              </CCol>
+              <CCol md="3">
+                <CLabel htmlFor="start_date">사용 휴가</CLabel>
+              </CCol>
+              <CCol xs="12" md="9">
+                 <CInput name="seleted" value={this.state.seleted}onChange={this.onChange} /> 
+              </CCol>
+              
+            </CFormGroup>
+          </DialogContent>
+          <DialogActions>
+            <Button variant="contained" color="primary" onClick={this.update}>수정</Button>
+            <Button variant="contained" color="primary" onClick={this.del}>삭제</Button>
+            <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
+          </DialogActions>
+        </Dialog>
+         
         </div>
       </div>
     );
