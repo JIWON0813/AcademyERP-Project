@@ -31,4 +31,12 @@
     <select id="vacation" resultType="VacationEntity" >
         select * from vacation where no=#{no}
     </select>
+    
+    <update id="VacationPut">
+        update vacation set name=#{name}, employee_no=#{employee_no}, day=#{day} where no=#{no}
+    </update>
+
+    <delete id="VacationDelete">
+        delete from vacation where no=#{no}
+    </delete>
 </mapper>  

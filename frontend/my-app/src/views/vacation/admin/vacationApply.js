@@ -6,7 +6,7 @@ import {
   DialogContent,
   DialogTitle,
 } from "@material-ui/core";
-import { CCol, CFormGroup, CInput, CLabel, CSelect } from '@coreui/react';
+import { CCol, CFormGroup, CInput, CLabel } from '@coreui/react';
 import axios from 'axios';
 import {
   CDataTable
