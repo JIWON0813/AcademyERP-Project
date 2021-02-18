@@ -72,7 +72,6 @@ class PayList extends React.Component {
     this.getApi();
   }
 
-
 getApi = () => {
   axios.get("http://localhost:8080/api/students/user/"+this.props.id)
     .then(res => {
@@ -112,7 +111,7 @@ getApi = () => {
     this.setState({
       ItemList: "",
       payList:"",
-      reason:"",
+      reason:"개인사정",
     });
     this.getApi();
   }
@@ -159,7 +158,7 @@ getApi = () => {
                     <td>{itemdata.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
                     <td>{itemdata.start_date}</td>
                     <td>{itemdata.end_date}</td>
-                    <td><RequestPay stateRefresh={this.stateRefresh} product={itemdata}/></td>
+                    <td><RequestPay product={itemdata}/></td>
 
                   </tr>
                 );

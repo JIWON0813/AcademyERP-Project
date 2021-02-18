@@ -85,14 +85,13 @@ public class PayController {
 
             switch (e.getHttpStatusCode()) {
                 case 401:
-                    //TODO
+                    System.out.println("401오류");
                     break;
                 case 500:
-                    //TODO
+                    System.out.println("500오류");
                     break;
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -125,14 +124,13 @@ public class PayController {
 
             switch (e.getHttpStatusCode()) {
                 case 401:
-                    //TODO
+                    System.out.println("401오류");
                     break;
                 case 500:
-                    //TODO
+                    System.out.println("500오류");
                     break;
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
