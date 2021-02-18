@@ -12,4 +12,5 @@ public class MasageEntity {
     private String contents;
     private String link;
     private String day;
+    private String reading;
 }

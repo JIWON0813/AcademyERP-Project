@@ -3,9 +3,18 @@
 
 <mapper namespace="com.example.demo.database.Mapper.MasageMapper">
     <insert id="MasageInsert">
-        insert into masage values(null,#{to},#{post},#{title},#{contents},#{link},"2020-11-11")
+        insert into masage values(null,#{to},#{post},#{title},#{contents},#{link},date(now()),"" )
     </insert>
     <select id="MasageGet" parameterType="int" resultType="masageEntity"> 
         select * from masage 
     </select>
+    <update id="MasagePut" >
+        update masage set reading=CONCAT(reading,#{id}) where no=#{no}
+    </update>
+    <select id="Masage" resultType="masageEntity">
+        select * from masage where no=#{no}
+    </select>
+    <delete id="MasageDelete">
+        delete from masage where no=#{no}
+    </delete>
 </mapper>

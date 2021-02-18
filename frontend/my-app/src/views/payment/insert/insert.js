@@ -175,7 +175,7 @@ export default class insert extends Component {
         .then(function (response) {
             console.log(response)
             alert("등록완료");
-            window.location.reload(false);
+            window.location.reload();
         })
         .catch(function (error) {
             console.log(error)

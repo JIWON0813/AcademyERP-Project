@@ -15,13 +15,14 @@ const id=window.sessionStorage.no;
 
 const TheHeaderDropdownMssg = () => {
   const [inputs, setInputs] = useState({
-    masageList: []
+    masageList: [],
+    reset: 0
   });
 
-  const { masageList } = inputs;
+  const { masageList, reset } = inputs;
 
   useEffect(() => {
-  getData();
+    getData();
   }, []); 
 
 
@@ -34,6 +35,14 @@ const TheHeaderDropdownMssg = () => {
         })
       })
       .catch(res => console.log(res))
+  }
+
+  const masageClick=(no)=>{
+    axios.put("http://localhost:8080/masage/"+no+"/"+window.sessionStorage.getItem("no"))
+        .then(res => {
+          console.log(res)
+        })
+        .catch(res => console.log(res))
   }
 
   return (
@@ -55,10 +64,13 @@ const TheHeaderDropdownMssg = () => {
         </CDropdownItem>
         {masageList.map((index)=>{
           return(
+            <CDropdownItem href={"#/"+index.link} onClick={()=>{masageClick(index.no);getData()}}>{/*href */}
             <Masage
+              no={index.no}
               link={index.link} name={index.to} time={index.day}
               title={index.title} contents={index.contents}
             />
+            </CDropdownItem>
           )
         })}
       </CDropdownMenu>

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
-  CDropdownItem,
   CImg
 } from '@coreui/react'
-
 
 const Mssg = (props) => {
 
@@ -14,7 +12,6 @@ const Mssg = (props) => {
   }
   return (
     <div>
-      <CDropdownItem href={"#/"+props.link}>{/*href */}
           <div className="message">
             <div className="pt-3 mr-3 float-left">
               <div className="c-avatar">
@@ -44,11 +41,7 @@ const Mssg = (props) => {
               
             </div>
           </div>
-        </CDropdownItem>
     </div>
   )
 }
-
-
-
 export default Mssg

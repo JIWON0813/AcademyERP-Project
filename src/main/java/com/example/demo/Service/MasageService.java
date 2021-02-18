@@ -26,6 +26,16 @@ public class MasageService {
         return result;
     }
 
+    public int MasagePut(HashMap<String,Object> map){
+        return masageMapper.MasagePut(map);
+    }
 
+    public MasageEntity Masage(int no){
+        return masageMapper.Masage(no);
+    }
+
+    public int MasageDelete(int no){
+        return masageMapper.MasageDelete(no);
+    }
 
 }
