@@ -1,4 +1,4 @@
-import React,{ Component } from "react";
+import React,{ useEffect,useState } from "react";
 import './table.css';
 import { Link } from 'react-router-dom';
 import ApiService from "../../ApiService";
@@ -12,24 +12,21 @@ import {
   } from '@coreui/react'
 
 
-class SalaryList extends Component {
+  const SalaryCheck = () => {
+    const [inputs, setInputs] = useState({
+        SalaryList: ''
+    });
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            SalaryList: ''
-        }
-    }
+    useEffect(() => {
+        getApi(0);
+    },[]);
 
-    componentDidMount() {
-        this.getApi();
-    }
+    const {SalaryList} = inputs;
 
-    getApi = () => {
+    const getApi = () => {
         ApiService.Salary()
             .then(res => {
-                console.log(res);
-                this.setState({
+                setInputs({
                     SalaryList : res.data.list    
                 })
             })
@@ -37,13 +34,11 @@ class SalaryList extends Component {
             
     }
 
-    selSal = (NO) => {
+    const setSal = (NO) => {
         window.localStorage.setItem("SalNO", NO);
+        console.log("qweqwe" +NO);
         this.props.history.push('/sal_edit');
     }
-    
-    render() {
-        const { SalaryList } =  this.state;
         
         return (
             <div>
@@ -56,7 +51,7 @@ class SalaryList extends Component {
                     <td>{itemdata.branch}</td>
                     <td>{itemdata.name}</td>
                     <td>{itemdata.salary}</td>
-                    <td width ="80"><CButton block color="secondary" onClick={() => this.selSal(itemdata.no)}>급여수정</CButton></td>
+                    <td width ="80"><Link to={`/sal_edit/${itemdata.no}`}>급여수정</Link></td>
                     </tr>
                     );
                 })}
@@ -64,6 +59,5 @@ class SalaryList extends Component {
             </div>
         )
     }
-}
 
-export default SalaryList;
+    export default SalaryCheck  

@@ -1,44 +1,18 @@
 import React,{ useEffect,useState } from "react";
 import { useHistory } from "react-router-dom";
 import './table.css';
-//import { Link } from 'react-router-dom';
 import ApiService from "../../ApiService";
-
 import {
     CButton,
     CCard,
     CCardBody,
-    CCardFooter,
     CCardHeader,
     CCol,
-    CCollapse,
-    CDropdownItem,
-    CDropdownMenu,
-    CDropdownToggle,
-    CFade,
     CForm,
     CFormGroup,
-    CFormText,
-    CValidFeedback,
-    CInvalidFeedback,
-    CTextarea,
-    CInput,
-    CInputFile,
-    CInputCheckbox,
-    CInputRadio,
-    CInputGroup,
-    CInputGroupAppend,
-    CInputGroupPrepend,
-    CDropdown,
-    CInputGroupText,
     CLabel,
-    CSelect,
-    CRow,
-    CSwitch
+    CRow
   } from '@coreui/react'
-  import CIcon from '@coreui/icons-react'
-  import { DocsLink } from 'src/reusable'
-
 
   const StudentData =({ match }) => {
     const [inputs, setInputs] = useState({
@@ -74,20 +48,20 @@ import {
                     gender : stu.gender,
                     regdate : stu.regdate
                 })
+                console.log(stu.no)
             })
         .catch(err =>{
             console.log('getApi() 에러', err);
         });
     }
+
     let history = useHistory();
+
     const delStu = () => {
         
         ApiService.deleteStudent(match.params.no)
         .then( res => {
-            this.setState({
-                message : 'User Deleted Suscces'
-            });
-            alert(this.state.message);
+            alert('성공적으로 삭제되었습니다.');
             history.push('/students');
         })
         .catch(err => {
@@ -196,27 +170,4 @@ import {
         </CRow>
     );
   }
-
-    
-
-    // delStu = (NO) => {
-    //     ApiService.deleteStudent(NO)
-    //     .then( res => {
-    //         this.setState({
-    //             message : 'User Deleted Suscces'
-    //         });
-    //         alert(this.state.message);
-    //         this.props.history.push('/students');
-    //     })
-    //     .catch(err => {
-    //         console.log('delStu() Error!', err);
-    //     })
-    // }
-
-    // editStu = (NO) => {
-    //     window.localStorage.setItem("StudentNO", NO);
-    //     this.props.history.push('/edit_stu');
-    // }
-
-
 export default StudentData;

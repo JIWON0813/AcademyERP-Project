@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,13 +41,23 @@ public class HrController {
         return result;
     }
 
-    @GetMapping("/salary_emp/{no}")
+    @GetMapping("/sal_edit/{no}")
     public HashMap<String, List> SalaryEmp(@PathVariable int no) {
         System.out.println(no);
         HashMap<String, List> result = new HashMap<>();
         List<EmployeeDTO> list = hrmapper.getSalEmp(no);
         result.put("list", list);
         return result;
+    }
+
+    @PostMapping("/sal_edit_com/{name}")
+    public int salaryEdit(@RequestBody EmployeeDTO employee ,@PathVariable String name){
+        System.out.println(name);
+        EmployeeDTO list = employee;
+        list.setName(employee.getName());
+        list.setSalary(employee.getSalary());
+        System.out.println(list.getName());
+        return hrmapper.updateSalary(list);
     }
 
     @GetMapping("/lec_time/{no}")
@@ -60,5 +72,5 @@ public class HrController {
         result.put("list", slist);
         return result;
     }
-    
+
 }

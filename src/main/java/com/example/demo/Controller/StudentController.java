@@ -114,6 +114,12 @@ public class StudentController {
         return result;
     }
 
+    @GetMapping("/searchStudent/{searchKey}")
+    public Page<StudentEntity> searchStudent(@PathVariable String searchKey,Pageable pageable) {
+        System.out.println("asdasdasd" + searchKey);
+        return studentRepository.findAll(pageable,searchKey);
+    }
+
 
     //여진
     @GetMapping("/students/{lecture}")

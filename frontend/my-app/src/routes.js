@@ -165,7 +165,7 @@ const routes = [
 
   {path: '/HR', exact: true, name: 'HR', component: HR},
   {path: '/sal_list', exact: true, name: 'sal_list', component: Sal_list},
-  {path: '/sal_edit', exact: true, name: 'sal_edit', component: Sal_edit},
+  {path: '/sal_edit/:no', exact: true, name: 'sal_edit', component: Sal_edit},
 
   {path: '/teacher', exact: true, name: 'teacher', component: Teacher},
 

@@ -19,8 +19,13 @@ public interface StudentRepository extends PagingAndSortingRepository<StudentEnt
     @Transactional
     @Modifying
     @Query(value="update student set hp = :#{#student.hp},email = :#{#student.email},birth = :#{#student.birth},lecture = :#{#student.lecture} where no = :#{#student.no}", nativeQuery=true)
-    Integer update(@Param("student") StudentEntity student);
+        Integer update(@Param("student") StudentEntity student);
+
         Page<StudentEntity> findAll(Pageable pageable);
+        @Query(value="select * from student s where s.name = :#{#searchKey}",nativeQuery=true)
+        Page<StudentEntity> findAll(Pageable pageable, @Param("searchKey") String searchKey);
+
+        
 
     //여진
     List<StudentDTO> findAllByLecture(long lecture);

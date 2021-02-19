@@ -6,7 +6,7 @@ class ApiService {
 
   Students(currentPage,Size) {
     return axios.get(USER_API_BASE_URL + '/students' + "?page=" + currentPage + "&size=" + Size);
-}
+  }
 
   Student(no) {
     console.log("!!!!!!!!!!!!!!!!!" + no);
@@ -57,11 +57,26 @@ class ApiService {
     }
 
     SalaryEmp(no) {
-        return axios.get(USER_API_BASE_URL + '/salary_emp/' + no);
+      console.log("??????????" + no);
+        return axios.get(USER_API_BASE_URL + '/sal_edit/' + no);
     }
 
     Teacher(no) {
         return axios.get(USER_API_BASE_URL + '/lec_time/' + no);
+    }
+
+    EditSalary(employee) {
+      console.log("??????????" + employee.salary);
+      return axios.post(USER_API_BASE_URL + '/sal_edit_com/' + employee.name, employee);
+    }
+
+    Branch() {
+      return axios.get("http://localhost:8080/lecture/branches");
+    }
+
+    SearchStudent(searchKey) {
+      console.log(searchKey)
+      return axios.get(USER_API_BASE_URL + '/searchStudent/' +searchKey);
     }
 
 }
