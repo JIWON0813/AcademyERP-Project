@@ -15,27 +15,14 @@ import PaymentInsert from "../../payment/insert/insert"
 
 
 let fields = ['no', 'employee_no', 'start_day', 'end_day', 'use_vacation' , 'day', '수정'];
-let payselect = 1;
-
-
 
 export default class Apply extends Component {
   constructor(props) {
     super(props)
     this.state = {
       data: "",
-      user: "",
-      day: "",
-      name: "",
       page: "",
       open: "",
-      open2: "",
-      open3: "",
-      title: "",
-      contents:"",
-      player:"",
-      paymentPlayer:1,
-      paymentPlayerArr: [1]
     }
 
   }
@@ -97,37 +84,7 @@ export default class Apply extends Component {
   };
 
   insert = () => { 
-    let count = document.getElementsByName("player").length;
-    let playerTemp = "";
-    let kindsTemp = "";
-
-    for (var i = 0; i < count; i++) 
-      playerTemp+=document.getElementsByName("player")[i].value+"/"
-    for (var l=0;l<this.state.selected.length;l++){
-      kindsTemp += this.state.selected[l].no+"/"
-    }
-
-    axios({
-      url: 'http://localhost:8080/payment',
-      method: "POST",
-      headers: { 'content-type': 'application/json' },
-      data: {
-        employee_no: window.sessionStorage.getItem("no"),
-        player: playerTemp,
-        title: this.state.title,
-        contents: this.state.contents,
-        kinds: 1,
-        kinds_no: kindsTemp
-      }
-    })
-      .then(function (response) {
-        console.log(response)
-        alert("등록완료");
-        window.location.reload(false);
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+    
   };
 
   del = () => {
@@ -218,60 +175,7 @@ export default class Apply extends Component {
     .catch(res => console.log(res))
   }
 
-  payment = () => {
-    let count = document.getElementsByName("check").length;
-    let temp = [];
-    
-    
-    for (var i = 0; i < count; i++) {
-      if (document.getElementsByName("check")[i].checked === true) {
-        for (var l = 0; l < this.state.data.length; l++) {
-          if (Number(this.state.data[l].no) === Number(document.getElementsByName("check")[i].value)) {
-            temp.push(this.state.data[l])
-          }
-        }
-      }
-    }
-    this.setState({
-      open2: true,
-      selected: temp
-    })   
-  }
-
-   select = () => {
-    payselect *= -1;
-    let list = this.state.data;
-    this.setState({
-      data: list,
-    })
-  }
-
-
-
-  paymentPlayerAdd = () =>{
-    let index = this.state.paymentPlayer+1;
-    let temp =[];
-    for(var i=0;i<index;i++){
-      temp.push(i)
-    }
-    this.setState({
-      paymentPlayerArr: temp,
-      paymentPlayer: index,
-    })
-  }
-
-  paymentPlayerSub = () =>{
-    let index = this.state.paymentPlayer-1;
-    let temp =[];
-    for(var i=0;i<index;i++){
-      temp.push(i)
-    }
-    this.setState({
-      paymentPlayerArr: temp,
-      paymentPlayer: index,
-    })
-  }
-
+  
   render(){
     return (
       <div>
@@ -280,12 +184,7 @@ export default class Apply extends Component {
             <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
               추가하기
             </Button>
-            <Button variant="contained" color="primary" onClick={this.select}>
-              선택
-            </Button>
-            <Button variant="contained" color="primary" onClick={this.payment}>
-              결제
-            </Button>            
+            <PaymentInsert kind={"vacation_apply"} data={this.state.data}/>           
           </div>
   
           <div style={{ float: "right" }}>
@@ -312,20 +211,6 @@ export default class Apply extends Component {
                       </a>
                     </td>
                   ),
-                'no':
-                  (item) => (
-                    <td>
-                      {payselect === 1 ?
-                        <div>
-                          {item.no}
-                        </div>
-                        :
-                        <div>
-                          <input type="checkbox" name="check" value={item.no} />
-                        </div>
-                      }
-                    </td>
-                  ),
               }}
             />
           </div>
@@ -345,86 +230,7 @@ export default class Apply extends Component {
               {this.state.page.endPage !== this.state.page.lastPage ? <li class="page-item" onClick={() => this.nextpage()}><a class="page-link" aria-label="Go to next page" aria-disabled="false">›</a></li> : ''} {/*다음 */}
             </ul>
           </nav>
-          <Dialog open={this.state.open2} onClose={this.handleClose}>
-            <DialogTitle>결제 하기</DialogTitle>
-            <DialogContent>
-              <CFormGroup row>
-                <CCol md="3">
-                  <CLabel htmlFor="start_date">title</CLabel>
-                </CCol>
-                <CCol xs="12" md="9">
-                  <CInput name="title" placeholder="이름" value={this.state.title}
-                    onChange={this.onChange} />
-                </CCol>
-              </CFormGroup>
-              <CFormGroup row>
-                <CCol md="3">
-                  <CLabel htmlFor="start_date">player</CLabel>
-                </CCol>
-                <CCol xs="12" md="9">
-                <div>
-                  <div>
-                    {this.state.paymentPlayerArr&&this.state.paymentPlayerArr.map((i)=>{
-                      return(
-                        <CSelect type="select"name="player" placeholder="결제할 사람"  >
-                            <option value="">선택</option>
-                            {this.state.user&&this.state.user.map((index,l)=>{
-                              return(
-                                <option value={index.no}>{index.no}. {index.name}</option>
-                              )
-                            })}
-                        </CSelect>
-                      )
-                    })}
-  
-                  </div>
-                  <button onClick={this.paymentPlayerAdd}>추가</button>
-                  <button onClick={this.paymentPlayerSub}>삭제</button>
-                </div>
-                  
-                  
-                </CCol>
-              </CFormGroup>
-              <CFormGroup row>
-                <CCol md="3">
-                  <CLabel htmlFor="start_date">table</CLabel>
-                </CCol>
-                <CCol xs="12" md="9">
-                  <table border="1">
-                    <th>no</th>
-                    <th>E_no</th>
-                    <th>start_day</th>
-                    <th>end_name</th>
-                    <th>use_vacation</th>
-                    <th>day</th>
-                    {this.state.selected && this.state.selected.map((i) => {
-                      return (
-                        <tr>
-                          <td>{i.no}</td>
-                          <td>{i.employee_no}</td>
-                          <td>{i.start_day}</td>
-                          <td>{i.end_day}</td>
-                          <td>{i.use_vacation}</td>
-                          <td>{i.day}</td>
-                        </tr>
-                      )
-                    })}
-                  </table>
-                </CCol>
-                <CCol md="3">
-                  <CLabel htmlFor="start_date">contents</CLabel>
-                </CCol>
-                <CCol xs="12" md="9">
-                  <CInput name="contents" placeholder="내용" value={this.state.contents}
-                    onChange={this.onChange} />
-                </CCol>
-              </CFormGroup>
-            </DialogContent>
-            <DialogActions>
-              <PaymentInsert kind={1} selected={this.state.selected} title={this.state.title} contents={this.state.contents}/>
-              <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
-            </DialogActions>
-          </Dialog>
+          
   
           <Dialog open={this.state.open} onClose={this.handleClose}>
             <DialogTitle>휴가 추가하기</DialogTitle>

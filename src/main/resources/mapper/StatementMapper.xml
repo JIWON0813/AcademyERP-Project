@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.database.Mapper.StatementMapper">
+    <insert id="InsertStatement" useGeneratedKeys="true" keyProperty="no" parameterType="StatementDTO">
+        INSERT INTO statement (workplace,employee,branch,all_note,proof_date,reporting_date)
+        VALUES (#{workplace},
+                #{employee},
+                #{branch},
+                #{allNote},
+                #{proofDate},
+                #{reportingDate})
+    </insert>
+
+    <insert id="InsertStatementDetail" parameterType="java.util.HashMap">
+        INSERT INTO statement_details (statement,line,note,debtor,creditor,account,customer)
+        VALUES
+        <foreach item="item" index="index" collection="list" separator=" , ">
+            (#{statement},#{item.line},#{item.note},#{item.debtor},#{item.creditor},#{item.account},#{item.customer})
+        </foreach>
+
+    </insert>
+
+</mapper>

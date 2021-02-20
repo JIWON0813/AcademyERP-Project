@@ -13,11 +13,11 @@ public class PayDTO {
     private long no;
     private String merchantUID;
     private String impUID;
-    private BigDecimal paidAmount;
-    private long customData;
-    private String payMethod;
+    private BigDecimal paid_amount;
+    private long custom_data;
+    private String pay_method;
     private String name;
-    private Date paidAt;
+    private Date paid_at;
     private String reason;
     private BigDecimal cancel_request_amount;
 

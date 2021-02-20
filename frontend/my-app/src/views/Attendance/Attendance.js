@@ -7,6 +7,9 @@ import {
   CCol,
   CRow
 } from '@coreui/react'
+import {
+  Button,
+} from "@material-ui/core";
 const style={width: "60%"}
 
 
@@ -50,7 +53,6 @@ class Users extends Component {
         <div>
           <AttTable mode={this.state.mode}/>
         </div>
-
         <Down name="Attendance"></Down>
       </div>
     );

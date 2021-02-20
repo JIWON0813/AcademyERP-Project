@@ -6,6 +6,8 @@ import '../Template/css/table.css';
 import { Link } from 'react-router-dom';
 import Moment from "moment"
 
+import PaymentInsert from "../payment/insert/insert"
+
 import {
   CButton,
   CCard,
@@ -366,6 +368,9 @@ class AttTable extends Component {
   }
   selChange() { //몇줄로 볼지
     var sel = document.getElementById('cntPerPage').value;
+    if(sel===""){
+      sel=0;
+    }
     this.movePage(1,sel)
   }
   pageChange(selPage){ //페이지 이동 클릭
@@ -405,6 +410,7 @@ class AttTable extends Component {
     }
     return result;
   }
+
 
 
   render() {
@@ -490,12 +496,10 @@ class AttTable extends Component {
             <br/>
             </div>
             <div style={{float: "right"}}>
-              <select id="cntPerPage" name="sel" onChange={() => {this.selChange()}}>
-                <option value="5">5줄 보기</option>
-                <option value="10" selected="selected">10줄 보기</option>
-                <option value="15">15줄 보기</option>
-                <option value="20">20줄 보기</option>
-              </select>
+              <PaymentInsert kind={"attendance"} data={ItemList}/>
+              몇줄<input type="number" id="cntPerPage" name="sel" onChange={() => {this.selChange()}} >
+                {this.state.cntPerPage}
+              </input>
             </div>
             <table name="ATT" class="default">
             <thead>

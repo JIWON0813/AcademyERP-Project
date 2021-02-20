@@ -21,32 +21,83 @@ import navigation from './_nav'
 
 const _HRD=1;
 const score=3;
-let HRD_login=false;
 let score_login=false;
 var session_dep=window.sessionStorage.getItem('dep');
-var sm=[
+var HRD=[
   {
     _tag: 'CSidebarNavTitle',
-    _children: ['박수민']
+    _children: ['인사팀']
   },
   {
     _tag: 'CSidebarNavDropdown',
-    name: '인사',
+    name: '근태관리',
     route: '/base',
     icon: 'cil-chart-pie',
     _children: [
       {
         _tag: 'CSidebarNavItem',
-        name: 'Attendance',
+        name: '근태상황',
         to: '/Attendance',
       },
       {
         _tag: 'CSidebarNavItem',
-        name: '회사 휴일관리',
-        to: '/Calendar_admin',
+        name: '휴가 목록',
+        to: '/vacation',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: '휴가 신청 목록',
+        to: '/vacation_apply',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: '결제 리스트',
+        to: '/adpayment',
+      },
+    ]
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: '회사 캘린더',
+    to: '/Calendar_admin',
+    icon: 'cil-calendar'
+  }
+
+];
+
+var login=[
+
+  {
+    _tag: 'CSidebarNavDropdown',
+    name: '근태',
+    route: '/base',
+    icon: 'cil-chart-pie',
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: '나의 출퇴근',
+        to: '/Attendance_user',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: '나의 휴가',
+        to: '/vacation_user',
       }
     ]
-  }
+  },
+  {
+    _tag: 'CSidebarNavDropdown',
+    name: '결제',
+    route: '/base',
+    icon: 'cil-chart-pie',
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: '결제요청',
+        to: '/payment',
+      }
+    ]
+  },
 ];
 
 var sm_score=[
@@ -73,24 +124,26 @@ var sm_score=[
     ]}
 ];
 
-if(Number(session_dep)===_HRD){
-  HRD_login=true;
-}else if(Number(session_dep)===score){
+if(Number(session_dep)===score){
   score_login = true;
 }
 
-if(HRD_login){
-  score_login = false;
-  for(var i=sm.length-1;i>-1;i--){
-    navigation.splice(0,0,sm[i])
+if(Number(session_dep)===_HRD){
+  for(var i=HRD.length-1;i>-1;i--){
+    navigation.splice(0,0,HRD[i])
   }
 }else if(score_login) {
-  HRD_login=false;
-  for (var i = sm_score.length - 1; i > -1; i--) {
+  for (i = sm_score.length - 1; i > -1; i--) {
     navigation.splice(0, 0, sm_score[i])
   }
 }
 
+
+if(session_dep!=null){
+  for (i = login.length - 1; i > -1; i--) {
+    navigation.splice(0, 0, login[i])
+  }
+}
 const TheSidebar = () => {
   const dispatch = useDispatch()
   const show = useSelector(state => state.sidebarShow)

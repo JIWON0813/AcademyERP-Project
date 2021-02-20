@@ -54,8 +54,8 @@ const LectureUpdate = React.lazy(() => import('./views/lecture/LectureUpdate'));
 const Score = React.lazy(() => import('./views/score/Score'));
 const Counseling = React.lazy(() => import('./views/counseling/Counseling'));
 
-const PayList = React.lazy(() => import('./views/Pay/PayList'));
 const SearchStudent = React.lazy(() => import('./views/Pay/SearchStudent'));
+const Statement = React.lazy(() => import('./views/statement/Statement'));
 
 
 /*-------------------------------*/
@@ -169,8 +169,8 @@ const routes = [
   {path: '/score', exact: true, name: 'Score', component: Score},
   {path: '/counseling', exact: true, name: 'Counseling', component: Counseling},
 
-  {path: '/payList', exact: true, name: 'PayList', component: PayList},
   {path: '/searchStudent', exact: true, name: 'SearchStudent', component: SearchStudent},
+  {path: '/statement', exact: true, name: 'Statement', component: Statement},
 
 
   /*--여진---------------------------------------*/
@@ -210,7 +210,7 @@ const routes = [
 
   {path: '/Calendar_admin', exact: true, name: 'Calendar', component: Calendar},
   {path: '/Calendar', exact: true, name: 'Calendar', component: Calendar2},
-  {path: '/logintest/:log/:no/:name/:dep', exact: true, name: 'sessionLog', component: sessionLog},
+  {path: '/logintest/:log/:no/:name/:dep/:branch', exact: true, name: 'sessionLog', component: sessionLog},
   {path: '/logintest/:log/', exact: true, name: 'sessionLog', component: sessionLog},
   {path: '/Attendance_user', exact: true, name: 'Attendance', component: Attendance_user},
   {path: '/vacation', exact: true, name: 'vacation', component: vacation},
