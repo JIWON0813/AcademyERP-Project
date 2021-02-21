@@ -12,7 +12,7 @@
         <mapper resource="mapper/consultmapper.xml"/>
         <mapper resource="mapper/noticemapper.xml"/>
         <mapper resource="mapper/AttendanceMapper.xml"/>
-        <!-- <mapper resource="mapper/branchmapper.xml"/> -->
+        <mapper resource="mapper/branchmapper.xml"/>
         <mapper resource="mapper/VacationMapper.xml"/>
         <mapper resource="mapper/PaymentMapper.xml"/> 
         <mapper resource="mapper/VacationApplyMapper.xml"/>

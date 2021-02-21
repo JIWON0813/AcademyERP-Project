@@ -79,6 +79,8 @@ const Branch = React.lazy(() => import('./views/branch/Branch'));
 const BranchAdd = React.lazy(() => import('./views/branch/BranchAdd'));
 const BranchDelete = React.lazy(() => import('./views/branch/BranchDelete'));
 const BranchUpdate = React.lazy(() => import('./views/branch/BranchUpdate'));
+
+const login = React.lazy(() => import('./views/login/login'));
 // ------------박수민
 const Attendance = React.lazy(() => import('./views/Attendance/index'));
 const Calendar = React.lazy(() => import('./views/Calendar/index'));
@@ -191,6 +193,8 @@ const routes = [
   {path: '/branchAdd', exact: true, name: 'Branch Add', component: BranchAdd},
   {path: '/branchDelete/:id', exact: true, name: 'Branch Delete', component: BranchDelete},
   {path: '/branchUpdate', exact: true, name: 'Branch Update', component: BranchUpdate},
+
+  {path: '/login', exact: true, name: 'login', component: login},
 
   // -------------박수민
   {path: '/Attendance', exact: true, name: 'Attendance', component: Attendance},
