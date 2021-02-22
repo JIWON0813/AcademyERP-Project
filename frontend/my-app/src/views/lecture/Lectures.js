@@ -88,11 +88,13 @@ class Lectures extends Component {
       })
       .catch(res => console.log(res))
   }
+
   handleKeyPress = e => {
     if (e.key === 'Enter') {
       this.getApi(this.state.searchKeyword,this.state.currentPageNo);
     }
   };
+  
   handleSubmit = (e) => {
     e.preventDefault()
   }

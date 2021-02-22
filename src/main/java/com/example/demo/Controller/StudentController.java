@@ -1,10 +1,11 @@
 package com.example.demo.Controller;
 
+import java.util.*;
+
 import com.example.demo.Service.StudentService;
 import com.example.demo.database.DTO.LectureDTO;
 import com.example.demo.database.DTO.Stu_AttDTO;
 import com.example.demo.database.DTO.StudentDTO;
-import com.example.demo.database.Entity.LectureEntity;
 import com.example.demo.database.Entity.StudentEntity;
 import com.example.demo.database.Mapper.StuAttMapper;
 import com.example.demo.database.Repository.StudentRepository;
@@ -12,11 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
@@ -44,10 +48,7 @@ public class StudentController {
     @GetMapping("/students")
     public Page<StudentEntity> Studnets(Pageable pageable) {
         // HashMap<String,List<StudentEntity>> result = new HashMap<>();
-        return studentRepository.findAll(pageable);
-
-
-
+            return studentRepository.findAll(pageable);
     }
 
     @GetMapping("/student/{no}")
@@ -63,8 +64,6 @@ public class StudentController {
 
     @PostMapping("/ins_stu")
     public String addStudnet(@RequestBody StudentEntity student) {
-
-        System.out.println(student.getEmail());
         StudentEntity result = studentRepository.save(student);
 
         return result.toString();
@@ -75,7 +74,7 @@ public class StudentController {
         studentRepository.deleteById(no);
     }
 
-    @PostMapping("/edit_stu/{no}")
+ @PostMapping("/edit_stu/{no}")
     public void editStudent(@RequestBody StudentEntity student,@PathVariable Long no) {
         System.out.println(student.getHp());
         studentRepository.update(student);
@@ -86,7 +85,7 @@ public class StudentController {
         System.out.println("QWEQWEQWEQWEQWE  " + name);
         HashMap<String,List> result = new HashMap<>();
         List<Stu_AttDTO> alist = stuattmapper.getAtt(name);
-
+        
         result.put("attdata", alist);
 
         return result;
@@ -109,7 +108,10 @@ public class StudentController {
         return result;
     }
 
-
+    @GetMapping("/searchStudent/{searchKey}")
+    public Page<StudentEntity> searchStudent(@PathVariable String searchKey,Pageable pageable) {
+        return studentRepository.findAll(pageable,searchKey);
+    }
 
 
     //여진
@@ -117,12 +119,5 @@ public class StudentController {
     public HashMap<String, List> studentList(@PathVariable("lecture") Long lecture) {
         return studentService.getStudentList(lecture);
     }
-    @GetMapping("/students/user")
-    public HashMap<String, List> studentSearch(@RequestParam("name") String name) {
-        return studentService.getStudentSearch(name);
-    }
-    @GetMapping("/students/user/{student}")
-    public HashMap<String,List> payList(@PathVariable("student") long student) {
-        return studentService.getPayList(student);
-    }
 }
+

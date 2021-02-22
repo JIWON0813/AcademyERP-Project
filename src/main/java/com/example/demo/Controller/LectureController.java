@@ -71,4 +71,10 @@ public class LectureController {
         return lectureService.getTeacherLecture(teacher);
     }
 
+    //세호
+    @GetMapping("/getLecture/{no}")
+    public HashMap<String, Object> getLecture(@PathVariable("no") int no) {
+        return lectureService.getLecture(no);
+    }
+
 }

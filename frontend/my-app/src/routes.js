@@ -35,6 +35,10 @@ const Modals = React.lazy(() => import('./views/Template/notifications/modals/Mo
 const Colors = React.lazy(() => import('./views/Template/theme/colors/Colors'));
 const Typography = React.lazy(() => import('./views/Template/theme/typography/Typography'));
 const Widgets = React.lazy(() => import('./views/Template/widgets/Widgets'));
+
+const Users = React.lazy(() => import('./views/users/Users'));
+const User = React.lazy(() => import('./views/users/User'));
+//세호
 const Students = React.lazy(() => import('./views/Student/Students'));
 const Student = React.lazy(() => import('./views/Student/Student'));
 const Ins_stu = React.lazy(() => import('./views/Student/Ins_stu'));
@@ -43,6 +47,13 @@ const Stu_att = React.lazy(() => import('./views/Stu_Att/Stu_att'));
 const Ins_att = React.lazy(() => import('./views/Stu_Att/Ins_att'));
 const Users = React.lazy(() => import('./views/users/Users'));
 const User = React.lazy(() => import('./views/users/User'));
+
+const HR = React.lazy(() => import('./views/HR/HR'));
+const Sal_list = React.lazy(() => import('./views/HR/SalaryList'));
+const Sal_edit = React.lazy(() => import('./views/HR/SalaryEdit'));
+const Teacher = React.lazy(() => import('./views/Teacher/Calendar'));
+const Curriculum = React.lazy(() => import('./views/Teacher/Curriculum'));
+const InsertCurriculum = React.lazy(() => import('./views/Teacher/InsertCurriculum'));
 
 /*-여진--------------------------*/
 const Lectures = React.lazy(() => import('./views/lecture/Lectures'));
@@ -59,12 +70,6 @@ const Statement = React.lazy(() => import('./views/statement/Statement'));
 
 
 /*-------------------------------*/
-
-const HR = React.lazy(() => import('./views/HR/HR'));
-const Sal_list = React.lazy(() => import('./views/HR/SalaryList'));
-const Sal_edit = React.lazy(() => import('./views/HR/SalaryEdit'));
-const Teacher = React.lazy(() => import('./views/Teacher/Calendar'));
-
 
 // ------------@최인아
 // ------------상담
@@ -148,16 +153,22 @@ const routes = [
   {path: '/notifications/toaster', name: 'Toaster', component: Toaster},
 
   {path: '/widgets', name: 'Widgets', component: Widgets},
+  {path: '/users', exact: true, name: 'Users', component: Users},
+  {path: '/users/:id', exact: true, name: 'User Details', component: User},
+  //세호
   {path: '/students', exact: true, name: 'Students', component: Students},
-  {path: '/student', exact: true, name: 'Students', component: Student},
+  {path: '/student/:no', exact: true, name: 'Students', component: Student},
   {path: '/ins_stu', exact: true, name: 'Ins_stu', component: Ins_stu},
   {path: '/edit_stu', exact: true, name: 'Edit_stu', component: Edit_stu},
-
   {path: '/stu_att', exact: true, name: 'stu_att', component: Stu_att},
   {path: '/ins_att', exact: true, name: 'ins_att', component: Ins_att},
 
-  {path: '/users', exact: true, name: 'Users', component: Users},
-  {path: '/users/:id', exact: true, name: 'User Details', component: User},
+  {path: '/HR', exact: true, name: 'HR', component: HR},
+  {path: '/sal_list', exact: true, name: 'sal_list', component: Sal_list},
+  {path: '/sal_edit/:no', exact: true, name: 'sal_edit', component: Sal_edit},
+  {path: '/teacher', exact: true, name: 'teacher', component: Teacher},
+  {path: '/curriculum/:no', exact: true, name: 'teacher', component: Curriculum},
+  {path: '/insertCurriculum/:no', exact: true, name: 'teacher', component: InsertCurriculum},
 
   /*--여진---------------------------------------*/
   {path: '/lecture', exact: true, name: 'Lectures', component: Lectures},
@@ -174,12 +185,6 @@ const routes = [
 
 
   /*--여진---------------------------------------*/
-
-  {path: '/HR', exact: true, name: 'HR', component: HR},
-  {path: '/sal_list', exact: true, name: 'sal_list', component: Sal_list},
-  {path: '/sal_edit', exact: true, name: 'sal_edit', component: Sal_edit},
-
-  {path: '/teacher', exact: true, name: 'teacher', component: Teacher},
 
 
   // ------------@최인아

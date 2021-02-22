@@ -68,9 +68,15 @@
                            OR d.name like CONCAT('%', #{keyword}, '%')
                         )))
     </select>
-
+    <!-- 세호 -->
     <select id="getTime" parameterType="int" resultType="LectureDTO">
         select start_date,end_date,day from test.lecture where no = 21;
     </select>
+
+    <select id="getLecture" parameterType="int" resultType="LectureDTO">
+        select * from lecture where teacher = #{no};
+    </select>
+
+
 
 </mapper>
