@@ -11,7 +11,6 @@ import {Grid, IconButton} from "@material-ui/core";
 import Part from "../part/Part";
 import RefreshIcon from "@material-ui/icons/Refresh";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -157,7 +156,7 @@ class Lectures extends Component {
           <Grid container justify="flex-end">
             <LectureAdd stateRefresh={this.stateRefresh}/>
             <Room stateRefresh={this.stateRefresh}/>
-            <Part stateRefresh={this.stateRefresh}/>
+            <Part stateRefresh={this.stateRefresh}/>            
           </Grid>
 
 

@@ -20,38 +20,19 @@ class login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        asd: ""
+        id:"",
+        password:""
     }
   }
-
-  componentDidMount() {
-    const { params } = this.props.match;
-    if(Number(params.log)===0){
-      //this.logIN();
-    //  this.logOUT()
-    }else{
-      //this.logOUT()
-   //   this.logIN();
-    }
+  goToMain = () => {
+    console.log(this.props);
+    this.props.history.push("/")
   }
 
-  logIN = () =>{
-    const { params } = this.props.match;
-    window.sessionStorage.setItem('id',params.id);
-    window.sessionStorage.setItem('no',params.no);
-    window.sessionStorage.setItem('password',params.password);
-    //console.log( window.sessionStorage.getItem('dep',params.dep))
-    this.setState ({asd: params.no});
-    alert("로그인");
-    document.location.href = "#";
-    window.location.reload(false);
-  }
-
-  logOUT = () =>{
-    window.sessionStorage.clear();
-    alert("로그아웃");
-    document.location.href = "#";
-    window.location.reload(false);
+  btnClick = () => {
+    console.log("사용자 ID : ",this.state.id);
+    console.log("사용자 password : ",this.state.password);
+    this.goToMain();
   }
 
   render() {
@@ -84,7 +65,7 @@ class login extends Component {
                     </CInputGroup>
                     <CRow>
                       <CCol xs="6">
-                        <CButton color="primary" className="px-4">Login</CButton>
+                        <CButton color="primary" className="px-4" onClick={this.btnClick}>Login</CButton>
                       </CCol>
                       <CCol xs="6" className="text-right">
                         <CButton color="link" className="px-0">Forgot password?</CButton>

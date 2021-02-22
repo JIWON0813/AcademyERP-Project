@@ -12,4 +12,8 @@ public interface StuAttMapper {
     List<Stu_AttDTO> getAtt(String name);
     List<LectureDTO> getLec();
     List<StudentDTO> getLecStu(String lec);
+    
+    //여진
+    List<StudentDTO> getPayList(long student);
+
 }

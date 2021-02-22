@@ -7,14 +7,21 @@ import lombok.Setter;
 @Setter
 
 public class StudentDTO {
-        private int no;
-        private String name;
-        private String hp;
-        private String email;
-        private String birth;
-        private String address;
-        private int lecture;
-        private String gender;
-        private String regdate;
-        private String lecname;
+    private long no;
+    private String name;
+    private String hp;
+    private String email;
+    private String birth;
+    private String address;
+    private long lecture;
+    private String gender;
+    private String regdate;
+    private String lecname;
+
+    //여진
+    private long lectureNo;
+    private String lectureName;
+    private int price;
+    private String start_date;
+    private String end_date;
 }

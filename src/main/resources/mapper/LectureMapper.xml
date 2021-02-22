@@ -34,7 +34,7 @@
                a.end_time,
                d.name as'field',
                e.name as 'office',
-        (SELECT COUNT(*) FROM student f WHERE a.no= f.lecture) as 'currentStudents'
+               (SELECT COUNT(*) FROM student f WHERE a.no= f.lecture) as 'currentStudents'
         FROM lecture a
                  inner join employee b ON a.teacher = b.no
                  inner join room c ON a.room = c.no
@@ -55,18 +55,18 @@
     <select id="totalCount" parameterType="java.util.HashMap" resultType="int">
         SELECT COUNT(*)
         FROM lecture a
-            inner join employee b ON a.teacher = b.no
-            inner join room c ON a.room = c.no
-            inner join part d ON a.part = d.no
-            inner join branch e ON a.branch = e.no
+                 inner join employee b ON a.teacher = b.no
+                 inner join room c ON a.room = c.no
+                 inner join part d ON a.part = d.no
+                 inner join branch e ON a.branch = e.no
         where if(#{branch} = 'null', 1 = 1, a.branch = #{branch})
           and if(#{condition} = 'name', a.name like CONCAT('%', #{keyword}, '%'),
-            if(#{condition} = 'instructor', b.name like CONCAT('%', #{keyword}, '%'),
-            if(#{condition} = 'part', d.name like CONCAT('%', #{keyword}, '%'),
-            a.name like CONCAT('%', #{keyword}, '%')
-           OR b.name like CONCAT('%', #{keyword}, '%')
-           OR d.name like CONCAT('%', #{keyword}, '%')
-            )))
+                 if(#{condition} = 'instructor', b.name like CONCAT('%', #{keyword}, '%'),
+                    if(#{condition} = 'part', d.name like CONCAT('%', #{keyword}, '%'),
+                       a.name like CONCAT('%', #{keyword}, '%')
+                           OR b.name like CONCAT('%', #{keyword}, '%')
+                           OR d.name like CONCAT('%', #{keyword}, '%')
+                        )))
     </select>
 
     <select id="getTime" parameterType="int" resultType="LectureDTO">
