@@ -13,8 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-
-
+import java.util.Map.Entry;
 
 import com.example.demo.Service.*;
 import com.example.demo.database.Entity.*;
@@ -93,71 +92,86 @@ public class PaymentController {
         return result;
     }  
 
+    @GetMapping("/paymentUsers")
+    public Map<String,Object> paymentUsers() {
+        HashMap<String,Object> result = new HashMap<>();
+        List<EmployeeEntity> user = EmployeeService.findAll();
+        result.put("user",user);
+        return result;
+    }
+
+
+
     //1: 휴가 //2: 출퇴
     @GetMapping("/payment/{id}/{no}")
     public Map<String,Object> paymentget( @PathVariable(value="id")int id,@PathVariable("no") int num) {
         HashMap<String,Object> result = new HashMap<>();
         PaymentEntity list = PaymentService.getpayment(id);
-        List<EmployeeEntity> user = EmployeeService.findAll();
-        int kinds = list.getKinds();
+        String kinds = list.getKinds();
         String kinds_no = list.getKinds_no();
-        List<Object> table = new ArrayList<Object>();
+        List<HashMap<String, String>> table = new ArrayList<HashMap<String, String>>();
 
-        switch(kinds){
-            case 1 : 
-                String no[] = kinds_no.split("/");
-                for(int i=0;i<no.length;i++)
-                    table.add( VacationApplyService.getApply(Integer.parseInt(no[i])) );
-                break;
-            case 2 : 
-                
-                break;  
-            default :      
+
+        String no[] = kinds_no.split("/");
+        for(int i=0;i<no.length;i++){
+            HashMap<String,Object> selectIndex= new HashMap<>();
+            selectIndex.put("tableName", kinds);
+            selectIndex.put("no",no[i]);
+            table.add( PaymentService.tableSelect(selectIndex) );
         }
+
+
         result.put(sr,false);
         HashMap<String,Object> to= new HashMap<>();
         to.put("no", num);
-        if((PaymentService.selectSign(to)!=null)){
+        if((PaymentService.selectSign(to).size()>0)){
             result.put(sr,PaymentService.selectSign(to));
         }
+
         
+        List<String> column= new ArrayList<String>();
+        for( Entry<String, String> elem : table.get(0).entrySet() ){
+            column.add(elem.getKey());
+        }
+        
+        Collections.swap(column, 0, column.indexOf("no"));
+        List<EmployeeEntity> user = EmployeeService.findAll();
         result.put("user",user);
+        result.put("column",column);
         result.put("list", list); 
         result.put("table", table);
         return result;
     }
+
 
     @GetMapping("/payment/{no}")
     public Map<String,Object> paymentget( @PathVariable("no") int num) {
         HashMap<String,Object> result = new HashMap<>();
         PaymentEntity list = PaymentService.getpayment(num);
         List<EmployeeEntity> user = EmployeeService.findAll();
-        int kinds = list.getKinds();
+        String kinds = list.getKinds();
         String kinds_no = list.getKinds_no();
         List<Object> table = new ArrayList<Object>();
 
-        switch(kinds){
-            case 1 : 
-                String no[] = kinds_no.split("/");
-                for(int i=0;i<no.length;i++)
-                    table.add( VacationApplyService.getApply(Integer.parseInt(no[i])) );
-                break;
-            case 2 :   
-                
-                break;  
-            default :      
+        String no[] = kinds_no.split("/");
+        for(int i=0;i<no.length;i++){
+            HashMap<String,Object> selectIndex= new HashMap<>();
+            selectIndex.put("tableName", kinds);
+            selectIndex.put("no",no[i]);
+            table.add( PaymentService.tableSelect(selectIndex) );
         }
+
         result.put(sr,false);
-        List<String> signList =new ArrayList<String>();
+        List<HashMap<String, String>> signList =new ArrayList<HashMap<String, String>>();
         String app=list.getApproved();
-        if(app!=null){
+        if(app!=null && app.length()>0){
             String apparr[]=app.split("/");
             HashMap<String,Object> to = new HashMap<>();
             for(int i=0;i<apparr.length;i++){
                 to.put("no", Integer.parseInt(apparr[i]));
                 signList.add(PaymentService.selectSign(to)); 
             }
-        }
+        } 
         result.put("signList",signList);
         result.put("user",user);
         result.put("list", list); 

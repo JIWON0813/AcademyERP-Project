@@ -23,11 +23,25 @@ const PaymentData = ({ match }) => {
         
     });
 
+    const { data, table,sign } = inputs;
+
     useEffect(() => {
         getData();
     }, []);
 
-    
+    const paymentCheck = () =>{
+        let approved = data.approved;
+        let player = window.sessionStorage.getItem("no");
+        approved=String(approved).split("/")
+        for(let i=0;i<approved.length;i++){
+            if(Number(player)===Number(approved[i])){
+                return "결재 완"
+            }      
+        }
+        return "미 결재"
+    }
+
+
     const fileChangedHandler = (e) => {
         const file = new FormData();
         file.append( "file",e.target.files[0]);
@@ -41,32 +55,28 @@ const PaymentData = ({ match }) => {
         getData();
     };
 
-    const { data, table,sign } = inputs;
 
     const getData = () => {
         axios.get("http://localhost:8080/payment/" + match.params.no+"/"+window.sessionStorage.getItem("no"))
             .then(res => {
                 console.log(res)
-                let temp = [];
-                if (Number(res.data.list.kinds) === 1) {
-                    for (let i = 0; i < res.data.table.length; i++) {
-                        for(let l = 0; l<res.data.user.length; l++){
-                            if(res.data.table[i].employee_no === res.data.user[l].no){
-                                res.data.table[i].employee_no=res.data.user[l].name
-                            }
+
+                for (let i = 0; i < res.data.table.length; i++) {
+                    for(let l = 0; l<res.data.user.length; l++){
+                        if(res.data.table[i].employee_no === res.data.user[l].no){
+                            res.data.table[i].employee_no=res.data.user[l].name
                         }
-                        temp.push({
-                            no: res.data.table[i].no,
-                            start_day: res.data.table[i].start_day,
-                            end_day: res.data.table[i].end_day,
-                            name: res.data.table[i].employee_no,
-                        })
                     }
-                    fields = ['no', 'start_day','end_day', 'name', ];
                 }
+                
+                for(let i=0;i<res.data.column.length;i++){
+                    fields.push(res.data.column[i])
+                }
+                
+                
                 setInputs({
                     data: res.data.list,
-                    table: temp,
+                    table: res.data.table,
                     sign: res.data.selectSign
                 })
             })
@@ -80,24 +90,17 @@ const PaymentData = ({ match }) => {
         axios.post(`http://localhost:8080/payment/approved`,params)
         .then(res => {
             if(res.data){
-            alert("결제되었습니다");
+            alert("결재 되었습니다");
             window.location.reload(false);
             }else{
-            alert("이미 결제했습니다.");
+            alert("이미 결재했습니다.");
             }
         })
         .catch(res => console.log(res))       
     }
 
-    const onChange = (e) => {
-        const { value, name } = e.target;
-        setInputs({
-        ...inputs,
-        [name]: value
-        });
-    };
 
-
+    var check = paymentCheck();
     return (
         <div>
             {sign === false?
@@ -105,7 +108,10 @@ const PaymentData = ({ match }) => {
                     <input type="file"  onChange={fileChangedHandler} />
                 </div>:
                 <div>
-                    <img src={process.env.PUBLIC_URL + '/sign/'+sign} alt="copy url" />
+                    사인:
+                    <img src={process.env.PUBLIC_URL + '/sign/'+sign.filename} alt={process.env.PUBLIC_URL+"123"} />
+                    <br/>
+                    이미지 바꾸기<input type="file"  onChange={fileChangedHandler}/>
                 </div>
             }
             <CCard>
@@ -115,7 +121,7 @@ const PaymentData = ({ match }) => {
                 <CCardBody>
                     <CFade timeout={300}  tag="h5" className="mt-3">
 
-                        <div style={{width: "50%",textAlign: "center"}}>
+                        <div style={{textAlign: "center"}}>
                             <CDataTable
                                 items={table}
                                 fields={fields}
@@ -129,7 +135,8 @@ const PaymentData = ({ match }) => {
                     
                 </CCardBody>
                 <CCardFooter style={{textAlign: "right"}}>
-                    <CButton color="primary" onClick={payment}>결제</CButton>
+                    <div>{check}</div>
+                    <CButton color="primary" onClick={payment}>결재</CButton>
                 </CCardFooter>
             </CCard>
             

@@ -20,17 +20,17 @@ public class LectureEntity implements Serializable {
     @Column
     private long no;
     private String name;
-    private int teacher;
+    private long teacher;
     private int price;
     private int students;
-    private int room;
+    private long room;
     private String start_date;
     private String end_date;
     private String day;
     private String start_time;
     private String end_time;
-    private int part;
-    private int branch;
+    private long part;
+    private long branch;
 
 }
 

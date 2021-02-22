@@ -7,6 +7,10 @@
         select * from payment 
     </select>
 
+    <select id="tableSelect" resultType="java.util.HashMap">
+        select * from ${tableName} where no=#{no}
+    </select>
+
     <select id="getpayment" resultType="PaymentEntity">
         select * from payment where no=#{no}
     </select>
@@ -23,9 +27,9 @@
         insert into sign values(null, #{employee_no}, #{filename})
     </insert>
 
-    <select id="selectSign"  parameterType="java.util.HashMap" resultType="String">
-        select filename from sign where employee_no=#{no}
-    </select>
+    <select id="selectSign" resultType="java.util.HashMap">
+        select * from sign where employee_no=#{no}
+    </select> 
     
-</mapper>  
+</mapper>   
  

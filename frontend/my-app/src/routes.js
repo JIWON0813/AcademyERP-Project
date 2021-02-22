@@ -43,6 +43,7 @@ const Stu_att = React.lazy(() => import('./views/Stu_Att/Stu_att'));
 const Ins_att = React.lazy(() => import('./views/Stu_Att/Ins_att'));
 const Users = React.lazy(() => import('./views/users/Users'));
 const User = React.lazy(() => import('./views/users/User'));
+
 /*-여진--------------------------*/
 const Lectures = React.lazy(() => import('./views/lecture/Lectures'));
 const Lecture = React.lazy(() => import('./views/lecture/Lecture'));
@@ -52,6 +53,11 @@ const LectureUpdate = React.lazy(() => import('./views/lecture/LectureUpdate'));
 
 const Score = React.lazy(() => import('./views/score/Score'));
 const Counseling = React.lazy(() => import('./views/counseling/Counseling'));
+
+const SearchStudent = React.lazy(() => import('./views/Pay/SearchStudent'));
+const Statement = React.lazy(() => import('./views/statement/Statement'));
+
+
 /*-------------------------------*/
 
 const HR = React.lazy(() => import('./views/HR/HR'));
@@ -152,6 +158,7 @@ const routes = [
 
   {path: '/users', exact: true, name: 'Users', component: Users},
   {path: '/users/:id', exact: true, name: 'User Details', component: User},
+
   /*--여진---------------------------------------*/
   {path: '/lecture', exact: true, name: 'Lectures', component: Lectures},
   {path: '/lecture/:id', exact: true, name: 'Lecture Details', component: Lecture},
@@ -161,6 +168,11 @@ const routes = [
 
   {path: '/score', exact: true, name: 'Score', component: Score},
   {path: '/counseling', exact: true, name: 'Counseling', component: Counseling},
+
+  {path: '/searchStudent', exact: true, name: 'SearchStudent', component: SearchStudent},
+  {path: '/statement', exact: true, name: 'Statement', component: Statement},
+
+
   /*--여진---------------------------------------*/
 
   {path: '/HR', exact: true, name: 'HR', component: HR},
@@ -198,7 +210,7 @@ const routes = [
 
   {path: '/Calendar_admin', exact: true, name: 'Calendar', component: Calendar},
   {path: '/Calendar', exact: true, name: 'Calendar', component: Calendar2},
-  {path: '/logintest/:log/:no/:name/:dep', exact: true, name: 'sessionLog', component: sessionLog},
+  {path: '/logintest/:log/:no/:name/:dep/:branch', exact: true, name: 'sessionLog', component: sessionLog},
   {path: '/logintest/:log/', exact: true, name: 'sessionLog', component: sessionLog},
   {path: '/Attendance_user', exact: true, name: 'Attendance', component: Attendance_user},
   {path: '/vacation', exact: true, name: 'vacation', component: vacation},
