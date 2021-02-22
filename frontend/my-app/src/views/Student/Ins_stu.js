@@ -13,7 +13,10 @@ import {
   CLabel,
   CSelect,
   CRow,
+  CButton,
+  
 } from '@coreui/react'
+import CIcon from '@coreui/icons-react'
 
 class Ins_stu extends Component {
 
@@ -107,7 +110,8 @@ class Ins_stu extends Component {
                   <CCol xs="12" md="9">
                     <CInput type="date" name="birth" placeholder="생년월일" value={this.state.birth} onChange={this.onChange} />
                   </CCol>
-                </CFormGroup><CFormGroup row>
+                </CFormGroup>
+                <CFormGroup row>
                   <CCol md="3">
                     <CLabel htmlFor="text-input">주소 입력</CLabel>
                   </CCol>
@@ -146,6 +150,8 @@ class Ins_stu extends Component {
               </CForm>
             </CCardBody>
             <CCardFooter>
+            <CButton onClick={this.saveStudent} size="sm" color="primary"><CIcon name="cil-scrubber" /> 저장 </CButton>
+              <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" /> 초기화 </CButton>
             </CCardFooter>
           </CCard>
         </CCol>

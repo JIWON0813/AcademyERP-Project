@@ -19,5 +19,6 @@
         <mapper resource="mapper/Lecturemapper.xml"/>
         <mapper resource="mapper/Hrmapper.xml"/> 
         <mapper resource="mapper/StudentAttmapper.xml"/>
+
     </mappers>
 </configuration>  

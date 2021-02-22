@@ -5,10 +5,14 @@ import java.text.ParseException;
 
 import com.example.demo.database.DTO.EmployeeDTO;
 import com.example.demo.database.DTO.LectureDTO;
+import com.example.demo.database.Entity.EmployeeEntity;
 import com.example.demo.database.Mapper.HrMapper;
 import com.example.demo.database.Mapper.LectureMapper;
+import com.example.demo.database.Repository.EmployeeRepository2;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,12 +37,13 @@ public class HrController {
     @Autowired
     private LectureMapper lectureMapper;
 
+    @Autowired
+    private EmployeeRepository2 employeeRepository;
+
     @GetMapping("/salary")
-    public HashMap<String, List> Salary() {
-        HashMap<String, List> result = new HashMap<>();
-        List<EmployeeDTO> list = hrmapper.getSal();
-        result.put("list", list);
-        return result;
+    public Page<EmployeeEntity> Salary(Pageable pageable) {
+            return employeeRepository.findAll(pageable);
+        
     }
 
     @GetMapping("/sal_edit/{no}")
@@ -71,6 +76,11 @@ public class HrController {
         System.out.println("////////"+ slist.get(0));
         result.put("list", slist);
         return result;
+    }
+
+    @GetMapping("/searchSalary/{searchKey}")
+    public Page<EmployeeEntity> searchSal(@PathVariable String searchKey,Pageable pageable) {
+        return employeeRepository.findAll(pageable,searchKey);
     }
 
 }

@@ -8,7 +8,6 @@ import com.example.demo.database.DTO.Stu_AttDTO;
 import com.example.demo.database.DTO.StudentDTO;
 import com.example.demo.database.Entity.StudentEntity;
 import com.example.demo.database.Mapper.StuAttMapper;
-//import com.example.demo.database.DTO.StudentDTO;
 import com.example.demo.database.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -50,9 +49,6 @@ public class StudentController {
     public Page<StudentEntity> Studnets(Pageable pageable) {
         // HashMap<String,List<StudentEntity>> result = new HashMap<>();
             return studentRepository.findAll(pageable);
-        
-
-        
     }
 
     @GetMapping("/student/{no}")
@@ -68,8 +64,6 @@ public class StudentController {
 
     @PostMapping("/ins_stu")
     public String addStudnet(@RequestBody StudentEntity student) {
-
-        System.out.println(student.getEmail());
         StudentEntity result = studentRepository.save(student);
 
         return result.toString();
@@ -116,7 +110,6 @@ public class StudentController {
 
     @GetMapping("/searchStudent/{searchKey}")
     public Page<StudentEntity> searchStudent(@PathVariable String searchKey,Pageable pageable) {
-        System.out.println("asdasdasd" + searchKey);
         return studentRepository.findAll(pageable,searchKey);
     }
 

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import CounselingDelete from './views/counseling/CounselingDelete';
 
 const USER_API_BASE_URL = "http://localhost:8080/api";
 
@@ -52,8 +53,8 @@ class ApiService {
         return axios.get(USER_API_BASE_URL + '/ins_att/' + lec);
     }
 
-    Salary() {
-        return axios.get(USER_API_BASE_URL + '/salary');
+    Salary(currentPage,Size) {
+        return axios.get(USER_API_BASE_URL + '/salary' + "?page=" + currentPage + "&size=" + Size);
     }
 
     SalaryEmp(no) {
@@ -75,8 +76,25 @@ class ApiService {
     }
 
     SearchStudent(searchKey) {
-      console.log(searchKey)
+      
       return axios.get(USER_API_BASE_URL + '/searchStudent/' +searchKey);
+    }
+
+    SearchSalary(searchKey) {
+      return axios.get(USER_API_BASE_URL + '/searchSalary/' + searchKey);
+    }
+
+    getLecture(no) {
+      return axios.get("http://localhost:8080" + '/getLecture/' + no);
+    }
+
+    addCurriculum(curri) {
+      console.log(curri.curriculum)
+      return axios.post(USER_API_BASE_URL + '/ins_curri', curri);
+    }
+
+    getCurriculum(lecture) {
+      return axios.get(USER_API_BASE_URL + '/getcurri/' + lecture);
     }
 
 }
