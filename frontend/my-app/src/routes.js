@@ -36,8 +36,6 @@ const Colors = React.lazy(() => import('./views/Template/theme/colors/Colors'));
 const Typography = React.lazy(() => import('./views/Template/theme/typography/Typography'));
 const Widgets = React.lazy(() => import('./views/Template/widgets/Widgets'));
 
-const Users = React.lazy(() => import('./views/users/Users'));
-const User = React.lazy(() => import('./views/users/User'));
 //세호
 const Students = React.lazy(() => import('./views/Student/Students'));
 const Student = React.lazy(() => import('./views/Student/Student'));

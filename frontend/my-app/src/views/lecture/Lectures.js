@@ -94,7 +94,6 @@ class Lectures extends Component {
       this.getApi(this.state.searchKeyword,this.state.currentPageNo);
     }
   };
-  
   handleSubmit = (e) => {
     e.preventDefault()
   }
@@ -158,7 +157,7 @@ class Lectures extends Component {
           <Grid container justify="flex-end">
             <LectureAdd stateRefresh={this.stateRefresh}/>
             <Room stateRefresh={this.stateRefresh}/>
-            <Part stateRefresh={this.stateRefresh}/>            
+            <Part stateRefresh={this.stateRefresh}/>
           </Grid>
 
 

@@ -18,7 +18,7 @@
         <mapper resource="mapper/VacationMapper.xml"/>
         <mapper resource="mapper/PaymentMapper.xml"/> 
         <mapper resource="mapper/VacationApplyMapper.xml"/>
-        <mapper resource="mapper/Lecturemapper.xml"/>
+        <mapper resource="mapper/LectureMapper.xml"/>
         <mapper resource="mapper/Hrmapper.xml"/> 
         <mapper resource="mapper/StudentAttmapper.xml"/>
         <mapper resource="mapper/StatementMapper.xml"/>
