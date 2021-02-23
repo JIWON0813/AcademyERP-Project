@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Service.PayService;
+import com.example.demo.config.ApiKey;
 import com.example.demo.database.DTO.PayDTO;
 import com.example.demo.database.Entity.PayEntity;
 import com.siot.IamportRestClient.IamportClient;
@@ -12,6 +13,8 @@ import com.siot.IamportRestClient.response.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -26,17 +29,23 @@ public class PayController {
     @Autowired
     private PayService payService;
 
+    @Inject
+    private ApiKey apikey;
+
     IamportClient client;
 
-    public PayController() {
+    @PostConstruct
+    IamportClient getTestClient() {
+        String api_key = apikey.getKey();
+        System.out.println(api_key);
+        String api_secret = apikey.getSecret();
+        return new IamportClient(api_key, api_secret);
+    }
+    @PostConstruct
+    public void setClient() {
         this.client = this.getTestClient();
     }
 
-    IamportClient getTestClient() {
-        String api_key = "1293512882402362";
-        String api_secret = "AC8zucqGsq0ZxhPpuiqHG4X9u7brYPGyrO7W1yCtZDtxUiWoBn6ir3rWaDo9s4HUTPQUotno7RV19SqL";
-        return new IamportClient(api_key, api_secret);
-    }
 
     // 토큰 값 가져오기
     void getToken() {
@@ -44,7 +53,7 @@ public class PayController {
             IamportResponse<AccessToken> auth_response = client.getAuth();
             assertNotNull(auth_response.getResponse());
             assertNotNull(auth_response.getResponse().getToken());
-
+            System.out.println("토큰생성완료");
         } catch (IamportResponseException e) {
             System.out.println(e.getMessage());
             switch (e.getHttpStatusCode()) {

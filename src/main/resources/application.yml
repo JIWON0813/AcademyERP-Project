@@ -1,4 +1,6 @@
 spring:
+  profiles:
+      include: API-KEY
   datasource:
     url: jdbc:mariadb://computer-academy-erp.cxdjlccswbih.ap-northeast-2.rds.amazonaws.com:3306/test
     driver-class-name: org.mariadb.jdbc.Driver
