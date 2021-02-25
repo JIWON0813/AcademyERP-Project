@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.database.Mapper.HrMapper">
+
+    <select id="getSal" resultType="EmployeeDTO">
+    select * from employee;    
+    </select>
+
+    <select id="getSalEmp" resultType="EmployeeDTO" parameterType="int">
+    select name,salary from employee where no = #{no};
+    </select>
+
+    <update id="updateSalary" parameterType="com.example.demo.database.DTO.EmployeeDTO">
+        update employee set salary = #{salary} where name = #{name}
+    </update>
+
+</mapper>

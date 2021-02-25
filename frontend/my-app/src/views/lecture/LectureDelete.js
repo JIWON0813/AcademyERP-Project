@@ -35,8 +35,8 @@ class LectureDelete extends React.Component {
   }
 
 
-  deleteCustomer(id) {
-    const url = 'http://localhost:8080/api2/lecture/' + id;
+  delete(id) {
+    const url = 'http://localhost:8080/lecture/' + id;
     fetch(url, {
       method: 'DELETE'
     });
@@ -66,7 +66,7 @@ class LectureDelete extends React.Component {
 
           <DialogActions>
             <Button variant="contained" color="primary" onClick={(e) => {
-              this.deleteCustomer(this.props.id)
+              this.delete(this.props.id)
             }}>삭제</Button>
             <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
           </DialogActions>

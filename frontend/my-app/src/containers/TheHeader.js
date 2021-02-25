@@ -55,7 +55,7 @@ const TheHeader = () => {
 
       <CHeaderNav className="d-md-down-none mr-auto">
         <CHeaderNavItem className="px-3" >
-          <CHeaderNavLink to="/dashboard">Dashboard</CHeaderNavLink>
+          <CHeaderNavLink to="/saveEmployee">saveEmployee</CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem  className="px-3">
           <CHeaderNavLink to="/employee">Employee</CHeaderNavLink>
@@ -64,7 +64,16 @@ const TheHeader = () => {
           <CHeaderNavLink to="/students">Student</CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem  className="px-3">
+          <CHeaderNavLink to="/stu_att">Stu_Att</CHeaderNavLink>
+        </CHeaderNavItem>
+        <CHeaderNavItem  className="px-3">
           <CHeaderNavLink to="/lecture">Lecture</CHeaderNavLink>
+        </CHeaderNavItem>
+        <CHeaderNavItem  className="px-3">
+          <CHeaderNavLink to="/HR">HR</CHeaderNavLink>
+        </CHeaderNavItem>
+        <CHeaderNavItem  className="px-3">
+          <CHeaderNavLink to="/teacher">Teacher</CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem  className="px-3">
           <CHeaderNavLink to="/consult">Consult</CHeaderNavLink>
@@ -78,12 +87,19 @@ const TheHeader = () => {
         <CHeaderNavItem  className="px-3">
           <CHeaderNavLink to="/Users">Users</CHeaderNavLink>
         </CHeaderNavItem>
+        <CHeaderNavItem  className="px-3">
+          <CHeaderNavLink to="/notice">Notice</CHeaderNavLink>
+        </CHeaderNavItem>
+        <CHeaderNavItem  className="px-3">
+          <CHeaderNavLink to="/login">Login</CHeaderNavLink>
+          {/* <Link to={`/login/0/${items.no}/${items.name}/${items.department}`}></Link> */}
+        </CHeaderNavItem>
       </CHeaderNav>
 
       <CHeaderNav className="px-3">
         <TheHeaderDropdownNotif/>
         <TheHeaderDropdownTasks/>
-        <TheHeaderDropdownMssg/>
+        <TheHeaderDropdownMssg/>  {/*여기*/}
         <TheHeaderDropdown/>
       </CHeaderNav>
 

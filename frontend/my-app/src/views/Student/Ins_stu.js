@@ -1,94 +1,67 @@
 import React, { Component } from "react";
-//import axios from "axios";
 import ApiService from "../../ApiService";
 import {
-    CButton,
-    CCard,
-    CCardBody,
-    CCardFooter,
-    CCardHeader,
-    CCol,
-    CCollapse,
-    CDropdownItem,
-    CDropdownMenu,
-    CDropdownToggle,
-    CFade,
-    CForm,
-    CFormGroup,
-    CFormText,
-    CValidFeedback,
-    CInvalidFeedback,
-    CTextarea,
-    CInput,
-    CInputFile,
-    CInputCheckbox,
-    CInputRadio,
-    CInputGroup,
-    CInputGroupAppend,
-    CInputGroupPrepend,
-    CDropdown,
-    CInputGroupText,
-    CLabel,
-    CSelect,
-    CRow,
-    CSwitch
-  } from '@coreui/react'
-  import CIcon from '@coreui/icons-react'
-   // import { DocsLink } from 'src/reusable'
+  CCard,
+  CCardBody,
+  CCardFooter,
+  CCardHeader,
+  CCol,
+  CForm,
+  CFormGroup,
+  CFormText,
+  CInput,
+  CLabel,
+  CSelect,
+  CRow,
+  CButton,
+  
+} from '@coreui/react'
+import CIcon from '@coreui/icons-react'
 
 class Ins_stu extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
-
     this.state = {
       name: '',
       hp: '',
       email: '',
       bitrh: '',
       address: '',
-      curri: '',
+      lecture: '',
       gender: '',
-      regdate:''
+      regdate: ''
     }
   }
 
-  onChange =(e) => {
+  onChange = (e) => {
     this.setState({
-      [e.target.name] : e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
 
   saveStudent = (e) => {
     e.preventDefault();
-
-    console.log(this.state.email)
-
     let student = {
-      name : this.state.name,
-      hp : this.state.hp,
-      email : this.state.email,
-      birth : this.state.birth,
-      address : this.state.address,
-      curri : this.state.curri,
-      gender : this.state.gender,
-      //regdate : this.state.regdate
+      name: this.state.name,
+      hp: this.state.hp,
+      email: this.state.email,
+      birth: this.state.birth,
+      address: this.state.address,
+      lecture: this.state.lecture,
+      gender: this.state.gender,
     }
-
-    console.log(this.state.email)
-
     ApiService.addStudent(student)
-    .then( res => {
-      this.setState({
-        message : student.name + '님이 성공적으로 등록되었습니다'
+      .then(res => {
+        this.setState({
+          message: student.name + '님이 성공적으로 등록되었습니다'
+        })
+        this.props.history.push('/students');
       })
-      console.log(this.state.message);
-      this.props.history.push('/students');
-    })
-    .catch( err => {
-      console.log('saveStudent() 에러', err);
-    });
+      .catch(err => {
+        console.log('saveStudent() 에러', err);
+      });
 
   }
 
@@ -103,7 +76,7 @@ class Ins_stu extends Component {
             </CCardHeader>
             <CCardBody>
               <CForm>
-               <CFormGroup row>
+                <CFormGroup row>
                   <CCol md="3">
                     <CLabel htmlFor="text-input">이름</CLabel>
                   </CCol>
@@ -117,7 +90,7 @@ class Ins_stu extends Component {
                     <CLabel htmlFor="text-input">핸드폰 번호</CLabel>
                   </CCol>
                   <CCol xs="12" md="9">
-                    <CInput name="hp" placeholder="핸드폰 번호" value={this.state.hp} onChange={this.onChange}/>
+                    <CInput name="hp" placeholder="핸드폰 번호" value={this.state.hp} onChange={this.onChange} />
                     <CFormText>숫자만 입력하세요</CFormText>
                   </CCol>
                 </CFormGroup>
@@ -126,7 +99,7 @@ class Ins_stu extends Component {
                     <CLabel htmlFor="email-input">이메일주소</CLabel>
                   </CCol>
                   <CCol xs="12" md="9">
-                    <CInput name="email" placeholder="이메일 주소" value={this.state.email} onChange={this.onChange}/>
+                    <CInput name="email" placeholder="이메일 주소" value={this.state.email} onChange={this.onChange} />
                     <CFormText className="help-block">이메일주소를 입력하세요</CFormText>
                   </CCol>
                 </CFormGroup>
@@ -135,14 +108,15 @@ class Ins_stu extends Component {
                     <CLabel htmlFor="date-input">생년월일</CLabel>
                   </CCol>
                   <CCol xs="12" md="9">
-                    <CInput type="date" name="birth" placeholder="생년월일" value={this.state.birth} onChange={this.onChange}/>
+                    <CInput type="date" name="birth" placeholder="생년월일" value={this.state.birth} onChange={this.onChange} />
                   </CCol>
-                </CFormGroup><CFormGroup row>
+                </CFormGroup>
+                <CFormGroup row>
                   <CCol md="3">
                     <CLabel htmlFor="text-input">주소 입력</CLabel>
                   </CCol>
                   <CCol xs="12" md="9">
-                    <CInput name="address" placeholder="주소" value={this.state.address} onChange={this.onChange}/>
+                    <CInput name="address" placeholder="주소" value={this.state.address} onChange={this.onChange} />
                     <CFormText>주소를 입력하세요</CFormText>
                   </CCol>
                 </CFormGroup>
@@ -151,13 +125,13 @@ class Ins_stu extends Component {
                     <CLabel htmlFor="select">수강과목</CLabel>
                   </CCol>
                   <CCol xs="12" md="9">
-                    <CSelect custom name="curri" onChange={this.onChange}>
-                    <option value="0">과목을 선택하세요</option>
-                      <option value="JAVA">JAVA</option>
-                      <option value="PYTHON">PYTHON</option>
-                      <option value="C++">C++</option>
-                      <option value="KOTLIN">KOTLIN</option>
-                      <option value="">수강과목 없음</option>
+                    <CSelect custom name="lecture" onChange={this.onChange}>
+                      <option value="0">과목을 선택하세요</option>
+                      <option value="1">JAVA</option>
+                      <option value="2">PYTHON</option>
+                      <option value="3">C++</option>
+                      <option value="4">KOTLIN</option>
+                      <option value="5">수강과목 없음</option>
                     </CSelect>
                   </CCol>
                 </CFormGroup>
@@ -167,7 +141,7 @@ class Ins_stu extends Component {
                   </CCol>
                   <CCol xs="12" md="9">
                     <CSelect custom name="gender" onChange={this.onChange}>
-                    <option value="0">성별을 선택하세요</option>
+                      <option value="0">성별을 선택하세요</option>
                       <option value="male">male</option>
                       <option value="female">female</option>
                     </CSelect>
@@ -176,13 +150,14 @@ class Ins_stu extends Component {
               </CForm>
             </CCardBody>
             <CCardFooter>
-              <CButton onClick={this.saveStudent} size="sm" color="primary"><CIcon name="cil-scrubber" /> Submit</CButton>
-              <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" /> Reset</CButton>
+            <CButton onClick={this.saveStudent} size="sm" color="primary"><CIcon name="cil-scrubber" /> 저장 </CButton>
+              <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" /> 초기화 </CButton>
             </CCardFooter>
           </CCard>
-          </CCol>
-        </CRow>
-    );}
+        </CCol>
+      </CRow>
+    );
+  }
 }
 
 export default Ins_stu;

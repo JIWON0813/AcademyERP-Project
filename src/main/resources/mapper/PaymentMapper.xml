@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.database.Repository.PaymentRepository">
+
+    <select id="payment" resultType="PaymentEntity">
+        select * from payment 
+    </select>
+
+    <select id="tableSelect" resultType="java.util.HashMap">
+        select * from ${tableName} where no=#{no}
+    </select>
+
+    <select id="getpayment" resultType="PaymentEntity">
+        select * from payment where no=#{no}
+    </select>
+
+    <update id="approved" parameterType="java.util.HashMap">
+        update payment set approved=#{approved} where no=#{no}
+    </update>
+
+    <insert id="insert">
+        insert into payment values(null,#{employee_no},#{player}, #{title}, #{contents}, null, CURDATE(), #{kinds}, #{kinds_no})
+    </insert>
+
+    <insert id="sign">
+        insert into sign values(null, #{employee_no}, #{filename})
+    </insert>
+
+    <select id="selectSign" resultType="java.util.HashMap">
+        select * from sign where employee_no=#{no}
+    </select> 
+    
+</mapper>   
+ 

@@ -1,6 +1,6 @@
 package com.example.demo.database.Repository;
 
-import com.example.demo.database.DTO.BoardEntity;
+import com.example.demo.database.Entity.BoardEntity;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

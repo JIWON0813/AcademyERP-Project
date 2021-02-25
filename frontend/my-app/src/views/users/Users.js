@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
-import '../css/table.css';
+import '../Template/css/table.css';
 
 
 class Users extends Component {
@@ -70,11 +70,11 @@ class Users extends Component {
                 <td class="default">{items.profile_name}</td>
                 <td class="default">{items.verify}</td>
                 <td class="default">{items.regidate}</td>
-                <td class="default"><Link to={`/logintest/0/${items.no}/${items.name}/${items.department}`}>로그인</Link></td>
+                <td class="default"><Link to={`/logintest/0/${items.no}/${items.name}/${items.department}/${items.branch}`}>로그인</Link></td>
               </tr>
             );
           })}
-        </tbody> 
+        </tbody>
       </table>
       </div>
     );

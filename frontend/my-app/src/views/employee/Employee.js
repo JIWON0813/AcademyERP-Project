@@ -1,14 +1,17 @@
-import React, {Component} from 'react'
+import React, {Component, useState} from 'react'
 import ApiService from "../../ApiService";
-import Button from "@material-ui/core/Button";
+import {CCard, CCardBody, CCardHeader, CPagination} from "@coreui/react";
+import {DocsLink} from "../../reusable";
 
 class Employee extends Component {
+
   constructor(props) {
     super(props)
     this.state = {
       employeeList: [],
       currentPage : 1,
-      size : 10
+      size : 10,
+      setCurrentPage : 0
     }
   }
 
@@ -16,16 +19,15 @@ class Employee extends Component {
     ApiService.getEmployee(this.state).then(res => {
       this.setState({
         employeeList : res.data.content,
-        totalPages : res.data.totalPages,
-        totalElements : res.data.totalElements,
-        currentPage : res.data.number+1
+        currentPage : res.data.number+1,
+        size : this.state,
+        setCurrentPage : 0
       });
     });
   }
 
   render() {
-
-    const {employeeList, currentPage, size} = this.state;
+    const {employeeList, currentPage, size , setCurrentPage} = {}//useState(0);
 
     return (
       <div>
@@ -61,12 +63,13 @@ class Employee extends Component {
            }
            </tbody>
          </table>
-
-          <Button type="button" variant="outline-info" disabled={currentPage === 1 ? true : false}
-                  onClick={this.firstPage}>
-          </Button>
-
-
+        <CCard>
+          <CPagination
+            activePage={currentPage}
+            pages={size}
+            onActivePageChange={setCurrentPage}
+          />
+        </CCard>
       </div>
     );
   }
