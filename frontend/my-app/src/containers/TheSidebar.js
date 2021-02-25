@@ -62,7 +62,7 @@ var HRD=[
     to: '/Calendar_admin',
     icon: 'cil-calendar'
   }
-  
+
 ];
 
 var login=[

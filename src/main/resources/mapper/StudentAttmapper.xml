@@ -15,4 +15,7 @@
     select s.*, l.name as lecname from student s inner join lecture l ON l.no = s.lecture where l.name = #{lec};
     </select>
 
+    <select id="getPayList" resultType="StudentDTO" parameterType="long">
+        SELECT a.*,b.no as lectureNo,b.name as lectureName,b.price,b.start_date,b.end_date from student a inner join lecture b ON a.lecture = b.no WHERE a.no =#{student};
+    </select>
 </mapper>

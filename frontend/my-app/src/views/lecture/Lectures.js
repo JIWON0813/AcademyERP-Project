@@ -88,6 +88,7 @@ class Lectures extends Component {
       })
       .catch(res => console.log(res))
   }
+
   handleKeyPress = e => {
     if (e.key === 'Enter') {
       this.getApi(this.state.searchKeyword,this.state.currentPageNo);
@@ -156,7 +157,7 @@ class Lectures extends Component {
           <Grid container justify="flex-end">
             <LectureAdd stateRefresh={this.stateRefresh}/>
             <Room stateRefresh={this.stateRefresh}/>
-            <Part stateRefresh={this.stateRefresh}/>            
+            <Part stateRefresh={this.stateRefresh}/>
           </Grid>
 
 

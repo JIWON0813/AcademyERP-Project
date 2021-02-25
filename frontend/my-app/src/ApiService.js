@@ -1,12 +1,13 @@
 import axios from 'axios';
+import CounselingDelete from './views/counseling/CounselingDelete';
 
 const USER_API_BASE_URL = "http://localhost:8080/api";
 
 class ApiService {
 
-    Students(currentPage,Size) {
-        return axios.get(USER_API_BASE_URL + '/students' + "?page=" + currentPage + "&size=" + Size);
-    }
+  Students(currentPage,Size) {
+    return axios.get(USER_API_BASE_URL + '/students' + "?page=" + currentPage + "&size=" + Size);
+  }
 
   Student(no) {
     console.log("!!!!!!!!!!!!!!!!!" + no);
@@ -52,16 +53,48 @@ class ApiService {
         return axios.get(USER_API_BASE_URL + '/ins_att/' + lec);
     }
 
-    Salary() {
-        return axios.get(USER_API_BASE_URL + '/salary');
+    Salary(currentPage,Size) {
+        return axios.get(USER_API_BASE_URL + '/salary' + "?page=" + currentPage + "&size=" + Size);
     }
 
     SalaryEmp(no) {
-        return axios.get(USER_API_BASE_URL + '/salary_emp/' + no);
+      console.log("??????????" + no);
+        return axios.get(USER_API_BASE_URL + '/sal_edit/' + no);
     }
 
     Teacher(no) {
         return axios.get(USER_API_BASE_URL + '/lec_time/' + no);
+    }
+
+    EditSalary(employee) {
+      console.log("??????????" + employee.salary);
+      return axios.post(USER_API_BASE_URL + '/sal_edit_com/' + employee.name, employee);
+    }
+
+    Branch() {
+      return axios.get("http://localhost:8080/lecture/branches");
+    }
+
+    SearchStudent(searchKey) {
+      
+      return axios.get(USER_API_BASE_URL + '/searchStudent/' +searchKey);
+    }
+
+    SearchSalary(searchKey) {
+      return axios.get(USER_API_BASE_URL + '/searchSalary/' + searchKey);
+    }
+
+    getLecture(no) {
+      return axios.get("http://localhost:8080" + '/getLecture/' + no);
+    }
+
+    addCurriculum(curri) {
+      console.log(curri.curriculum)
+      return axios.post(USER_API_BASE_URL + '/ins_curri', curri);
+    }
+
+    getCurriculum(lecture) {
+      return axios.get(USER_API_BASE_URL + '/getcurri/' + lecture);
     }
 
 }

@@ -5,6 +5,15 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from '@fullcalendar/list';
 import events from "./events"
 import ApiService from "../../ApiService";
+import { Link } from 'react-router-dom';
+import {
+  CButton,
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CCol,
+  CRow
+} from '@coreui/react'
 
 
 class DemoApp extends React.Component {
@@ -13,6 +22,7 @@ class DemoApp extends React.Component {
     this.state = {
       events:"",
       Edate:"",
+      no:2,
       arr:[],
       data:[]
     }
@@ -40,8 +50,6 @@ class DemoApp extends React.Component {
           this.setState({
             data : this.state.arr
           })
-          
-        console.log(this.state.arr[37]);
         })
         
       .catch(res => console.log(res))
@@ -51,8 +59,28 @@ class DemoApp extends React.Component {
 
   render() {
     const{data} = this.state;
+    const{no} = this.state;
     return (
-      
+      <div>
+        <>
+          <CRow>
+            <CCol>
+            <Link to={`/curriculum/${no}`}>
+              <CButton block color="primary">교육과정 확인</CButton>
+            </Link>
+            </CCol>
+            <CCol>
+            <Link to={`/insertCurriculum/${no}`}>
+              <CButton block color="primary">교육과정 입력</CButton>
+            </Link>
+            </CCol>
+            <CCol></CCol>
+            <CCol></CCol>
+            <CCol></CCol>
+          </CRow>
+          <CRow></CRow>
+        </>
+      <br></br>
       <FullCalendar
         defaultView="timeGridDay"
         headerToolbar= {{
@@ -69,7 +97,9 @@ class DemoApp extends React.Component {
         selectable= {true}
         dayMaxEvents= {true}
         events={data}
-      />)
+      />
+      </div>
+      )
   }
 }
 export default DemoApp

@@ -8,7 +8,11 @@
     </select>
 
     <select id="getSalEmp" resultType="EmployeeDTO" parameterType="int">
-    select * from employee where no = #{no};
+    select name,salary from employee where no = #{no};
     </select>
+
+    <update id="updateSalary" parameterType="com.example.demo.database.DTO.EmployeeDTO">
+        update employee set salary = #{salary} where name = #{name}
+    </update>
 
 </mapper>

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 
+
 import lombok.*;
 
 @Entity
@@ -12,6 +13,8 @@ import lombok.*;
 @Getter
 @Setter
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class StudentEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,8 +28,9 @@ public class StudentEntity implements Serializable {
     private String email;
     private String birth;
     private String address;
-    private int lecture;
+    private Long lecture; // type Long 이여야함
     private String gender;
     private String regdate;
+    private String lecname;
 
 }

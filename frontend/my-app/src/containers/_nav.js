@@ -24,13 +24,18 @@ export default [
     _children: [
       {
         _tag: 'CSidebarNavItem',
-        name: '수업관리 - 여진',
+        name: '수업관리',
         to: '/lecture',
       },
       {
         _tag: 'CSidebarNavItem',
         name: '상담관리',
         to: '/consult',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: '수강료결제',
+        to: '/searchStudent',
       },
     ]},
     {
@@ -43,6 +48,11 @@ export default [
           _tag: 'CSidebarNavItem',
           name: '수납관리',
           to: '/receive',
+        },
+        {
+          _tag: 'CSidebarNavItem',
+          name: '전표관리',
+          to: '/statement',
         },
       ]},
       {

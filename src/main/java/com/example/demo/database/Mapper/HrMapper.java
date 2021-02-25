@@ -11,5 +11,6 @@ import java.util.List;
 public interface HrMapper {
     List<EmployeeDTO> getSal();
     List<EmployeeDTO> getSalEmp(int no);
+    int updateSalary(EmployeeDTO employee);
 }
 

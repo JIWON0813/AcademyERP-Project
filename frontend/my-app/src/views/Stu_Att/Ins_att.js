@@ -33,7 +33,8 @@ import {
     CLabel,
     CSelect,
     CRow,
-    CSwitch
+    CSwitch,
+    
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import Lecture from "../lecture/Lecture";
@@ -117,15 +118,15 @@ class Ins_att extends Component {
                     {/* <td width ="80"><CButton block color="secondary" onClick={() => this.selStu(itemdata.no)}>상세</CButton></td> */}
                     <CCol md="9">
                     <CFormGroup variant="custom-radio" inline>
-                      <CInputRadio custom id="inline-radio1" name="inline-radios" value="0" defaultChecked/>
+                      <CInputRadio custom id="inline-radio1" name={itemdata.no} value="0" defaultChecked/>
                       <CLabel variant="custom-checkbox" htmlFor="inline-radio1">출석</CLabel>
                     </CFormGroup>
                     <CFormGroup variant="custom-radio" inline>
-                      <CInputRadio custom id="inline-radio2" name="inline-radios" value="1" />
+                      <CInputRadio custom id="inline-radio2" name={itemdata.no} value="1" />
                       <CLabel variant="custom-checkbox" htmlFor="inline-radio2">결석</CLabel>
                     </CFormGroup>
                     <CFormGroup variant="custom-radio" inline>
-                      <CInputRadio custom id="inline-radio3" name="inline-radios" value="2" />
+                      <CInputRadio custom id="inline-radio3" name={itemdata.no} value="2" />
                       <CLabel variant="custom-checkbox" htmlFor="inline-radio3">지각</CLabel>
                     </CFormGroup>
                   </CCol>

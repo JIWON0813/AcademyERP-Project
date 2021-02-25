@@ -1,4 +1,4 @@
-import React,{ Component } from "react";
+import React,{ useEffect,useState } from "react";
 import './table.css';
 import { Link } from 'react-router-dom';
 import ApiService from "../../ApiService";
@@ -8,47 +8,114 @@ import {
     CCard,
     CCardBody,
     CCardHeader,
-    CPagination
+    CPagination,
+    CForm,
+    CInput 
   } from '@coreui/react'
 
+  let currentPages =1;
+  const SalaryCheck = () => {
+    const [inputs, setInputs] = useState({
+        SalaryList: '',
+        searchKey:"",
+        totalPages :""
+    });
 
-class SalaryList extends Component {
+    useEffect(() => {
+        getSalary(currentPages);
+    },[]);
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            SalaryList: ''
-        }
-    }
+    const {SalaryList,totalPages,searchKey} = inputs;
 
-    componentDidMount() {
-        this.getApi();
-    }
-
-    getApi = () => {
-        ApiService.Salary()
+    const getSalary = (currentPages) => {
+        currentPages = currentPages -1
+        let size = 5;
+        ApiService.Salary(currentPages,size)
             .then(res => {
-                console.log(res);
-                this.setState({
-                    SalaryList : res.data.list    
+                setInputs({
+                    SalaryList : res.data.content,
+                    totalPages : res.data.totalPages    
                 })
             })
             .catch(res => console.log(res))
             
     }
 
-    selSal = (NO) => {
-        window.localStorage.setItem("SalNO", NO);
-        this.props.history.push('/sal_edit');
+    const getSearch = () => {
+        console.log(searchKey)
+        ApiService.SearchSalary(searchKey)
+        .then(res => {
+            console.log(res);
+            setInputs({
+                SalaryList : res.data.content,
+                totalPages : res.data.totalPages
+            })
+        }).catch(res => console.log(res))
     }
-    
-    render() {
-        const { SalaryList } =  this.state;
+
+    const KeySelect = (e) => {
+        e.preventDefault()
+        setInputs({
+            searchKey: e.target.value
+        })
+        console.log(searchKey)
+        
+        //getStudent(currentPages);
+        
+      }
+
+    const Paginations = (e) => {
+        const [currentPage, setCurrentPage] = useState(currentPages);
+            if(currentPages != currentPage){
+            currentPages = currentPage;
+            getSalary(currentPages)
+            }else{
+
+            }
+        return(
+        <>
+            <CCard>
+                <CCardBody>
+                    <CPagination
+                        activePage={currentPage}
+                        pages= {totalPages}
+                        onActivePageChange={setCurrentPage}/>
+                </CCardBody>
+             </CCard>
+        </>
+        )
+    }
         
         return (
             <div>
+                <header>
+            <CForm inline>
+            {/* <CSelect custom id="branch" onChange={branchSelect} value={findBranch}>
+              <option value="">지점</option>
+              {BranchList && BranchList.map((itemdata, insertIndex) => {
+                return (<option value={itemdata.no}>{insertIndex + 1}.&nbsp;{itemdata.name}</option>);
+              })}
+            </CSelect> */}
+            {/* <CSelect custom id="search" onChange={TypeSelect} value={searchType}>
+              <option value="asd">검색조건</option>
+              <option value="lecture">강의명</option>
+              <option value="name">이름</option>
+            </CSelect> */}
+            &nbsp;&nbsp;
+            <CInput
+              className="mr-sm-2"
+              placeholder=""
+              size="sm"
+              name="searchKeyword"
+              placeholder="이름을 입력하세요"
+              value={searchKey}
+              onChange={KeySelect}
+            />
+            <CButton onClick={getSearch}>검색</CButton>
+          </CForm>
+          </header>
             <table>
-            <tr><td>no</td><td>branch</td><td>name</td><td>salary</td></tr>
+            <tr><td width ="50">no</td><td>branch</td><td>name</td><td>salary</td></tr>
                 {SalaryList&&SalaryList.map((itemdata, insertIndex) => {
                     return (
                     <tr>
@@ -56,14 +123,17 @@ class SalaryList extends Component {
                     <td>{itemdata.branch}</td>
                     <td>{itemdata.name}</td>
                     <td>{itemdata.salary}</td>
-                    <td width ="80"><CButton block color="secondary" onClick={() => this.selSal(itemdata.no)}>급여수정</CButton></td>
+                    <td width ="80"><Link to={`/sal_edit/${itemdata.no}`}>급여수정</Link></td>
                     </tr>
                     );
                 })}
+                <tr><td><>
+                <Paginations />
+                </>
+         </td><td></td><td></td></tr>
             </table>
             </div>
         )
     }
-}
 
-export default SalaryList;
+    export default SalaryCheck  
