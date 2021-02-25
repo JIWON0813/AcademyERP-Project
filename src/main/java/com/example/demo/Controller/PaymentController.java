@@ -219,6 +219,15 @@ public class PaymentController {
             file.transferTo(target);
             to.put("filename", file.getOriginalFilename());
             to.put("employee_no",no);
+            HashMap<String,Object> id = new HashMap<String,Object>();
+            id.put("no", no);
+            HashMap<String,String> sign = new HashMap<String,String>();
+            sign=PaymentService.selectSign(id);
+            if(sign.size()>0){
+                PaymentService.deleteSign(no);
+                File deleteFile = new File(filePath+sign.get("filename"));
+                deleteFile.delete();
+            }
             PaymentService.sign(to);
         } catch (IOException e) {
             System.out.println(e);

@@ -35,6 +35,10 @@ public class PaymentService {
         return PaymentRepo.selectSign(no);
     }
 
+    public int deleteSign(int no){
+        return PaymentRepo.deleteSign(no);
+    }
+
     public int insert(PaymentEntity entity){
         return PaymentRepo.insert(entity);
     }
