@@ -11,6 +11,7 @@ import axios from 'axios';
 import {
   CDataTable
 } from '@coreui/react'
+import PaymentInsert from "../../payment/insert/insert"
 
 
 
@@ -27,14 +28,14 @@ const Info = () => {
     page: "",
     open: "",
     open2: "",
-    open3: ""
+    no: ""
   });
 
   useEffect(() => {
     getData();
   }, []);
 
-  const { name,  open, open2, day, page, data, employeeNo, selected , open3 } = inputs;
+  const { name,  open, open2, day, page, data, employeeNo, no } = inputs;
   const onChange = (e) => {
     const { value, name } = e.target;
     setInputs({
@@ -79,6 +80,18 @@ const Info = () => {
     })
   };
 
+  const updateOpen = (item) => {
+    setInputs({
+      open2: true,
+      page: page,
+      data: data,
+      no: item.no,
+      employeeNo: item.employee_no,
+      day: item.day,
+      name: item.name
+    })
+  };
+
   const handleClose = () => {
     setInputs({
       open: false,
@@ -112,15 +125,9 @@ const Info = () => {
 
   const del = () => {
     axios({
-      url: 'http://localhost:8080/Calendar/' + this.state.no,
+      url: 'http://localhost:8080/Vacation/' + no,
       method: "DELETE",
       headers: { 'content-type': 'application/json' },
-      data: {
-        title: this.state.title,
-        start: this.state.start,
-        end: this.state.end,
-        color: this.state.color
-      }
     })
       .then(function (response) {
         console.log(response)
@@ -134,15 +141,14 @@ const Info = () => {
 
   const update = () => {
     axios({
-      url: 'http://localhost:8080/Calendars',
+      url: 'http://localhost:8080/Vacation',
       method: "PUT",
       headers: { 'content-type': 'application/json' },
       data: {
-        id: this.state.no,
-        title: this.state.title,
-        start: this.state.start,
-        end: this.state.end,
-        color: this.state.color,
+        no: no,
+        day: day,
+        employee_no: employeeNo,
+        name: name
       }
     })
       .then(function (response) {
@@ -190,7 +196,7 @@ const Info = () => {
             employee_no: list[i].employee_no,
             day: list[i].day,
             name: list[i].name,
-            수정: 1
+            수정: list[i].no
           }
           list[i] = temp
         }
@@ -203,27 +209,6 @@ const Info = () => {
       .catch(res => console.log(res))
   }
 
-  const payment = () => {
-    let count = document.getElementsByName("check").length;
-    let temp = [];
-    for (var i = 0; i < count; i++) {
-      if (document.getElementsByName("check")[i].checked === true) {
-        for (var l = 0; l < data.length; l++) {
-          if (Number(data[l].no) === Number(document.getElementsByName("check")[i].value)) {
-            console.log(1)
-            temp.push(data[l])
-          }
-        }
-      }
-    }
-    console.log(temp)
-    setInputs({
-      open2: true,
-      page: page,
-      data: data,
-      selected: temp
-    })
-  }
 
   const select = () => {
     payselect *= -1;
@@ -250,17 +235,10 @@ const Info = () => {
           <Button variant="contained" color="primary" onClick={handleClickOpen}>
             추가하기
           </Button>
-
-          <Button variant="contained" color="primary" onClick={select}>
-            선택
-          </Button>
-
-          <Button variant="contained" color="primary" onClick={payment}>
-            결제
-          </Button>
           <Button variant="contained" color="primary" onClick={vacationUse}>
             휴가 사용
           </Button>
+          <PaymentInsert kind={"vacation"} data={data}/>   
         </div>
 
         <div style={{ float: "right" }}>
@@ -282,23 +260,9 @@ const Info = () => {
               '수정':
                 (item) => (
                   <td>
-                    <a href="naver.com">
-                      {item.수정}
-                    </a>
-                  </td>
-                ),
-              'no':
-                (item) => (
-                  <td>
-                    {payselect === 1 ?
-                      <div>
-                        {item.no}
-                      </div>
-                      :
-                      <div>
-                        <input type="checkbox" name="check" value={item.no} />
-                      </div>
-                    }
+                    <strong onClick={()=>updateOpen(item)}>
+                      수정
+                    </strong>
                   </td>
                 ),
             }}
@@ -321,63 +285,14 @@ const Info = () => {
           </ul>
         </nav>
         <Dialog open={open2} onClose={handleClose}>
-          <DialogTitle>결제 하기</DialogTitle>
-          <DialogContent>
+          <DialogTitle>휴가 수정</DialogTitle>
+            <DialogContent>
             <CFormGroup row>
               <CCol md="3">
                 <CLabel htmlFor="start_date">User</CLabel>
               </CCol>
               <CCol xs="12" md="9">
-                <CInput name="employeeNo" placeholder="이름" value={employeeNo}
-                  onChange={onChange} />
-              </CCol>
-            </CFormGroup>
-            <CFormGroup row>
-              <CCol md="3">
-                <CLabel htmlFor="start_date">일수</CLabel>
-              </CCol>
-              <CCol xs="12" md="9">
-                <table>
-                  <th>no</th>
-                  <th>E_no</th>
-                  <th>day</th>
-                  <th>name</th>
-                  {selected && selected.map((i) => {
-                    return (
-                      <tr>
-                        <td>{i.no}</td>
-                        <td>{i.employee_no}</td>
-                        <td>{i.day}</td>
-                        <td>{i.name}</td>
-                      </tr>
-                    )
-                  })}
-                </table>
-              </CCol>
-              <CCol md="3">
-                <CLabel htmlFor="start_date">내용</CLabel>
-              </CCol>
-              <CCol xs="12" md="9">
-                <CInput name="name" placeholder="내용" value={name}
-                  onChange={onChange} />
-              </CCol>
-            </CFormGroup>
-          </DialogContent>
-          <DialogActions>
-            <Button variant="contained" color="primary" onClick={insert}>추가</Button>
-            <Button variant="outlined" color="primary" onClick={handleClose}>닫기</Button>
-          </DialogActions>
-        </Dialog>
-
-        <Dialog open={open} onClose={handleClose}>
-          <DialogTitle>휴가 추가하기</DialogTitle>
-          <DialogContent>
-            <CFormGroup row>
-              <CCol md="3">
-                <CLabel htmlFor="start_date">User</CLabel>
-              </CCol>
-              <CCol xs="12" md="9">
-                <CInput name="employeeNo" placeholder="이름" value={employeeNo}
+                <CInput name="employeeNo" placeholder="employee_no" value={employeeNo}
                   onChange={onChange} />
               </CCol>
             </CFormGroup>
@@ -399,12 +314,13 @@ const Info = () => {
             </CFormGroup>
           </DialogContent>
           <DialogActions>
-            <Button variant="contained" color="primary" onClick={insert}>추가</Button>
+            <Button variant="contained" color="primary" onClick={update}>추가</Button>
+            <Button variant="contained" color="primary" onClick={del}>삭제</Button>
             <Button variant="outlined" color="primary" onClick={handleClose}>닫기</Button>
           </DialogActions>
         </Dialog>
 
-        <Dialog open={open3} onClose={handleClose}>
+        <Dialog open={open} onClose={handleClose}>
           <DialogTitle>휴가 추가하기</DialogTitle>
           <DialogContent>
             <CFormGroup row>

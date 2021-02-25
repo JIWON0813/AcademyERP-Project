@@ -35,6 +35,14 @@ public class VacationService {
         return result;
     }
 
+    public int VacationPut (VacationEntity param){
+        return VacationRepo.VacationPut(param);
+    }
+
+    public int VacationDelete(int no){
+        return VacationRepo.VacationDelete(no);
+    }
+
     public int count(){
         return VacationRepo.count();
     }

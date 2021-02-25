@@ -1,9 +1,11 @@
 package com.example.demo.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.example.demo.database.Entity.*;
-import com.example.demo.database.DTO.*;
 import com.example.demo.database.Repository.EmployeeRepository;
 
 @RestController
@@ -25,8 +26,18 @@ public class VacationApplyController {
 	private EmployeeRepository boardRepository;
 
 	@PostMapping("/Vacation_apply")
-    public int insert (@RequestBody VacationApplyEntity param){
+    public int VacationApplyInsert (@RequestBody VacationApplyEntity param){
         return VacationApplyService.insert(param);
+    }
+
+    @PutMapping("/Vacation_apply")
+    public int VacationApplyUpdate (@RequestBody VacationApplyEntity param){
+        return VacationApplyService.put(param);
+    }
+
+    @DeleteMapping("/Vacation_apply/{no}")
+    public int VacationApplyDelete (@PathVariable("no") int no){
+        return VacationApplyService.delete(no);
     }
 
     @GetMapping("/Vacation_apply/{nowPage}/{cntPerPage}")

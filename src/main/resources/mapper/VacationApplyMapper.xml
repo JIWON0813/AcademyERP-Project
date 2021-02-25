@@ -22,5 +22,15 @@
         select * from vacation_apply where no=#{no}
     </select>
 
+    <update id="put">
+        update vacation_apply set start_day=#{start_day}, end_day=#{end_day},
+            use_vacation=#{use_vacation}, day=#{day}
+            where no=#{no}
+    </update>
+
+    <delete id="delete">
+        delete from vacation_apply where no=#{no}
+    </delete>
+
 </mapper>  
  

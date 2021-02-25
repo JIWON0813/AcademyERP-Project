@@ -30,6 +30,10 @@
     <select id="selectSign" resultType="java.util.HashMap">
         select * from sign where employee_no=#{no}
     </select> 
+
+    <delete id="deleteSign">
+        delete from sign where employee_no=#{no}
+    </delete>
     
 </mapper>   
  

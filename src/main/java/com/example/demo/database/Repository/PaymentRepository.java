@@ -14,4 +14,5 @@ public interface PaymentRepository {
     int insert(PaymentEntity entity);
     HashMap<String, String> selectSign(HashMap<String,Object> to);
     HashMap<String, String> tableSelect(HashMap<String,Object> to);
+    int deleteSign(int no);
 }  
