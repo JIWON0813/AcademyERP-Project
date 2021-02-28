@@ -11,7 +11,6 @@ import {Grid, IconButton} from "@material-ui/core";
 import Part from "../part/Part";
 import RefreshIcon from "@material-ui/icons/Refresh";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -89,6 +88,7 @@ class Lectures extends Component {
       })
       .catch(res => console.log(res))
   }
+
   handleKeyPress = e => {
     if (e.key === 'Enter') {
       this.getApi(this.state.searchKeyword,this.state.currentPageNo);

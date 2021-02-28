@@ -104,4 +104,14 @@ public class LectureService {
         result.put("lectureList", lectureList);
         return result;
     }
+    //세호
+    public HashMap<String, Object> getLecture(int no) {
+        HashMap<String, Object> result = new HashMap<>();
+        List<LectureDTO> list = lectureMapper.getLecture(no);
+        result.put("list", list);
+
+        return result;
+    }
+
+
 }

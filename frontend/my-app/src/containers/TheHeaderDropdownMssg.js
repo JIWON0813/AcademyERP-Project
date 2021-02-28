@@ -1,16 +1,50 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+import Masage from './masage'
 import {
   CBadge,
   CDropdown,
   CDropdownItem,
   CDropdownMenu,
-  CDropdownToggle,
-  CImg
+  CDropdownToggle
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
+const id=window.sessionStorage.no;
+
 const TheHeaderDropdownMssg = () => {
-  const itemsCount = 4    //메세지수
+  const [inputs, setInputs] = useState({
+    masageList: [],
+    reset: 0
+  });
+
+  const { masageList, reset } = inputs;
+
+  useEffect(() => {
+    getData();
+  }, []); 
+
+
+  const getData = () =>{
+    axios.get("http://localhost:8080/masage/"+id)
+      .then(res => {
+        console.log(res)
+        setInputs({
+          masageList:res.data.masageList
+        })
+      })
+      .catch(res => console.log(res))
+  }
+
+  const masageClick=(no)=>{
+    axios.put("http://localhost:8080/masage/"+no+"/"+window.sessionStorage.getItem("no"))
+        .then(res => {
+          console.log(res)
+        })
+        .catch(res => console.log(res))
+  }
+
   return (
     <CDropdown
       inNav
@@ -18,7 +52,7 @@ const TheHeaderDropdownMssg = () => {
       direction="down"
     >
       <CDropdownToggle className="c-header-nav-link" caret={false}>
-        <CIcon name="cil-envelope-open" /><CBadge shape="pill" color="info">{itemsCount}</CBadge>
+        <CIcon name="cil-envelope-open" /><CBadge shape="pill" color="info">{masageList.length}</CBadge>
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownItem
@@ -26,35 +60,19 @@ const TheHeaderDropdownMssg = () => {
           tag="div"
           color="light"
         >
-          <strong>You have {itemsCount} messages</strong>
+          <strong>You have messages</strong>
         </CDropdownItem>
-        <CDropdownItem href="#/Users">{/*href */}
-          <div className="message">
-            <div className="pt-3 mr-3 float-left">
-              <div className="c-avatar">
-                <CImg 
-                  src={'avatars/7.jpg'}
-                  className="c-avatar-img"
-                  alt="admin@bootstrapmaster.com"
-                /> {/*프사 */}
-                <span className="c-avatar-status bg-success"></span>
-              </div>
-            </div>
-            <div>
-              <small className="text-muted">John Doe</small>{/*이름 */}
-              <small className="text-muted float-right mt-1">Just now</small>{/**시간 */}
-            </div>
-            <div className="text-truncate font-weight-bold">{/*제목 */}
-              <span className="fa fa-exclamation text-danger"></span> Important message
-            </div>
-            <div className="small text-muted text-truncate">{/*내용 */}
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...
-            </div>
-          </div>
-        </CDropdownItem>
-
-        
-        <CDropdownItem href="#" className="text-center border-top"><strong>View all messages</strong></CDropdownItem>
+        {masageList.map((index)=>{
+          return(
+            <CDropdownItem href={"#/"+index.link} onClick={()=>{masageClick(index.no);getData()}}>{/*href */}
+            <Masage
+              no={index.no}
+              link={index.link} name={index.to} time={index.day}
+              title={index.title} contents={index.contents}
+            />
+            </CDropdownItem>
+          )
+        })}
       </CDropdownMenu>
     </CDropdown>
   )

@@ -27,7 +27,10 @@ public class EmployeeController {
     @PostMapping("/employee")
     public int insertEmployee(@RequestBody EmployeeEntity employee){
         return employeeService.insertEmployee(employee);
-
     }
+
+    
+
+
 
 }

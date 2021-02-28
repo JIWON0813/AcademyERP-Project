@@ -15,6 +15,9 @@ public interface LectureMapper {
     LectureDTO getListDetail(long id);
 
     List<BoardEntity> getTeacher(long branch);
-
+    //세호
     List<LectureDTO> getTime(int no);
+    List<LectureDTO> getLecture(int no);
+
+
 }

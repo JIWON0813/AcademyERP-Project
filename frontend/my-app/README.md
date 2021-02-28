@@ -120,7 +120,7 @@ CoreUI-React#v3.0.0
 │   ├── scss/        #user scss/css source
 │   ├── views/       #views source
 │   ├── App.js
-│   ├── App.test.js
+│   ├── App.StatementDetailCreate.js
 │   ├── polyfill.js
 │   ├── index.js
 │   ├── routes.js    #routes config

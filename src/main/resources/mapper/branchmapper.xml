@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.Mapper.BranchMapper">
+    <select id="getListDetail" parameterType="Long" resultType="BranchDTO">
+        SELECT * FROM branch
+    </select>
+
+    <select id="getList" resultType="BranchDTO" parameterType="java.util.HashMap">
+        select * from branch where name like CONCAT('%', #{keyword}, '%')
+    </select>
+
+    
+
+</mapper> 

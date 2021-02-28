@@ -31,12 +31,16 @@ public class PaymentService {
         return PaymentRepo.sign(to);
     }
 
-    public String selectSign(HashMap<String,Object> no){
+    public HashMap<String, String> selectSign(HashMap<String,Object> no){
         return PaymentRepo.selectSign(no);
     }
 
     public int insert(PaymentEntity entity){
         return PaymentRepo.insert(entity);
+    }
+
+    public HashMap<String, String> tableSelect(HashMap<String,Object> no){
+        return PaymentRepo.tableSelect(no);
     }
 
 }

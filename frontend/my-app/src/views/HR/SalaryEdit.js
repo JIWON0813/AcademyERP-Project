@@ -1,5 +1,6 @@
-import React,{ Component } from "react";
+import React,{ useEffect,useState } from "react";
 import './table.css';
+import { useHistory } from "react-router-dom";
 //import { Link } from 'react-router-dom';
 import ApiService from "../../ApiService";
 
@@ -36,65 +37,65 @@ import {
     CSwitch
   } from '@coreui/react'
   import CIcon from '@coreui/icons-react'
+import { AlertTitle } from "@material-ui/lab";
   //import { DocsLink } from 'src/reusable'
 
-  class Edit_stu extends Component{
+    const EditSalary =({ match }) => {
+      const [inputs, setInputs] = useState({
+        name : '',
+        salary : ''
+      });
+  
+      useEffect(() => {
+          getApi();
+      },[]);
+    
+    const {name,salary} = inputs;
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            name : '',
-            salary : ''
-        }
-    }
-
-    componentDidMount() {
-        this.getApi();
-    }
-
-    getApi = () => {
-        ApiService.SalaryEmp(window.localStorage.getItem("SalNO"))
+    const getApi = () => {
+        ApiService.SalaryEmp(match.params.no)
             .then(res => {
-                let emp =  res.data.list;
-                this.setState({
+                let emp =  res.data.list[0];
+                console.log(emp.name)
+                setInputs({
                     name : emp.name,
                     salary : emp.salary
                 })
+                console.log(emp.name)
+                console.log(match.params.no)
             })
         .catch(err =>{
             console.log('getApi() 에러', err);
         });
     }
 
-    onChange = (e) => {
-        this.setState({
-            [e.target.name] : e.target.value
+    const onChange = (e) => {
+        setInputs({
+            [e.target.name] : e.target.value,
+            name : name
         });
     }
 
-    saveSalary = (e) => {
+    let history = useHistory();
+
+    const saveSalary = (e) => {
         e.preventDefault();
 
         let employee = {
-            name : this.state.name,
-            salary : this.state.salary   
+            name : name,
+            salary : salary   
         }
 
-        ApiService.editStudent(employee)
+        ApiService.EditSalary(employee)
             .then( res => {
-            this.setState({
-                message : employee.name + '님의 정보가 수정되었습니다'
-            })
-            console.log(this.state.message);
-            this.props.history.push('/sal_list');
+            alert("급여수정되었습니다.");
+            history.push('/sal_list');
             })
             .catch( err => {
             console.log('saveSalary() 에러', err);
             });
     }
 
-
-    render() {
         return (
           <CRow>
             <CCol xs="12" md="6">
@@ -109,27 +110,28 @@ import {
                         <CLabel htmlFor="text-input">이름</CLabel>
                       </CCol>
                       <CCol xs="12" md="9">
-                      <CLabel>{this.state.name}</CLabel>
+                      <CLabel>{name}</CLabel>
                       </CCol>
                     </CFormGroup>
                     <CFormGroup row>
                       <CCol md="3">
-                        <CLabel htmlFor="text-input">핸드폰 번호</CLabel>
+                        <CLabel htmlFor="text-input">급여</CLabel>
                       </CCol>
                       <CCol xs="12" md="9">
-                        <CInput name="hp" placeholder={this.state.salary} value={this.state.salary} onChange={this.onChange}/>
+                        <CInput name="salary" placeholder={salary} value={salary} onChange={onChange}/>
                       </CCol>
                     </CFormGroup>
                   </CForm>
                 </CCardBody>
                 <CCardFooter>
-                  <CButton onClick={this.saveSalary} size="sm" color="primary"><CIcon name="cil-scrubber" /> 저장 </CButton>
+                  <CButton onClick={saveSalary} size="sm" color="primary"><CIcon name="cil-scrubber" /> 저장 </CButton>
                   <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban" /> 초기화 </CButton>
                 </CCardFooter>
               </CCard>
               </CCol>
             </CRow>
-        );}
-}
+        );
+      }
 
-export default Edit_stu
+
+export default EditSalary

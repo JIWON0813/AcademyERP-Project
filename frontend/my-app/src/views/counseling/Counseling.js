@@ -75,7 +75,7 @@ class Counseling extends Component {
       lecture: e.target.value,
       studentList: "",
     })
-    axios.get("http://localhost:8080/api/students/" + e.target.value)
+    axios.get("http://localhost:8080/api/students/"+e.target.value)
       .then(res => {
         this.setState({
           studentList: res.data.studentList,

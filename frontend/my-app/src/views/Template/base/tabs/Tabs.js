@@ -45,6 +45,7 @@ const Tabs = () => {
                     Messages
                   </CNavLink>
                 </CNavItem>
+                
               </CNav>
               <CTabContent>
                 <CTabPane>

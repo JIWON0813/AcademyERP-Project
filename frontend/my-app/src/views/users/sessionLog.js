@@ -21,7 +21,9 @@ class login extends Component {
     window.sessionStorage.setItem('id',params.name);
     window.sessionStorage.setItem('no',params.no);
     window.sessionStorage.setItem('dep',params.dep);
+    window.sessionStorage.setItem('branch',params.branch);
     console.log( window.sessionStorage.getItem('dep',params.dep))
+    console.log( window.sessionStorage.getItem('branch',params.branch))
     this.setState ({asd: params.no});
     alert("로그인");
     document.location.href = "#";
