@@ -91,13 +91,13 @@ getApi = (keyword) => {
     <table>
         <thead>
             <td>NO</td>
-            <td>name</td>
-            <td>  hp  </td>
-            <td>schedule</td>
-            <td>memo</td>
-            <td>route</td>
-            <td>writer</td>
-            <td>regdate</td>
+            <td>상담자</td>
+            <td>번호</td>
+            <td>상담예약날짜</td>
+            <td>메모</td>
+            <td>CALL/ONLINE</td>
+            <td>작성자</td>
+            <td>등록일</td>
         </thead>
           <tbody>
            {ConsultList&&ConsultList.map((consultdata, insertIndex) => {

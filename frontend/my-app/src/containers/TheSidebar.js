@@ -98,6 +98,19 @@ var login=[
       }
     ]
   },
+  {
+    _tag: 'CSidebarNavDropdown',
+    name: '비용',
+    route: '/base',
+    icon: 'cil-chart-pie',
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: '비용등록',
+        to: '/cost',
+      }
+    ]
+  },
 ];
 
 var sm_score=[

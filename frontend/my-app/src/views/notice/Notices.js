@@ -17,6 +17,20 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
+const _HRD=1;
+const A_admin=7;
+let A_admin_login=false;
+let _HRD_login=false;
+var session_dep=window.sessionStorage.getItem('dep');
+
+if(Number(session_dep)===A_admin){
+  A_admin_login = true;
+}
+
+if(Number(session_dep)===_HRD){
+  _HRD_login = true;
+}
+
 class Notices extends Component {
   constructor(props) {
     super(props)
@@ -54,7 +68,8 @@ getApi = () => {
     return (
       <div>
         <header>
-        <NoticeWrite stateRefresh={this.stateRefresh}/>
+        {window.sessionStorage.getItem("dep")!=null &&
+        <NoticeWrite stateRefresh={this.stateRefresh}/>}
           <br></br>
         </header>
         <br></br>

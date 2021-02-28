@@ -70,18 +70,21 @@ const Statement = React.lazy(() => import('./views/statement/Statement'));
 /*-------------------------------*/
 
 // ------------@최인아
-// ------------상담
 const Consults = React.lazy(() => import('./views/consult/Consults'));
 const Consult = React.lazy(() => import('./views/consult/Consult'));
 const ConsultInsert = React.lazy(() => import('./views/consult/ConsultInsert'));
 const ConsultUpdate = React.lazy(() => import('./views/consult/ConsultUpdate'));
-// ------------공지사항
+
 const Notices = React.lazy(() => import('./views/notice/Notices'));
 const Notice = React.lazy(() => import('./views/notice/Notice'));
 const NoticeWrite = React.lazy(() => import('./views/notice/NoticeWrite'));
 const NoticeUpdate = React.lazy(() => import('./views/notice/NoticeUpdate'));
-// ------------수납관리
-const Receive = React.lazy(() => import('./views/receive/receive'));
+
+const Receive = React.lazy(() => import('./views/receive/Receive'));
+const ReceiveInsert = React.lazy(() => import('./views/receive/ReceiveInsert'));
+
+const Cost = React.lazy(() => import('./views/cost/Cost'));
+const CostInsert = React.lazy(() => import('./views/cost/CostInsert'));
 // ------------@최인아
 const Branches = React.lazy(() => import('./views/branch/Branches'));
 const Branch = React.lazy(() => import('./views/branch/Branch'));
@@ -185,22 +188,23 @@ const routes = [
   /*--여진---------------------------------------*/
 
 
-  // ------------@최인아
-  // ------------상담
-
-
+  // ------------------------------------------------------------------@최인아
   {path: '/consult', exact: true, name: 'Consults', component: Consults},
   {path: '/consult/:id', exact: true, name: 'Consult Details', component: Consult},
   {path: '/consultInsert', exact: true, name: 'Consult Insert', component: ConsultInsert},
   {path: '/consultUpdate', exact: true, name: 'Consult Update', component: ConsultUpdate},
-  // ------------공지사항
+ 
   {path: '/notice/:id', exact: true, name: 'Notice Details', component: Notice},
   {path: '/notice', exact: true, name: 'Notices', component: Notices},
   {path: '/noticeWrite', exact: true, name: 'NoticeWrite', component: NoticeWrite},
   {path: '/noticeUpdate', exact: true, name: 'Notice Update', component: NoticeUpdate},
-  // ------------수납관리
+
   {path: '/receive', exact: true, name: 'Receive', component: Receive},
-  // ------------@최인아
+  {path: '/receiveInsert', exact: true, name: 'ReceiveInsert', component: ReceiveInsert},
+
+  {path: '/cost', exact: true, name: 'Cost', component: Cost},
+  {path: '/costInsert', exact: true, name: 'CostInsert', component: ReceiveInsert},
+  // ----------------------------------------------------------------------------------@최인아
   {path: '/branch', exact: true, name: 'Branches', component: Branches},
   {path: '/branch/:id', exact: true, name: 'Branch Details', component: Branch},
   {path: '/branchAdd', exact: true, name: 'Branch Add', component: BranchAdd},

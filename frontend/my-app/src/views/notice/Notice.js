@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from 'react-router-dom';
-import './table.css';
+import { Button } from "@material-ui/core";
+//import { Link } from 'react-router-dom';
 
 class Notice extends Component {
   constructor(props) {
@@ -61,33 +61,38 @@ goBack = () => {
 
   render() {
     const { noticeList } = this.state;
-    const tempStyle2={float:"right"}
 
     return (
       <div>
-        <header>
-        <div style={tempStyle2}>
-            <button onClick={this.goBack}>뒤로가기</button>
-        </div>
-          <br></br>
-        </header>
         <br></br>
-        <table>
+        <table width="800" border="1" align="center">
                  <tbody>
-                   <tr><td>{`NO :`}</td><td><strong>{noticeList.no}</strong></td></tr>
-                   <tr><td>{`section :`}</td><td><strong>{noticeList.section}</strong></td></tr>
-                   <tr><td>{`title :`}</td><td><strong>{noticeList.title}</strong></td></tr>
-                   <tr><td>{`content :`}</td><td><strong>{noticeList.content}</strong></td></tr>
-                   <tr><td>{`writer :`}</td><td><strong>{noticeList.empno}</strong></td></tr>
-                   <tr><td>{`date :`}</td><td><strong>{noticeList.regdate}</strong></td></tr>
-                   <tr><td>{`hits :`}</td><td><strong>{noticeList.hits}</strong></td></tr>
+                 <tr align="center" height="30">
+                  <th> NO </th>
+                  <td>{noticeList.no}</td>
+                  <th> 작 성 자 </th>
+                  <td>{noticeList.empno}</td>
+                  <th> 작 성 일 </th>
+                  <td>{noticeList.regdate}</td>
+                </tr>
+                <tr align="center">
+                  <th> 구 분 </th>
+                  <td>{noticeList.section}</td>
+                  <th> 제 목 </th>
+                  <td colspan="3">{noticeList.title}</td>
+                </tr>
+                <tr height="80">
+                  <td colspan="6">{noticeList.content}</td>
+                </tr>
                  </tbody>
                </table>
                <br></br>
-               <footer>
-                <Link to={`/noticeUpdate`}><button>수정</button></Link>
+               <footer align="center">
+                {/* <Link to={`/noticeUpdate`}><button>수정</button></Link> */}
                   &nbsp;&nbsp;&nbsp;
-                <button size="sm" color="danger" onClick={()=>{this.delete()}}>삭제</button>
+                <Button variant="contained" color="primary" onClick={this.goBack}>목록</Button>
+                  &nbsp;&nbsp;&nbsp;
+                <Button variant="contained" color="primary" onClick={()=>{this.delete()}}>삭제</Button>
                </footer>
       </div>
     );

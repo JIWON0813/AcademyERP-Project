@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.database.Mapper.ReceiveMapper">
+
+    <select id="getReceiveList" resultType="ReceiveDTO" parameterType="java.util.HashMap">
+        SELECT a.no,
+               b.name as 'studentname',
+               c.name as 'lecturename',
+               a.date,
+               a.pay,
+               a.unpaid,
+               a.status,
+               a.hp,
+               d.name as 'office'
+        FROM receive a
+                 inner join employee b ON a.student = b.no
+                 inner join lecture c ON a.lecture = c.no
+                 inner join branch d ON a.branch = d.no
+    </select>
+
+</mapper> 

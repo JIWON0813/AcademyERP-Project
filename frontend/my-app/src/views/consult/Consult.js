@@ -57,19 +57,19 @@ goBack = () => {
             <button onClick={this.goBack}>뒤로가기</button>
           </div> 
           <div style={tempStyle}>
-            <h3>Name: {ConsultList.name}</h3>
+            <h3>상담자: {ConsultList.name}</h3>
           </div>
           </CCardHeader>
           <CCardBody>
               <table className="table table-striped table-hover">
                 <tbody>
                   <tr><td>{`NO:`}</td><td><strong>{ConsultList.no}</strong></td></tr>
-                  <tr><td>{`name:`}</td><td><strong>{ConsultList.name}</strong></td></tr>
-                  <tr><td>{`hp:`}</td><td><strong>{ConsultList.hp}</strong></td></tr>
-                  <tr><td>{`schedule:`}</td><td><strong>{ConsultList.schedule}</strong></td></tr>
-                  <tr><td>{`memo:`}</td><td><strong>{ConsultList.memo}</strong></td></tr>
-                  <tr><td>{`route:`}</td><td><strong>{ConsultList.route}</strong></td></tr>
-                  <tr><td>{`writer:`}</td><td><strong>{ConsultList.writer}</strong></td></tr>
+                  <tr><td>{`상담자:`}</td><td><strong>{ConsultList.name}</strong></td></tr>
+                  <tr><td>{`번호:`}</td><td><strong>{ConsultList.hp}</strong></td></tr>
+                  <tr><td>{`상담예약날짜:`}</td><td><strong>{ConsultList.schedule}</strong></td></tr>
+                  <tr><td>{`메모:`}</td><td><strong>{ConsultList.memo}</strong></td></tr>
+                  <tr><td>{`CALL/ONLINE:`}</td><td><strong>{ConsultList.route}</strong></td></tr>
+                  <tr><td>{`작성자:`}</td><td><strong>{ConsultList.writer}</strong></td></tr>
                 </tbody>
               </table>
               <CCardFooter align="right">

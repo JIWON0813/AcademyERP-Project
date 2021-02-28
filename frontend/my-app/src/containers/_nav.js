@@ -14,6 +14,16 @@ export default [
   },
   {
     _tag: 'CSidebarNavTitle',
+    _children: ['공지사항']
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: '공지사항',
+    to: '/notice',
+    icon: 'cil-calendar'
+  },
+  {
+    _tag: 'CSidebarNavTitle',
     _children: ['직원']
   },
   {

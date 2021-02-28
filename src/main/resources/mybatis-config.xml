@@ -22,5 +22,6 @@
         <mapper resource="mapper/Hrmapper.xml"/> 
         <mapper resource="mapper/StudentAttmapper.xml"/>
         <mapper resource="mapper/StatementMapper.xml"/>
+        <mapper resource="mapper/receivemapper.xml"/>
     </mappers>
 </configuration>  
