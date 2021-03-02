@@ -12,7 +12,7 @@
                a.unpaid,
                a.status,
                a.hp,
-               d.name as 'office'
+               d.name as 'branchname'
         FROM receive a
                  inner join employee b ON a.student = b.no
                  inner join lecture c ON a.lecture = c.no

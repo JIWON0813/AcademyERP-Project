@@ -71,7 +71,7 @@ goBack = () => {
                   <th> NO </th>
                   <td>{noticeList.no}</td>
                   <th> 작 성 자 </th>
-                  <td>{noticeList.empno}</td>
+                  <td>{noticeList.emp}</td>
                   <th> 작 성 일 </th>
                   <td>{noticeList.regdate}</td>
                 </tr>

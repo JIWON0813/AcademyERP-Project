@@ -1,12 +1,12 @@
-//-----------------------
-// 제목 : 비용관리-등록
+//---------------------------------
+// 제목 : 등록 - 비용관리(직원-개인)
 // 파일명 : CostInsert.js
 // 작성자 : 최인아
-//-----------------------
+//---------------------------------
 import React from 'react'
 import axios from 'axios';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles, Grid } from "@material-ui/core";
-import { CCol, CFormGroup } from '@coreui/react'
+import { CCol, CFormGroup, CInput, CTextarea } from '@coreui/react'
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -133,10 +133,22 @@ class CostInsert extends React.Component {
                       <option aria-label="None" value="section" />
                       <option value={"식비"}>식비</option>
                       <option value={"차비"}>차비</option>
+                      <option value={"기타"}>기타</option>
                 </Select>
               </FormControl>
               </Grid>
               <br></br>
+              <CFormGroup row>
+                  <CCol xs="12" md="9">
+                    <CTextarea 
+                      name="reason" 
+                      id="textarea-input" 
+                      rows="9"
+                      placeholder="..." 
+                      value={this.state.reason} onChange={this.handleChange}
+                    />
+                  </CCol>
+                </CFormGroup>
               <CFormGroup row>
                 <CCol xs="12" md="9">
                 <TextField label="총 비용" type="text" name="allcost" value={this.state.allcost} onChange={this.handleChange}/><br/>

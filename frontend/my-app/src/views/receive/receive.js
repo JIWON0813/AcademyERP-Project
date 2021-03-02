@@ -1,11 +1,11 @@
-//-----------------------   
-// 제목 : 메인 - 수납관리
-// 파일명 : receive.js
+//---------------------------------   
+// 제목 : 메인 - 수납관리(직원-재무)
+// 파일명 : Receive.js
 // 작성자 : 최인아
-//-----------------------
+//---------------------------------
 import React, { Component } from "react";
 import axios from "axios";
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './table.css';
 import ReceiveInsert from "./ReceiveInsert";
 import Pagination from '@material-ui/lab/Pagination';
@@ -66,15 +66,15 @@ getApi = () => {
         <table>
         <thead>
           <tr>
-            <td> NO </td>
-            <td> 학생명 </td>
-            <td> 강의명 </td>
-            <td> 수납날짜 </td>
-            <td> 수납금액 </td>
-            <td> 미납액 </td>
-            <td> 수납여부 </td> 
-            <td> 번호 </td>
-            <td> 지점 </td>
+            <td><strong> NO. </strong></td>
+            <td><strong> 학생명 </strong></td>
+            <td><strong> 강의명 </strong></td>
+            <td><strong> 수납날짜 </strong></td>
+            <td><strong> 수납금액 </strong></td>
+            <td><strong> 미납액 </strong></td>
+            <td><strong> 수납여부 </strong></td> 
+            <td><strong> 번호 </strong></td>
+            <td><strong> 지점 </strong></td>
           </tr>
         </thead>
         <tbody>
@@ -82,7 +82,7 @@ getApi = () => {
             return (
             <tr class="default">
                 <td class="default">{receivedata.no}</td>
-                <td class="default">{receivedata.student}</td>
+                <td class="default"><Link to={`/receivedetail/${receivedata.no}`}>{receivedata.student}</Link></td>
                 <td class="default">{receivedata.lecture}</td>
                 <td class="default">{receivedata.date}</td>
                 <td class="default">{receivedata.pay}</td>

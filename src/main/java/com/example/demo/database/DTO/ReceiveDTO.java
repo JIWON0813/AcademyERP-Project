@@ -16,4 +16,7 @@ public class ReceiveDTO {
     private String status;
     private String hp;
     private int branch;
+    private String studentname;
+    private String lecturename;
+    private String branchname;
 }

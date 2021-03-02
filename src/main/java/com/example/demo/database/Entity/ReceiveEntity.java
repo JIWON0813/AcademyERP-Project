@@ -19,14 +19,14 @@ public class ReceiveEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private long no;
-    private int student;
-    private int lecture;
+    private long student;
+    private long lecture;
     private String date;
     private String pay;
     private String unpaid;
     private String status;
     private String hp;
-    private int branch;
+    private long branch;
 
     
 }

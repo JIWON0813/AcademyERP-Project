@@ -1,8 +1,8 @@
-//-----------------------
-// 제목 : 등록 - 수납관리
-// 파일명 : ReciveInsert.js
-// 작성자 : 최인아
-//-----------------------
+//---------------------------------
+// 제목 : 등록 - 수납관리(직원-재무)
+// 파일명 : ReceiveInsert.js
+// 작성자 : 최인아 
+//---------------------------------
 import React from 'react'
 import axios from 'axios';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles, Grid } from "@material-ui/core";
@@ -35,8 +35,10 @@ class ReceiveInsert extends React.Component {
     super(props);
     this.state = {
       branchList: "",
+      //studentList: "",
       student: '',
       lecture: '',
+      //lectureList: "",
       date: '',
       pay: '',
       unpaid: '',
@@ -50,6 +52,7 @@ class ReceiveInsert extends React.Component {
     this.handleClickOpen = this.handleClickOpen.bind(this)
     this.handleClose = this.handleClose.bind(this);
     this.branchSelect = this.branchSelect.bind(this);
+    //this.studentSelect = this.studentSelect.bind(this);
 
   }
 
@@ -67,6 +70,16 @@ class ReceiveInsert extends React.Component {
       })
       .catch(res => console.log(res))
   }
+
+  // getApi = () => {
+  //   axios.get("http://localhost:8080/receive/student")
+  //     .then(res => {
+  //       this.setState({
+  //         studentList: res.data.list
+  //       })
+  //     })
+  //     .catch(res => console.log(res))
+  // }
 
   handleFormSubmit(e) {
     e.preventDefault()
@@ -140,10 +153,33 @@ class ReceiveInsert extends React.Component {
     this.setState({
       branch: e.target.value
     })
-  }
+}
+
+  // axios.get("http://localhost:8080//receive/select?branch=" + e.target.value)
+  //     .then(res => {
+  //       this.setState({
+  //         lectureList: res.data.lectureList
+  //       })
+  //     })
+  //     .catch(res => console.log(res))
+  // }
+
+  // lectureSelect = (e) => {
+  //   this.setState({
+  //     lecture: e.target.value
+  //   })
+  // }
+
+  // studentSelect = (e) => {
+  //   this.setState({
+  //     student: e.target.value
+  //   })
+  // }
 
   render() {
     const { branchList } = this.state;
+    // const { lectureList } = this.state;
+    // const { studentList } = this.state;
   
     return (
       <div>
@@ -166,13 +202,43 @@ class ReceiveInsert extends React.Component {
                 </CFormGroup>
               </CCol>
             </CRow>
+            {/* <CRow>
+              <CCol xs="12">
+                <CFormGroup>
+                  <CSelect custom id="student" onChange={this.studentSelect} value={this.state.student}>
+                    <option value="">학생</option>
+                    {studentList && studentList.map((itemdata, Index) => {
+                      return (<option key={Index} value={itemdata.no}>{Index + 1}.&nbsp;{itemdata.name}</option>);
+                    })}
+                  </CSelect><br/>
+                </CFormGroup>
+              </CCol>
+            </CRow> */}
+            {/* <CRow>
+              <CCol xs="12">
+                <CFormGroup>
+                  <CSelect custom id="lecture" onChange={this.lectureSelect} value={this.state.lecture}>
+                    <option value="">강의명</option>
+                    {lectureList && lectureList.map((itemdata, insertIndex) => {
+                      return (<option
+                        value={itemdata.no}>{insertIndex + 1}.&nbsp;{itemdata.name}
+                      </option>);
+                    })}
+                  </CSelect><br/>
+                </CFormGroup>
+              </CCol>
+            </CRow> */}
               <CFormGroup row>
                 <CCol xs="12" md="9">
+                <TextField label="학생명" type="text" name="student" value={this.state.student} onChange={this.handleChange}/><br/>
+                <TextField label="강의명" type="text" name="lecture" value={this.state.lecture} onChange={this.handleChange}/><br/>
                   납부일
                   <br></br>
                   <TextField type="date" name="date" value={this.state.date} onChange={this.handleChange}/><br/>
                   <TextField label="납부금액" type="text" name="pay" value={this.state.pay} onChange={this.handleChange}/><br/>
                   <TextField label="미납금액" type="text" name="unpaid" value={this.state.unpaid} onChange={this.handleChange}/><br/>
+                  <TextField label="수납여부" type="text" name="status" value={this.state.state} onChange={this.handleChange}/><br/>
+                  <TextField label="번호" type="text" name="hp" value={this.state.hp} onChange={this.handleChange}/><br/>
                 </CCol>
               </CFormGroup>
               <br></br>

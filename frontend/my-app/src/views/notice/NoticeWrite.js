@@ -1,3 +1,8 @@
+//---------------------------------
+// 제목 : 등록 - 공지사항
+// 파일명 : NoticeWrite.js
+// 작성자 : 최인아
+//---------------------------------
 import React from 'react'
 import axios from 'axios';
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles, Grid} from "@material-ui/core";
@@ -32,6 +37,7 @@ class NoticeWrite extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      //employeeList: "",
       section: '',
       title: '',
       content: ''
@@ -43,8 +49,24 @@ class NoticeWrite extends React.Component {
     this.noticeWrite = this.noticeWrite.bind(this)
     this.handleClickOpen = this.handleClickOpen.bind(this)
     this.handleClose = this.handleClose.bind(this);
+    //this.employeeSelect = this.employeeSelect.bind(this);
 
   }
+
+  // componentDidMount() {
+  //   this.getApi();
+
+  // }
+
+  // getApi = () => {
+  //   axios.get("http://localhost:8080/notice/employee")
+  //     .then(res => {
+  //       this.setState({
+  //         employeeList: res.data.list
+  //       })
+  //     })
+  //     .catch(res => console.log(res))
+  // }
 
   handleFormSubmit(e) {
     e.preventDefault()
@@ -53,6 +75,7 @@ class NoticeWrite extends React.Component {
       section: '',
       title: '',
       content: ''
+      //emp: ''
     })
     alert("등록되었습니다.");
     this.props.stateRefresh();
@@ -79,6 +102,7 @@ class NoticeWrite extends React.Component {
         section: this.state.section,
         title: this.state.title,
         content: this.state.content
+        //emp: this.state.emp
       }
     })
       .then(function (response){
@@ -100,13 +124,21 @@ class NoticeWrite extends React.Component {
       section: '',
       title : '',
       content: '',
+      //emp: '',
       open: false
     })
     this.props.stateRefresh();
   }
 
+  // employeeSelect = (e) => {
+  //   this.setState({
+  //     emp: e.target.value
+  //   })
+  // }
+
   render() {
     const { classes } = this.props;
+    // const { employeeList} = this.state;
   
     return (
       <div>
@@ -127,21 +159,30 @@ class NoticeWrite extends React.Component {
                     label="구분"
                     inputProps={{ name: 'section', id: 'outlined-age-native-simple',}}>
                       <option aria-label="None" value="section" />
+                      <option value={"안내"}>안내</option>
                       <option value={"공지"}>공지</option>
                       <option value={"결혼"}>결혼</option>
-                      <option value={"출산"}>출산</option>
-                      <option value={"입양"}>입양</option>
-                      <option value={"사망"}>사망</option>
+                      <option value={"부고"}>부고</option>
                 </Select>
               </FormControl>
               </Grid>
-              <br></br>
+              {/* <CRow>
+              <CCol xs="12">
+                <CFormGroup>
+                  <CSelect custom id="emp" onChange={this.employeeSelect} value={this.state.emp}>
+                    <option value="">작성자</option>
+                    {employeeList && employeeList.map((itemdata, Index) => {
+                      return (<option key={Index} value={itemdata.no}>{Index + 1}.&nbsp;{itemdata.name}</option>);
+                    })}
+                  </CSelect><br/>
+                </CFormGroup>
+              </CCol>
+            </CRow> */}
               <CFormGroup row>
                 <CCol xs="12" md="9">
                   <TextField label="제목" type="text" name="title" value={this.state.title} onChange={this.handleChange}/><br/>
                 </CCol>
               </CFormGroup>
-              <br></br>
               <CFormGroup row>
                   <CCol xs="12" md="9">
                     <CTextarea 

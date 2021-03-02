@@ -1,3 +1,8 @@
+//---------------------------------
+// 제목 : 공지사항
+// 파일명 : NoticeService.java
+// 작성자 : 최인아
+//---------------------------------
 package com.example.demo.Service;
 
 import java.util.HashMap;
@@ -25,7 +30,6 @@ public class NoticeService {
         List<NoticeEntity> list = noticeRepository.findAll();
         //List<NoticeDTO> list = noticemapper.getNoticeList(result);
         result.put("message", list);
-
         return result;
     }
 
@@ -34,7 +38,6 @@ public class NoticeService {
         Optional<NoticeEntity> list = noticeRepository.findById(id);
         //NoticeDTO list = noticeMapper.getNotice(id);
         result.put("list", list);
-
         return result;
     }
 
@@ -44,14 +47,20 @@ public class NoticeService {
     }
 
     public void delete(Long id) {
-        System.out.println("진심");
         noticeRepository.deleteById(id);
     }
 
-    public String update(NoticeEntity not, Long id) {
-        not.setNo(id);
-        NoticeEntity result =  noticeRepository.save(not);
-        return result.toString();
-    }
+    // public HashMap<String,List> selectEmployee(){
+    //     HashMap<String,List> result = new HashMap<>();
+    //     List<EmployeeEntity> list = employeeRepository.findAll();
+    //     result.put("list", list);
+    //     return result;
+    // }
+
+    // public String update(NoticeEntity not, Long id) {
+    //     not.setNo(id);
+    //     NoticeEntity result =  noticeRepository.save(not);
+    //     return result.toString();
+    // }
     
 }
