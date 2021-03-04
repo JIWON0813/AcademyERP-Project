@@ -83,15 +83,10 @@ function StatementDetailAdd(props) {
       <UserList users={users}
                 onRemove={onRemove}
                 updateFieldChanged={updateFieldChanged}
-                disabled={true}
+                disabled={false}
                 buttonDisabled={false}/>
 
       <CreateUser
-        note={note}
-        debtor={debtor}
-        creditor={creditor}
-        account={account}
-        customer={customer}
         onChange={onChange}
         onCreate={onCreate}
         disabled={false}

@@ -43,9 +43,9 @@ public class StatementService {
      statementMapper.InsertStatementDetail(map);
     }
 
-    public HashMap<String,List> list() {
+    public HashMap<String,List> list(long user) {
         HashMap<String,List> result = new HashMap<>();
-        List<StatementEntity> list = statementRepository.findAll();
+        List<StatementEntity> list = statementRepository.findAllByEmployee(user);
         result.put("message", list);
         return result;
     }

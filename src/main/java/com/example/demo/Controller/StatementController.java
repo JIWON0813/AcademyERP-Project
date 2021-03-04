@@ -20,21 +20,22 @@ public class StatementController {
     @Autowired
     private StatementService statementService;
 
-    @PostMapping("/statement")
-    public void create(@RequestBody StatementDTO statement)
-    {
-        statementService.create(statement);
-    };
-
     @GetMapping("/statement")
-    public HashMap<String,List> list() {
-        return statementService.list();
+    public HashMap<String,List> list(@RequestParam("user") Long user) {
+
+        return statementService.list(user);
     }
 
     @GetMapping("/statement/{id}")
     public HashMap<String,Object> details(@PathVariable("id") Long id) {
         return statementService.detail(id);
     }
+
+    @PostMapping("/statement")
+    public void create(@RequestBody StatementDTO statement)
+    {
+        statementService.create(statement);
+    };
 
 
     @PutMapping("/statement/{id}")

@@ -180,7 +180,6 @@ class StatementAdd extends React.Component {
                   </CCardHeader>
                   <CCardBody>
                   <StatementDetailAdd setData={this.setData}/>
-                    <CFormText>작성 후 추가버튼을 꼭 눌러주세요!</CFormText>
                   </CCardBody>
                 </CCard>
               </CCol>
