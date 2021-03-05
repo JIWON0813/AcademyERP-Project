@@ -36,7 +36,7 @@ function User({user, onRemove,updateFieldChanged,disabled,buttonDisabled}) {
             {user.debtor} onChange={updateFieldChanged(user.line)} disabled={disabled}/></td>
       <td>
         <CInput
-          name="account"
+          name="customer"
           defaultValue=
             {user.customer} onChange={updateFieldChanged(user.line)} disabled={disabled}/>
       </td>

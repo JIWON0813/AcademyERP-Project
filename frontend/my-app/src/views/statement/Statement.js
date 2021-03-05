@@ -17,14 +17,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 class Statement extends Component {
-
   constructor(props) {
     super(props)
+    let session_no = window.sessionStorage.getItem('no');
     this.state = {
       ItemList: "",
       searchKeyword: "",
       condition:"",
-
+      user: session_no,
     }
     this.stateRefresh = this.stateRefresh.bind(this);
     this.handleValueChange = this.handleValueChange.bind(this);
@@ -49,7 +49,7 @@ class Statement extends Component {
   }
 
   getApi() {
-    axios.get("http://localhost:8080/statement")
+    axios.get("http://localhost:8080/statement?user="+this.state.user)
       .then(res => {
         this.setState({
           ItemList: res.data.message,

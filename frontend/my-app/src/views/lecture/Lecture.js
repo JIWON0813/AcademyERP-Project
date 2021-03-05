@@ -120,7 +120,7 @@ goBack = () => {
                 fullWidth={true}
                 maxWidth = {'xs'}>
           <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-          User name: {ItemList.name}</DialogTitle>
+          강의명: {ItemList.name}</DialogTitle>
           <DialogContent dividers>
             <table className="table table-striped table-hover">
               <tbody>

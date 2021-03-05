@@ -216,7 +216,6 @@ class StatementUpdate extends React.Component {
                                            statementDetails={statementDetailsList}
                                            id={this.props.id}
                                            disabled={this.state.disabled}/>
-                    <CFormText>작성 후 추가버튼을 꼭 눌러주세요!</CFormText>
                   </CCardBody>
                 </CCard>
               </CCol>
