@@ -28,4 +28,5 @@ public class CurriculumEntity implements Serializable {
         private String end_date;
         private String curriculum;
         private String detail;
+        private String lname;
 }

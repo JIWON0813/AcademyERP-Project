@@ -89,7 +89,6 @@ class ApiService {
     }
 
     addCurriculum(curri) {
-      console.log(curri.curriculum)
       return axios.post(USER_API_BASE_URL + '/ins_curri', curri);
     }
 

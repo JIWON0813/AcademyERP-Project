@@ -160,7 +160,7 @@ const StudentData = () => {
             {StudentList&&StudentList.map((itemdata, insertIndex) => {
                 return (
                 <tr>
-                <td>{itemdata.no}</td>
+                <td width ="20">{itemdata.no}</td>
                 <td>{itemdata.name}</td>
                 <td>{itemdata.hp}</td>
                 <td>{itemdata.email}</td>

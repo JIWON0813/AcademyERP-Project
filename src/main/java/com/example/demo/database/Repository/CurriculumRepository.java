@@ -19,7 +19,7 @@ public interface CurriculumRepository extends PagingAndSortingRepository<Curricu
     @Modifying
 
         Page<CurriculumEntity> findAll(Pageable pageable);
-        @Query(value="select * from curriculum c where c.lecture = :#{#lecture}",nativeQuery=true)
+        @Query(value="select c.*,l.name as lname from curriculum c, lecture l where c.lecture = l.no and c.lecture = :#{#lecture}",nativeQuery=true)
         Page<CurriculumEntity> findAll(Pageable pageable, @Param("lecture") int lecture);
 }
 

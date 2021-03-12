@@ -31,6 +31,7 @@ public class CurriculumController {
 
     @GetMapping("/getcurri/{lecture}")
     public Page<CurriculumEntity> getCurri(@PathVariable int lecture,Pageable pageable) {
+        lecture = 5;
         return curriculumRepository.findAll(pageable,lecture);
     }
 }

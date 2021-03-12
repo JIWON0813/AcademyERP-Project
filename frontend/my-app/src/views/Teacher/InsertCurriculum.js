@@ -72,12 +72,11 @@ import CIcon from '@coreui/icons-react'
     const saveCurriculum = (e) => {
         e.preventDefault();
         let curri= {
-          lecture : no,
+          lecture : lecture,
           start_date :start_date,
           end_date :end_date,
           curriculum : curriculum,
-          detail : detail,
-          
+          detail : detail,  
         }
         ApiService.addCurriculum(curri)
           .then(res => {

@@ -68,12 +68,12 @@ const CurriculumData = () => {
     return (
         <div> 
         <table>
-        <tr><td>no</td><td>lecture</td><td>start</td><td>end</td><td>curriculum</td><td>detail</td></tr>
+        <tr><td>lecture</td><td>start</td><td>end</td><td>curriculum</td><td>detail</td></tr>
             {CurriculumList&&CurriculumList.map((itemdata, insertIndex) => {
                 return (
                 <tr>
-                <td>{itemdata.no}</td>
-                <td>{itemdata.lecture}</td>
+                
+                <td>자바자바잘자바</td>
                 <td>{itemdata.start_date}</td>
                 <td>{itemdata.end_date}</td>
                 <td>{itemdata.curriculum}</td>
