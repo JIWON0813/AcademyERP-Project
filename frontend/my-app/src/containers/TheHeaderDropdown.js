@@ -87,7 +87,7 @@ const TheHeaderDropdown = () => {
           Lock Account
         </CDropdownItem>
         {session_no!==null &&
-            <div onClick={()=>document.location.href="/#/logintest/1/"}>
+            <div onClick={()=>document.location.href="/#/login"}>
           <CDropdownItem>
               <CIcon name="cil-lock-locked" className="mfe-2" /> 
               LogOut

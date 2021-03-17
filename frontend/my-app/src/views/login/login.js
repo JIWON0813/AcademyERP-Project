@@ -35,6 +35,17 @@ class login extends Component {
     this.goToMain();
   }
 
+  LoginSuccess = (e) => {
+    e.preventDefault();
+    window.sessionStorage.setItem("LoginID", this.state.id);
+    window.sessionStorage.setItem("LoginPW", this.state.password);
+    console.log(window.sessionStorage.getItem("LoginID"));
+    console.log(window.sessionStorage.getItem("LoginPW"));
+    //this.props.history.push('../notice/Notice.js');
+    document.location.href = "#/notice";
+    
+}
+
   render() {
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
@@ -65,7 +76,7 @@ class login extends Component {
                     </CInputGroup>
                     <CRow>
                       <CCol xs="6">
-                        <CButton color="primary" className="px-4" onClick={this.btnClick}>Login</CButton>
+                        <CButton color="primary" className="px-4" onClick={this.LoginSuccess}>Login</CButton>
                       </CCol>
                       <CCol xs="6" className="text-right">
                         <CButton color="link" className="px-0">Forgot password?</CButton>
@@ -80,7 +91,7 @@ class login extends Component {
                     <h2>Sign up</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                       labore et dolore magna aliqua.</p>
-                    <Link to="/register">
+                    <Link to="/saveEmployee">
                       <CButton color="primary" className="mt-3" active tabIndex={-1}>Register Now!</CButton>
                     </Link>
                   </div>

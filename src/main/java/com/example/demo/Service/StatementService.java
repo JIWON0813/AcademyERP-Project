@@ -1,5 +1,5 @@
 package com.example.demo.Service;
-
+/*
 import com.example.demo.database.DTO.StatementDTO;
 import com.example.demo.database.DTO.StatementDetailsDTO;
 import com.example.demo.database.Entity.StatementDetailsEntity;
@@ -94,3 +94,4 @@ public class StatementService {
     }
 }
 
+*/

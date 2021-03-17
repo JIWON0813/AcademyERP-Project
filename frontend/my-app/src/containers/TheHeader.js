@@ -115,9 +115,10 @@ const TheHeader = () => {
             <CLink
               className="c-subheader-nav-link"
               aria-current="page"
-              to="/dashboard"
+              //to="/dashboard"
+              to="/login"
             >
-              <CIcon name="cil-graph" alt="Dashboard" />&nbsp;Dashboard
+              <CIcon name="cil-graph" alt="Login" />&nbsp;Login
             </CLink>
             <CLink className="c-subheader-nav-link" href="#">
               <CIcon name="cil-settings" alt="Settings" />&nbsp;Settings

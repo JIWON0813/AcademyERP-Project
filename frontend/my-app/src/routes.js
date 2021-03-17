@@ -25,7 +25,7 @@ const ButtonDropdowns = React.lazy(() => import('./views/Template/buttons/button
 const ButtonGroups = React.lazy(() => import('./views/Template/buttons/button-groups/ButtonGroups'));
 const Buttons = React.lazy(() => import('./views/Template/buttons/buttons/Buttons'));
 const Charts = React.lazy(() => import('./views/Template/charts/Charts'));
-const Dashboard = React.lazy(() => import('./views/Template/dashboard/Dashboard'));
+//const Dashboard = React.lazy(() => import('./views/Template/dashboard/Dashboard'));
 const CoreUIIcons = React.lazy(() => import('./views/Template/icons/coreui-icons/CoreUIIcons'));
 const Flags = React.lazy(() => import('./views/Template/icons/flags/Flags'));
 const Brands = React.lazy(() => import('./views/Template/icons/brands/Brands'));
@@ -112,7 +112,7 @@ const StandByAuth = React.lazy(() => import('./views/employee/StandByAuth'));
 
 const routes = [
   {path: '/', exact: true, name: 'Home'},
-  {path: '/dashboard', name: 'Dashboard', component: Dashboard},
+ // {path: '/dashboard', name: 'Dashboard', component: Dashboard},
   {path: '/theme', name: 'Theme', component: Colors, exact: true},
   {path: '/theme/colors', name: 'Colors', component: Colors},
   {path: '/theme/typography', name: 'Typography', component: Typography},

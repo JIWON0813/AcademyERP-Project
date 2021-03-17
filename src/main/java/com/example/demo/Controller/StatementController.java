@@ -1,5 +1,5 @@
 package com.example.demo.Controller;
-
+/*
 import com.example.demo.Service.StatementService;
 import com.example.demo.database.DTO.StatementDTO;
 import com.example.demo.database.Entity.*;
@@ -47,3 +47,4 @@ public class StatementController {
         statementService.delete(id);
     }
 }
+*/
