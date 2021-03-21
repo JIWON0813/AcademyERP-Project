@@ -1,17 +1,16 @@
 package com.example.demo.database.Entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "notice")
+@Table(name = "costList")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NoticeEntity implements Serializable {
+public class CostEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,12 +18,9 @@ public class NoticeEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private long no;
-    private String title;
     private String section;
-    private String content;
-    private String emp;
-    private Date regdate;
-    //private long hits;
-
-    
+    private String reason;
+    private String allcost;
+    private String date;
+    private String state;    
 }

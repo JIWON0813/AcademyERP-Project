@@ -7,11 +7,11 @@ import javax.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "notice")
+@Table(name = "receive")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NoticeEntity implements Serializable {
+public class ReceiveEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,12 +19,14 @@ public class NoticeEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private long no;
-    private String title;
-    private String section;
-    private String content;
-    private String emp;
-    private Date regdate;
-    //private long hits;
+    private long student;
+    private long lecture;
+    private String date;
+    private String pay;
+    private String unpaid;
+    private String status;
+    private String hp;
+    private long branch;
 
     
 }

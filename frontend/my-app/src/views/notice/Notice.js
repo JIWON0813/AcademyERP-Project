@@ -74,13 +74,23 @@ goBack = () => {
         <br></br>
         <table>
                  <tbody>
-                   <tr><td>{`NO :`}</td><td><strong>{noticeList.no}</strong></td></tr>
-                   <tr><td>{`section :`}</td><td><strong>{noticeList.section}</strong></td></tr>
-                   <tr><td>{`title :`}</td><td><strong>{noticeList.title}</strong></td></tr>
-                   <tr><td>{`content :`}</td><td><strong>{noticeList.content}</strong></td></tr>
-                   <tr><td>{`writer :`}</td><td><strong>{noticeList.empno}</strong></td></tr>
-                   <tr><td>{`date :`}</td><td><strong>{noticeList.regdate}</strong></td></tr>
-                   <tr><td>{`hits :`}</td><td><strong>{noticeList.hits}</strong></td></tr>
+                 <tr align="center" height="30">
+                  <th> NO </th>
+                  <td>{noticeList.no}</td>
+                  <th> 작 성 자 </th>
+                  <td>{noticeList.emp}</td>
+                  <th> 작 성 일 </th>
+                  <td>{noticeList.regdate}</td>
+                </tr>
+                <tr align="center">
+                  <th> 구 분 </th>
+                  <td>{noticeList.section}</td>
+                  <th> 제 목 </th>
+                  <td colspan="3">{noticeList.title}</td>
+                </tr>
+                <tr height="80">
+                  <td colspan="6">{noticeList.content}</td>
+                </tr>
                  </tbody>
                </table>
                <br></br>

@@ -73,7 +73,7 @@ goBack = () => {
                 </tbody>
               </table>
               <CCardFooter align="right">
-                <CButton  size="sm" color="primary" onClick={()=>{this.handleFormSubmit()}}><CIcon name="cil-scrubber" /> Submit</CButton>
+                {/* <CButton  size="sm" color="primary" onClick={()=>{this.handleFormSubmit()}}><CIcon name="cil-scrubber" /> Submit</CButton> */}
                 &nbsp;&nbsp;&nbsp; 
                 <CButton size="sm" color="danger" onClick={(e)=>{this.delete()}}><CIcon name="cil-ban" /> Delete</CButton>
               </CCardFooter>

@@ -61,7 +61,11 @@ getApi = () => {
         <table>
         <thead>
           <tr>
-            <td>NO</td><td>TITLE</td><td>WRITER</td><td>DATE</td><td>HITS</td>
+            <td><strong> NO.</strong></td>
+            <td><strong> 제 목 </strong></td>
+            <td><strong> 작성자 </strong></td>
+            <td><strong> 작성날짜 </strong></td>
+            {/* <td>HITS</td> */}
           </tr>
         </thead>
         <tbody>
@@ -70,9 +74,9 @@ getApi = () => {
             <tr class="default">
                 <td class="default">{noticedata.no}</td>
                 <td class="default"> [{noticedata.section}]<Link to={`/notice/${noticedata.no}`}>{noticedata.title}</Link></td>
-                <td class="default">{noticedata.empno}</td>
+                <td class="default">{noticedata.emp}</td>
                 <td class="default">{noticedata.regdate}</td>
-                <td class="default">{noticedata.hits}</td>
+                {/* <td class="default">{noticedata.hits}</td> */}
               </tr>
             );
           })}

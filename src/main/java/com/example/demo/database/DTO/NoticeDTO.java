@@ -13,7 +13,7 @@ public class NoticeDTO {
     private String title;
     private String section;
     private String content;
-    private int empno;
+    private int emp;
     private Date regdate;
-    private long hits;
+    //private long hits;
 }
