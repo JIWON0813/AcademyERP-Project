@@ -25,7 +25,7 @@ const ButtonDropdowns = React.lazy(() => import('./views/Template/buttons/button
 const ButtonGroups = React.lazy(() => import('./views/Template/buttons/button-groups/ButtonGroups'));
 const Buttons = React.lazy(() => import('./views/Template/buttons/buttons/Buttons'));
 const Charts = React.lazy(() => import('./views/Template/charts/Charts'));
-const Dashboard = React.lazy(() => import('./views/Template/dashboard/Dashboard'));
+//const Dashboard = React.lazy(() => import('./views/Template/dashboard/Dashboard'));
 const CoreUIIcons = React.lazy(() => import('./views/Template/icons/coreui-icons/CoreUIIcons'));
 const Flags = React.lazy(() => import('./views/Template/icons/flags/Flags'));
 const Brands = React.lazy(() => import('./views/Template/icons/brands/Brands'));
@@ -113,7 +113,7 @@ const StandByAuth = React.lazy(() => import('./views/employee/StandByAuth'));
 
 const routes = [
   {path: '/', exact: true, name: 'Home'},
-  {path: '/dashboard', name: 'Dashboard', component: Dashboard},
+ // {path: '/dashboard', name: 'Dashboard', component: Dashboard},
   {path: '/theme', name: 'Theme', component: Colors, exact: true},
   {path: '/theme/colors', name: 'Colors', component: Colors},
   {path: '/theme/typography', name: 'Typography', component: Typography},
@@ -158,6 +158,7 @@ const routes = [
   {path: '/student/:no', exact: true, name: 'Students', component: Student},
   {path: '/ins_stu', exact: true, name: 'Ins_stu', component: Ins_stu},
   {path: '/edit_stu', exact: true, name: 'Edit_stu', component: Edit_stu},
+
   {path: '/stu_att', exact: true, name: 'stu_att', component: Stu_att},
   {path: '/ins_att', exact: true, name: 'ins_att', component: Ins_att},
 
@@ -206,6 +207,8 @@ const routes = [
   {path: '/branchAdd', exact: true, name: 'Branch Add', component: BranchAdd},
   {path: '/branchDelete/:id', exact: true, name: 'Branch Delete', component: BranchDelete},
   {path: '/branchUpdate', exact: true, name: 'Branch Update', component: BranchUpdate},
+
+  {path: '/login', exact: true, name: 'login', component: login},
 
   // -------------박수민
   {path: '/Attendance', exact: true, name: 'Attendance', component: Attendance},

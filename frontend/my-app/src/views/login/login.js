@@ -20,39 +20,31 @@ class login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        asd: ""
+        id:"",
+        password:""
     }
   }
-
-  componentDidMount() {
-    const { params } = this.props.match;
-    if(Number(params.log)===0){
-      //this.logIN();
-    //  this.logOUT()
-    }else{
-      //this.logOUT()
-   //   this.logIN();
-    }
+  goToMain = () => {
+    console.log(this.props);
+    this.props.history.push("/")
   }
 
-  logIN = () =>{
-    const { params } = this.props.match;
-    window.sessionStorage.setItem('id',params.id);
-    window.sessionStorage.setItem('no',params.no);
-    window.sessionStorage.setItem('password',params.password);
-    //console.log( window.sessionStorage.getItem('dep',params.dep))
-    this.setState ({asd: params.no});
-    alert("로그인");
-    document.location.href = "#";
-    window.location.reload(false);
+  btnClick = () => {
+    console.log("사용자 ID : ",this.state.id);
+    console.log("사용자 password : ",this.state.password);
+    this.goToMain();
   }
 
-  logOUT = () =>{
-    window.sessionStorage.clear();
-    alert("로그아웃");
-    document.location.href = "#";
-    window.location.reload(false);
-  }
+  LoginSuccess = (e) => {
+    e.preventDefault();
+    window.sessionStorage.setItem("LoginID", this.state.id);
+    window.sessionStorage.setItem("LoginPW", this.state.password);
+    console.log(window.sessionStorage.getItem("LoginID"));
+    console.log(window.sessionStorage.getItem("LoginPW"));
+    //this.props.history.push('../notice/Notice.js');
+    document.location.href = "#/notice";
+
+}
 
   render() {
   return (
@@ -84,7 +76,7 @@ class login extends Component {
                     </CInputGroup>
                     <CRow>
                       <CCol xs="6">
-                        <CButton color="primary" className="px-4">Login</CButton>
+                        <CButton color="primary" className="px-4" onClick={this.LoginSuccess}>Login</CButton>
                       </CCol>
                       <CCol xs="6" className="text-right">
                         <CButton color="link" className="px-0">Forgot password?</CButton>
@@ -99,7 +91,7 @@ class login extends Component {
                     <h2>Sign up</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                       labore et dolore magna aliqua.</p>
-                    <Link to="/register">
+                    <Link to="/saveEmployee">
                       <CButton color="primary" className="mt-3" active tabIndex={-1}>Register Now!</CButton>
                     </Link>
                   </div>

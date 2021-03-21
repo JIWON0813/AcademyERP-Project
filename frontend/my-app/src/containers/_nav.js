@@ -66,6 +66,11 @@ export default [
             name: '공지사항관리',
             to: '/notice',
           },
+          {
+            _tag: 'CSidebarNavItem',
+            name: '지점관리',
+            to: '/branch',
+          },
         ]},
 
   //템플릿
@@ -81,8 +86,8 @@ export default [
     _children: [
       {
         _tag: 'CSidebarNavItem',
-        name: 'Dashboard',
-        to: '/dashboard',
+        name: 'Login',
+        to: '/login',
         icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon"/>,
         badge: {
           color: 'info',
