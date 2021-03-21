@@ -58,5 +58,5 @@ task copyWebApp(type: Copy) {
     into "build/resources/main/static"
 }
 
-copyWebApp.dependsOn(appNpmInstall)
+copyWebApp.dependsOn() //appNpmInstall
 compileJava.dependsOn(copyWebApp)

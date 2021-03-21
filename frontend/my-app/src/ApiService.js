@@ -1,7 +1,7 @@
 import axios from 'axios';
 import CounselingDelete from './views/counseling/CounselingDelete';
 
-const USER_API_BASE_URL = "http://localhost:8080/api";
+const USER_API_BASE_URL = "http://localhost:80/api";
 
 class ApiService {
 
@@ -26,10 +26,9 @@ class ApiService {
     return axios.post(USER_API_BASE_URL + '/edit_stu/' + student.no, student);
   }
 
-  getEmployee(state) {
+  getEmployee(pageable , verify) {
     return axios.get(USER_API_BASE_URL +
-      '/employee?size=' + state.size +
-      '&page=' + (state.setCurrentPage - 1));
+      '/employee', pageable, verify );
   }
 
   InsertEmployee(employee) {
@@ -72,11 +71,11 @@ class ApiService {
     }
 
     Branch() {
-      return axios.get("http://localhost:8080/lecture/branches");
+      return axios.get(USER_API_BASE_URL + '/lecture/branches');
     }
 
     SearchStudent(searchKey) {
-      
+
       return axios.get(USER_API_BASE_URL + '/searchStudent/' +searchKey);
     }
 
@@ -85,7 +84,7 @@ class ApiService {
     }
 
     getLecture(no) {
-      return axios.get("http://localhost:8080" + '/getLecture/' + no);
+      return axios.get(USER_API_BASE_URL + '/getLecture/' + no);
     }
 
     addCurriculum(curri) {

@@ -66,7 +66,7 @@ const Counseling = React.lazy(() => import('./views/counseling/Counseling'));
 const SearchStudent = React.lazy(() => import('./views/Pay/SearchStudent'));
 const Statement = React.lazy(() => import('./views/statement/Statement'));
 
-
+const login = React.lazy(() => import('./views/login/login'));
 /*-------------------------------*/
 
 // ------------@최인아

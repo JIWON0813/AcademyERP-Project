@@ -25,8 +25,6 @@ class StandByAuth extends Component {
         <h1>현재 승인 대기 중 입니다.</h1>
         현재 승인 대기 중 입니다.
         자세한 문의는 인사팀 또는 관리자에게 문의해주세요.
-
-
       </div>
     );
   }

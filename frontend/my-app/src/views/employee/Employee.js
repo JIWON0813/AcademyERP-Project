@@ -2,6 +2,7 @@ import React, {Component, useState} from 'react'
 import ApiService from "../../ApiService";
 import {CCard, CCardBody, CCardHeader, CPagination} from "@coreui/react";
 import {DocsLink} from "../../reusable";
+import Pagination from "../Template/base/paginations/Pagnations";
 
 class Employee extends Component {
 
@@ -9,25 +10,37 @@ class Employee extends Component {
     super(props)
     this.state = {
       employeeList: [],
-      currentPage : 1,
-      size : 10,
-      setCurrentPage : 0
+      pageable :{
+        currentPage : 1,
+        size : 10,
+        setCurrentPage : 0
+      },
+      verify : 0
     }
   }
 
   componentDidMount() {
+    this.getApi();
+  }
+
+  getApi(){
     ApiService.getEmployee(this.state).then(res => {
       this.setState({
         employeeList : res.data.content,
-        currentPage : res.data.number+1,
-        size : this.state,
-        setCurrentPage : 0
+        pageable :{
+          currentPage : res.data.currentPage,
+          size : res.data.size
+        },
+        verify : 0
       });
-    });
+    })
+      .catch(err =>{
+        alert('읽어오는데 실패했습니다. err =' + err);
+      });
   }
 
   render() {
-    const {employeeList, currentPage, size , setCurrentPage} = {}//useState(0);
+    const {employeeList, currentPage, size , command} = this.state
 
     return (
       <div>
@@ -64,11 +77,7 @@ class Employee extends Component {
            </tbody>
          </table>
         <CCard>
-          <CPagination
-            activePage={currentPage}
-            pages={size}
-            onActivePageChange={setCurrentPage}
-          />
+          <Pagination />
         </CCard>
       </div>
     );

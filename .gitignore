@@ -1,7 +1,8 @@
 HELP.md
 .gradle
-.eslintcache
+*/*/.eslintcache
 build/
+application-API-KEY.yml
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
@@ -37,4 +38,3 @@ out/
 ### VS Code ###
 .vscode/
 AcademyERP-Project\
-application-API-KEY.yml
