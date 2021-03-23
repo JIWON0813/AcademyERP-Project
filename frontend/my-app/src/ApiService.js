@@ -1,7 +1,7 @@
 import axios from 'axios';
 import CounselingDelete from './views/counseling/CounselingDelete';
 
-const USER_API_BASE_URL = "http://localhost:80/api";
+const USER_API_BASE_URL = "http://localhost/api";
 
 class ApiService {
 

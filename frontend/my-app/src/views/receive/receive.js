@@ -6,7 +6,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
-import './table.css';
+import '../Template/css/table.css';
 import ReceiveInsert from "./ReceiveInsert";
 import Pagination from '@material-ui/lab/Pagination';
 import { withStyles } from "@material-ui/core";

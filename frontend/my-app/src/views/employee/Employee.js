@@ -24,7 +24,7 @@ class Employee extends Component {
   }
 
   getApi(){
-    ApiService.getEmployee(this.state).then(res => {
+    ApiService.getEmployee(this.state.pageable , this.state.verify).then(res => {
       this.setState({
         employeeList : res.data.content,
         pageable :{
