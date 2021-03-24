@@ -8,6 +8,10 @@ import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import LectureUpdate from "./LectureUpdate";
+import ApiService from "../../ApiService";
+
+
+
 
 const styles = theme => ({
   hidden: {
@@ -76,7 +80,8 @@ class Lectures extends React.Component {
   }
 
 getApi = () => {
-  axios.get("http://localhost:8080/lecture/"+this.props.id)
+  const url = "lecture";
+  ApiService.getURLById(url,this.props.id)
     .then(res => {
       this.setState({
         ItemList: res.data.list

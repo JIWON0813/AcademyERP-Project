@@ -1,6 +1,7 @@
 import React from 'react'
 import {CInput} from "@coreui/react";
 import axios from "axios";
+import ApiService from "../../ApiService";
 
 class ScoreEdit extends React.Component {
 
@@ -24,8 +25,7 @@ class ScoreEdit extends React.Component {
   }
 
   getApi = () => {
-    axios.get("http://localhost:8080/score?student="+this.props.id+"&lecture="+this.props.lecture+"&exam="+this.props.exam)
-
+    ApiService.getScore(this.props.id,this.props.lecture,this.props.exam)
       .then(res => {
         this.setState({
           scoreList : res.data.scoreList,

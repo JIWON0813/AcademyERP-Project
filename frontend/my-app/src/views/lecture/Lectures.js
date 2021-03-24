@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import axios from "axios";
 import './table.css';
 import LectureAdd from "./LectureAdd";
 import Lecture from "./Lecture";
@@ -10,6 +9,7 @@ import Room from "../room/Room";
 import {Grid, IconButton} from "@material-ui/core";
 import Part from "../part/Part";
 import RefreshIcon from "@material-ui/icons/Refresh";
+import ApiService from "../../ApiService";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,7 +39,7 @@ class Lectures extends Component {
   }
 
   componentDidMount() {
-    this.getApi(this.state.searchKeyword,this.state.currentPageNo);
+    this.getApi(this.state.searchKeyword, this.state.currentPageNo);
     this.getBranch();
   }
 
@@ -49,7 +49,7 @@ class Lectures extends Component {
       branchList:"",
       pagingList:"",
     });
-    this.getApi(this.state.searchKeyword,this.state.currentPageNo);
+    this.getApi(this.state.searchKeyword, this.state.currentPageNo);
     this.getBranch();
   }
 
@@ -60,7 +60,11 @@ class Lectures extends Component {
   }
 
   getApi(searchKeyword,currentPageNo) {
-    axios.get("http://localhost:8080/lecture?branch="+this.state.findBranch+"&condition="+this.state.condition+"&keyword=" + searchKeyword+"&currentPageNo="+currentPageNo+"&recordsPerPage="+this.state.recordsPerPage)
+    let branch = this.state.findBranch;
+    let condition = this.state.condition;
+    let recordsPerPage = this.state.recordsPerPage;
+
+    ApiService.getLectures(branch,condition,searchKeyword,currentPageNo,recordsPerPage)
       .then(res => {
         console.log(res.data)
         if(res.data.message !== 0){
@@ -80,7 +84,7 @@ class Lectures extends Component {
   }
 
   getBranch = () => {
-    axios.get("http://localhost:8080/lecture/branches")
+    ApiService.getBranches()
       .then(res => {
         this.setState({
           branchList: res.data.list
@@ -91,7 +95,7 @@ class Lectures extends Component {
 
   handleKeyPress = e => {
     if (e.key === 'Enter') {
-      this.getApi(this.state.searchKeyword,this.state.currentPageNo);
+      this.getApi(this.state.searchKeyword, this.state.currentPageNo);
     }
   };
   handleSubmit = (e) => {

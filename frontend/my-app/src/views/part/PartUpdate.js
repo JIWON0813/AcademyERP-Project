@@ -9,6 +9,7 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import {Dialog, IconButton, withStyles} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import ApiService from "../../ApiService";
 
 const styles = theme => ({
   hidden: {
@@ -54,6 +55,7 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
+const url = "part"
 
 class PartUpdate extends React.Component {
 
@@ -80,7 +82,7 @@ class PartUpdate extends React.Component {
   }
 
   getApi = () => {
-    axios.get("http://localhost:8080/lecture/branches")
+    ApiService.getBranches()
       .then(res => {
         this.setState({
           branchList: res.data.list
@@ -111,15 +113,11 @@ class PartUpdate extends React.Component {
   }
 
   updatepart() {
-    axios({
-      url: 'http://localhost:8080/part/' + this.props.partDetail.no,
-      method: "PUT",
-      headers: {'content-type': 'application/json'},
-      data: {
-        branch: this.state.branch,
-        name: this.state.name,
-      }
-    })
+    let part = {
+      branch: this.state.branch,
+      name: this.state.name,
+    }
+    ApiService.updateById(url,this.props.partDetail.no)
       .then(function (response) {
         console.log(response)
       })

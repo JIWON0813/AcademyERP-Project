@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import ExamAdd from "./ExamAdd";
 import ExamUpdate from "./ExamUpdate";
 import ExamDelete from "./ExamDelete";
+import ApiService from "../../ApiService";
 
 const styles = theme => ({
   hidden: {
@@ -57,6 +58,7 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
+const url = "exam"
 
 class Exam extends React.Component {
 
@@ -91,7 +93,7 @@ class Exam extends React.Component {
     }
   }
   getApi() {
-    axios.get("http://localhost:8080/lecture/teacher/" + this.state.teacher)
+    ApiService.getTeacher(this.state.teacher)
       .then(res => {
         this.setState({
           lectureList: res.data.lectureList,
@@ -101,7 +103,7 @@ class Exam extends React.Component {
   }
 
   getExam = () => {
-    axios.get("http://localhost:8080/exam?lecture="+this.state.lecture)
+    ApiService.getExam(this.state.lecture)
       .then(res => {
         this.setState({
           examList: res.data.list,
@@ -112,7 +114,7 @@ class Exam extends React.Component {
   }
 
   getDetail = () => {
-    axios.get("http://localhost:8080/exam/"+this.state.exam)
+    ApiService.getURLById(url,this.state.exam)
       .then(res => {
         if(res.data.list !== null){
           this.setState({
@@ -155,7 +157,7 @@ class Exam extends React.Component {
       examList:"",
       totalWeight:"",
     })
-    axios.get("http://localhost:8080/exam?lecture=" + e.target.value)
+    ApiService.getExam(e.target.value)
       .then(res => {
         this.setState({
           examList: res.data.list,
@@ -191,7 +193,7 @@ class Exam extends React.Component {
           value.push(options[i].value);
         }
       }
-      axios.get("http://localhost:8080/exam/"+ value)
+      ApiService.getURLById(url,value)
         .then(res => {
           this.setState({
             examDetail: res.data.list,

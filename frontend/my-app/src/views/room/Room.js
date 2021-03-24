@@ -12,6 +12,7 @@ import RoomDelete from "./RoomDelete";
 import RoomAdd from "./RoomAdd";
 import RoomUpdate from "./RoomUpdate";
 import Button from "@material-ui/core/Button";
+import ApiService from "../../ApiService";
 
 const styles = theme => ({
   hidden: {
@@ -57,7 +58,7 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-
+const url = "room"
 class Room extends React.Component {
 
   constructor(props) {
@@ -85,7 +86,7 @@ class Room extends React.Component {
   }
 
   getApi = () => {
-    axios.get("http://localhost:8080/lecture/branches")
+    ApiService.getBranches()
       .then(res => {
         this.setState({
           branchList: res.data.list
@@ -95,7 +96,7 @@ class Room extends React.Component {
   }
 
   getRoom = () => {
-    axios.get("http://localhost:8080/lecture/select?branch=" + this.state.branch)
+    ApiService.getSelect(this.state.branch)
       .then(res => {
         this.setState({
           roomList: res.data.roomList,
@@ -104,7 +105,7 @@ class Room extends React.Component {
       .catch(res => console.log(res))
   }
   getDetail = () => {
-    axios.get("http://localhost:8080/room/"+this.state.room)
+    ApiService.getURLById(url,this.state.room)
       .then(res => {
         if(res.data.list !== null){
         this.setState({
@@ -143,7 +144,7 @@ class Room extends React.Component {
     this.setState({
       branch: e.target.value
     })
-    axios.get("http://localhost:8080/lecture/select?branch=" + e.target.value)
+    ApiService.getSelect(e.target.value)
       .then(res => {
         this.setState({
           roomList: res.data.roomList,
@@ -177,7 +178,7 @@ class Room extends React.Component {
           value.push(options[i].value);
         }
       }
-      axios.get("http://localhost:8080/room/"+value)
+      ApiService.getURLById(url,value)
         .then(res => {
           this.setState({
             roomDetail: res.data.list,

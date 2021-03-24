@@ -9,6 +9,7 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import {Dialog, IconButton, withStyles} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import ApiService from "../../ApiService";
 
 const styles = theme => ({
   hidden: {
@@ -54,6 +55,7 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
+const url = "room"
 
 class RoomUpdate extends React.Component {
 
@@ -81,7 +83,7 @@ class RoomUpdate extends React.Component {
   }
 
   getApi = () => {
-    axios.get("http://localhost:8080/lecture/branches")
+    ApiService.getBranches()
       .then(res => {
         this.setState({
           branchList: res.data.list
@@ -117,16 +119,12 @@ class RoomUpdate extends React.Component {
     this.setState({[evt.target.name]:num});
   }
   updateRoom() {
-    axios({
-      url: 'http://localhost:8080/room/' + this.props.roomDetail.no,
-      method: "PUT",
-      headers: {'content-type': 'application/json'},
-      data: {
-        branch: this.state.branch,
-        max_person: this.state.max_person,
-        name: this.state.name,
-      }
-    })
+    let room = {
+      branch: this.state.branch,
+      max_person: this.state.max_person,
+      name: this.state.name,
+    }
+    ApiService.updateById(url,this.props.roomDetail.no,room)
       .then(function (response) {
         console.log(response)
       })

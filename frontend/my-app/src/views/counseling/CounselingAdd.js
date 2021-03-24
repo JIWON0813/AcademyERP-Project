@@ -9,6 +9,7 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import {Dialog, IconButton, withStyles} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import ApiService from "../../ApiService";
 
 const styles = theme => ({
   hidden: {
@@ -94,17 +95,14 @@ class CounselingAdd extends React.Component {
   }
 
   addCounseling() {
-    axios({
-      url: 'http://localhost:8080/counseling',
-      method: "POST",
-      headers: {'content-type': 'application/json'},
-      data: {
-        lecture:this.state.lecture,
-        student:this.state.student,
-        content:this.state.content,
-        regdate:new Date(),
-      }
-    })
+    let counseling = {
+      lecture:this.state.lecture,
+      student:this.state.student,
+      content:this.state.content,
+      regdate:new Date(),
+    }
+    const url = "counseling"
+    ApiService.Insert(url,counseling)
       .then(function (response) {
         console.log(response)
       })

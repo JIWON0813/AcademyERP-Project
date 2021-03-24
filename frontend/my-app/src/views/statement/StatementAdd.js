@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, withStyles,} from "@material-ui/core";
 import {CButton, CCard, CCardBody, CCardHeader, CCol, CFormGroup, CFormText, CInput, CLabel, CRow} from '@coreui/react'
 import StatementDetailAdd from "./StatementDetailAdd";
+import ApiService from "../../ApiService";
 
 const styles = theme => ({
   hidden: {
@@ -11,6 +12,7 @@ const styles = theme => ({
 
 });
 
+const url = "statement"
 
 class StatementAdd extends React.Component {
   constructor(props) {
@@ -50,20 +52,16 @@ class StatementAdd extends React.Component {
   }
 
   createStatement() {
-    axios({
-      url: 'http://localhost:8080/statement',
-      method: "POST",
-      headers: {'content-type': 'application/json'},
-      data: {
-        workplace: this.state.workplace,
-        employee: this.state.employee,
-        branch: this.state.branch,
-        allNote:this.state.allNote,
-        proofDate: this.state.proofDate,
-        reportingDate : this.state.reportingDate,
-        list:this.state.list,
-      }
-    })
+    let statement = {
+      workplace: this.state.workplace,
+      employee: this.state.employee,
+      branch: this.state.branch,
+      allNote:this.state.allNote,
+      proofDate: this.state.proofDate,
+      reportingDate : this.state.reportingDate,
+      list:this.state.list,
+    }
+    ApiService.Insert(url,statement)
       .then(function (response) {
         console.log(response)
       })

@@ -1,9 +1,9 @@
 import React from 'react'
-import axios from 'axios';
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles} from "@material-ui/core";
 import {CCol, CFormGroup, CInput, CInputCheckbox, CLabel, CSelect} from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import {cilAlarm} from "@coreui/icons/js/free/cil-alarm";
+import ApiService from "../../ApiService";
 
 const styles = theme => ({
   hidden: {
@@ -50,7 +50,7 @@ class LectureUpdate extends React.Component {
   }
 
   getApi = () => {
-    axios.get("http://localhost:8080/lecture/branches")
+    ApiService.getBranches()
       .then(res => {
         this.setState({
           branchList: res.data.list
@@ -58,7 +58,7 @@ class LectureUpdate extends React.Component {
       })
       .catch(res => console.log(res))
 
-    axios.get("http://localhost:8080/lecture/select?branch=" + this.state.branch)
+    ApiService.getSelect(this.state.branch)
       .then(res => {
         this.setState({
           teacherList: res.data.teacherList,
@@ -102,26 +102,24 @@ class LectureUpdate extends React.Component {
     this.setState({[evt.target.name]:num});
   }
 
+
   updateLecture() {
-    axios({
-      url: 'http://localhost:8080/lecture/' + this.props.ItemList.no,
-      method: "PUT",
-      headers: {'content-type': 'application/json'},
-      data: {
-        name: this.state.name,
-        teacher: this.state.teacher,
-        price: this.state.price,
-        students: this.state.students,
-        room: this.state.room,
-        start_date: this.state.start_date,
-        end_date: this.state.end_date,
-        day: this.state.day.toString(),
-        start_time: this.state.start_time,
-        end_time: this.state.end_time,
-        part: this.state.part,
-        branch: this.state.branch
-      }
-    })
+    const url = "lecture";
+    let lecture = {
+      name: this.state.name,
+      teacher: this.state.teacher,
+      price: this.state.price,
+      students: this.state.students,
+      room: this.state.room,
+      start_date: this.state.start_date,
+      end_date: this.state.end_date,
+      day: this.state.day.toString(),
+      start_time: this.state.start_time,
+      end_time: this.state.end_time,
+      part: this.state.part,
+      branch: this.state.branch,
+    }
+    ApiService.updateById(url,this.props.ItemList.no,lecture)
       .then(function (response){
         console.log(response)
       })
@@ -129,6 +127,7 @@ class LectureUpdate extends React.Component {
         console.log(error)
       })
   }
+
   handleClickOpen() {
     this.setState({
       open: true
@@ -146,7 +145,7 @@ class LectureUpdate extends React.Component {
     this.setState({
       branch: e.target.value
     })
-    axios.get("http://localhost:8080/lecture/select?branch=" + this.state.branch)
+    ApiService.getSelect(this.state.branch)
       .then(res => {
         this.setState({
           teacherList: res.data.teacherList,

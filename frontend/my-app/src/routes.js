@@ -81,7 +81,7 @@ const Notice = React.lazy(() => import('./views/notice/Notice'));
 const NoticeWrite = React.lazy(() => import('./views/notice/NoticeWrite'));
 const NoticeUpdate = React.lazy(() => import('./views/notice/NoticeUpdate'));
 
-const Receive = React.lazy(() => import('./views/receive/Receive'));
+const Receive = React.lazy(() => import('./views/receive/receive'));
 const ReceiveInsert = React.lazy(() => import('./views/receive/ReceiveInsert'));
 const ReceiveDetail = React.lazy(() => import('./views/receive/ReceiveDetail'));
 

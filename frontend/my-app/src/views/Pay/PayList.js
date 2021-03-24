@@ -9,6 +9,7 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import RequestPay from "./RequestPay";
 import CancelPay from "./CancelPay";
 import {CFormGroup, CInput, CSelect} from "@coreui/react";
+import ApiService from "../../ApiService";
 
 const styles = theme => ({
   hidden: {
@@ -73,14 +74,14 @@ class PayList extends React.Component {
   }
 
 getApi = () => {
-  axios.get("http://localhost:8080/api/students/user/"+this.props.id)
+    ApiService.getPayUser(this.props.id)
     .then(res => {
       this.setState({
         ItemList: res.data.payList
       })
     })
     .catch(res => console.log(res))
-  axios.get("http://localhost:8080/payments/pay/"+this.props.id)
+  ApiService.getPay(this.props.id)
     .then(res => {
       this.setState({
         payList: res.data.list

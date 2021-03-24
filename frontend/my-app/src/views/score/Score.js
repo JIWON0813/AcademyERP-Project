@@ -7,6 +7,7 @@ import Exam from "../exam/Exam";
 import ScoreEdit from "./ScoreEdit";
 import RefreshIcon from '@material-ui/icons/Refresh';
 import ScoreTotal from "./ScoreTotal";
+import ApiService from "../../ApiService";
 
 class Score extends Component {
 
@@ -48,7 +49,7 @@ class Score extends Component {
 
 
   getApi() {
-    axios.get("http://localhost:8080/lecture/teacher/" + this.state.teacher)
+    ApiService.getTeacher(this.state.teacher)
       .then(res => {
         this.setState({
           lectureList: res.data.lectureList,
@@ -58,14 +59,14 @@ class Score extends Component {
   }
 
   getLecture() {
-    axios.get("http://localhost:8080/api/students/" + this.state.lecture)
+    ApiService.getStudentByLecture(this.state.lecture)
       .then(res => {
         this.setState({
           studentList: res.data.studentList,
         })
       })
       .catch(res => console.log(res))
-    axios.get("http://localhost:8080/exam?lecture=" + this.state.lecture)
+    ApiService.getExam(this.state.lecture)
       .then(res => {
         this.setState({
           examList: res.data.list,
@@ -91,14 +92,14 @@ class Score extends Component {
       disabled: true,
       average:"",
     })
-    axios.get("http://localhost:8080/api/students/" + e.target.value)
+    ApiService.getStudentByLecture(e.target.value)
       .then(res => {
         this.setState({
           studentList: res.data.studentList,
         })
       })
       .catch(res => console.log(res))
-    axios.get("http://localhost:8080/exam?lecture=" + e.target.value)
+    ApiService.getExam(e.target.value)
       .then(res => {
         this.setState({
           examList: res.data.list,
@@ -133,14 +134,11 @@ class Score extends Component {
 
 
   editScore() {
-    axios({
-      url: 'http://localhost:8080/score',
-      method: "POST",
-      headers: {'content-type': 'application/json'},
-      data: {
-        scoreArray: this.state.scoreArray,
-      }
-    })
+    const url = "score"
+    let score = {
+      scoreArray: this.state.scoreArray,
+    }
+    ApiService.Insert(url,score)
       .then(function (response) {
         console.log(response)
       })

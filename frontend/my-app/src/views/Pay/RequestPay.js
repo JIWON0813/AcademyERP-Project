@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from "axios";
+import ApiService from "../../ApiService";
 
 class RequestPay extends React.Component {
     requestPay = () => {
@@ -21,11 +22,12 @@ class RequestPay extends React.Component {
         function (rsp) { // callback
           if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
             // jQuery로 HTTP 요청
-            axios.post('http://localhost:8080/payments/pay',
-              {
-                impUID: rsp.imp_uid,
-                merchantUID: rsp.merchant_uid,
-              }).then(res => {
+            let pay = {
+              impUID: rsp.imp_uid,
+              merchantUID: rsp.merchant_uid,
+            }
+            ApiService.postPay(pay)
+           .then(res => {
               alert("결제결과 : "+res.data);
               window.location.reload();
             })

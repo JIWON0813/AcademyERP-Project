@@ -11,6 +11,7 @@ import CounselingAdd from "./CounselingAdd";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import CounselingUpdate from "./CounselingUpdate";
 import CounselingDelete from "./CounselingDelete";
+import ApiService from "../../ApiService";
 
 const styles = theme => ({
   hidden: {
@@ -77,7 +78,7 @@ class CounselingRecord extends React.Component {
   }
 
   getApi = () => {
-    axios.get("http://localhost:8080/counseling?student=" + this.state.student + "&lecture=" + this.state.lecture)
+    ApiService.getCounselingList(this.state.student,this.state.lecture)
       .then(res => {
         this.setState({
           counselingList: res.data.counselingList

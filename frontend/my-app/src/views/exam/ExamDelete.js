@@ -6,6 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import Typography from '@material-ui/core/Typography';
 import {withRouter} from 'react-router-dom';
+import ApiService from "../../ApiService";
 
 class ExamDelete extends React.Component {
   constructor(props) {
@@ -41,10 +42,9 @@ class ExamDelete extends React.Component {
 
 
   delete(id) {
-    const url = 'http://localhost:8080/exam/' + id;
-    fetch(url, {
-      method: 'DELETE'
-    });
+    const url = "exam";
+    ApiService.deleteById(url,id)
+      .catch(res => console.log(res));
     alert("삭제 되었습니다.");
     this.props.stateRefresh();
   }

@@ -9,6 +9,7 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import {Dialog, IconButton, withStyles} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import ApiService from "../../ApiService";
 
 const styles = theme => ({
   hidden: {
@@ -54,6 +55,7 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
+const url = "exam"
 
 class ExamAdd extends React.Component {
 
@@ -80,7 +82,7 @@ class ExamAdd extends React.Component {
   }
 
   getApi() {
-    axios.get("http://localhost:8080/teacher/" + this.props.teacher)
+    ApiService.getExamTeacher(this.props.teacher)
       .then(res => {
         this.setState({
           lectureList: res.data.lectureList,
@@ -115,16 +117,12 @@ class ExamAdd extends React.Component {
   }
 
   addexam() {
-    axios({
-      url: 'http://localhost:8080/exam',
-      method: "POST",
-      headers: {'content-type': 'application/json'},
-      data: {
-        name: this.state.name,
-        lecture: this.state.lecture,
-        weight: this.state.weight,
-      }
-    })
+    let exam = {
+      name: this.state.name,
+      lecture: this.state.lecture,
+      weight: this.state.weight,
+    }
+    ApiService.Insert(url,exam)
       .then(function (response) {
         console.log(response)
       })

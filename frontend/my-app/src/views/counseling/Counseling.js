@@ -6,6 +6,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import {Grid, IconButton} from "@material-ui/core";
 import RefreshIcon from '@material-ui/icons/Refresh';
 import CounselingRecord from "./CounselingRecord";
+import ApiService from "../../ApiService";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -45,7 +46,7 @@ class Counseling extends Component {
 
 
   getApi() {
-    axios.get("http://localhost:8080/lecture/teacher/" + this.state.teacher)
+  ApiService.getTeacher(this.state.teacher)
       .then(res => {
         this.setState({
           lectureList: res.data.lectureList,
@@ -55,7 +56,7 @@ class Counseling extends Component {
   }
 
   getCounseling() {
-    axios.get("http://localhost:8080/api/students/" + this.state.lecture)
+   ApiService.getStudentByLecture(this.state.lecture)
       .then(res => {
         this.setState({
           studentList: res.data.studentList,
@@ -75,7 +76,7 @@ class Counseling extends Component {
       lecture: e.target.value,
       studentList: "",
     })
-    axios.get("http://localhost:8080/api/students/"+e.target.value)
+    ApiService.getStudentByLecture(e.target.value)
       .then(res => {
         this.setState({
           studentList: res.data.studentList,

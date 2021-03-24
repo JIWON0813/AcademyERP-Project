@@ -9,6 +9,7 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import {Dialog, IconButton, withStyles} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import ApiService from "../../ApiService";
 
 const styles = theme => ({
   hidden: {
@@ -54,6 +55,7 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
+const url = "part"
 
 class PartAdd extends React.Component {
 
@@ -80,7 +82,7 @@ class PartAdd extends React.Component {
   }
 
   getApi = () => {
-    axios.get("http://localhost:8080/lecture/branches")
+    ApiService.getBranches()
       .then(res => {
         this.setState({
           branchList: res.data.list
@@ -109,15 +111,11 @@ class PartAdd extends React.Component {
   }
 
   addpart() {
-    axios({
-      url: 'http://localhost:8080/part',
-      method: "POST",
-      headers: {'content-type': 'application/json'},
-      data: {
-        branch: this.state.branch,
-        name: this.state.name,
-      }
-    })
+    let part = {
+      branch: this.state.branch,
+      name: this.state.name,
+    }
+    ApiService.Insert(url,part)
       .then(function (response) {
         console.log(response)
       })

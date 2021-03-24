@@ -10,6 +10,7 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import {Dialog, IconButton, withStyles} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import UpdateIcon from "@material-ui/icons/Update";
+import ApiService from "../../ApiService";
 
 const styles = theme => ({
   hidden: {
@@ -55,9 +56,9 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
+const url = "counseling"
 
 class CounselingAdd extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -81,7 +82,7 @@ class CounselingAdd extends React.Component {
   }
 
   getApi = () => {
-    axios.get("http://localhost:8080/counseling/"+ this.props.itemdata.no)
+    ApiService.getURLById(url,this.props.itemdata.no)
       .then(res => {
         this.setState({
           counselingList: res.data.list
@@ -110,18 +111,15 @@ class CounselingAdd extends React.Component {
   }
 
   updateCounseling() {
-    axios({
-      url: 'http://localhost:8080/counseling/'+this.state.no,
-      method: "PUT",
-      headers: {'content-type': 'application/json'},
-      data: {
-        content:this.state.content,
-        regdate:this.state.regdate,
-        modify:new Date(),
-        lecture:this.state.lecture,
-        student:this.state.student,
-      }
-    })
+    let counseling = {
+      content:this.state.content,
+      regdate:this.state.regdate,
+      modify:new Date(),
+      lecture:this.state.lecture,
+      student:this.state.student,
+    }
+
+    ApiService.updateById(url,this.state.no,counseling)
       .then(function (response) {
         console.log(response)
       })

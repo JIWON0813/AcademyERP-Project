@@ -4,6 +4,7 @@ import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, wi
 import {CButton, CCol, CFormGroup, CInput, CInputCheckbox, CLabel, CRow, CSelect} from '@coreui/react'
 import CIcon from "@coreui/icons-react";
 import {cilAlarm} from "@coreui/icons/js/free/cil-alarm";
+import ApiService from "../../ApiService";
 
 const styles = theme => ({
   hidden: {
@@ -52,7 +53,7 @@ class LectureAdd extends React.Component {
   }
 
   getApi = () => {
-    axios.get("http://localhost:8080/lecture/branches")
+    ApiService.getBranches()
       .then(res => {
         this.setState({
           branchList: res.data.list
@@ -95,25 +96,22 @@ class LectureAdd extends React.Component {
     this.setState({[evt.target.name]:num});
   }
   addLecture() {
-    axios({
-      url: 'http://localhost:8080/lecture',
-      method: "POST",
-      headers: {'content-type': 'application/json'},
-      data: {
-        name: this.state.name,
-        teacher: this.state.teacher,
-        price: this.state.price,
-        students: this.state.students,
-        room: this.state.room,
-        start_date: this.state.start_date,
-        end_date: this.state.end_date,
-        day: this.state.day.toString(),
-        start_time: this.state.start_time,
-        end_time: this.state.end_time,
-        part: this.state.part,
-        branch: this.state.branch
-      }
-    })
+    const url = "lecture";
+    let lecture = {
+      name: this.state.name,
+      teacher: this.state.teacher,
+      price: this.state.price,
+      students: this.state.students,
+      room: this.state.room,
+      start_date: this.state.start_date,
+      end_date: this.state.end_date,
+      day: this.state.day.toString(),
+      start_time: this.state.start_time,
+      end_time: this.state.end_time,
+      part: this.state.part,
+      branch: this.state.branch
+    }
+    ApiService.Insert(url,lecture)
       .then(function (response) {
         console.log(response)
       })
@@ -152,8 +150,7 @@ class LectureAdd extends React.Component {
     this.setState({
       branch: e.target.value
     })
-
-    axios.get("http://localhost:8080//lecture/select?branch=" + e.target.value)
+    ApiService.getSelect(e.target.value)
       .then(res => {
         this.setState({
           teacherList: res.data.teacherList,

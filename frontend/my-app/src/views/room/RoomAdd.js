@@ -9,6 +9,7 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import {Dialog, IconButton, withStyles} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import ApiService from "../../ApiService";
 
 const styles = theme => ({
   hidden: {
@@ -54,7 +55,7 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-
+const url = "room"
 class RoomAdd extends React.Component {
 
   constructor(props) {
@@ -81,7 +82,7 @@ class RoomAdd extends React.Component {
   }
 
   getApi = () => {
-    axios.get("http://localhost:8080/lecture/branches")
+    ApiService.getBranches()
       .then(res => {
         this.setState({
           branchList: res.data.list
@@ -115,16 +116,12 @@ class RoomAdd extends React.Component {
     this.setState({[evt.target.name]:num});
   }
   addRoom() {
-    axios({
-      url: 'http://localhost:8080/room',
-      method: "POST",
-      headers: {'content-type': 'application/json'},
-      data: {
-        branch: this.state.branch,
-        max_person: this.state.max_person,
-        name: this.state.name,
-      }
-    })
+    let room = {
+      branch: this.state.branch,
+      max_person: this.state.max_person,
+      name: this.state.name,
+    }
+    ApiService.Insert(url,room)
       .then(function (response) {
         console.log(response)
       })

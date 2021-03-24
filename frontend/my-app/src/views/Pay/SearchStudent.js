@@ -6,6 +6,7 @@ import {IconButton} from "@material-ui/core";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import './table.css';
 import PayList from "./PayList";
+import ApiService from "../../ApiService";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,7 +47,7 @@ class SearchStudent extends Component {
   getApi() {
     console.log("호출")
     console.log(this.state.searchKeyword)
-    axios.get("http://localhost:8080/api/students/user?name="+this.state.searchKeyword)
+    ApiService.search(this.state.searchKeyword)
       .then(res => {
         this.setState({
           studentList: res.data.studentList,

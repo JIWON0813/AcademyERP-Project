@@ -12,6 +12,7 @@ import PartDelete from "./PartDelete";
 import PartAdd from "./PartAdd";
 import PartUpdate from "./PartUpdate";
 import Button from "@material-ui/core/Button";
+import ApiService from "../../ApiService";
 
 const styles = theme => ({
   hidden: {
@@ -57,6 +58,7 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
+const url = "part"
 
 class Part extends React.Component {
 
@@ -90,7 +92,7 @@ class Part extends React.Component {
     }
   }
   getApi = () => {
-    axios.get("http://localhost:8080/lecture/branches")
+    ApiService.getBranches()
       .then(res => {
         this.setState({
           branchList: res.data.list
@@ -100,7 +102,7 @@ class Part extends React.Component {
   }
 
   getPart = () => {
-    axios.get("http://localhost:8080/lecture/select?branch=" + this.state.branch)
+    ApiService.getSelect(this.state.branch)
       .then(res => {
         this.setState({
           partList: res.data.partList,
@@ -109,7 +111,7 @@ class Part extends React.Component {
       .catch(res => console.log(res))
   }
   getDetail = () => {
-    axios.get("http://localhost:8080/part/"+this.state.part)
+    ApiService.getURLById(url,this.state.part)
       .then(res => {
         if(res.data.list !== null){
         this.setState({
@@ -148,7 +150,7 @@ class Part extends React.Component {
     this.setState({
       branch: e.target.value
     })
-    axios.get("http://localhost:8080/lecture/select?branch=" + e.target.value)
+    ApiService.getSelect(e.target.value)
       .then(res => {
         this.setState({
           partList: res.data.partList,
@@ -182,7 +184,7 @@ class Part extends React.Component {
           value.push(options[i].value);
         }
       }
-      axios.get("http://localhost:8080/part/"+value)
+      ApiService.getURLById(url,value)
         .then(res => {
           this.setState({
             partDetail: res.data.list,

@@ -7,6 +7,7 @@ import {Grid, IconButton} from "@material-ui/core";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import StatementUpdate from "./StatementUpdate";
 import StatementDelete from "./StatementDelete";
+import ApiService from "../../ApiService";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,7 +50,7 @@ class Statement extends Component {
   }
 
   getApi() {
-    axios.get("http://localhost:8080/statement?user="+this.state.user)
+    ApiService.getStatement(this.state.user)
       .then(res => {
         this.setState({
           ItemList: res.data.message,

@@ -9,6 +9,7 @@ import {withRouter} from 'react-router-dom';
 import {IconButton} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {CCol} from "@coreui/react";
+import ApiService from "../../ApiService";
 
 class CounselingDelete extends React.Component {
   constructor(props) {
@@ -39,10 +40,9 @@ class CounselingDelete extends React.Component {
 
 
   delete(id) {
-    const url = 'http://localhost:8080/counseling/' + id;
-    fetch(url, {
-      method: 'DELETE'
-    });
+    const url = "counseling";
+    ApiService.deleteById(url,id)
+      .catch(res => console.log(res));
     alert("삭제 되었습니다.");
     this.props.stateRefresh();
   }
