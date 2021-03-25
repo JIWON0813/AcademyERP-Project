@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from 'axios';
 import {
   Button,
   Dialog,
@@ -13,6 +12,7 @@ import {
 } from '@coreui/react'
 //               c:/GitHub/ERP2/AcademyERP-Project/frontend/my-app/src/containers/MasageInsert
 import * as MasageInsert from '../../../containers/MasageInsert'
+import ApiService from "src/ApiService";
 
 
 let payselect = 1;
@@ -66,7 +66,7 @@ export default class insert extends Component {
 
 
     getUsers(){
-        axios.get("http://localhost:8080/paymentUsers")
+        ApiService.getDepPayment()
         .then(res => {
             console.log(res);
             this.setState({
@@ -158,12 +158,7 @@ export default class insert extends Component {
         //메세지 받는사람   ,제목 ,내용    ,메세지 클릭시 이동할 페이지 주소
         //post(employee_no),title,contents,link
         MasageInsert.masage(playerTemp,this.state.title,this.state.contents,"payment")
-
-        axios({
-        url: 'http://localhost:8080/payment',
-        method: "POST",
-        headers: { 'content-type': 'application/json' },
-        data: {
+        var data = {
             employee_no: window.sessionStorage.getItem("no"),
             player: playerTemp,
             title: this.state.title,
@@ -171,7 +166,7 @@ export default class insert extends Component {
             kinds: this.props.kind,
             kinds_no: kindsTemp
         }
-        })
+        ApiService.insertPayment(data)
         .then(function (response) {
             console.log(response)
             alert("등록완료");

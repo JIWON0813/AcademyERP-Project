@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 import Masage from './masage'
 import {
@@ -10,6 +9,7 @@ import {
   CDropdownToggle
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import ApiService from 'src/ApiService';
 
 const id=window.sessionStorage.no;
 
@@ -27,7 +27,7 @@ const TheHeaderDropdownMssg = () => {
 
 
   const getData = () =>{
-    axios.get("http://localhost:8080/masage/"+id)
+    ApiService.getMasage(id)
       .then(res => {
         console.log(res)
         setInputs({
@@ -38,7 +38,7 @@ const TheHeaderDropdownMssg = () => {
   }
 
   const masageClick=(no)=>{
-    axios.put("http://localhost:8080/masage/"+no+"/"+window.sessionStorage.getItem("no"))
+    ApiService.clickMasage(no,window.sessionStorage.getItem("no"))
         .then(res => {
           console.log(res)
         })

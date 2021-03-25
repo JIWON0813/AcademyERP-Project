@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import {CChartLine} from '@coreui/react-chartjs';
 
 import '../Template/css/table.css';
@@ -16,6 +15,7 @@ import {
   CCol,
   CRow,CSelect,CInput
 } from '@coreui/react'
+import ApiService from "src/ApiService";
 const _numbers=[5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
 const _color=["#F5A9BC","#58FAF4","#F3F781","#00FFBF","#82FA58"];
 const _week=[0,1,2,3,4,5,6];
@@ -141,12 +141,8 @@ class AttTable extends Component {
     this.setState({
       name: e.target.value
     })
-    axios({
-      method:'get',
-      url:encodeURI('http://localhost:8080/api2/attfind/'+1+'/'+this.state.page.cntPerPage+'?day='+this.state.day+'&name='+e.target.value+'&dep='+this.state.dep),
-      responseType:'stream',
-      responseEncoding: 'UTF-8',
-    }).then(res => {
+    ApiService.attfind(1, this.state.page.cntPerPage, this.state.day, e.target.value, this.state.dep)
+    .then(res => {
         console.log(res);
         this.setState({
           ItemList: res.data.list,
@@ -161,12 +157,8 @@ class AttTable extends Component {
       loopCheck: true
     })
     this.DayToSETime(e.target.value);
-    axios({
-      method:'get',
-      url:encodeURI('http://localhost:8080/api2/attfind/'+1+'/'+page.cntPerPage+'?day='+e.target.value+'&name='+this.state.name+'&dep='+this.state.dep),
-      responseType:'stream',
-      responseEncoding: 'UTF-8',
-    }).then(res => {
+    ApiService.attfind(1, page.cntPerPage, e.target.value, this.state.name, this.state.dep)
+    .then(res => {
         console.log(res);
         this.setState({
           ItemList: res.data.list,
@@ -179,12 +171,8 @@ class AttTable extends Component {
     this.setState({
       dep: e.target.value
     })
-    axios({
-      method:'get',
-      url:encodeURI('http://localhost:8080/api2/attfind/1/'+page.cntPerPage+'?day='+this.state.day+'&name='+this.state.name+'&dep='+e.target.value),
-      responseType:'stream',
-      responseEncoding: 'UTF-8',
-    }).then(res => {
+    ApiService.attfind(1, page.cntPerPage, this.state.day, this.state.name, e.target.value)
+    .then(res => {
         console.log(res);
         this.setState({
           ItemList: res.data.list,
@@ -196,12 +184,8 @@ class AttTable extends Component {
     this.setState({
       name: e.target.value
     })
-    axios({
-      method:'get',
-      url:encodeURI('http://localhost:8080/api2/attfind3?start='+this.state.start+'&end='+this.state.end+'&name='+e.target.value+'&dep='+this.state.dep),
-      responseType:'stream',
-      responseEncoding: 'UTF-8',
-    }).then(res => {
+    ApiService.attfind2(this.state.start, this.state.end, e.target.value, this.state.dep)
+    .then(res => {
         console.log(res);
         this.setState({
           ItemList: res.data.list
@@ -213,12 +197,8 @@ class AttTable extends Component {
     this.setState({
       day: e.target.value
     })
-    axios({
-      method:'get',
-      url:encodeURI('http://localhost:8080/api2/attfind3?start='+Time.start+'&end='+Time.end+'&name='+this.state.name+'&dep='+this.state.dep),
-      responseType:'stream',
-      responseEncoding: 'UTF-8',
-    }).then(res => {
+    ApiService.attfind2(Time.start, Time.end, this.state.name, this.state.dep)
+    .then(res => {
         console.log(res);
         this.setState({
         ItemList: res.data.list
@@ -229,12 +209,8 @@ class AttTable extends Component {
     this.setState({
       dep: e.target.value
     })
-    axios({
-      method:'get',
-      url:encodeURI('http://localhost:8080/api2/attfind3?start='+this.state.start+'&end='+this.state.end+'&name='+this.state.name+'&dep='+e.target.value),
-      responseType:'stream',
-      responseEncoding: 'UTF-8',
-    }).then(res => {
+    ApiService.attfind2(this.state.start, this.state.end, this.state.name, e.target.value)
+    .then(res => {
         console.log(res);
         this.setState({
         ItemList: res.data.list
@@ -242,12 +218,8 @@ class AttTable extends Component {
       }).catch(res => console.log(res))
   }
   CyearChange = (e) =>{
-    axios({
-      method:'get',
-      url:encodeURI('http://localhost:8080/api2/attCyear?year='+e.target.value),
-      responseType:'stream',
-      responseEncoding: 'UTF-8',
-    }).then(res => {
+    ApiService.attWeek(e.target.value)
+    .then(res => {
         console.log(res);
         this.setState({
         cyear: res.data.list
@@ -262,12 +234,8 @@ class AttTable extends Component {
       start: start,
       end: end
     })
-    axios({
-      method:'get',
-      url:encodeURI('http://localhost:8080/api2/attfind3?start='+start+'&end='+end+'&name='+this.state.name+'&dep='+this.state.dep),
-      responseType:'stream',
-      responseEncoding: 'UTF-8',
-    }).then(res => {
+    ApiService.attfind2(start, end, this.state.name, this.state.dep)
+    .then(res => {
         console.log(res);
         this.setState({
         ItemList: res.data.list
@@ -283,12 +251,8 @@ class AttTable extends Component {
       day: '',
       loopCheck: true
     })
-    axios({
-      method:'get',
-      url:encodeURI('http://localhost:8080/api2/attfind/1/10?day=&name='+this.state.name+'&dep='+this.state.dep),
-      responseType:'stream',
-      responseEncoding: 'UTF-8',
-    }).then(res => {
+    ApiService.attfind(1, 10, "", this.state.name, this.state.dep)
+    .then(res => {
         console.log(res);
         this.setState({
         ItemList: res.data.list,
@@ -348,7 +312,7 @@ class AttTable extends Component {
     return result;
   }
   getApi = () => {
-    axios.get("http://localhost:8080/api2/att/1/10")
+    ApiService.att(1,10)
         .then(res => {
             console.log(res);
             this.setState({
@@ -357,7 +321,7 @@ class AttTable extends Component {
             })
         })
         .catch(res => console.log(res))
-    axios.get("http://localhost:8080/api/depart")
+    ApiService.attdep()
     .then(res => {
         console.log(res);
         this.setState({
@@ -388,20 +352,26 @@ class AttTable extends Component {
   movePage(nowpage,perpage){ //페이지 이동
     var add
     if(this.state.dep.length + this.state.name.length + this.state.day.length > 0){
-      add="http://localhost:8080/api2/attfind/"+nowpage+"/"+perpage+"?day="
-      +this.state.day+"&name="+this.state.name+"&dep="+this.state.dep
-    }else{
-      add="http://localhost:8080/api2/att/"+nowpage+"/"+perpage
-    }
-    axios.get(add)
-        .then(res => {
-            console.log(res);
-            this.setState({
-              ItemList: res.data.list,
-              page: res.data.page
-            })
+      ApiService.attfind(nowpage, perpage, this.state.day, this.state.name, this.state.dep)
+      .then(res => {
+        console.log(res);
+        this.setState({
+          ItemList: res.data.list,
+          page: res.data.page
         })
-        .catch(res => console.log(res))
+      })
+      .catch(res => console.log(res))
+    }else{
+      ApiService.att(nowpage,perpage)
+      .then(res => {
+        console.log(res);
+        this.setState({
+          ItemList: res.data.list,
+          page: res.data.page
+        })
+      })
+      .catch(res => console.log(res))
+    }
   }
   makeMap(start,end){ //배열 만드는 함수
     var result=[];

@@ -17,7 +17,7 @@ import com.example.demo.database.Entity.*;
 import com.example.demo.database.DTO.*;
 
 @RestController
-@RequestMapping("/api2")
+@RequestMapping("/api")
 public class AttController2 {
 
     final String _un = "undefined";
@@ -44,7 +44,7 @@ public class AttController2 {
         return result;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/usersT") 
     public HashMap<String, List> users() {
         return attservice.users();
     }

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import {
   CDataTable
 } from '@coreui/react'
 import {  Link } from 'react-router-dom';
+import ApiService from 'src/ApiService';
 
 let fields = ['no','employee_no', 'title', 'day'];
 
@@ -29,7 +29,7 @@ const PaymentData = () => {
 
     
     const getData = () =>{
-      axios.get("http://localhost:8080/adpayment")
+      ApiService.getAdPayment()
         .then(res => {
           console.log(res);
           let list = res.data.list;

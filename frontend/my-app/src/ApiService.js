@@ -1,8 +1,8 @@
 import axios from 'axios';
 import CounselingDelete from './views/counseling/CounselingDelete';
 
-const USER_API_BASE_URL = "http://localhost/api";
-const USER_BASE_URL = "http://localhost";
+const USER_API_BASE_URL = "http://localhost:8080/api";
+const USER_BASE_URL = "http://localhost:8080";
 
 class ApiService {
 
@@ -189,6 +189,160 @@ class ApiService {
 
 /////////////////////
 
+
+//수민
+  getAttdance(startPage, cntPage, day, name, dep ) {
+    return axios({
+      method:'get',
+      url:encodeURI(USER_API_BASE_URL+'/'+startPage+'/'+cntPage+'?day='+day+'&name='+name+'&dep='+dep),
+      responseType:'stream',
+      responseEncoding: 'UTF-8',
+    })
+  }
+
+  today(no){
+    return axios.get(USER_API_BASE_URL+'/today?no='+no)
+  }
+
+  in(no){
+    return axios.post(USER_API_BASE_URL+'/in',{no: no})
+  }
+
+  out(no){
+    return axios.get(USER_API_BASE_URL+`/out?no=${no}`)
+  }
+
+  night(no){
+    return axios.get(USER_API_BASE_URL+`/night?no=${no}`)
+  }
+
+  attfind(startPage, cntPage, day, name, dep){
+    return axios({
+      method:'get',
+      url:encodeURI(USER_API_BASE_URL+'/attfind/'+startPage+'/'+cntPage+'?day='+day+'&name='+name+'&dep='+dep),
+      responseType:'stream',
+      responseEncoding: 'UTF-8',
+    })
+  }
+
+  attfind2(start, end, name, dep){
+    return axios({
+      method:'get',
+      url:encodeURI(USER_API_BASE_URL+'/attfind3?start='+start+'&end='+end+'&name='+name+'&dep='+dep),
+      responseType:'stream',
+      responseEncoding: 'UTF-8',
+    })
+  }
+
+  attWeek(year){
+    return axios({
+      method:'get',
+      url:encodeURI(USER_API_BASE_URL+'/attCyear?year='+year),
+      responseType:'stream',
+      responseEncoding: 'UTF-8',
+    })
+  }
+
+  att(start, cnt){
+    return axios.get(USER_API_BASE_URL+"/att/"+start+"/"+cnt)
+  }
+
+  attdep(){
+    return axios.get(USER_API_BASE_URL+"/depart")
+  }
+
+  attGet(no){
+    return axios.get(USER_BASE_URL+"/Attget?no="+no)
+  }
+
+  attDelete(no){
+    return axios.delete(USER_BASE_URL+`/Attupdate/`+no)
+  }
+
+  attUpdate(no, data){
+    return axios.put(USER_BASE_URL+`/Attupdate/`+no,data)
+  }
+
+  getCalendar(){
+    return axios.get("USER_BASE_URL+`/Calendar")
+  }
+
+  postCalendar(data){
+    return axios({
+      url: USER_BASE_URL+'/Calendar',
+      method: "POST",
+      headers: {'content-type': 'application/json'},
+      data: data
+    })
+  }
+
+  deleteCalendar(data){
+    return axios({
+      url: USER_BASE_URL+'Calendar/'+this.state.no,
+      method: "DELETE",
+      headers: {'content-type': 'application/json'},
+      data: data
+    })
+  }
+
+  putCalendar(data){
+    return axios({
+      url: USER_BASE_URL+'/Calendars',
+      method: "PUT",
+      headers: {'content-type': 'application/json'},
+      data: data
+    })
+  }
+
+  getPayment(no){
+    return axios.get(USER_BASE_URL+"/payment/" + no)
+  }
+
+  getAdPatment(){
+    return axios.get(USER_BASE_URL+"/adpayment")
+  }
+
+  signUpload(file,config){
+    return axios.post(USER_BASE_URL+`/upload`, file, config);
+  }
+
+  getUserPayment(no, session_no){
+    return axios.get(USER_BASE_URL+"/payment/" + no+"/"+session_no)
+  }
+
+  paymentApproved(params){
+    return axios.post(USER_BASE_URL+`/payment/approved`,params)
+  }
+
+  getDepPayment(){
+    return axios.get(USER_BASE_URL+"/paymentUsers")
+  }
+
+  insertPayment(data){
+    return axios({
+      url: USER_BASE_URL+'/payment',
+      method: "POST",
+      headers: { 'content-type': 'application/json' },
+      data: data
+    })
+  }
+
+  getUserPaymentPage(id){
+    return axios.get(USER_BASE_URL+"/payment/1/10/"+id)
+  }
+
+  postMasage(data){
+    return axios.post(USER_BASE_URL+"/masage/",data)
+  }
+
+  getMasage(id){
+    return axios.get(USER_BASE_URL+"/masage/"+id)
+  }
+
+  clickMasage(no,session_no){
+    return axios.put(USER_BASE_URL+"/masage/"+no+"/"+session_no)
+  }
+//수민
 
 }
 

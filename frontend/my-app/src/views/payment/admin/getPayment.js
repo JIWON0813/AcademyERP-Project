@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import {
     CDataTable
 } from '@coreui/react'
@@ -9,6 +8,7 @@ import {
     CCardHeader,
     CFade,
 } from '@coreui/react';
+import ApiService from 'src/ApiService';
 
 let fields = [];
 
@@ -32,7 +32,7 @@ const PaymentData = ({ match }) => {
     const { data, table,signList ,playerList} = inputs;
 
     const getData = () => {
-        axios.get("http://localhost:8080/payment/" + match.params.no)
+        ApiService.getPayment(match.params.no)
             .then(res => {
                 console.log(res)
                 for (let i = 0; i < res.data.table.length; i++) {

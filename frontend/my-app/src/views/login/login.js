@@ -37,6 +37,12 @@ class login extends Component {
 
   LoginSuccess = (e) => {
     e.preventDefault();
+
+    window.sessionStorage.setItem('id',1);
+    window.sessionStorage.setItem('no',1);
+    window.sessionStorage.setItem('dep',1);
+    window.sessionStorage.setItem('branch',1);
+
     window.sessionStorage.setItem("LoginID", this.state.id);
     window.sessionStorage.setItem("LoginPW", this.state.password);
     console.log(window.sessionStorage.getItem("LoginID"));

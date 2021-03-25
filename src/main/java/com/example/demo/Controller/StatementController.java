@@ -25,7 +25,7 @@ public class StatementController {
 
         return statementService.list(user);
     }
-
+ 
     @GetMapping("/statement/{id}")
     public HashMap<String,Object> details(@PathVariable("id") Long id) {
         return statementService.detail(id);

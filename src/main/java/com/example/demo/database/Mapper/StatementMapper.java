@@ -9,4 +9,4 @@ import java.util.HashMap;
 public interface StatementMapper {
     int InsertStatement(StatementDTO dto);
     void InsertStatementDetail(HashMap<String,Object> map);
-}
+} 

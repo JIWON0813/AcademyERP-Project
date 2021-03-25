@@ -5,6 +5,6 @@ import com.example.demo.database.Entity.StatementEntity;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface StatementMapstructMapper extends GenericMapper<StatementDTO, StatementEntity> {
+public interface StatementMapStructMapper extends GenericMapper<StatementDTO, StatementEntity> {
 
 }

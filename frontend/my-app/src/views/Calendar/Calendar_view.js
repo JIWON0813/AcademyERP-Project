@@ -3,7 +3,6 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from '@fullcalendar/list';
-import axios from 'axios';
 import Moment from 'moment'
 import {
   Button,
@@ -14,6 +13,7 @@ import {
 
 } from "@material-ui/core";
 import {CCol, CFormGroup, CLabel} from '@coreui/react'
+import ApiService from "src/ApiService";
 
 
 class DemoApp extends Component {
@@ -28,7 +28,7 @@ class DemoApp extends Component {
         } 
       }
   componentDidMount(){
-    axios.get("http://localhost:8080/Calendar")
+    ApiService.getCalendar()
         .then(res => {
             console.log(res);
             this.setState({

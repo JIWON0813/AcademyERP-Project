@@ -3,7 +3,6 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from '@fullcalendar/list';
-import axios from 'axios';
 import Moment from "moment"
 import {
   Button,
@@ -14,6 +13,7 @@ import {
 
 } from "@material-ui/core";
 import {CCol, CFormGroup, CInput, CLabel} from '@coreui/react'
+import ApiService from "src/ApiService";
 
 
 class DemoApp extends Component {
@@ -77,7 +77,7 @@ class DemoApp extends Component {
   };
 
   componentDidMount(){
-    axios.get("http://localhost:8080/Calendar")
+    ApiService.getCalendar()
         .then(res => {
             console.log(res);
             this.setState({
@@ -104,18 +104,14 @@ class DemoApp extends Component {
   insert = () => {
     let enddate=this.dayPlusOne(this.state.end);
     let boolean=this.dateCheck(this.state.start,enddate);
+    var data ={
+      title: this.state.title,
+      start: this.state.start,
+      end: enddate,
+      color: this.state.color
+    }
     if(boolean){
-      axios({
-        url: 'http://localhost:8080/Calendar',
-        method: "POST",
-        headers: {'content-type': 'application/json'},
-        data: {
-          title: this.state.title,
-          start: this.state.start,
-          end: enddate,
-          color: this.state.color
-        }
-      })
+      ApiService.postCalendar(data)
       .then(function (response) {
         console.log(response)
         alert("등록완료");
@@ -130,17 +126,13 @@ class DemoApp extends Component {
   }
 
   delete = () =>{
-    axios({
-      url: 'http://localhost:8080/Calendar/'+this.state.no,
-      method: "DELETE",
-      headers: {'content-type': 'application/json'},
-      data: {
-        title: this.state.title,
-        start: this.state.start,
-        end: this.state.end,
-        color: this.state.color
-      }
-    })
+    var data = {
+      title: this.state.title,
+      start: this.state.start,
+      end: this.state.end,
+      color: this.state.color
+    }
+    ApiService.deleteCalendar(data)
       .then(function (response) {
         console.log(response)
         alert("삭제");
@@ -154,19 +146,15 @@ class DemoApp extends Component {
   update = () =>{
     let enddate=this.dayPlusOne(this.state.end);
     let boolean=this.dateCheck(this.state.start,enddate);
+    var data = {
+      id: this.state.no,
+      title: this.state.title,
+      start: this.state.start,
+      end: enddate,
+      color: this.state.color,
+    }
     if(boolean){
-      axios({
-        url: 'http://localhost:8080/Calendars',
-        method: "PUT",
-        headers: {'content-type': 'application/json'},
-        data: {
-          id: this.state.no,
-          title: this.state.title,
-          start: this.state.start,
-          end: enddate,
-          color: this.state.color,
-        }
-      })
+      ApiService.putCalendar(data)
         .then(function (response) {
           console.log(response)
           alert("등록완료");

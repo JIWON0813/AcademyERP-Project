@@ -18,7 +18,7 @@ class Users extends Component {
   }
 
   getApi = () => {
-      axios.get("http://localhost:8080/api/users").then(res => {
+      axios.get("http://localhost:8080/api/usersT").then(res => {
         console.log(res);
         this.setState({
           userList: res.data.list

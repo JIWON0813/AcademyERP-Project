@@ -18,7 +18,7 @@ public class AttService {
     @Autowired
     private AttendancdRepository2 attRepo2;
     @Autowired
-	private EmployeeRepository employee;
+	private EmployeeRepository3 employee;
 
     public Optional<AttendanceEntity> attget(long no){
         Optional<AttendanceEntity> list = attRepo.findById(no); 
@@ -65,7 +65,7 @@ public class AttService {
 
     public HashMap<String,List> users(){
         HashMap<String,List> result = new HashMap<>();
-        List<EmployeeEntity> list = employee.findAll();
+        List<EmployeeEntity2> list = employee.findAll();
         result.put("list", list);
         return result;
     }

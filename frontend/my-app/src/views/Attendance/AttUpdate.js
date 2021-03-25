@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {CButton,CCard,CCardBody, CCardFooter,CCardHeader,CCol,CFormGroup,CRow,CSelect,CLabel} from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import axios from "axios";
 import moment from "moment"
+import ApiService from 'src/ApiService';
  
 
 class AttUpdate extends Component{
@@ -28,7 +28,8 @@ class AttUpdate extends Component{
   }
   componentDidMount(){
     const { params } = this.props.match;
-    axios.get("http://localhost:8080/Attget?no="+params.no).then(res => {
+    ApiService.attGet(params.no)
+    .then(res => {
       console.log(res);
       this.setState({
         attList: res.data.list
@@ -117,7 +118,7 @@ class AttUpdate extends Component{
     }
   }
   delete(){
-    axios.delete(`http://localhost:8080/Attupdate/`+this.state.no)
+    ApiService.attDelete(this.state.no)
       .then(
         alert("삭제"),
         document.location.href = "#/Attendance"
@@ -127,14 +128,15 @@ class AttUpdate extends Component{
       })
   }
   handleFormSubmit() {
-    axios.put(`http://localhost:8080/Attupdate/`+this.state.no,{
+    var data={
       no: this.state.no,
       employee_no: Number(this.state.employee_no),
       day: this.state.year+"-"+this.state.month+"-"+this.state.day,
       start_time: this.state.SH+":"+this.state.SM+":"+this.state.SS,
       end_time: this.state.EH+":"+this.state.EM+":"+this.state.ES,
       night: this.state.night  
-    })
+    }
+    ApiService.attUpdate(this.state.no,data)
       .then(
         alert("수정"),
         document.location.href = "#/Attendance"

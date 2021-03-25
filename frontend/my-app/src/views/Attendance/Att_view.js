@@ -1,9 +1,9 @@
 import React, { Component,useState } from "react";
-import axios from "axios";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from '@fullcalendar/list';
+import ApiService from "../../ApiService";
 import '../Template/css/table.css';
 import Moment from "moment"
 import {
@@ -136,12 +136,8 @@ class AttTable extends Component {
       loopCheck: true
     })
     this.DayToSETime(e.target.value);
-    axios({
-      method:'get',
-      url:encodeURI('http://localhost:8080/api2/attgetno/'+1+'/'+page.cntPerPage+'?day='+e.target.value+'&name='+session_no+'&dep='+this.state.dep),
-      responseType:'stream',
-      responseEncoding: 'UTF-8',
-    }).then(res => {
+    ApiService.getAttdance(1,page.cntPerPage, e.target.value, session_no, this.state.dep)
+    .then(res => {
         console.log(res); 
         this.setState({
           ItemList: res.data.list,
@@ -159,12 +155,8 @@ class AttTable extends Component {
       day: '',
       loopCheck: true
     })
-    axios({
-      method:'get',
-      url:encodeURI('http://localhost:8080/api2/attgetno/'+1+'/'+10+'?day=&name='+session_no+'&dep='),
-      responseType:'stream',
-      responseEncoding: 'UTF-8',
-    }).then(res => {
+    ApiService.getAttdance(1,10,"", session_no,"")
+    .then(res => {
         console.log(res); 
         this.setState({ 
           ItemList: res.data.list,
@@ -174,12 +166,8 @@ class AttTable extends Component {
   }
 
   getApi = () => {
-    axios({
-      method:'get',
-      url:encodeURI('http://localhost:8080/api2/attgetno/'+1+'/'+10+'?day=&name='+session_no+'&dep='+this.state.dep),
-      responseType:'stream',
-      responseEncoding: 'UTF-8',
-    }).then(res => {
+    ApiService.getAttdance(1,10, "", session_no, "")
+    .then(res => {
         console.log(res); 
         this.setState({ 
           ItemList: res.data.list,
@@ -204,14 +192,11 @@ class AttTable extends Component {
     this.movePage(page.startPage-1,page.cntPerPage)
   }
   movePage(nowpage,perpage){ //페이지 이동
-    var add
+    var day = "";
     if(this.state.day.length > 0){
-      add="http://localhost:8080/api2/attgetno/"+nowpage+"/"+perpage+"?day="+this.state.day
-    +"&name="+session_no+"&dep="+this.state.dep
-    }else{
-      add="http://localhost:8080/api2/attgetno/"+nowpage+"/"+perpage+'?day=&name='+session_no+'&dep='+this.state.dep
+      day=this.state.day 
     }
-    axios.get(add)
+    ApiService.getAttdance(nowpage, perpage, day, session_no, this.state.dep)
         .then(res => {
             console.log(res);
             this.setState({
@@ -230,12 +215,8 @@ class AttTable extends Component {
   }
 
   getCalendar=()=>{
-    axios({
-      method:'get',
-      url:encodeURI('http://localhost:8080/api2/attgetno/'+1+'/'+10000000+'?day=&name='+session_no+'&dep='),
-      responseType:'stream',
-      responseEncoding: 'UTF-8',
-    }).then(res => {
+    ApiService.getAttdance(1, 10000000, "", session_no, "")
+    .then(res => {
         console.log(res); 
         this.setState({ 
           events: this.data__event(res.data.list)

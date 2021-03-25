@@ -6,7 +6,7 @@ import com.example.demo.database.Entity.StatementDetailsEntity;
 import com.example.demo.database.Entity.StatementEntity;
 import com.example.demo.database.Mapper.StatementDetailsMapstructMapper;
 import com.example.demo.database.Mapper.StatementMapper;
-import com.example.demo.database.Mapper.StatementMapstructMapper;
+import com.example.demo.database.Mapper.StatementMapStructMapper;
 import com.example.demo.database.Repository.StatementDetailsRepository;
 import com.example.demo.database.Repository.StatementRepository;
 import org.mapstruct.factory.Mappers;
@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class StatementService {
-    private  final StatementMapstructMapper mapstructMapper = Mappers.getMapper(StatementMapstructMapper.class);
+public class StatementService {  
+    private  final StatementMapStructMapper mapstructMapper = Mappers.getMapper(StatementMapStructMapper.class);
     private  final StatementDetailsMapstructMapper detailsMapstructMapper = Mappers.getMapper(StatementDetailsMapstructMapper.class);
 
     @Autowired
@@ -48,8 +48,8 @@ public class StatementService {
         List<StatementEntity> list = statementRepository.findAllByEmployee(user);
         result.put("message", list);
         return result;
-    }
-
+    }   
+ 
     public HashMap<String,Object> detail(Long id) {
         HashMap<String,Object> result = new HashMap<>();
         Optional<StatementEntity> list = statementRepository.findById(id);

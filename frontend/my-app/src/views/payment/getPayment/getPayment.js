@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import {
     CDataTable
 } from '@coreui/react'
@@ -11,6 +10,7 @@ import {
     CCardHeader,
     CFade,
 } from '@coreui/react';
+import ApiService from 'src/ApiService';
 
 let fields = [];
 
@@ -51,13 +51,13 @@ const PaymentData = ({ match }) => {
             "content-type": "multipart/form-data"
             }
         };
-        axios.post(`http://localhost:8080/upload`, file, config);
+        ApiService.signUpload(file,config);
         getData();
     };
 
 
     const getData = () => {
-        axios.get("http://localhost:8080/payment/" + match.params.no+"/"+window.sessionStorage.getItem("no"))
+        ApiService.getUserPayment(match.params.no,window.sessionStorage.getItem("no"))
             .then(res => {
                 console.log(res)
 
@@ -87,7 +87,7 @@ const PaymentData = ({ match }) => {
         var params = new URLSearchParams();
         params.append('id', window.sessionStorage.getItem('no'));
         params.append('no', data.no);
-        axios.post(`http://localhost:8080/payment/approved`,params)
+        ApiService.paymentApproved(params)
         .then(res => {
             if(res.data){
             alert("결재 되었습니다");

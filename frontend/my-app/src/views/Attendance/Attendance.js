@@ -7,9 +7,6 @@ import {
   CCol,
   CRow
 } from '@coreui/react'
-import {
-  Button,
-} from "@material-ui/core";
 const style={width: "60%"}
 
 

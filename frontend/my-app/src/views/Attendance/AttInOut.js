@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
 import '../Template/css/table.css';
+import ApiService from "../../ApiService";
 import {
   CButton,
   CCol,CRow
@@ -30,7 +30,7 @@ class AttInOut extends Component {
 
   }
   today_get() {
-    axios.get("http://localhost:8080/api2/today?no="+session_no)
+    ApiService.today(session_no)
     .then(res => {
       console.log(res)
       this.setState({
@@ -63,7 +63,7 @@ class AttInOut extends Component {
   }
 
   in = () =>{
-      axios.post(`http://localhost:8080/api2/in`,{no: session_no})
+      ApiService.in(session_no)
       .then(res => {
         if(res.data){
           alert("출근되었습니다.");
@@ -75,7 +75,7 @@ class AttInOut extends Component {
       .catch(res => console.log(res))
   }
   out = () =>{
-    axios.get(`http://localhost:8080/api2/out?no=${session_no}`)
+    ApiService.out(session_no)
     .then(res => {
       if(res.data){
         alert("퇴근되었습니다.");
@@ -114,7 +114,7 @@ class AttInOut extends Component {
     let night = "18:00:00";
 
     if(this.countSeconds(hours+':'+minutes+':'+seconds)>this.countSeconds(night)){
-      axios.get(`http://localhost:8083/api2/night?no=${session_no}`)
+      ApiService.night(session_no)
       .then(res => {
         if(res.data){
           alert("연장근무후 퇴근을 해주세요.");
