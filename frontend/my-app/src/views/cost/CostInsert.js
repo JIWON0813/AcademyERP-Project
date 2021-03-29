@@ -4,12 +4,12 @@
 // 작성자 : 최인아
 //---------------------------------
 import React from 'react'
-import axios from 'axios';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles, Grid } from "@material-ui/core";
 import { CCol, CFormGroup, CInput, CTextarea } from '@coreui/react'
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import ApiService from "../../ApiService";
 
 
 const styles = theme => ({
@@ -72,18 +72,15 @@ class CostInsert extends React.Component {
   }
 
   costInsert() {
-    axios({
-      url: 'http://localhost:8080/cost',
-      method: "POST",
-      headers: {'content-type': 'application/json'},
-      data: {
+    const url = "cost";
+    let cost = {
         section: this.state.section,
         reason: this.state.reason,
         allcost: this.state.allcost,
         date: this.state.date,
         state: this.state.state
-      }
-    })
+    }
+    ApiService.insertCost(url, cost)
       .then(function (response){
         console.log(response)
       })

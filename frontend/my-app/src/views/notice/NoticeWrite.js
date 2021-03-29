@@ -4,7 +4,7 @@
 // 작성자 : 최인아
 //---------------------------------
 import React from 'react'
-import axios from 'axios';
+import ApiService from "../../ApiService";
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles, Grid} from "@material-ui/core";
 import {CCol, CFormGroup, CInput, CTextarea} from '@coreui/react'
 import Select from '@material-ui/core/Select';
@@ -94,17 +94,13 @@ class NoticeWrite extends React.Component {
   }
 
   noticeWrite() {
-    axios({
-      url: 'http://localhost:8080/notice',
-      method: "POST",
-      headers: {'content-type': 'application/json'},
-      data: {
-        section: this.state.section,
-        title: this.state.title,
-        content: this.state.content
-        //emp: this.state.emp
-      }
-    })
+    const url = "notice";
+    let notice = {
+      section: this.state.section,
+      title: this.state.title,
+      content: this.state.content
+    }
+    ApiService.insertNotice(url,notice)
       .then(function (response){
         console.log(response)
       })

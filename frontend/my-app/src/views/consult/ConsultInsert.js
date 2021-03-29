@@ -2,12 +2,11 @@
 // 제목 : 상담 기록 작성페이지
 // 파일명 : ConsultInsert.js
 // 작성자 : 최인아
-// 작성일 : 
 //---------------------------
 import React, { Component } from 'react';
-import axios from 'axios';
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles, Grid} from "@material-ui/core";
 import {CCol, CFormGroup, CInputCheckbox, CLabel} from '@coreui/react';
+import ApiService from "../../ApiService";
 
 const styles = theme => ({
     hidden: {
@@ -25,7 +24,6 @@ class ConsultInsert extends Component {
       hp: '',
       schedule: '',
       memo: '',
-      //regdate:'',
       route:[],
       writer: ''
 
@@ -47,7 +45,6 @@ class ConsultInsert extends Component {
       hp: '',
       schedule: '',
       memo:'',
-      //regdate:'',
       route:[],
       writer: ''
     })
@@ -63,20 +60,16 @@ class ConsultInsert extends Component {
   }
 
   insertConsult() {
-    axios({
-      url: 'http://localhost:8080/consult',
-      method: "POST",
-      headers: {'content-type': 'application/json'},
-      data: {
-        name: this.state.name,
-        hp: this.state.hp,
-        schedule: this.state.schedule,
-        memo: this.state.memo,
-        //regdate: this.state.regdate,
-        route: this.state.route.toString(),
-        writer: this.state.writer
-      }
-    })
+    const url = "consult";
+    let consult = {
+      name: this.state.name,
+      hp: this.state.hp,
+      schedule: this.state.schedule,
+      memo: this.state.memo,
+      route: this.state.route.toString(),
+      writer: this.state.writer
+    }
+    ApiService.insertConsult(url, consult)
       .then(function (response){
         console.log(response)
       })

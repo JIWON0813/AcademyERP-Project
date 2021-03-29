@@ -121,6 +121,7 @@ import ConsultInsert from "./ConsultInsert";
 import Pagination from '@material-ui/lab/Pagination';
 import { withStyles } from "@material-ui/core";
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import ApiService from "../../ApiService";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -162,7 +163,7 @@ componentDidMount() {
 }
 
 getApi = (keyword) => {
-    axios.get("http://localhost:8080/consult?"+"&keyword=" + keyword)
+  ApiService.get(keyword)
         .then(res => {
             this.setState({
               ConsultList: res.data.message

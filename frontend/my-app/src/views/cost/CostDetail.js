@@ -4,9 +4,8 @@
 // 작성자 : 최인아
 //---------------------------------
 import React, { Component } from "react";
-import axios from "axios";
 import { Button } from "@material-ui/core";
-//import { Link } from 'react-router-dom'; 
+import ApiService from "../../ApiService";
 
 class CostDetail extends Component {
   constructor(props) {
@@ -23,7 +22,7 @@ class CostDetail extends Component {
 
 getApi = () => {
   const { params } = this.props.match;
-    axios.get("http://localhost:8080/costdetail?id="+params.id)
+    ApiService.getCostDetail(params.id)
         .then(res => {
             this.setState({
               costList: res.data.list
@@ -34,7 +33,7 @@ getApi = () => {
 
 delete(){
   const { costList } = this.state;
-  axios.delete(`http://localhost:8080/cost/`+costList.no)
+  ApiService.deleteCost(costList.no)
     .then(
       alert("삭제가 되었습니다."),
       document.location.href = "#/cost"

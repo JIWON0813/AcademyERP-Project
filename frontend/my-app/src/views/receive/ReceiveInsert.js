@@ -4,7 +4,7 @@
 // 작성자 : 최인아 
 //---------------------------------
 import React from 'react'
-import axios from 'axios';
+import ApiService from "../../ApiService";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles, Grid } from "@material-ui/core";
 import { CCol, CFormGroup, CRow, CSelect } from '@coreui/react'
 
@@ -62,7 +62,7 @@ class ReceiveInsert extends React.Component {
   }
 
   getApi = () => {
-    axios.get("http://localhost:8080/receive/branches")
+    ApiService.getRecBra()
       .then(res => {
         this.setState({
           branchList: res.data.list
@@ -105,11 +105,8 @@ class ReceiveInsert extends React.Component {
   }
 
   receiveInsert() {
-    axios({
-      url: 'http://localhost:8080/receive',
-      method: "POST",
-      headers: {'content-type': 'application/json'},
-      data: {
+    const url = "receive";
+    let receive = {
         student: this.state.student,
         lecture: this.state.lecture,
         date: this.state.date,
@@ -118,8 +115,8 @@ class ReceiveInsert extends React.Component {
         status: this.state.status,
         hp: this.state.hp,
         branch:this.state.branch
-      }
-    })
+    }
+    ApiService.insertReceive(url,receive)
       .then(function (response){
         console.log(response)
       })

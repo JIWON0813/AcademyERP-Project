@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import CIcon from '@coreui/icons-react';
 import { CButton, CCard, CCardBody, CCardFooter, CCardHeader, CCol, CRow } from '@coreui/react'
+import ApiService from "src/ApiService";
 
 
 class Consults extends Component {
@@ -18,7 +19,7 @@ class Consults extends Component {
 
 getApi = () => {
   const { params } = this.props.match;
-    axios.get("http://localhost:8080/consultdetail?id="+params.id)
+  ApiService.getConsults(params.id)
         .then(res => {
             this.setState({
               ConsultList: res.data.list

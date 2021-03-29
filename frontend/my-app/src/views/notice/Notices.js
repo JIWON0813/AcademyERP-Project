@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import ApiService from "../../ApiService";
 import { Link } from 'react-router-dom';
 import './table.css';
 import NoticeWrite from "./NoticeWrite";
@@ -39,7 +39,7 @@ componentDidMount() {
 }
 
 getApi = () => {
-    axios.get("http://localhost:8080/notice")
+    ApiService.getNotices()
         .then(res => {
             this.setState({
               noticeList: res.data.message
