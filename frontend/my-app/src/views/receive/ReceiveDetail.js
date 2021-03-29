@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
+import ApiService from "../../ApiService";
 import { Button } from "@material-ui/core";
-//import { Link } from 'react-router-dom';
 
 class ReceiveDetail extends Component {
   constructor(props) {
@@ -18,7 +17,7 @@ class ReceiveDetail extends Component {
 
 getApi = () => {
   const { params } = this.props.match;
-    axios.get("http://localhost:8080/receivedetail?id="+params.id)
+  ApiService.getReceiveDetail(params.id)
         .then(res => {
             this.setState({
               receiveList: res.data.list
@@ -29,7 +28,7 @@ getApi = () => {
 
 delete(){
   const { receiveList } = this.state;
-  axios.delete(`http://localhost:8080/receive/`+receiveList.no)
+  ApiService.deleteReceive(receiveList.no)
     .then(
       alert("삭제가 되었습니다."),
       document.location.href = "#/receive"

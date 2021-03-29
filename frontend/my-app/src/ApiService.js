@@ -344,6 +344,73 @@ class ApiService {
   }
 //수민
 
+//인아
+getConsults(Keyword) {
+  return axios.get(USER_BASE_URL +"&keyword=" + Keyword)
+}
+
+getConsult(id){
+  return axios.get(USER_BASE_URL+'/consultdetail?id='+id)
+}
+
+insertConsult(url, data) {
+  return axios.post(USER_BASE_URL + "/" + url, data);
+}
+
+getConsults() {
+  return axios.get(USER_BASE_URL + "/cost");
+}
+
+getCostDetail(id){
+  return axios.get(USER_BASE_URL+'/costdetail?id='+id)
+}
+
+deleteCost(no){
+  return axios.delete(USER_BASE_URL+`/cost/`+no)
+}
+
+insertCost(url, data) {
+  return axios.post(USER_BASE_URL + "/" + url, data);
+}
+
+getReceive() {
+  return axios.get(USER_BASE_URL + "/receive");
+}
+
+getReceive(id){
+  return axios.get(USER_BASE_URL+'/receivedetail?id='+id)
+}
+
+deleteReceive(no){
+  return axios.deleteReceive(USER_BASE_URL+`/receive/`+no)
+}
+
+getRecBra() {
+  return axios.get(USER_BASE_URL + "/receive/branches");
+}
+
+insertReceive(url, data) {
+  return axios.post(USER_BASE_URL + "/" + url, data);
+}
+
+getNotice(id){
+  return axios.get(USER_BASE_URL+'/noticedetail?id='+id)
+}
+
+deleteNotice(no){
+  return axios.deleteNotiec(USER_BASE_URL+`/notice/`+no)
+}
+
+getNotices() {
+  return axios.get(USER_BASE_URL + "/notice");
+}
+
+insertNotice(url, data) {
+  return axios.post(USER_BASE_URL + "/" + url, data);
+}
+
+//인아
+
 }
 
 

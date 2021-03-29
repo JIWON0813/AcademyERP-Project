@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import ApiService from "../../ApiService";
 import { Link } from 'react-router-dom';
 import './table.css';
 
@@ -18,7 +18,7 @@ class Notice extends Component {
 
 getApi = () => {
   const { params } = this.props.match;
-    axios.get("http://localhost:8080/noticedetail?id="+params.id)
+    ApiService.getNotice(params.id)
         .then(res => {
             this.setState({
               noticeList: res.data.list
@@ -29,7 +29,7 @@ getApi = () => {
 
 delete(){
   const { noticeList } = this.state;
-  axios.delete(`http://localhost:8080/notice/`+noticeList.no)
+  ApiService.deleteNotice(noticeList.no)
     .then(
       alert("삭제가 되었습니다."),
       document.location.href = "#/notice"
@@ -39,21 +39,21 @@ delete(){
     })
 }
 
-update() {
-  axios.put(`http://localhost:8080/notice/edit/`+this.state.id,{
-    no: this.state.no,
-    section: this.state.section,
-    title: this.state.title,
-    content: this.state.content
-  })
-    .then(
-      alert("수정"),
-      document.location.href = "#/notice"
-    )
-    .catch(function (error){
-      console.log(error)
-    })
-}
+// update() {
+//   axios.put(`http://localhost:8080/notice/edit/`+this.state.id,{
+//     no: this.state.no,
+//     section: this.state.section,
+//     title: this.state.title,
+//     content: this.state.content
+//   })
+//     .then(
+//       alert("수정"),
+//       document.location.href = "#/notice"
+//     )
+//     .catch(function (error){
+//       console.log(error)
+//     })
+// }
 
 goBack = () => {
   this.props.history.goBack();
@@ -95,7 +95,7 @@ goBack = () => {
                </table>
                <br></br>
                <footer>
-                <Link to={`/noticeUpdate`}><button>수정</button></Link>
+                {/* <Link to={`/noticeUpdate`}><button>수정</button></Link> */}
                   &nbsp;&nbsp;&nbsp;
                 <button size="sm" color="danger" onClick={()=>{this.delete()}}>삭제</button>
                </footer>

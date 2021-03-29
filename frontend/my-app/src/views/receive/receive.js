@@ -4,7 +4,7 @@
 // 작성자 : 최인아
 //---------------------------------
 import React, { Component } from "react";
-import axios from "axios";
+import ApiService from "../../ApiService";
 import { Link } from 'react-router-dom';
 import '../Template/css/table.css';
 import ReceiveInsert from "./ReceiveInsert";
@@ -44,7 +44,7 @@ componentDidMount() {
 }
 
 getApi = () => {
-    axios.get("http://localhost:8080/receive")
+    ApiService.getReceive()
         .then(res => {
             this.setState({
               receiveList: res.data.message

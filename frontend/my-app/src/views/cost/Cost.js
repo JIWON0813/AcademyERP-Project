@@ -4,7 +4,6 @@
 // 작성자 : 최인아
 //---------------------------------
 import React, { Component } from "react";
-import axios from "axios";
 import { Link } from 'react-router-dom';
 import './table.css';
 import CostInsert from "./CostInsert";
@@ -12,6 +11,7 @@ import Pagination from '@material-ui/lab/Pagination';
 import { withStyles } from "@material-ui/core";
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import PaymentInsert from "../payment/insert/insert";
+import ApiService from "../../ApiService";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -45,7 +45,7 @@ componentDidMount() {
 }
 
 getApi = () => {
-    axios.get("http://localhost:8080/cost")
+  ApiService.getConsults()
         .then(res => {
             this.setState({
               costList: res.data.message
