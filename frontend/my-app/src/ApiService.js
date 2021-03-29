@@ -1,8 +1,8 @@
 import axios from 'axios';
 import CounselingDelete from './views/counseling/CounselingDelete';
 
-const USER_API_BASE_URL = "http://localhost:8080/api";
-const USER_BASE_URL = "http://localhost:8080";
+const USER_API_BASE_URL = "http://localhost:80/api";
+const USER_BASE_URL = "http://localhost:80";
 
 class ApiService {
 
@@ -27,14 +27,14 @@ class ApiService {
     return axios.post(USER_API_BASE_URL + '/edit_stu/' + student.no, student);
   }
 
-  getEmployee(pageable, verify) {
-    return axios.get(USER_API_BASE_URL +
-      '/employee', pageable, verify);
+  getEmployee(map) {
+    return axios.post((USER_API_BASE_URL +
+      '/employee'), map);
   }
 
   InsertEmployee(employee) {
     return axios.post(USER_API_BASE_URL +
-      '/employee', employee);
+      '/employee/insert', employee);
   }
 
   standByAuth() {

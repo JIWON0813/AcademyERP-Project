@@ -3,23 +3,29 @@ package com.example.demo.Controller;
 
 import com.example.demo.Service.EmployeeService;
 import com.example.demo.database.Entity.EmployeeEntity;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
 
 
 @RestController
 @RequestMapping(value = "/api")
 @CrossOrigin(origins = "http://localhost:3000")
+@Log
 public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/employee")
-    public Page<EmployeeEntity> getEmployeeList(@RequestParam Pageable pageable ,@RequestParam int verify){
-        return employeeService.getEmployeeList(pageable, verify);
+    @PostMapping("/employee")
+    public List<EmployeeEntity> getEmployeeList(@RequestBody HashMap map){
+        log.info((String)map.get("currentPage"));
+        log.info((String)map.get("size"));
+        log.info((String)map.get("verify"));
+        return employeeService.getEmployeeList(map);
     }
 
     @GetMapping("/employee/{id}")
@@ -27,7 +33,7 @@ public class EmployeeController {
         return employeeService.getEmployee(id);
     }
 
-    @PostMapping("/employee")
+    @PostMapping("/employee/insert")
     public int insertEmployee(@RequestBody EmployeeEntity employee){
         return employeeService.insertEmployee(employee);
     }

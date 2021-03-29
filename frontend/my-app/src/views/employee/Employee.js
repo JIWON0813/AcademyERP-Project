@@ -10,12 +10,11 @@ class Employee extends Component {
     super(props)
     this.state = {
       employeeList: [],
-      pageable :{
-        currentPage : 1,
+      map : {
+        currentPage : 0,
         size : 10,
-        setCurrentPage : 0
-      },
-      verify : 0
+        verify : 0
+      }
     }
   }
 
@@ -24,14 +23,14 @@ class Employee extends Component {
   }
 
   getApi(){
-    ApiService.getEmployee(this.state.pageable , this.state.verify).then(res => {
+    ApiService.getEmployee(this.state.map).then(res => {
       this.setState({
-        employeeList : res.data.content,
-        pageable :{
-          currentPage : res.data.currentPage,
-          size : res.data.size
-        },
-        verify : 0
+        employeeList : res.data,
+        map : {
+          currentPage : 0,
+          size : 10,
+          verify : 0
+        }
       });
     })
       .catch(err =>{
@@ -40,7 +39,7 @@ class Employee extends Component {
   }
 
   render() {
-    const {employeeList, currentPage, size , command} = this.state
+    const {employeeList , currentPage , size} = this.state
 
     return (
       <div>
@@ -60,7 +59,7 @@ class Employee extends Component {
            </thead>
            <tbody>
            {
-             this.state.employeeList.map(
+             employeeList.map(
                data =>
              <tr key = {data.no}>
               <td>{data.no}</td>
@@ -76,9 +75,10 @@ class Employee extends Component {
            }
            </tbody>
          </table>
-        <CCard>
-          <Pagination />
-        </CCard>
+        <br></br>
+        <div>
+          <Pagination count={10} color="primary" />
+        </div>
       </div>
     );
   }

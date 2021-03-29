@@ -1,22 +1,27 @@
 package com.example.demo.Service;
 
 import com.example.demo.database.Entity.EmployeeEntity;
+import com.example.demo.database.Mapper.EmployeeMapper;
 import com.example.demo.database.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class EmployeeService {
 
     @Autowired
+    private EmployeeMapper employeeMapperMapper;
+
+    @Autowired
     private EmployeeRepository employeeRepository;
 
-    public Page<EmployeeEntity> getEmployeeList(Pageable pageable, int verify){
-        return employeeRepository.findByVerify(pageable, verify);
+    public List<EmployeeEntity> getEmployeeList(HashMap map){
+        map.put("currentPage" , (int)map.get("currentPage") * (int)map.get("size") + 1);
+        return employeeMapperMapper.getEmployeeList(map);
     }
 
     public EmployeeEntity getEmployee(Long id) {

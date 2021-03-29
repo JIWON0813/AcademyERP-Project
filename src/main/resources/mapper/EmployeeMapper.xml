@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.database.Mapper.EmployeeMapper">
+
+
+    <select id="getEmployeeList" resultType="EmployeeListDTO" parameterType="java.util.HashMap">
+        SELECT *
+        FROM employee
+        where verify = #{map.verify}
+        ORDER BY no desc
+            LIMIT #{map.currentPage}, #{map.size}
+    </select>
+
+
+
+
+</mapper>
